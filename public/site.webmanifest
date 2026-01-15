@@ -1,0 +1,21 @@
+{
+  "name": "Innovate Digital - Digital Marketing Agency UAE",
+  "short_name": "Innovate Digital",
+  "description": "Leading digital marketing agency in UAE. Expert SEO, social media marketing, web development, and PPC services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
