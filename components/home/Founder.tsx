@@ -25,7 +25,7 @@ export default function Founder() {
             Meet Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Founder</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            The visionary behind Innovate Digital's success story
+            The visionary behind Innovate Digital&apos;s success story
           </p>
         </motion.div>
 
@@ -113,18 +113,18 @@ export default function Founder() {
 
                   <p>
                     What started as a passion project quickly grew into Innovate Digital – a full-service agency 
-                    dedicated to empowering UAE businesses with cutting-edge digital marketing strategies. We've 
+                    dedicated to empowering UAE businesses with cutting-edge digital marketing strategies. We&apos;ve 
                     helped over 200+ businesses across the Emirates achieve remarkable growth through SEO, social 
                     media, content marketing, and web development.
                   </p>
 
                   <p className="text-lg font-semibold text-gray-900 italic">
-                    "Success isn't just about rankings and metrics – it's about creating meaningful connections 
-                    between brands and their audiences. That's what drives us every single day."
+                    &ldquo;Success isn&apos;t just about rankings and metrics – it&apos;s about creating meaningful connections 
+                    between brands and their audiences. That&apos;s what drives us every single day.&rdquo;
                   </p>
 
                   <p>
-                    Today, I'm proud to lead a team of passionate digital experts who share my vision of making 
+                    Today, I&apos;m proud to lead a team of passionate digital experts who share my vision of making 
                     digital excellence accessible to every business in the UAE. Our mission is simple: transform 
                     your digital presence into your most powerful business asset.
                   </p>
