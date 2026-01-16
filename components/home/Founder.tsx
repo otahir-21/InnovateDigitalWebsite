@@ -40,29 +40,14 @@ export default function Founder() {
               className="relative"
             >
               <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                {/* Placeholder - You'll replace this with your image */}
-                <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                  <div className="text-center text-white p-8">
-                    <div className="w-48 h-48 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-6xl font-bold">AI</span>
-                    </div>
-                    <p className="text-lg font-medium">Add Your Photo Here</p>
-                    <p className="text-sm opacity-90 mt-2">Replace this placeholder in the code</p>
-                  </div>
-                </div>
-                {/* 
-                  TO ADD YOUR IMAGE:
-                  1. Add your photo to /public/founder.jpg
-                  2. Uncomment the code below and remove the placeholder div above
-                  
-                  <Image
-                    src="/founder.jpg"
-                    alt="Founder & CEO"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                */}
+                <Image
+                  src="/founder.jpg"
+                  alt="Osama Tahir - Founder & CEO of Innovate Digital"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
               </div>
 
               {/* Decorative elements */}
