@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 const portfolioItems = [
   {
     id: 1,
+    slug: 'ecommerce-fashion-brand',
     title: 'E-Commerce Fashion Brand',
     category: 'E-Commerce',
     services: ['SEO', 'PPC', 'Social Media'],
@@ -28,6 +29,7 @@ const portfolioItems = [
   },
   {
     id: 2,
+    slug: 'tech-startup-launch',
     title: 'Tech Startup Launch',
     category: 'Technology',
     services: ['Branding', 'Web Development', 'Social Media'],
@@ -41,6 +43,7 @@ const portfolioItems = [
   },
   {
     id: 3,
+    slug: 'restaurant-chain-expansion',
     title: 'Restaurant Chain Expansion',
     category: 'Food & Beverage',
     services: ['Local SEO', 'Google Ads', 'Content'],
@@ -54,6 +57,7 @@ const portfolioItems = [
   },
   {
     id: 4,
+    slug: 'real-estate-portal',
     title: 'Real Estate Portal',
     category: 'Real Estate',
     services: ['SEO', 'Content Marketing', 'Web Dev'],
@@ -67,6 +71,7 @@ const portfolioItems = [
   },
   {
     id: 5,
+    slug: 'healthcare-clinic-growth',
     title: 'Healthcare Clinic',
     category: 'Healthcare',
     services: ['Local SEO', 'Social Media', 'Branding'],
@@ -80,6 +85,7 @@ const portfolioItems = [
   },
   {
     id: 6,
+    slug: 'fitness-studio-transformation',
     title: 'Fitness Studio',
     category: 'Fitness',
     services: ['Social Media', 'Influencer Marketing', 'PPC'],
@@ -184,7 +190,7 @@ export default function PortfolioPage() {
 
                 {/* View Case Study Link */}
                 <Link
-                  href={`/portfolio/${item.id}`}
+                  href={`/portfolio/${item.slug}`}
                   className="text-primary-600 font-medium inline-flex items-center group-hover:gap-2 transition-all"
                 >
                   View Case Study
