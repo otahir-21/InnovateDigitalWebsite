@@ -90,20 +90,24 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta property="og:site_name" content="Innovate Digital" />
       </head>
       <body className={`${inter.className} overflow-x-hidden`}>
-        {/* Google Analytics */}
+        {/* Google Analytics - Deferred for better performance */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-63PVWT802B"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-63PVWT802B');
+            gtag('config', 'G-63PVWT802B', {
+              'page_path': window.location.pathname,
+            });
           `}
         </Script>
 
