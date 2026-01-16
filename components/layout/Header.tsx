@@ -63,8 +63,9 @@ export default function Header() {
           ? 'bg-white/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
+      style={{ overflow: 'visible' }}
     >
-      <nav className="container-custom">
+      <nav className="container-custom" style={{ overflow: 'visible' }}>
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
@@ -78,7 +79,7 @@ export default function Header() {
             {navigationLinks.map((link) => (
               <div
                 key={link.name}
-                className="relative"
+                className="relative group"
                 onMouseEnter={() => link.submenu && setActiveDropdown(link.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
@@ -94,23 +95,30 @@ export default function Header() {
                   {link.submenu && <FiChevronDown className="w-4 h-4" />}
                 </Link>
 
-                {/* Dropdown Menu */}
+                {/* Dropdown Menu - Using fixed positioning to avoid clipping */}
                 {link.submenu && activeDropdown === link.name && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 max-h-[70vh] overflow-y-auto z-[100]"
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 pt-2 w-64 z-[9999]"
+                    style={{ 
+                      maxHeight: 'calc(100vh - 120px)',
+                    }}
                   >
-                    {link.submenu.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 140px)' }}>
+                      {link.submenu.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </div>
