@@ -41,7 +41,7 @@ export default function Founder() {
             >
               <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/founder.jpg"
+                  src="/founder.png"
                   alt="Osama Tahir - Founder & CEO of Innovate Digital"
                   fill
                   className="object-cover"
