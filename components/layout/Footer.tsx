@@ -23,6 +23,7 @@ export default function Footer() {
                 href={siteConfig.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on LinkedIn"
                 className="hover:text-primary-400 transition-colors"
               >
                 <FaLinkedin className="w-5 h-5" />
@@ -31,6 +32,7 @@ export default function Footer() {
                 href={siteConfig.links.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Twitter"
                 className="hover:text-primary-400 transition-colors"
               >
                 <FaTwitter className="w-5 h-5" />
@@ -39,6 +41,7 @@ export default function Footer() {
                 href={siteConfig.links.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Facebook"
                 className="hover:text-primary-400 transition-colors"
               >
                 <FaFacebook className="w-5 h-5" />
@@ -47,6 +50,7 @@ export default function Footer() {
                 href={siteConfig.links.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Instagram"
                 className="hover:text-primary-400 transition-colors"
               >
                 <FaInstagram className="w-5 h-5" />
