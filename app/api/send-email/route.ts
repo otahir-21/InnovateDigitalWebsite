@@ -16,18 +16,18 @@ export async function POST(request: NextRequest) {
 
     // Create transporter for Hostinger SMTP
     const transporter = nodemailer.createTransport({
-      host: 'smtp.hostinger.com', // Hostinger SMTP server
-      port: 465, // SSL port
+      host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+      port: parseInt(process.env.SMTP_PORT || '465'),
       secure: true, // Use SSL
       auth: {
-        user: process.env.SMTP_USER, // Your email (e.g., contact@innovatedigital.ae)
-        pass: process.env.SMTP_PASSWORD, // Your email password
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS || process.env.SMTP_PASSWORD, // Support both variable names
       },
     })
 
     // Email content
     const mailOptions = {
-      from: process.env.SMTP_USER, // Sender email
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: 'osama@innovatedigital.ae', // Recipient email
       replyTo: email, // User's email for reply
       subject: `New Contact Form Submission from ${name}`,
