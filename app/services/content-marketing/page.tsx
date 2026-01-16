@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Content Marketing Services in UAE | Content Strategy Dubai',
-  description: 'Expert content marketing services in Dubai & UAE. SEO-optimized blog writing, article creation, and content strategy that drives traffic and conversions.',
-  keywords: ['Content Marketing Dubai', 'Content Writing UAE', 'Blog Writing Dubai', 'Content Strategy UAE', 'SEO Content Dubai'],
+  title: 'Content Marketing Agency Dubai | Content Strategy UAE',
+  description: 'Top content marketing agency in Dubai. SEO-optimized blog writing, articles & content strategy that drives traffic and conversions. Expert content services in UAE.',
+  keywords: ['Content Marketing Dubai', 'Content Marketing Agency Dubai', 'Content Writing Dubai', 'Blog Writing Dubai', 'SEO Content Dubai', 'Content Strategy Dubai'],
+  openGraph: {
+    title: 'Content Marketing Agency Dubai | Content Strategy UAE',
+    description: 'Expert content marketing in Dubai. Create engaging, SEO-optimized content that drives results.',
+  },
 }
 
 const services = [

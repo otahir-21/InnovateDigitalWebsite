@@ -5,12 +5,12 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Email Marketing Services in UAE | Drive Sales with Email Campaigns',
-  description: 'Professional email marketing services in Dubai & UAE. Build relationships, drive sales, and increase ROI with strategic email campaigns. Expert email automation & design.',
-  keywords: ['Email Marketing Dubai', 'Email Campaigns UAE', 'Email Automation Dubai', 'Newsletter Marketing UAE', 'Email Marketing Agency Dubai'],
+  title: 'Email Marketing Agency Dubai | Best Email Campaigns UAE',
+  description: 'Top email marketing agency in Dubai. Drive sales with strategic email campaigns, automation & personalized newsletters. Expert email marketing services in UAE.',
+  keywords: ['Email Marketing Dubai', 'Email Marketing Agency Dubai', 'Email Campaigns UAE', 'Email Automation Dubai', 'Newsletter Marketing Dubai', 'Mailchimp Dubai'],
   openGraph: {
-    title: 'Email Marketing Services UAE - Innovate Digital',
-    description: 'Professional email marketing campaigns that drive sales and build customer relationships in UAE.',
+    title: 'Email Marketing Agency Dubai | Best Email Campaigns UAE',
+    description: 'Professional email marketing in Dubai. Build relationships and drive sales with strategic email campaigns.',
   },
 }
 

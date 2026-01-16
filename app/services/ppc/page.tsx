@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'PPC Management Services in UAE | Google Ads Agency Dubai',
-  description: 'Expert PPC management in Dubai & UAE. Maximize ROI with Google Ads, Facebook Ads, Instagram Ads. Certified PPC specialists delivering measurable results.',
-  keywords: ['PPC Dubai', 'Google Ads UAE', 'PPC Management Dubai', 'Paid Advertising UAE', 'Google Ads Agency Dubai'],
+  title: 'PPC Agency Dubai | Google Ads Management UAE | Innovate Digital',
+  description: 'Leading PPC agency in Dubai. Maximize ROI with expert Google Ads, Facebook Ads & Instagram campaigns. Certified PPC specialists with proven results in UAE market.',
+  keywords: ['PPC Agency Dubai', 'Google Ads Dubai', 'PPC Management UAE', 'Google Ads Agency Dubai', 'Paid Advertising Dubai', 'Facebook Ads UAE'],
+  openGraph: {
+    title: 'PPC Agency Dubai | Google Ads Management UAE',
+    description: 'Expert PPC management in Dubai. Drive targeted traffic and maximize ROI with certified Google Ads specialists.',
+  },
 }
 
 const services = [

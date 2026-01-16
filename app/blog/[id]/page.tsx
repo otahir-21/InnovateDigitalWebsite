@@ -7,7 +7,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 const blogPosts = [
   {
     id: '1',
-    title: 'The Ultimate Guide to SEO in UAE for 2026',
+    title: 'Ultimate SEO Guide Dubai 2026 | Rank #1 on Google UAE',
     content: `
       <p>Search Engine Optimization (SEO) in the UAE market requires a unique approach that combines international best practices with local market understanding. In this comprehensive guide, we'll explore the strategies that work specifically for businesses targeting the UAE audience.</p>
 
@@ -97,7 +97,7 @@ const blogPosts = [
   },
   {
     id: '2',
-    title: 'Social Media Trends in Middle East for 2026',
+    title: 'Social Media Trends 2026 | Dubai & UAE Digital Marketing',
     content: `
       <p>The Middle East social media landscape is evolving rapidly, with UAE leading the way in digital adoption and social media engagement. In 2026, businesses need to adapt to new trends to stay competitive and connect with their audience effectively.</p>
 
@@ -221,7 +221,7 @@ const blogPosts = [
   },
   {
     id: '3',
-    title: 'How to Maximize ROI with Google Ads in Dubai',
+    title: 'Maximize Google Ads ROI Dubai | PPC Strategy Guide 2026',
     content: `
       <p>Google Ads in Dubai is one of the most competitive markets globally, with costs-per-click (CPC) significantly higher than international averages. However, with the right strategy, businesses can achieve exceptional ROI. This comprehensive guide reveals proven tactics to maximize your Google Ads performance in Dubai and UAE.</p>
 
@@ -381,7 +381,7 @@ const blogPosts = [
   },
   {
     id: '4',
-    title: 'Content Marketing Strategies for UAE Businesses',
+    title: 'Content Marketing Dubai 2026 | Strategies for UAE Businesses',
     content: `
       <p>Content marketing is one of the most effective ways to build brand authority, attract organic traffic, and generate qualified leads in the UAE market. This comprehensive guide reveals proven content strategies specifically tailored for businesses targeting the UAE audience.</p>
 
@@ -585,7 +585,7 @@ const blogPosts = [
   },
   {
     id: '5',
-    title: 'Website Speed Optimization: A Complete Guide',
+    title: 'Website Speed Optimization Dubai | Complete SEO Guide UAE',
     content: `
       <p>Website speed is critical for success in the UAE market. With mobile usage at 85% and user expectations higher than ever, a slow website can cost you thousands in lost revenue. This comprehensive guide reveals how to optimize your website for lightning-fast performance.</p>
 
@@ -783,7 +783,7 @@ const blogPosts = [
   },
   {
     id: '6',
-    title: 'Building a Strong Brand Identity in UAE',
+    title: 'Brand Identity Dubai | Building Strong Brands in UAE 2026',
     content: `
       <p>In the competitive UAE market, a strong brand identity is essential for standing out and building lasting customer relationships. This comprehensive guide reveals how to create a memorable brand that resonates with UAE audiences and drives business growth.</p>
 

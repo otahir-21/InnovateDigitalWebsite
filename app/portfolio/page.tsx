@@ -4,11 +4,11 @@ import { FiArrowRight, FiExternalLink } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Our Success Stories | Innovate Digital UAE',
-  description: 'Explore our portfolio of successful digital marketing projects in UAE. Real results for real businesses across various industries.',
+  title: 'Our Work - Digital Marketing Success Stories | Dubai Portfolio',
+  description: 'Explore our portfolio of successful digital marketing projects in Dubai & UAE. Real results, proven strategies, and exceptional ROI across various industries.',
   openGraph: {
-    title: 'Portfolio - Innovate Digital UAE',
-    description: 'View our successful digital marketing case studies from UAE.',
+    title: 'Our Work - Digital Marketing Success Stories | Dubai Portfolio',
+    description: 'View successful digital marketing case studies and results from Dubai & UAE businesses.',
   },
 }
 

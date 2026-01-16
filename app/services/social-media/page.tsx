@@ -6,12 +6,12 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Social Media Marketing Services in UAE | SMM Agency Dubai',
-  description: 'Expert social media marketing services in Dubai & UAE. Grow your brand on Instagram, Facebook, LinkedIn, TikTok. Professional SMM agency with proven results.',
-  keywords: ['Social Media Marketing Dubai', 'SMM UAE', 'Instagram Marketing Dubai', 'Facebook Ads UAE', 'Social Media Agency Dubai'],
+  title: 'Social Media Marketing Dubai | Best SMM Agency UAE',
+  description: 'Top social media marketing agency in Dubai. Expert Instagram, Facebook, LinkedIn & TikTok management. Grow your brand with proven SMM strategies and engaging content.',
+  keywords: ['Social Media Marketing Dubai', 'SMM Agency Dubai', 'Instagram Marketing Dubai', 'Facebook Marketing UAE', 'Social Media Dubai', 'TikTok Marketing UAE'],
   openGraph: {
-    title: 'Social Media Marketing UAE - Innovate Digital',
-    description: 'Build a strong social presence and engage your audience with expert social media marketing in UAE.',
+    title: 'Social Media Marketing Dubai | Best SMM Agency UAE',
+    description: 'Leading social media agency in Dubai. Build strong social presence and engage audiences with expert SMM strategies.',
   },
 }
 

@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Video Production Services in UAE | Corporate Videos Dubai',
-  description: 'Professional video production services in Dubai & UAE. Corporate videos, social media content, commercials, and animation. Expert videographers and editors.',
-  keywords: ['Video Production Dubai', 'Corporate Videos UAE', 'Video Marketing Dubai', 'Videographer UAE', 'Commercial Production Dubai'],
+  title: 'Video Production Dubai | Corporate Video Services UAE',
+  description: 'Professional video production company in Dubai. Corporate videos, social media content, commercials & animation. Expert videographers delivering cinematic quality in UAE.',
+  keywords: ['Video Production Dubai', 'Corporate Videos Dubai', 'Video Production Company Dubai', 'Videographer Dubai', 'Commercial Video UAE', 'Video Marketing Dubai'],
+  openGraph: {
+    title: 'Video Production Dubai | Corporate Video Services UAE',
+    description: 'Expert video production in Dubai. Create engaging corporate videos, commercials and social media content.',
+  },
 }
 
 const services = [

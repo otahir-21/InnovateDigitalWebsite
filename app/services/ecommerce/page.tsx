@@ -5,12 +5,12 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'E-commerce Solutions in UAE | Online Store Development Dubai',
-  description: 'Complete e-commerce solutions in Dubai & UAE. Build, grow, and optimize your online store with Shopify, WooCommerce, and custom platforms. Expert e-commerce development.',
-  keywords: ['E-commerce Dubai', 'Online Store UAE', 'Shopify Expert Dubai', 'WooCommerce Development UAE', 'E-commerce Agency Dubai'],
+  title: 'Ecommerce Development Dubai | Online Store Solutions UAE',
+  description: 'Leading ecommerce development company in Dubai. Build & grow your online store with Shopify, WooCommerce & custom platforms. Expert ecommerce solutions in UAE.',
+  keywords: ['Ecommerce Development Dubai', 'Online Store Dubai', 'Shopify Dubai', 'Ecommerce Website Dubai', 'WooCommerce Dubai', 'Online Shop UAE'],
   openGraph: {
-    title: 'E-commerce Solutions UAE - Innovate Digital',
-    description: 'Build and grow your online store with comprehensive e-commerce solutions in UAE.',
+    title: 'Ecommerce Development Dubai | Online Store Solutions UAE',
+    description: 'Expert ecommerce development in Dubai. Build high-converting online stores with proven platforms and strategies.',
   },
 }
 

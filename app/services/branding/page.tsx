@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Branding & Design Services in UAE | Brand Identity Dubai',
-  description: 'Professional branding and design services in Dubai & UAE. Create a memorable brand identity with logo design, brand guidelines, and visual identity systems.',
-  keywords: ['Branding Dubai', 'Brand Identity UAE', 'Logo Design Dubai', 'Brand Strategy UAE', 'Graphic Design Dubai'],
+  title: 'Branding Agency Dubai | Logo Design & Brand Identity UAE',
+  description: 'Leading branding agency in Dubai. Create memorable brand identity with professional logo design, brand guidelines & visual identity systems. Expert branding in UAE.',
+  keywords: ['Branding Agency Dubai', 'Brand Identity Dubai', 'Logo Design Dubai', 'Branding Dubai', 'Brand Strategy Dubai', 'Graphic Design Dubai'],
+  openGraph: {
+    title: 'Branding Agency Dubai | Logo Design & Brand Identity UAE',
+    description: 'Professional branding services in Dubai. Build strong, memorable brands with expert design and strategy.',
+  },
 }
 
 const services = [

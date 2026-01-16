@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Mobile App Development Services in UAE | iOS & Android Dubai',
-  description: 'Professional mobile app development in Dubai & UAE. Custom iOS and Android apps. Expert app developers delivering user-friendly, high-performance mobile solutions.',
-  keywords: ['Mobile App Development Dubai', 'iOS App Development UAE', 'Android App Dubai', 'App Developer UAE', 'Mobile App Company Dubai'],
+  title: 'Mobile App Development Dubai | iOS & Android Apps UAE',
+  description: 'Leading mobile app development company in Dubai. Build custom iOS & Android apps with expert developers. User-friendly, high-performance mobile solutions in UAE.',
+  keywords: ['Mobile App Development Dubai', 'App Development Dubai', 'iOS App Dubai', 'Android App Dubai', 'Mobile App Company Dubai', 'App Developer Dubai'],
+  openGraph: {
+    title: 'Mobile App Development Dubai | iOS & Android Apps UAE',
+    description: 'Expert mobile app development in Dubai. Create powerful iOS and Android apps that engage users.',
+  },
 }
 
 const services = [

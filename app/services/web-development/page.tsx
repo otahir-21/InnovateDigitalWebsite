@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Web Development Services in UAE | Website Design Dubai',
-  description: 'Professional web development services in Dubai & UAE. Custom websites, e-commerce platforms, and web applications. Fast, SEO-optimized, mobile-responsive designs.',
-  keywords: ['Web Development Dubai', 'Website Design UAE', 'Web Design Dubai', 'Custom Website UAE', 'Web Developer Dubai'],
+  title: 'Web Development Company Dubai | Best Website Design UAE',
+  description: 'Leading web development company in Dubai. Custom websites, e-commerce platforms & web applications. Fast, SEO-optimized, mobile-responsive designs with proven results.',
+  keywords: ['Web Development Dubai', 'Website Design Dubai', 'Web Development Company Dubai', 'Website Development UAE', 'Web Developer Dubai', 'Custom Website Dubai'],
+  openGraph: {
+    title: 'Web Development Company Dubai | Best Website Design UAE',
+    description: 'Professional web development in Dubai. Build fast, secure, SEO-optimized websites that drive results.',
+  },
 }
 
 const services = [

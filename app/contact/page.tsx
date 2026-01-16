@@ -6,11 +6,11 @@ import { siteConfig } from '@/lib/config'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Get Free Digital Marketing Consultation',
-  description: 'Contact Innovate Digital for a free consultation. Call us, email us, or visit our office in Dubai, UAE. Let\'s grow your business together.',
+  title: 'Contact Us - Digital Marketing Agency Dubai | Free Consultation',
+  description: 'Contact Innovate Digital for free marketing consultation in Dubai. Call +971 52 394 9010, email us, or visit our Dubai office. Let\'s grow your business together.',
   openGraph: {
-    title: 'Contact Innovate Digital - Free Consultation',
-    description: 'Get in touch with our digital marketing experts in UAE. Free consultation available.',
+    title: 'Contact Us - Digital Marketing Agency Dubai | Free Consultation',
+    description: 'Get in touch with Dubai\'s leading digital marketing experts. Free consultation available.',
   },
 }
 

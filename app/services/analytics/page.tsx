@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Analytics & Reporting Services in UAE | Data Analytics Dubai',
-  description: 'Professional analytics and reporting services in Dubai & UAE. Google Analytics setup, custom dashboards, ROI tracking, and data-driven insights for better marketing decisions.',
-  keywords: ['Marketing Analytics Dubai', 'Google Analytics UAE', 'Data Analysis Dubai', 'ROI Tracking UAE', 'Marketing Reports Dubai'],
+  title: 'Marketing Analytics Dubai | Data Analysis & Reporting UAE',
+  description: 'Expert marketing analytics services in Dubai. Google Analytics setup, custom dashboards, ROI tracking & data-driven insights. Professional analytics & reporting in UAE.',
+  keywords: ['Marketing Analytics Dubai', 'Google Analytics Dubai', 'Data Analytics Dubai', 'Marketing Reports Dubai', 'ROI Tracking Dubai', 'Web Analytics UAE'],
+  openGraph: {
+    title: 'Marketing Analytics Dubai | Data Analysis & Reporting UAE',
+    description: 'Professional analytics services in Dubai. Make data-driven decisions with expert tracking and reporting.',
+  },
 }
 
 const services = [

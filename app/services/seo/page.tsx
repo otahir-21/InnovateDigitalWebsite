@@ -5,12 +5,12 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'SEO Services in UAE | Expert SEO Agency Dubai',
-  description: 'Leading SEO agency in UAE. Dominate search rankings with proven SEO strategies. Increase organic traffic and visibility in UAE market.',
-  keywords: ['SEO Dubai', 'SEO UAE', 'SEO Services Dubai', 'Search Engine Optimization UAE', 'SEO Agency Dubai'],
+  title: 'SEO Company Dubai | #1 SEO Services UAE | Innovate Digital',
+  description: 'Leading SEO company in Dubai & UAE. Rank #1 on Google with proven SEO strategies. Expert keyword research, on-page optimization, and link building services.',
+  keywords: ['SEO Company Dubai', 'SEO Services UAE', 'Best SEO Agency Dubai', 'SEO Expert Dubai', 'Search Engine Optimization Dubai', 'Google Ranking Dubai'],
   openGraph: {
-    title: 'SEO Services UAE - Innovate Digital',
-    description: 'Expert SEO services to dominate search rankings in UAE market.',
+    title: 'SEO Company Dubai | #1 SEO Services UAE | Innovate Digital',
+    description: 'Top-rated SEO company in Dubai. Dominate Google search rankings with expert SEO strategies.',
   },
 }
 

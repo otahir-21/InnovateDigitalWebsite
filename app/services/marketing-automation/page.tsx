@@ -5,9 +5,13 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Marketing Automation Services in UAE | CRM Integration Dubai',
-  description: 'Professional marketing automation services in Dubai & UAE. Streamline your marketing with lead nurturing, workflow automation, and CRM integration.',
-  keywords: ['Marketing Automation Dubai', 'CRM Integration UAE', 'Lead Nurturing Dubai', 'Marketing Software UAE', 'Automation Dubai'],
+  title: 'Marketing Automation Dubai | CRM Integration Services UAE',
+  description: 'Leading marketing automation services in Dubai. Streamline marketing with lead nurturing, workflow automation & CRM integration. Expert automation solutions in UAE.',
+  keywords: ['Marketing Automation Dubai', 'Marketing Automation UAE', 'CRM Integration Dubai', 'Lead Nurturing Dubai', 'HubSpot Dubai', 'Salesforce Dubai'],
+  openGraph: {
+    title: 'Marketing Automation Dubai | CRM Integration Services UAE',
+    description: 'Expert marketing automation in Dubai. Automate workflows, nurture leads and integrate CRM systems.',
+  },
 }
 
 const services = [

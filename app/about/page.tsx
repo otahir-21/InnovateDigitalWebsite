@@ -7,11 +7,11 @@ import FAQ from '@/components/ui/FAQ'
 import { aboutFAQs } from '@/lib/faqData'
 
 export const metadata: Metadata = {
-  title: 'About Us - Leading Digital Marketing Agency in UAE',
-  description: 'Learn about Innovate Digital, the premier digital marketing agency in UAE. Our expert team delivers exceptional results through innovative strategies.',
+  title: 'About Us - Dubai\'s Leading Digital Marketing Agency | Innovate Digital',
+  description: 'Meet Innovate Digital - the premier digital marketing agency in Dubai & UAE. Led by Osama Tahir, our expert team delivers exceptional results through innovative strategies.',
   openGraph: {
-    title: 'About Us - Innovate Digital',
-    description: 'Leading digital marketing agency in UAE with a proven track record of success.',
+    title: 'About Us - Dubai\'s Leading Digital Marketing Agency | Innovate Digital',
+    description: 'Leading digital marketing agency in Dubai & UAE with proven track record of success.',
   },
 }
 
