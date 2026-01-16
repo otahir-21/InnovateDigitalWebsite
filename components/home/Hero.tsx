@@ -1,14 +1,29 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { FiArrowRight, FiPlay } from 'react-icons/fi'
+import { useEffect, useState } from 'react'
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Detect mobile devices for performance optimization
+    setIsMobile(window.innerWidth < 768)
+  }, [])
+
+  // Disable animations on mobile for better performance (LCP optimization)
+  const shouldAnimate = !isMobile && !prefersReducedMotion
+  const animationProps = shouldAnimate
+    ? { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
+    : { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Animated background elements - hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
@@ -17,15 +32,10 @@ export default function Hero() {
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div {...animationProps} transition={{ duration: shouldAnimate ? 0.5 : 0 }}>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              {...animationProps}
+              transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.1 : 0 }}
               className="inline-block mb-4"
             >
               <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium">
@@ -34,9 +44,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              {...animationProps}
+              transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.15 : 0 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
             >
               Transform Your Business with{' '}
@@ -44,18 +53,16 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              {...animationProps}
+              transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.2 : 0 }}
               className="text-xl text-gray-600 mb-8 leading-relaxed"
             >
               We are a leading digital marketing agency in UAE, specializing in SEO, social media marketing, and web development. Drive measurable results with data-driven strategies.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              {...animationProps}
+              transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.25 : 0 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link href="/contact" className="btn-primary inline-flex items-center justify-center group">
@@ -63,7 +70,10 @@ export default function Hero() {
                 <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               
-              <button className="btn-secondary inline-flex items-center justify-center group">
+              <button 
+                className="btn-secondary inline-flex items-center justify-center group"
+                aria-label="Watch our portfolio video showcasing successful digital marketing projects"
+              >
                 <FiPlay className="mr-2" />
                 Watch Our Work
               </button>
@@ -71,9 +81,8 @@ export default function Hero() {
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              {...animationProps}
+              transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.3 : 0 }}
               className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-gray-200"
             >
               <div>
@@ -93,9 +102,9 @@ export default function Hero() {
 
           {/* Right Column - Visual */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={shouldAnimate ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.2 : 0 }}
             className="relative hidden lg:block"
           >
             <div className="relative w-full h-[600px] flex items-center justify-center">
