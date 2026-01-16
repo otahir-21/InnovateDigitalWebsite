@@ -86,8 +86,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <meta property="og:site_name" content="Innovate Digital" />
       </head>
       <body className={inter.className}>
         {/* Google Analytics */}
