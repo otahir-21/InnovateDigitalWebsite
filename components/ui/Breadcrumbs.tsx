@@ -67,7 +67,7 @@ export default function Breadcrumbs() {
             return (
               <li key={item.href} className="flex items-center">
                 {index > 0 && (
-                  <FiChevronRight className="w-4 h-4 text-gray-400 mx-2" />
+                  <FiChevronRight className="w-4 h-4 text-gray-500 mx-2" />
                 )}
                 {index === 0 ? (
                   <Link
