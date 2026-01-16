@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'Innovate Digital | Digital Marketing Agency UAE',
+  name: 'Innovate Digital',
   description: 'Leading digital marketing agency in UAE. Expert SEO, social media marketing, web development, and PPC services. Transform your business with data-driven strategies.',
   url: 'https://innovatedigital.ae', // Update with your actual domain
   ogImage: 'https://innovatedigital.ae/og-image.jpg',
