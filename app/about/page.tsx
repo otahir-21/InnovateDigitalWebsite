@@ -85,8 +85,123 @@ export default function AboutPage() {
                 Today, we are proud to be recognized as one of the leading digital marketing agencies in UAE, known for our innovative strategies and exceptional client results.
               </p>
             </div>
-            <div className="relative h-96 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center">
-              <span className="text-8xl">🏢</span>
+            <div className="relative h-96 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 flex items-center justify-center overflow-hidden">
+              <svg viewBox="0 0 400 350" className="w-full h-full">
+                {/* Company Growth Journey Illustration */}
+                
+                {/* Timeline base */}
+                <path d="M 50 300 L 350 300" stroke="#E5E7EB" strokeWidth="3" strokeLinecap="round"/>
+                
+                {/* Timeline milestones */}
+                
+                {/* 2018 - Start (Small) */}
+                <circle cx="80" cy="300" r="8" fill="#3B82F6"/>
+                <text x="80" y="330" textAnchor="middle" fill="#6B7280" fontSize="12" fontWeight="bold">2018</text>
+                <text x="80" y="345" textAnchor="middle" fill="#9CA3AF" fontSize="10">Founded</text>
+                
+                {/* Building 1 - Small startup */}
+                <rect x="60" y="240" width="40" height="50" fill="#3B82F6" opacity="0.7"/>
+                <rect x="65" y="248" width="10" height="10" fill="#DBEAFE"/>
+                <rect x="80" y="248" width="10" height="10" fill="#DBEAFE"/>
+                <rect x="65" y="263" width="10" height="10" fill="#DBEAFE"/>
+                <rect x="80" y="263" width="10" height="10" fill="#DBEAFE"/>
+                <rect x="65" y="278" width="10" height="10" fill="#DBEAFE"/>
+                <rect x="80" y="278" width="10" height="10" fill="#DBEAFE"/>
+                
+                {/* Team icon 2018 */}
+                <circle cx="80" cy="220" r="15" fill="#DBEAFE"/>
+                <text x="80" y="228" textAnchor="middle" fontSize="16">👥</text>
+                <text x="80" y="210" textAnchor="middle" fill="#3B82F6" fontSize="11" fontWeight="bold">3 people</text>
+                
+                {/* 2020 - Growth */}
+                <circle cx="180" cy="300" r="8" fill="#8B5CF6"/>
+                <text x="180" y="330" textAnchor="middle" fill="#6B7280" fontSize="12" fontWeight="bold">2020</text>
+                <text x="180" y="345" textAnchor="middle" fill="#9CA3AF" fontSize="10">Expansion</text>
+                
+                {/* Building 2 - Medium size */}
+                <rect x="150" y="210" width="60" height="80" fill="#8B5CF6" opacity="0.7"/>
+                <rect x="157" y="220" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="175" y="220" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="193" y="220" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="157" y="238" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="175" y="238" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="193" y="238" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="157" y="256" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="175" y="256" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="193" y="256" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="157" y="274" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="175" y="274" width="12" height="12" fill="#EDE9FE"/>
+                <rect x="193" y="274" width="12" height="12" fill="#EDE9FE"/>
+                
+                {/* Clients icon 2020 */}
+                <circle cx="180" cy="185" r="18" fill="#EDE9FE"/>
+                <text x="180" y="194" textAnchor="middle" fontSize="18">📊</text>
+                <text x="180" y="172" textAnchor="middle" fill="#8B5CF6" fontSize="11" fontWeight="bold">50+ Clients</text>
+                
+                {/* 2024 - Now (Largest) */}
+                <circle cx="310" cy="300" r="8" fill="#10B981"/>
+                <text x="310" y="330" textAnchor="middle" fill="#6B7280" fontSize="12" fontWeight="bold">2024</text>
+                <text x="310" y="345" textAnchor="middle" fill="#9CA3AF" fontSize="10">Leading</text>
+                
+                {/* Building 3 - Large successful company */}
+                <rect x="270" y="170" width="80" height="120" fill="#10B981" opacity="0.7"/>
+                <rect x="278" y="180" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="298" y="180" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="318" y="180" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="338" y="180" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="278" y="200" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="298" y="200" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="318" y="200" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="338" y="200" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="278" y="220" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="298" y="220" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="318" y="220" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="338" y="220" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="278" y="240" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="298" y="240" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="318" y="240" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="338" y="240" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="278" y="260" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="298" y="260" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="318" y="260" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="338" y="260" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="278" y="280" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="298" y="280" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="318" y="280" width="14" height="14" fill="#D1FAE5"/>
+                <rect x="338" y="280" width="14" height="14" fill="#D1FAE5"/>
+                
+                {/* Success stats 2024 */}
+                <circle cx="310" cy="140" r="22" fill="#D1FAE5"/>
+                <text x="310" y="150" textAnchor="middle" fontSize="20">🏆</text>
+                <text x="310" y="122" textAnchor="middle" fill="#10B981" fontSize="11" fontWeight="bold">200+ Clients</text>
+                
+                {/* Growth arrow connecting all */}
+                <path d="M 100 260 Q 180 200 260 180" stroke="#F59E0B" strokeWidth="3" 
+                      fill="none" strokeLinecap="round" strokeDasharray="5,5"/>
+                <path d="M 260 180 L 252 183 M 260 180 L 257 188" 
+                      stroke="#F59E0B" strokeWidth="3" strokeLinecap="round"/>
+                
+                {/* Title at top */}
+                <text x="200" y="35" textAnchor="middle" fill="#3B82F6" fontSize="20" fontWeight="bold">Our Journey</text>
+                <text x="200" y="55" textAnchor="middle" fill="#6B7280" fontSize="13">From Startup to Leading Agency</text>
+                
+                {/* Achievement badges */}
+                <rect x="20" y="80" width="90" height="40" rx="8" fill="white" opacity="0.95" 
+                      stroke="#3B82F6" strokeWidth="2"/>
+                <text x="65" y="97" textAnchor="middle" fill="#3B82F6" fontSize="14" fontWeight="bold">500+</text>
+                <text x="65" y="113" textAnchor="middle" fill="#6B7280" fontSize="10">Projects</text>
+                
+                <rect x="290" y="60" width="90" height="40" rx="8" fill="white" opacity="0.95" 
+                      stroke="#10B981" strokeWidth="2"/>
+                <text x="335" y="77" textAnchor="middle" fill="#10B981" fontSize="14" fontWeight="bold">98%</text>
+                <text x="335" y="93" textAnchor="middle" fill="#6B7280" fontSize="10">Satisfaction</text>
+                
+                {/* Decorative stars */}
+                <circle cx="140" cy="170" r="3" fill="#F59E0B"/>
+                <circle cx="240" cy="150" r="3" fill="#8B5CF6"/>
+                <circle cx="350" cy="140" r="4" fill="#10B981"/>
+                <circle cx="40" cy="250" r="2" fill="#3B82F6"/>
+              </svg>
             </div>
           </div>
         </div>
