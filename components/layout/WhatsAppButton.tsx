@@ -14,18 +14,23 @@ export default function WhatsAppButton() {
       href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-28 right-4 sm:bottom-32 sm:right-6 z-[9999] bg-green-500 hover:bg-green-600 active:bg-green-700 text-white p-3 sm:p-4 rounded-full shadow-2xl transition-all hover:scale-110 group touch-manipulation"
-      style={{ position: 'fixed' }}
+      className="fixed bottom-6 right-6 z-[9999] bg-green-500 hover:bg-green-600 active:bg-green-700 text-white p-4 rounded-full shadow-2xl group touch-manipulation will-change-transform"
       aria-label="Contact us on WhatsApp"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.5 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ 
+        type: 'spring', 
+        stiffness: 200, 
+        damping: 15, 
+        delay: 0.3,
+        duration: 0.6
+      }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
     >
-      <FaWhatsapp className="w-7 h-7 sm:w-8 sm:h-8" />
+      <FaWhatsapp className="w-7 h-7 relative z-10 pointer-events-none" />
       
       {/* Tooltip - hidden on mobile (touch devices don't have hover) */}
       {isHovered && (
@@ -39,8 +44,6 @@ export default function WhatsAppButton() {
         </motion.div>
       )}
       
-      {/* Pulse animation - slightly reduced on mobile */}
-      <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-70 sm:opacity-75"></span>
     </motion.a>
   )
 }
