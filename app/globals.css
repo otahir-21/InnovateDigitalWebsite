@@ -45,6 +45,95 @@
   .card {
     @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-gray-100;
   }
+  
+  /* Mobile-first animations - NO animations on mobile, smooth animations on desktop */
+  /* This prevents render delay and improves LCP on mobile devices */
+  
+  /* Mobile: No animations (instant render for fast LCP) */
+  .animate-on-desktop,
+  .animate-on-desktop-delay-1,
+  .animate-on-desktop-delay-2,
+  .animate-on-desktop-delay-3,
+  .animate-on-desktop-delay-4,
+  .animate-on-desktop-delay-5,
+  .animate-on-desktop-scale {
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Desktop: Smooth fade-in animations (better UX) */
+  @media (min-width: 768px) {
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .animate-on-desktop {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    
+    .animate-on-desktop-delay-1 {
+      animation: fadeInUp 0.5s ease-out 0.1s forwards;
+      opacity: 0;
+    }
+    
+    .animate-on-desktop-delay-2 {
+      animation: fadeInUp 0.5s ease-out 0.15s forwards;
+      opacity: 0;
+    }
+    
+    .animate-on-desktop-delay-3 {
+      animation: fadeInUp 0.5s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .animate-on-desktop-delay-4 {
+      animation: fadeInUp 0.5s ease-out 0.25s forwards;
+      opacity: 0;
+    }
+    
+    .animate-on-desktop-delay-5 {
+      animation: fadeInUp 0.5s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+    
+    .animate-on-desktop-scale {
+      animation: fadeInScale 0.5s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+    
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-desktop,
+      .animate-on-desktop-delay-1,
+      .animate-on-desktop-delay-2,
+      .animate-on-desktop-delay-3,
+      .animate-on-desktop-delay-4,
+      .animate-on-desktop-delay-5,
+      .animate-on-desktop-scale {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
 }
 
 /* Custom scrollbar */
