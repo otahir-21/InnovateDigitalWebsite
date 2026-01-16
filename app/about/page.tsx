@@ -39,9 +39,9 @@ const values = [
 ]
 
 const team = [
-  { name: 'John Smith', role: 'CEO & Founder', emoji: '👨‍💼' },
-  { name: 'Sarah Ahmed', role: 'Head of SEO', emoji: '👩‍💼' },
-  { name: 'Michael Chen', role: 'Creative Director', emoji: '👨‍🎨' },
+  { name: 'Osama Tahir', role: 'CEO & Founder', emoji: '👨‍💼' },
+  { name: 'Syed Shahjahan', role: 'Head of SEO', emoji: '👨‍💼' },
+  { name: 'Ali Husnain', role: 'Creative Director', emoji: '👨‍🎨' },
   { name: 'Fatima Ali', role: 'Social Media Manager', emoji: '👩‍💻' },
 ]
 
@@ -66,8 +66,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder Section */}
-      <Founder />
+      {/* Founder Section - Temporarily Hidden */}
+      {/* <Founder /> */}
 
       {/* Story Section */}
       <section className="section-padding bg-white">
