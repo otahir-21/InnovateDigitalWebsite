@@ -1,16 +1,10 @@
+'use client'
+
+import { useState } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { FiArrowRight, FiExternalLink } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-
-export const metadata: Metadata = {
-  title: 'Our Work - Digital Marketing Success Stories | Dubai Portfolio',
-  description: 'Explore our portfolio of successful digital marketing projects in Dubai & UAE. Real results, proven strategies, and exceptional ROI across various industries.',
-  openGraph: {
-    title: 'Our Work - Digital Marketing Success Stories | Dubai Portfolio',
-    description: 'View successful digital marketing case studies and results from Dubai & UAE businesses.',
-  },
-}
 
 const portfolioItems = [
   {
@@ -102,6 +96,12 @@ const portfolioItems = [
 const categories = ['All', 'E-Commerce', 'Technology', 'Food & Beverage', 'Real Estate', 'Healthcare', 'Fitness']
 
 export default function PortfolioPage() {
+  const [selectedCategory, setSelectedCategory] = useState('All')
+
+  const filteredItems = selectedCategory === 'All' 
+    ? portfolioItems 
+    : portfolioItems.filter(item => item.category === selectedCategory)
+
   return (
     <div className="pt-20">
       <div className="container mx-auto px-4">
@@ -129,7 +129,12 @@ export default function PortfolioPage() {
             {categories.map((category) => (
               <button
                 key={category}
-                className="px-6 py-2 rounded-full border-2 border-gray-200 hover:border-primary-600 hover:text-primary-600 transition-colors font-medium text-sm"
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full border-2 transition-all font-medium text-sm ${
+                  selectedCategory === category
+                    ? 'border-primary-600 bg-primary-600 text-white'
+                    : 'border-gray-200 hover:border-primary-600 hover:text-primary-600'
+                }`}
               >
                 {category}
               </button>
@@ -142,7 +147,7 @@ export default function PortfolioPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioItems.map((item) => (
+            {filteredItems.map((item) => (
               <div key={item.id} className="card group hover:-translate-y-2 cursor-pointer">
                 {/* Image Placeholder */}
                 <div className="mb-6 h-48 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg flex items-center justify-center text-6xl">
