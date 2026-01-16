@@ -1119,14 +1119,17 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
 
         {/* Article Content */}
         <div 
-          className="prose prose-lg max-w-none
+          className="prose prose-lg max-w-none mb-12
             prose-headings:font-bold prose-headings:text-gray-900
-            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-            prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-6
-            prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline
-            prose-ul:my-6 prose-li:text-gray-600 prose-li:mb-2
-            prose-strong:text-gray-900 prose-strong:font-semibold"
+            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:text-gray-900
+            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-gray-800
+            prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+            prose-a:text-primary-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+            prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+            prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
+            prose-li:text-gray-700 prose-li:mb-3 prose-li:leading-relaxed
+            prose-strong:text-gray-900 prose-strong:font-bold
+            prose-code:text-primary-600 prose-code:bg-primary-50 prose-code:px-2 prose-code:py-1 prose-code:rounded"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
