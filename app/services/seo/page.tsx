@@ -187,8 +187,26 @@ export default function SEOServicesPage() {
                 ))}
               </ul>
             </div>
-            <div className="relative h-96 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center">
-              <span className="text-8xl">📊</span>
+            <div className="relative h-96 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center p-8">
+              {/* SEO Illustration */}
+              <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                {/* Search magnifier */}
+                <circle cx="150" cy="150" r="80" stroke="white" strokeWidth="12" fill="none" opacity="0.9"/>
+                <line x1="210" y1="210" x2="270" y2="270" stroke="white" strokeWidth="12" strokeLinecap="round" opacity="0.9"/>
+                {/* Graph bars rising */}
+                <rect x="80" y="280" width="40" height="60" fill="white" opacity="0.8" rx="4"/>
+                <rect x="130" y="240" width="40" height="100" fill="white" opacity="0.9" rx="4"/>
+                <rect x="180" y="200" width="40" height="140" fill="white" opacity="1" rx="4"/>
+                <rect x="230" y="160" width="40" height="180" fill="white" opacity="0.9" rx="4"/>
+                <rect x="280" y="120" width="40" height="220" fill="white" opacity="0.8" rx="4"/>
+                {/* Trend line */}
+                <path d="M 60 300 Q 150 250, 200 200 T 340 100" stroke="#FFD700" strokeWidth="4" fill="none" strokeLinecap="round"/>
+                {/* Stars for ranking */}
+                <polygon points="200,30 210,60 240,60 215,80 225,110 200,90 175,110 185,80 160,60 190,60" fill="#FFD700"/>
+                <circle cx="320" cy="60" r="4" fill="white" opacity="0.6"/>
+                <circle cx="340" cy="40" r="3" fill="white" opacity="0.7"/>
+                <circle cx="300" cy="50" r="3" fill="white" opacity="0.5"/>
+              </svg>
             </div>
           </div>
         </div>
