@@ -5,7 +5,7 @@ import { FiArrowRight, FiPlay } from 'react-icons/fi'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20 pb-12 sm:pb-16">
       {/* Animated background elements - hidden on mobile for performance */}
       <div className="absolute inset-0 overflow-hidden hidden md:block">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -14,32 +14,33 @@ export default function Hero() {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left Column - Content - NO ANIMATIONS ON MOBILE */}
           <div className="animate-on-desktop">
-            <div className="inline-block mb-4 animate-on-desktop-delay-1">
-              <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium">
+            <div className="inline-block mb-4 sm:mb-6 animate-on-desktop-delay-1">
+              <span className="bg-primary-100 text-primary-600 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium">
                 🚀 #1 Digital Marketing Agency in UAE
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-on-desktop-delay-2">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-on-desktop-delay-2">
               Transform Your Business with{' '}
               <span className="gradient-text">Digital Excellence</span>
             </h1>
 
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed animate-on-desktop-delay-3">
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed animate-on-desktop-delay-3">
               We are a leading digital marketing agency in UAE, specializing in SEO, social media marketing, and web development. Drive measurable results with data-driven strategies.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-on-desktop-delay-4">
-              <Link href="/contact" className="btn-primary inline-flex items-center justify-center group">
-                Get Free Consultation
+              <Link href="/contact" className="btn-primary inline-flex items-center justify-center group w-full sm:w-auto">
+                <span className="hidden sm:inline">Get Free Consultation</span>
+                <span className="sm:hidden">Free Consultation</span>
                 <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               
               <button 
-                className="btn-secondary inline-flex items-center justify-center group"
+                className="btn-secondary inline-flex items-center justify-center group w-full sm:w-auto"
                 aria-label="Watch our portfolio video showcasing successful digital marketing projects"
               >
                 <FiPlay className="mr-2" />
@@ -48,18 +49,18 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-gray-200 animate-on-desktop-delay-5">
-              <div>
-                <div className="text-4xl font-bold text-primary-600 mb-2">500+</div>
-                <div className="text-sm text-gray-600">Projects Completed</div>
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-gray-200 animate-on-desktop-delay-5">
+              <div className="text-center sm:text-left">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 sm:mb-2">500+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Projects<br className="sm:hidden" /> Completed</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-primary-600 mb-2">98%</div>
-                <div className="text-sm text-gray-600">Client Satisfaction</div>
+              <div className="text-center sm:text-left">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 sm:mb-2">98%</div>
+                <div className="text-xs sm:text-sm text-gray-600">Client<br className="sm:hidden" /> Satisfaction</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-primary-600 mb-2">50+</div>
-                <div className="text-sm text-gray-600">Team Experts</div>
+              <div className="text-center sm:text-left">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 sm:mb-2">50+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Team<br className="sm:hidden" /> Experts</div>
               </div>
             </div>
           </div>
