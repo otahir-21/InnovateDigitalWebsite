@@ -61,7 +61,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 px-5 py-4">
       {/* Animated background elements - hidden on mobile for performance */}
       <div className="absolute inset-0 overflow-hidden hidden md:block" aria-hidden="true">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -69,26 +69,26 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full h-full flex items-center py-6">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
           {/* Left Column - Content */}
-          <div className="order-2 lg:order-1 text-center md:text-left mx-auto md:mx-0 max-w-2xl md:max-w-none">
-            <div className="inline-block mb-4 sm:mb-6">
-              <span className="bg-primary-100 text-primary-600 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium">
+          <div className="order-2 lg:order-1 text-center md:text-left mx-auto md:mx-0 max-w-xl md:max-w-none space-y-6">
+            <div className="inline-block">
+              <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium">
                 🚀 #1 Digital Marketing Agency in UAE
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+            <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Transform Your Business with{' '}
               <span className="gradient-text">Digital Excellence</span>
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-base sm:text-base lg:text-lg text-gray-600 leading-relaxed">
               We are a leading digital marketing agency in UAE, specializing in SEO, social media marketing, and web development. Drive measurable results with data-driven strategies.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 lg:mb-0 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
               <Link href="/contact" className="btn-primary inline-flex items-center justify-center group">
                 <span>Get Free Consultation</span>
                 <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -103,19 +103,19 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Stats - Only on larger screens */}
-            <div className="hidden lg:grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-gray-200">
-              <div>
-                <div className="text-4xl font-bold text-primary-600 mb-2">500+</div>
-                <div className="text-sm text-gray-600">Projects Completed</div>
+            {/* Stats - Visible on mobile now to fill space */}
+            <div className="grid grid-cols-3 gap-4 pt-6 mt-6 border-t border-gray-200 lg:mt-12 lg:pt-12 lg:gap-6">
+              <div className="text-center md:text-left">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">500+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Projects Completed</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-primary-600 mb-2">98%</div>
-                <div className="text-sm text-gray-600">Client Satisfaction</div>
+              <div className="text-center md:text-left">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">98%</div>
+                <div className="text-xs sm:text-sm text-gray-600">Client Satisfaction</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-primary-600 mb-2">50+</div>
-                <div className="text-sm text-gray-600">Team Experts</div>
+              <div className="text-center md:text-left">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">50+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Team Experts</div>
               </div>
             </div>
           </div>
