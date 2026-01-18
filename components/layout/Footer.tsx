@@ -137,12 +137,23 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
-          <p>
-            © {currentYear} Innovate Digital. All rights reserved. | 
-            <Link href="/privacy" className="hover:text-primary-400 ml-2">Privacy Policy</Link> | 
-            <Link href="/terms" className="hover:text-primary-400 ml-2">Terms of Service</Link>
-          </p>
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          {/* Microsoft Clarity Disclosure */}
+          <div className="text-center text-xs text-gray-400 mb-4 max-w-3xl mx-auto">
+            <p>
+              We improve our products and services by using Microsoft Clarity to see how you use our website. 
+              By using our site, you agree that we and Microsoft can collect and use this data. 
+              Our <Link href="/privacy" className="hover:text-primary-400 underline">privacy policy</Link> has more details.
+            </p>
+          </div>
+          
+          <div className="text-center text-sm">
+            <p>
+              © {currentYear} Innovate Digital. All rights reserved. | 
+              <Link href="/privacy" className="hover:text-primary-400 ml-2">Privacy Policy</Link> | 
+              <Link href="/terms" className="hover:text-primary-400 ml-2">Terms of Service</Link>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

@@ -11,6 +11,14 @@ const WhatsAppButton = dynamic(() => import('@/components/layout/WhatsAppButton'
   ssr: false,
 })
 
+const MobileContactButton = dynamic(() => import('@/components/layout/MobileContactButton'), {
+  ssr: false,
+})
+
+const ExitIntentPopup = dynamic(() => import('@/components/ui/ExitIntentPopup'), {
+  ssr: false,
+})
+
 const inter = Inter({ 
   subsets: ['latin'],
   display: 'swap',
@@ -92,6 +100,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <meta property="og:site_name" content="Innovate Digital" />
       </head>
       <body className={`${inter.className} overflow-x-hidden`}>
@@ -111,12 +120,25 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Microsoft Clarity - User Behavior Analytics */}
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "v3ggwzgd4g");
+          `}
+        </Script>
+
         <Header />
         <main className="min-h-screen">
           {children}
         </main>
         <Footer />
         <WhatsAppButton />
+        <MobileContactButton />
+        <ExitIntentPopup />
       </body>
     </html>
   )

@@ -118,6 +118,32 @@ export default function PrivacyPolicy() {
               <li><strong>Marketing Cookies:</strong> Track visitors across websites to display relevant ads</li>
               <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
             </ul>
+
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">Microsoft Clarity Analytics</h3>
+            <div className="bg-blue-50 border-l-4 border-blue-600 p-6 mb-6">
+              <p className="text-gray-700 mb-4">
+                We partner with <strong>Microsoft Clarity</strong> and <strong>Microsoft Advertising</strong> to capture how you use and 
+                interact with our website through behavioral metrics, heatmaps, and session replay to improve and market our 
+                products/services.
+              </p>
+              <p className="text-gray-700 mb-4">
+                Website usage data is captured using first and third-party cookies and other tracking technologies to determine 
+                the popularity of products/services and online activity. Additionally, we use this information for site 
+                optimization, fraud/security purposes, and advertising.
+              </p>
+              <p className="text-gray-700">
+                For more information about how Microsoft collects and uses your data, visit the{' '}
+                <a 
+                  href="https://privacy.microsoft.com/en-us/privacystatement" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline font-semibold"
+                >
+                  Microsoft Privacy Statement
+                </a>.
+              </p>
+            </div>
+            
             <p className="text-gray-700 mb-4">
               You can instruct your browser to refuse all cookies or indicate when a cookie is being sent. However, 
               if you do not accept cookies, you may not be able to use some portions of our website.

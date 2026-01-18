@@ -30,6 +30,16 @@ const nextConfig = {
     optimizePackageImports: ['react-icons', 'framer-motion'],
   },
   
+  // Webpack configuration to reduce file watchers
+  webpack: (config, { isServer }) => {
+    // Ignore watching node_modules
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/node_modules', '**/.git', '**/.next'],
+    }
+    return config
+  },
+  
   // Security headers
   async headers() {
     return [
