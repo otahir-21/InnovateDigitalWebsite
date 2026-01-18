@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const WhatsAppButton = dynamic(() => import('@/components/layout/WhatsAppButton'), {
   ssr: false,
@@ -139,6 +140,7 @@ export default function RootLayout({
         <WhatsAppButton />
         <MobileContactButton />
         <ExitIntentPopup />
+        <SpeedInsights />
       </body>
     </html>
   )
