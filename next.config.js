@@ -28,7 +28,6 @@ const nextConfig = {
   // Optimize bundle splitting
   experimental: {
     optimizePackageImports: ['react-icons', 'framer-motion'],
-    optimizeCss: true,
   },
   
   // Webpack configuration to reduce file watchers
