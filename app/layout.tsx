@@ -108,9 +108,10 @@ export default function RootLayout({
         {/* Google Analytics - Deferred for better performance */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-63PVWT802B"
-          strategy="lazyOnload"
+          strategy="worker"
+          defer
         />
-        <Script id="google-analytics" strategy="lazyOnload">
+        <Script id="google-analytics" strategy="worker">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -122,7 +123,7 @@ export default function RootLayout({
         </Script>
 
         {/* Microsoft Clarity - User Behavior Analytics */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="worker">
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
