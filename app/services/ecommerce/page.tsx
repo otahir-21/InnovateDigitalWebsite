@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight, FiShoppingCart, FiCreditCard, FiPackage, FiTrendingUp } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Ecommerce Development Dubai | Online Store Solutions UAE',
-  description: 'Leading ecommerce development company in Dubai. Build & grow your online store with Shopify, WooCommerce & custom platforms. Expert ecommerce solutions in UAE.',
-  keywords: ['Ecommerce Development Dubai', 'Online Store Dubai', 'Shopify Dubai', 'Ecommerce Website Dubai', 'WooCommerce Dubai', 'Online Shop UAE'],
+  title: 'E-commerce Development Dubai | Online Store UAE | Shopify Expert',
+  description: 'E-commerce development in Dubai. Custom online stores with secure payments, inventory management & mobile optimization. Shopify, WooCommerce, custom solutions. From AED 25,000. 99.9% uptime guaranteed.',
+  keywords: ['E-commerce Development Dubai', 'Online Store Dubai', 'Shopify Developer UAE', 'WooCommerce Dubai', 'E-commerce Website UAE', 'Online Shopping Platform Dubai', 'Payment Integration UAE', 'Magento Developer Dubai'],
   openGraph: {
-    title: 'Ecommerce Development Dubai | Online Store Solutions UAE',
-    description: 'Expert ecommerce development in Dubai. Build high-converting online stores with proven platforms and strategies.',
+    title: 'E-commerce Development Dubai | Shopify Expert | 99.9% Uptime',
+    description: 'Build high-converting online stores in Dubai. Secure, scalable e-commerce solutions for UAE businesses.',
   },
 }
 
@@ -157,8 +160,18 @@ const faqs = [
 ]
 
 export default function EcommercePage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'E-commerce Development Dubai',
+    description: 'Professional e-commerce development services in Dubai. Custom online stores with payment integration, inventory management, and conversion optimization.',
+    url: `${siteConfig.url}/services/ecommerce`,
+    serviceType: 'E-commerce Development',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="ecommerce-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
@@ -177,6 +190,49 @@ export default function EcommercePage() {
               Get Free E-commerce Consultation
               <FiArrowRight className="ml-2" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">E-commerce Development Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-teal-50 p-6 rounded-lg border-l-4 border-teal-600">
+                <div className="text-sm font-semibold text-teal-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">E-commerce Platform Development</div>
+              </div>
+              <div className="bg-cyan-50 p-6 rounded-lg border-l-4 border-cyan-600">
+                <div className="text-sm font-semibold text-cyan-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses selling products online</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">6-12 weeks for full store launch</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 25,000</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-teal-600 mb-1">99.9%</div>
+                  <div className="text-sm text-gray-600">Uptime guarantee</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-teal-600 mb-1">Secure</div>
+                  <div className="text-sm text-gray-600">Payment integration</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-teal-600 mb-1">Mobile</div>
+                  <div className="text-sm text-gray-600">First design</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

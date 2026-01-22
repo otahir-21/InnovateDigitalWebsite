@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { FiX, FiUser, FiMail, FiPhone, FiMessageSquare, FiCheck, FiArrowRight } from 'react-icons/fi'
+import { countryCodes, popularCountries, otherCountries } from '@/lib/countryCodes'
 
 interface ContactFormModalProps {
   isOpen: boolean
@@ -12,6 +13,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    countryCode: '+971', // Default to UAE
     phone: '',
     service: '',
     message: ''
@@ -26,9 +28,31 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
     })
   }
 
+  // Handle phone number input - only allow numbers
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    // Remove all non-digit characters
+    const numbersOnly = value.replace(/\D/g, '')
+    
+    // Get max length for selected country
+    const selectedCountry = countryCodes.find(c => c.code === formData.countryCode)
+    const maxLength = selectedCountry?.maxLength || 10
+    
+    // Limit to max length
+    const limitedValue = numbersOnly.slice(0, maxLength)
+    
+    setFormData({
+      ...formData,
+      phone: limitedValue
+    })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+
+    // Combine country code and phone number
+    const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`
 
     try {
       const response = await fetch('/api/send-email', {
@@ -39,7 +63,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: fullPhoneNumber,
           message: `Service Interested: ${formData.service}\n\nMessage: ${formData.message}`,
           subject: '🎯 New Lead - Mobile Contact Form',
         }),
@@ -47,7 +71,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
 
       if (response.ok) {
         setIsSuccess(true)
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' })
+        setFormData({ name: '', email: '', countryCode: '+971', phone: '', service: '', message: '' })
         
         // Auto close after 3 seconds
         setTimeout(() => {
@@ -173,24 +197,61 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
                     </div>
                   </div>
 
-                  {/* Phone */}
+                  {/* Phone Number - Unified Modern Input */}
                   <div>
                     <label htmlFor="modal-phone" className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number *
                     </label>
-                    <div className="relative">
-                      <FiPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                      <input
-                        type="tel"
-                        id="modal-phone"
-                        name="phone"
-                        required
-                        value={formData.phone}
+                    
+                    {/* Unified Phone Input Container */}
+                    <div className="relative flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all bg-white overflow-hidden">
+                      {/* Country Code Selector - Compact */}
+                      <select
+                        name="countryCode"
+                        value={formData.countryCode}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
-                        placeholder="+971 50 123 4567"
-                      />
+                        className="px-2 py-3 border-r border-gray-300 bg-transparent focus:outline-none text-xs font-medium cursor-pointer"
+                        title="Select country"
+                        style={{ minWidth: '85px' }}
+                      >
+                        {/* Popular countries first */}
+                        {popularCountries.map((country, index) => (
+                          <option key={`popular-${country.code}-${index}`} value={country.code}>
+                            {country.flag} {country.code}
+                          </option>
+                        ))}
+                        {/* Separator */}
+                        <option disabled>──────────</option>
+                        {/* Other countries */}
+                        {otherCountries.map((country, index) => (
+                          <option key={`other-${country.code}-${index}`} value={country.code}>
+                            {country.flag} {country.code}
+                          </option>
+                        ))}
+                      </select>
+                      
+                      {/* Phone Number Input - Full Space */}
+                      <div className="relative flex-1">
+                        <FiPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                        <input
+                          type="tel"
+                          id="modal-phone"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handlePhoneChange}
+                          pattern="[0-9]*"
+                          inputMode="numeric"
+                          maxLength={countryCodes.find(c => c.code === formData.countryCode)?.maxLength || 10}
+                          className="w-full pl-10 pr-4 py-3 border-0 focus:outline-none bg-transparent"
+                          placeholder="50 123 4567"
+                        />
+                      </div>
                     </div>
+                    
+                    <p className="text-xs text-gray-500 mt-1">
+                      Numbers only • Max {countryCodes.find(c => c.code === formData.countryCode)?.maxLength} digits
+                    </p>
                   </div>
 
                   {/* Service */}

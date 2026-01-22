@@ -6,11 +6,12 @@ import { siteConfig } from '@/lib/config'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Digital Marketing Agency Dubai | Free Consultation',
-  description: 'Contact Innovate Digital for free marketing consultation in Dubai. Call +971 52 394 9010, email us, or visit our Dubai office. Let\'s grow your business together.',
+  title: 'Contact Us | Free Marketing Audit | Dubai Digital Agency | 2hr Response',
+  description: 'Contact Innovate Digital Dubai. Get your free marketing audit today. 2-hour response time, no long-term contracts, free strategy session. Office in Dubai. Call +971 52 394 9010 or email contact@innovatedigital.ae.',
+  keywords: ['Contact Digital Agency Dubai', 'Marketing Consultation Dubai', 'Free Marketing Audit UAE', 'Dubai Marketing Agency Contact', 'Get Quote Dubai'],
   openGraph: {
-    title: 'Contact Us - Digital Marketing Agency Dubai | Free Consultation',
-    description: 'Get in touch with Dubai\'s leading digital marketing experts. Free consultation available.',
+    title: 'Contact Us | Free Marketing Audit | 2hr Response',
+    description: 'Get in touch for your free marketing audit. 2-hour response guaranteed. Dubai office.',
   },
 }
 
@@ -36,7 +37,7 @@ const contactInfo = [
   {
     icon: FiClock,
     title: 'Working Hours',
-    details: 'Sun - Thu: 9AM - 6PM',
+    details: 'Monday - Saturday: 9AM - 6PM',
     link: '#',
   },
 ]
@@ -143,7 +144,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section (Placeholder) */}
+      {/* Map Section - Hidden for now (will add later) */}
+      {/* 
       <section className="h-96 bg-gray-200">
         <div className="w-full h-full flex items-center justify-center text-gray-500">
           <div className="text-center">
@@ -153,6 +155,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      */}
     </div>
   )
 }

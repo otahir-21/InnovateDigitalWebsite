@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Content Marketing Agency Dubai | Content Strategy UAE',
-  description: 'Top content marketing agency in Dubai. SEO-optimized blog writing, articles & content strategy that drives traffic and conversions. Expert content services in UAE.',
-  keywords: ['Content Marketing Dubai', 'Content Marketing Agency Dubai', 'Content Writing Dubai', 'Blog Writing Dubai', 'SEO Content Dubai', 'Content Strategy Dubai'],
+  title: 'Content Marketing Dubai | 200% Traffic Growth | SEO Content UAE',
+  description: 'Content marketing agency in Dubai. SEO-optimized blog writing, articles & content strategy. 10+ articles/month, 200% organic traffic growth. Arabic & English content. From AED 4,000/month. Serving all UAE.',
+  keywords: ['Content Marketing Dubai', 'Content Writing UAE', 'Blog Writing Dubai', 'SEO Content UAE', 'Content Strategy Dubai', 'Copywriting Services UAE', 'Arabic Content Dubai', 'Content Creator UAE'],
   openGraph: {
-    title: 'Content Marketing Agency Dubai | Content Strategy UAE',
-    description: 'Expert content marketing in Dubai. Create engaging, SEO-optimized content that drives results.',
+    title: 'Content Marketing Dubai | 200% Traffic Growth | SEO Optimized',
+    description: 'Drive organic traffic with strategic content. Expert content marketing for UAE businesses.',
   },
 }
 
@@ -45,8 +48,18 @@ const faqs = [
 ]
 
 export default function ContentMarketingPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Content Marketing Dubai',
+    description: 'Professional content marketing services in Dubai. SEO-optimized blog writing, articles, and content strategy that drives traffic and conversions.',
+    url: `${siteConfig.url}/services/content-marketing`,
+    serviceType: 'Content Marketing',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="content-marketing-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
       <section className="section-padding bg-gradient-to-br from-orange-50 to-amber-50">
         <div className="container-custom">
@@ -57,6 +70,50 @@ export default function ContentMarketingPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Content Marketing Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Content Strategy & Creation</div>
+              </div>
+              <div className="bg-teal-50 p-6 rounded-lg border-l-4 border-teal-600">
+                <div className="text-sm font-semibold text-teal-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses building thought leadership</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">Ongoing monthly retainer</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 4,000/month</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-1">10+</div>
+                  <div className="text-sm text-gray-600">Articles/month</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-1">SEO</div>
+                  <div className="text-sm text-gray-600">Optimized</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-1">200%</div>
+                  <div className="text-sm text-gray-600">Traffic growth</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">

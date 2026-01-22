@@ -7,11 +7,12 @@ import FAQ from '@/components/ui/FAQ'
 import { aboutFAQs } from '@/lib/faqData'
 
 export const metadata: Metadata = {
-  title: 'About Us - Dubai\'s Leading Digital Marketing Agency | Innovate Digital',
-  description: 'Meet Innovate Digital - the premier digital marketing agency in Dubai & UAE. Led by Osama Tahir, our expert team delivers exceptional results through innovative strategies.',
+  title: 'About Innovate Digital | Google Partner Agency Dubai Since 2020',
+  description: 'Leading digital marketing agency in Dubai since 2020. Google Partner, Meta Business Partner. 200+ UAE clients, 4.9/5 Google rating, 50+ team experts. Led by Osama Tahir. Serving Dubai, Abu Dhabi & Sharjah.',
+  keywords: ['Digital Agency Dubai', 'Marketing Team Dubai', 'Google Partner UAE', 'Best Digital Agency Dubai', 'About Innovate Digital', 'Digital Marketing Company UAE'],
   openGraph: {
-    title: 'About Us - Dubai\'s Leading Digital Marketing Agency | Innovate Digital',
-    description: 'Leading digital marketing agency in Dubai & UAE with proven track record of success.',
+    title: 'About Innovate Digital | Google Partner Since 2020 | 200+ Clients',
+    description: 'Meet Dubai\'s leading digital marketing team. Google Partner certified, serving 200+ UAE businesses.',
   },
 }
 

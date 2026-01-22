@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FiArrowLeft, FiCalendar, FiMapPin, FiBriefcase, FiCheckCircle, FiTrendingUp } from 'react-icons/fi'
 import { getCaseStudyBySlug, getAllCaseStudySlugs } from '@/lib/caseStudiesData'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 
 interface PageProps {
   params: {
@@ -49,6 +50,7 @@ export default function CaseStudyPage({ params }: PageProps) {
     <div className="min-h-screen bg-white">
       {/* Back Button */}
       <div className="container mx-auto px-4 pt-24 pb-8">
+        <Breadcrumbs />
         <Link
           href="/portfolio"
           className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"

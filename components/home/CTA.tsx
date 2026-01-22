@@ -23,12 +23,22 @@ export default function CTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-4">
+              🏆 Trusted by 200+ Dubai & UAE Businesses
+            </div>
+            
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Ready to Grow Your Business?
+              Ready to 3x Your Business Growth?
             </h2>
             
-            <p className="text-xl md:text-2xl mb-12 text-blue-100">
-              Get a free consultation and discover how we can help you achieve your digital marketing goals
+            <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              Get a <strong>FREE Marketing Audit</strong> worth AED 2,000 - discover untapped opportunities
+            </p>
+            
+            <p className="text-lg mb-12 text-blue-200 flex items-center justify-center gap-4 flex-wrap">
+              <span>✓ No Commitment Required</span>
+              <span>✓ 24h Response Time</span>
+              <span>✓ Google Partner Certified</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -36,7 +46,7 @@ export default function CTA() {
                 href="/contact"
                 className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center justify-center"
               >
-                Get Free Consultation
+                Get Your Free AED 2,000 Audit 🎯
                 <FiArrowRight className="ml-2" />
               </Link>
               

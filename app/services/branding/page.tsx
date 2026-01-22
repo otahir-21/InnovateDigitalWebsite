@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Branding Agency Dubai | Logo Design & Brand Identity UAE',
-  description: 'Leading branding agency in Dubai. Create memorable brand identity with professional logo design, brand guidelines & visual identity systems. Expert branding in UAE.',
-  keywords: ['Branding Agency Dubai', 'Brand Identity Dubai', 'Logo Design Dubai', 'Branding Dubai', 'Brand Strategy Dubai', 'Graphic Design Dubai'],
+  title: 'Branding Agency Dubai | 100+ Brands Created | Logo Design UAE',
+  description: 'Award-winning branding agency in Dubai since 2020. Logo design, brand identity & visual design for UAE startups & businesses. 48hrs initial concepts, unlimited revisions. From AED 5,000.',
+  keywords: ['Branding Agency Dubai', 'Logo Design Dubai', 'Brand Identity UAE', 'Corporate Branding Dubai', 'Graphic Design Abu Dhabi', 'Rebranding Services UAE', 'Visual Identity Dubai', 'Brand Strategy UAE'],
   openGraph: {
-    title: 'Branding Agency Dubai | Logo Design & Brand Identity UAE',
-    description: 'Professional branding services in Dubai. Build strong, memorable brands with expert design and strategy.',
+    title: 'Branding Agency Dubai | 100+ Brands Created | 48hrs Delivery',
+    description: 'Create memorable brand identities. Expert logo design and branding for UAE businesses.',
   },
 }
 
@@ -45,8 +48,18 @@ const faqs = [
 ]
 
 export default function BrandingPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Branding Services Dubai',
+    description: 'Professional branding services in Dubai and UAE. Logo design, brand identity, and complete brand strategy to make your business stand out.',
+    url: `${siteConfig.url}/services/branding`,
+    serviceType: 'Brand Design & Strategy',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="branding-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
       <section className="section-padding bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="container-custom">
@@ -57,6 +70,50 @@ export default function BrandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Branding & Design Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-pink-50 p-6 rounded-lg border-l-4 border-pink-600">
+                <div className="text-sm font-semibold text-pink-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Brand Identity & Visual Design</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Startups & rebranding businesses</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">2-4 weeks for complete brand package</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 5,000</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-pink-600 mb-1">100+</div>
+                  <div className="text-sm text-gray-600">Brands created</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-pink-600 mb-1">48hrs</div>
+                  <div className="text-sm text-gray-600">Initial concepts delivered</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-pink-600 mb-1">∞</div>
+                  <div className="text-sm text-gray-600">Revisions included</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">

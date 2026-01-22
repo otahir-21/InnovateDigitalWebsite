@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Marketing Analytics Dubai | Data Analysis & Reporting UAE',
-  description: 'Expert marketing analytics services in Dubai. Google Analytics setup, custom dashboards, ROI tracking & data-driven insights. Professional analytics & reporting in UAE.',
-  keywords: ['Marketing Analytics Dubai', 'Google Analytics Dubai', 'Data Analytics Dubai', 'Marketing Reports Dubai', 'ROI Tracking Dubai', 'Web Analytics UAE'],
+  title: 'Analytics & Tracking Dubai | Google Analytics UAE | ROI Dashboard',
+  description: 'Data analytics services in Dubai. Google Analytics setup, conversion tracking & ROI dashboards. 360° tracking, real-time insights. 1-2 week setup. From AED 2,000 + AED 500/month. Serving all UAE.',
+  keywords: ['Analytics Setup Dubai', 'Google Analytics UAE', 'Conversion Tracking Dubai', 'Data Analytics UAE', 'Google Tag Manager Dubai', 'Marketing Analytics UAE', 'GA4 Setup Dubai', 'ROI Tracking UAE'],
   openGraph: {
-    title: 'Marketing Analytics Dubai | Data Analysis & Reporting UAE',
-    description: 'Professional analytics services in Dubai. Make data-driven decisions with expert tracking and reporting.',
+    title: 'Analytics & Tracking Dubai | 360° Tracking | Real-time Dashboards',
+    description: 'Optimize marketing ROI with expert analytics setup. Google Analytics & tracking for UAE businesses.',
   },
 }
 
@@ -45,8 +48,18 @@ const faqs = [
 ]
 
 export default function AnalyticsPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Analytics & Tracking Dubai',
+    description: 'Professional analytics and tracking services in Dubai. Data-driven insights, Google Analytics setup, and performance tracking to optimize your marketing ROI.',
+    url: `${siteConfig.url}/services/analytics`,
+    serviceType: 'Analytics & Data Tracking',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="analytics-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
       <section className="section-padding bg-gradient-to-br from-lime-50 to-green-50">
         <div className="container-custom">
@@ -57,6 +70,50 @@ export default function AnalyticsPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Analytics & Tracking Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Data Analytics & Conversion Tracking</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses optimizing marketing ROI</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">1-2 weeks for full setup</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 2,000 + AED 500/month</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">360°</div>
+                  <div className="text-sm text-gray-600">Complete tracking</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">Real-time</div>
+                  <div className="text-sm text-gray-600">Dashboards</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">ROI</div>
+                  <div className="text-sm text-gray-600">Insights</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">

@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { FiArrowRight, FiPlay, FiUser, FiMail, FiPhone, FiMessageSquare, FiCheck } from 'react-icons/fi'
+import { countryCodes, popularCountries, otherCountries } from '@/lib/countryCodes'
 
 export default function Hero() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    countryCode: '+971', // Default to UAE
     phone: '',
     service: '',
     message: ''
@@ -22,9 +24,31 @@ export default function Hero() {
     })
   }
 
+  // Handle phone number input - only allow numbers
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    // Remove all non-digit characters
+    const numbersOnly = value.replace(/\D/g, '')
+    
+    // Get max length for selected country
+    const selectedCountry = countryCodes.find(c => c.code === formData.countryCode)
+    const maxLength = selectedCountry?.maxLength || 10
+    
+    // Limit to max length
+    const limitedValue = numbersOnly.slice(0, maxLength)
+    
+    setFormData({
+      ...formData,
+      phone: limitedValue
+    })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+
+    // Combine country code and phone number
+    const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`
 
     try {
       const response = await fetch('/api/send-email', {
@@ -35,7 +59,7 @@ export default function Hero() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: fullPhoneNumber,
           message: `Service Interested: ${formData.service}\n\nMessage: ${formData.message}`,
           subject: '🎯 New Lead - Hero Form Submission',
         }),
@@ -43,7 +67,7 @@ export default function Hero() {
 
       if (response.ok) {
         setIsSuccess(true)
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' })
+        setFormData({ name: '', email: '', countryCode: '+971', phone: '', service: '', message: '' })
         
         // Reset success message after 5 seconds
         setTimeout(() => {
@@ -61,7 +85,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 px-5 py-4">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 px-5 pt-20">
       {/* Animated background elements - hidden on mobile for performance */}
       <div className="absolute inset-0 overflow-hidden hidden md:block" aria-hidden="true">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -69,53 +93,73 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10 w-full h-full flex items-center py-6">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full h-full flex items-center py-6 pt-10">
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
           {/* Left Column - Content */}
-          <div className="order-2 lg:order-1 text-center md:text-left mx-auto md:mx-0 max-w-xl md:max-w-none space-y-6">
+          <div className="order-2 lg:order-1 text-center md:text-left mx-auto md:mx-0 max-w-xl md:max-w-none space-y-4">
             <div className="inline-block">
-              <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium">
-                🚀 #1 Digital Marketing Agency in UAE
+              <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-xs sm:text-sm font-medium">
+                🏆 Google Partner • Since 2020
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Transform Your Business with{' '}
-              <span className="gradient-text">Digital Excellence</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mt-2">
+              Dubai's Leading <span className="gradient-text">Digital Marketing Agency</span> for Growth-Driven Results
             </h1>
 
-            <p className="text-base sm:text-base lg:text-lg text-gray-600 leading-relaxed">
-              We are a leading digital marketing agency in UAE, specializing in SEO, social media marketing, and web development. Drive measurable results with data-driven strategies.
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 leading-snug">
+              Trusted by 200+ UAE Businesses in Dubai, Abu Dhabi & Sharjah
+            </h2>
+
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
+              Expert SEO, PPC, social media marketing, and web development services tailored for the UAE market. We deliver 3x average ROI through data-driven strategies and proven results.
             </p>
+
+            {/* Trust Signals - New */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs sm:text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <FiCheck className="text-green-500 flex-shrink-0" />
+                <span>50+ 5-Star Reviews</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FiCheck className="text-green-500 flex-shrink-0" />
+                <span>3x Average ROI</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FiCheck className="text-green-500 flex-shrink-0" />
+                <span>Free Marketing Audit</span>
+              </div>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
               <Link href="/contact" className="btn-primary inline-flex items-center justify-center group">
-                <span>Get Free Consultation</span>
+                <span>Get Your Free Marketing Audit 🎯</span>
                 <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               
-              <button 
+              <Link 
+                href="/portfolio"
                 className="btn-secondary inline-flex items-center justify-center group"
-                aria-label="Watch our portfolio video"
+                aria-label="View our portfolio and case studies"
               >
                 <FiPlay className="mr-2" />
-                Watch Our Work
-              </button>
+                See Success Stories
+              </Link>
             </div>
 
-            {/* Stats - Visible on mobile now to fill space */}
+            {/* Stats - Enhanced with geo-signals */}
             <div className="grid grid-cols-3 gap-4 pt-6 mt-6 border-t border-gray-200 lg:mt-12 lg:pt-12 lg:gap-6">
               <div className="text-center md:text-left">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">500+</div>
-                <div className="text-xs sm:text-sm text-gray-600">Projects Completed</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">200+</div>
+                <div className="text-xs sm:text-sm text-gray-600">UAE Clients Served</div>
               </div>
               <div className="text-center md:text-left">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">98%</div>
-                <div className="text-xs sm:text-sm text-gray-600">Client Satisfaction</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">3x</div>
+                <div className="text-xs sm:text-sm text-gray-600">Average ROI</div>
               </div>
               <div className="text-center md:text-left">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">50+</div>
-                <div className="text-xs sm:text-sm text-gray-600">Team Experts</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">4.9/5</div>
+                <div className="text-xs sm:text-sm text-gray-600">Google Rating</div>
               </div>
             </div>
           </div>
@@ -219,24 +263,62 @@ export default function Hero() {
 
                   {/* Phone & Service in Grid */}
                   <div className="grid sm:grid-cols-2 gap-3.5">
-                    {/* Phone */}
+                    {/* Phone Number - Unified Modern Input */}
                     <div>
                       <label htmlFor="phone" className="block text-xs font-medium text-gray-700 mb-1.5">
-                        Phone *
+                        Phone Number *
                       </label>
-                      <div className="relative">
-                        <FiPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          required
-                          value={formData.phone}
+                      
+                      {/* Unified Phone Input Container */}
+                      <div className="relative flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all bg-white">
+                        {/* Country Code Selector - Compact */}
+                        <select
+                          name="countryCode"
+                          value={formData.countryCode}
                           onChange={handleChange}
-                          className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm"
-                          placeholder="+971 50 123 4567"
-                        />
+                          className="px-2 py-2.5 border-r border-gray-300 bg-transparent focus:outline-none text-xs font-medium cursor-pointer"
+                          title="Select country"
+                          style={{ minWidth: '85px' }}
+                        >
+                          {/* Popular countries first */}
+                          {popularCountries.map((country, index) => (
+                            <option key={`popular-${country.code}-${index}`} value={country.code}>
+                              {country.flag} {country.code}
+                            </option>
+                          ))}
+                          {/* Separator */}
+                          <option disabled>──────────</option>
+                          {/* Other countries */}
+                          {otherCountries.map((country, index) => (
+                            <option key={`other-${country.code}-${index}`} value={country.code}>
+                              {country.flag} {country.code}
+                            </option>
+                          ))}
+                        </select>
+                        
+                        {/* Phone Number Input - Takes Full Space */}
+                        <div className="relative flex-1">
+                          <FiPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            required
+                            value={formData.phone}
+                            onChange={handlePhoneChange}
+                            pattern="[0-9]*"
+                            inputMode="numeric"
+                            maxLength={countryCodes.find(c => c.code === formData.countryCode)?.maxLength || 10}
+                            className="w-full pl-9 pr-3 py-2.5 border-0 focus:outline-none text-sm bg-transparent"
+                            placeholder={formData.countryCode === '+971' ? '50 123 4567' : 'Enter phone number'}
+                          />
+                        </div>
                       </div>
+                      
+                      {/* Helper Text */}
+                      <p className="text-xs text-gray-500 mt-1">
+                        Numbers only • Max {countryCodes.find(c => c.code === formData.countryCode)?.maxLength} digits
+                      </p>
                     </div>
 
                     {/* Service */}

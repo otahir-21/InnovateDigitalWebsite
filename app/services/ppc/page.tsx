@@ -1,8 +1,11 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'PPC Agency Dubai | Google Ads Management UAE | Innovate Digital',
@@ -79,8 +82,18 @@ const faqs = [
 ]
 
 export default function PPCPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'PPC Advertising Dubai',
+    description: 'Professional PPC management in Dubai and UAE. Expert Google Ads, Facebook Ads & Instagram campaigns to maximize ROI and drive targeted traffic.',
+    url: `${siteConfig.url}/services/ppc`,
+    serviceType: 'Pay-Per-Click Advertising',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="ppc-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
@@ -98,6 +111,49 @@ export default function PPCPage() {
               Get Free PPC Audit
               <FiArrowRight className="ml-2" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">PPC Advertising Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Pay-Per-Click Advertising</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses needing immediate traffic & leads</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">Instant traffic, results in 1-2 weeks</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 2,500/month + ad spend</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-1">5:1</div>
+                  <div className="text-sm text-gray-600">Average ROI achieved</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-1">3.5%</div>
+                  <div className="text-sm text-gray-600">Average click-through rate</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-1">72hrs</div>
+                  <div className="text-sm text-gray-600">Campaign launch time</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -192,6 +248,39 @@ export default function PPCPage() {
       </section>
 
       <FAQ faqs={faqs} title="PPC Advertising FAQ" />
+
+      {/* Related Services - Internal Linking for SEO */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Maximize Your PPC Results With These Services</h2>
+            <p className="text-xl text-gray-600">Combine PPC with other strategies for better ROI</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/services/seo" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">SEO Services</h3>
+              <p className="text-gray-600 mb-4">Build long-term organic traffic while PPC delivers immediate results. The perfect dual strategy for dominating search.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/analytics" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Analytics & Tracking</h3>
+              <p className="text-gray-600 mb-4">Track PPC performance with precision. Detailed analytics help optimize campaigns and maximize your advertising ROI.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/web-development" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Web Development</h3>
+              <p className="text-gray-600 mb-4">Your landing pages must convert. Fast, optimized websites turn PPC clicks into customers and sales.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
         <div className="container-custom text-center">

@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight, FiVideo } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Video Production Dubai | Corporate Video Services UAE',
-  description: 'Professional video production company in Dubai. Corporate videos, social media content, commercials & animation. Expert videographers delivering cinematic quality in UAE.',
-  keywords: ['Video Production Dubai', 'Corporate Videos Dubai', 'Video Production Company Dubai', 'Videographer Dubai', 'Commercial Video UAE', 'Video Marketing Dubai'],
+  title: 'Video Production Dubai | Corporate Videos UAE | 95% Satisfaction',
+  description: 'Professional video production in Dubai. Corporate videos, commercials, social content & animations. 80% engagement increase, 95% client satisfaction. 2-4 week delivery. From AED 5,000/video. Serving all UAE.',
+  keywords: ['Video Production Dubai', 'Corporate Video Dubai', 'Video Marketing UAE', 'Commercial Production Dubai', 'Social Media Videos UAE', 'Animation Dubai', 'Videographer Dubai', 'Video Editing UAE'],
   openGraph: {
-    title: 'Video Production Dubai | Corporate Video Services UAE',
-    description: 'Expert video production in Dubai. Create engaging corporate videos, commercials and social media content.',
+    title: 'Video Production Dubai | 95% Client Satisfaction | 2-4 Week Delivery',
+    description: 'Cinematic quality video production in Dubai. Corporate videos, commercials & social content.',
   },
 }
 
@@ -77,8 +80,18 @@ const faqs = [
 ]
 
 export default function VideoProductionPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Video Production Dubai',
+    description: 'Professional video production services in Dubai. Corporate videos, commercials, social media content, and promotional videos to engage your audience.',
+    url: `${siteConfig.url}/services/video-production`,
+    serviceType: 'Video Production',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="video-production-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
       <section className="section-padding bg-gradient-to-br from-yellow-50 to-orange-50">
         <div className="container-custom">
@@ -89,6 +102,50 @@ export default function VideoProductionPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Video Production Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-red-50 p-6 rounded-lg border-l-4 border-red-600">
+                <div className="text-sm font-semibold text-red-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Professional Video Content Creation</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses needing visual storytelling</div>
+              </div>
+              <div className="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-600">
+                <div className="text-sm font-semibold text-yellow-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">2-4 weeks per project</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 5,000/video</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-red-600 mb-1">80%</div>
+                  <div className="text-sm text-gray-600">Engagement increase</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-red-600 mb-1">95%</div>
+                  <div className="text-sm text-gray-600">Client satisfaction</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-red-600 mb-1">4K</div>
+                  <div className="text-sm text-gray-600">Quality output</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">

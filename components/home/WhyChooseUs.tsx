@@ -5,28 +5,28 @@ import { FiCheckCircle } from 'react-icons/fi'
 
 const reasons = [
   {
-    title: 'UAE Market Expertise',
-    description: 'Deep understanding of the UAE market, culture, and consumer behavior.',
+    title: 'Google Partner Certified Agency',
+    description: 'Official Google Partner since 2020. Only 3% of agencies worldwide achieve this certification.',
   },
   {
-    title: 'Transparent Reporting',
-    description: 'Regular detailed reports showing exactly how your campaigns are performing.',
+    title: 'Proven Track Record',
+    description: '200+ successful projects in Dubai & UAE with 4.9/5 Google rating and 98% client satisfaction.',
+  },
+  {
+    title: 'Expert Certified Team',
+    description: '50+ professionals with Google Ads, Analytics, and Meta Blueprint certifications.',
+  },
+  {
+    title: 'UAE Market Specialists',
+    description: 'Deep expertise in Dubai, Abu Dhabi & UAE market. Bilingual Arabic & English services.',
+  },
+  {
+    title: 'Transparent ROI Reporting',
+    description: 'Monthly performance dashboards showing exact metrics, conversions, and 3x average ROI.',
   },
   {
     title: 'Dedicated Account Manager',
-    description: 'A single point of contact who understands your business inside out.',
-  },
-  {
-    title: 'Customized Strategies',
-    description: 'No cookie-cutter solutions. Every strategy is tailored to your goals.',
-  },
-  {
-    title: 'Fast Response Time',
-    description: 'Average response time of under 2 hours during business hours.',
-  },
-  {
-    title: 'ROI Focused',
-    description: 'Every decision we make is driven by maximizing your return on investment.',
+    description: 'Single point of contact responding within 2 hours during business hours.',
   },
 ]
 
@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
             Why Choose <span className="gradient-text">Innovate Digital</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We are more than just an agency - we are your growth partner
+            Certified by Google, trusted by 200+ UAE businesses, delivering 3x average ROI
           </p>
         </motion.div>
 

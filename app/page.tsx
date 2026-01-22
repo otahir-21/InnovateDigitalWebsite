@@ -12,23 +12,25 @@ import { organizationSchema, localBusinessSchema, websiteSchema } from '@/lib/sc
 import { homepageFAQs } from '@/lib/faqData'
 
 export const metadata: Metadata = {
-  title: 'Best Digital Marketing Agency in Dubai | Innovate Digital',
-  description: 'Top-rated digital marketing agency in Dubai & UAE. Expert SEO, social media marketing, web development, PPC, and branding services. Transform your business with proven strategies.',
+  title: 'Digital Marketing Agency Dubai | 200+ UAE Clients | Free Audit',
+  description: 'Leading digital marketing agency in Dubai & UAE since 2020. Google Partner certified. Expert SEO, PPC, social media & web development. 3x average ROI. Serving Dubai, Abu Dhabi & Sharjah. Get your free marketing audit today.',
   keywords: [
     'Digital Marketing Agency Dubai',
-    'Best Digital Marketing Company UAE',
+    'Digital Marketing Company UAE',
     'SEO Services Dubai',
-    'Social Media Marketing Dubai',
-    'Web Development Dubai',
     'PPC Agency Dubai',
-    'Digital Agency UAE',
-    'Marketing Company Dubai',
-    'Branding Services Dubai',
-    'Content Marketing Dubai'
+    'Social Media Marketing UAE',
+    'Web Development Dubai',
+    'Google Partner Dubai',
+    'Marketing Agency Abu Dhabi',
+    'Digital Marketing Sharjah',
+    'Best Marketing Agency UAE',
+    'ROI-Focused Marketing Dubai',
+    'Growth Marketing UAE'
   ],
   openGraph: {
-    title: 'Best Digital Marketing Agency in Dubai | Innovate Digital',
-    description: 'Top-rated digital marketing agency in Dubai & UAE. Expert SEO, social media, web development, and PPC services.',
+    title: 'Dubai\'s Leading Digital Marketing Agency | 200+ UAE Clients',
+    description: 'Google Partner certified agency delivering 3x average ROI. Expert SEO, PPC, social media & web development in Dubai, Abu Dhabi & Sharjah.',
   },
 }
 

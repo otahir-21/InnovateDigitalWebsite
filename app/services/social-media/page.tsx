@@ -1,17 +1,20 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight, FiInstagram, FiTwitter, FiTrendingUp, FiUsers } from 'react-icons/fi'
 import { FaFacebook, FaLinkedin, FaTiktok } from 'react-icons/fa'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Social Media Marketing Dubai | Best SMM Agency UAE',
-  description: 'Top social media marketing agency in Dubai. Expert Instagram, Facebook, LinkedIn & TikTok management. Grow your brand with proven SMM strategies and engaging content.',
-  keywords: ['Social Media Marketing Dubai', 'SMM Agency Dubai', 'Instagram Marketing Dubai', 'Facebook Marketing UAE', 'Social Media Dubai', 'TikTok Marketing UAE'],
+  title: 'Social Media Marketing Dubai | 300% Engagement Growth | Google Partner',
+  description: 'Leading social media agency in Dubai since 2020. Expert Instagram, Facebook, TikTok & LinkedIn marketing. 50K+ combined reach achieved for UAE clients. Free strategy session. Serving Dubai, Abu Dhabi & Sharjah.',
+  keywords: ['Social Media Marketing Dubai', 'Instagram Marketing UAE', 'Facebook Ads Dubai', 'Social Media Agency Abu Dhabi', 'TikTok Marketing UAE', 'LinkedIn Marketing Dubai', 'Influencer Marketing UAE', 'Social Media Management Sharjah'],
   openGraph: {
-    title: 'Social Media Marketing Dubai | Best SMM Agency UAE',
-    description: 'Leading social media agency in Dubai. Build strong social presence and engage audiences with expert SMM strategies.',
+    title: 'Social Media Marketing Dubai | 300% Engagement Growth',
+    description: 'Google Partner certified agency delivering 300% average engagement growth. Expert social media management for UAE businesses.',
   },
 }
 
@@ -88,8 +91,25 @@ const faqs = [
 ]
 
 export default function SocialMediaPage() {
+  // Generate Service Schema
+  const serviceSchema = generateServiceSchema({
+    name: 'Social Media Marketing Dubai',
+    description: 'Professional social media marketing services in Dubai and UAE. Expert Instagram, Facebook, LinkedIn, and TikTok management to grow your brand and engage audiences.',
+    url: `${siteConfig.url}/services/social-media`,
+    serviceType: 'Social Media Marketing',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      {/* Service Schema */}
+      <Script
+        id="social-media-service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
@@ -107,6 +127,49 @@ export default function SocialMediaPage() {
               Get Free Social Media Audit
               <FiArrowRight className="ml-2" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Social Media Marketing Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Social Media Management & Advertising</div>
+              </div>
+              <div className="bg-pink-50 p-6 rounded-lg border-l-4 border-pink-600">
+                <div className="text-sm font-semibold text-pink-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Brand awareness & customer engagement</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">2-3 months for significant growth</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 2,000/month</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">300%</div>
+                  <div className="text-sm text-gray-600">Average engagement increase</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">50K+</div>
+                  <div className="text-sm text-gray-600">Combined reach achieved</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">4.5%</div>
+                  <div className="text-sm text-gray-600">Average conversion rate</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -220,6 +283,39 @@ export default function SocialMediaPage() {
       </section>
 
       <FAQ faqs={faqs} title="Social Media Marketing FAQ" />
+
+      {/* Related Services - Internal Linking for SEO */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Boost Social Media With These Services</h2>
+            <p className="text-xl text-gray-600">Amplify your social presence with complementary strategies</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/services/content-marketing" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Content Marketing</h3>
+              <p className="text-gray-600 mb-4">Great social media needs great content. Professional blog posts and articles give you valuable content to share and engage followers.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/video-production" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Video Production</h3>
+              <p className="text-gray-600 mb-4">Video content gets 1200% more engagement on social media. Professional videos make your social strategy unstoppable.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/ppc" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">PPC Advertising</h3>
+              <p className="text-gray-600 mb-4">Scale your social reach faster with paid ads. Combine organic and paid social for maximum impact and conversions.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
         <div className="container-custom text-center">

@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Web Development Company Dubai | Best Website Design UAE',
-  description: 'Leading web development company in Dubai. Custom websites, e-commerce platforms & web applications. Fast, SEO-optimized, mobile-responsive designs with proven results.',
-  keywords: ['Web Development Dubai', 'Website Design Dubai', 'Web Development Company Dubai', 'Website Development UAE', 'Web Developer Dubai', 'Custom Website Dubai'],
+  title: 'Web Development Dubai | 95+ Speed Score | Modern Websites UAE',
+  description: 'Top web development company in Dubai since 2020. Custom websites, web apps & e-commerce. 95+ PageSpeed scores, 100% mobile responsive, 24/7 support. From AED 15,000. Serving all UAE.',
+  keywords: ['Web Development Dubai', 'Website Design UAE', 'Web Developer Dubai', 'Custom Website Dubai', 'Responsive Website UAE', 'E-commerce Website Dubai', 'Next.js Developer UAE', 'React Developer Dubai'],
   openGraph: {
-    title: 'Web Development Company Dubai | Best Website Design UAE',
-    description: 'Professional web development in Dubai. Build fast, secure, SEO-optimized websites that drive results.',
+    title: 'Web Development Dubai | 95+ Speed Score | 24/7 Support',
+    description: 'Award-winning web development in Dubai. Modern, fast, SEO-optimized websites for UAE businesses.',
   },
 }
 
@@ -79,8 +82,18 @@ const faqs = [
 ]
 
 export default function WebDevelopmentPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Web Development Dubai',
+    description: 'Professional web development services in Dubai and UAE. Custom websites, e-commerce platforms, and web applications with SEO optimization and mobile-responsive design.',
+    url: `${siteConfig.url}/services/web-development`,
+    serviceType: 'Web Development',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="web-dev-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
@@ -98,6 +111,49 @@ export default function WebDevelopmentPage() {
               Get Free Website Quote
               <FiArrowRight className="ml-2" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Web Development Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Custom Website & Web Application Development</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses needing modern, fast websites</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">4-12 weeks depending on complexity</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 15,000</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">95+</div>
+                  <div className="text-sm text-gray-600">Page Speed score achieved</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">100%</div>
+                  <div className="text-sm text-gray-600">Mobile responsive</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">24/7</div>
+                  <div className="text-sm text-gray-600">Ongoing support</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -192,6 +248,39 @@ export default function WebDevelopmentPage() {
       </section>
 
       <FAQ faqs={faqs} title="Web Development FAQ" />
+
+      {/* Related Services - Internal Linking for SEO */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Essential Services For Your New Website</h2>
+            <p className="text-xl text-gray-600">Build a complete digital presence</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/services/seo" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">SEO Services</h3>
+              <p className="text-gray-600 mb-4">A beautiful website means nothing if nobody finds it. SEO brings organic traffic and ensures your site ranks on Google.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/content-marketing" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Content Marketing</h3>
+              <p className="text-gray-600 mb-4">Your website needs quality content. Professional copywriting and blog posts engage visitors and drive conversions.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/analytics" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Analytics & Tracking</h3>
+              <p className="text-gray-600 mb-4">Understand your visitors. Analytics tracking reveals how users interact with your site so you can optimize for better results.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
         <div className="container-custom text-center">

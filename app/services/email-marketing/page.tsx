@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight, FiMail, FiUsers, FiTrendingUp, FiZap } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Email Marketing Agency Dubai | Best Email Campaigns UAE',
-  description: 'Top email marketing agency in Dubai. Drive sales with strategic email campaigns, automation & personalized newsletters. Expert email marketing services in UAE.',
-  keywords: ['Email Marketing Dubai', 'Email Marketing Agency Dubai', 'Email Campaigns UAE', 'Email Automation Dubai', 'Newsletter Marketing Dubai', 'Mailchimp Dubai'],
+  title: 'Email Marketing Dubai | 22% Open Rate | Newsletter Services UAE',
+  description: 'Email marketing agency in Dubai. Campaign management, automation & newsletter design. 4.2% avg CTR, 22% open rate, 3x ROI. Mailchimp, HubSpot certified. From AED 1,500/month. Serving all UAE.',
+  keywords: ['Email Marketing Dubai', 'Email Campaign UAE', 'Newsletter Design Dubai', 'Email Automation UAE', 'Mailchimp Expert Dubai', 'Email Marketing Agency Abu Dhabi', 'HubSpot Email Marketing Dubai', 'Klaviyo UAE'],
   openGraph: {
-    title: 'Email Marketing Agency Dubai | Best Email Campaigns UAE',
-    description: 'Professional email marketing in Dubai. Build relationships and drive sales with strategic email campaigns.',
+    title: 'Email Marketing Dubai | 22% Open Rate | Mailchimp Certified',
+    description: 'Drive sales with strategic email campaigns. Expert email marketing for UAE businesses.',
   },
 }
 
@@ -139,8 +142,18 @@ const faqs = [
 ]
 
 export default function EmailMarketingPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Email Marketing Dubai',
+    description: 'Professional email marketing services in Dubai. Email campaigns, automation, and newsletter management to engage customers and drive conversions.',
+    url: `${siteConfig.url}/services/email-marketing`,
+    serviceType: 'Email Marketing',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="email-marketing-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
@@ -159,6 +172,49 @@ export default function EmailMarketingPage() {
               Get Free Email Strategy
               <FiArrowRight className="ml-2" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Email Marketing Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Email Campaign Management</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses with customer database</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">1 week to launch first campaign</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 1,500/month</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">4.2%</div>
+                  <div className="text-sm text-gray-600">Average CTR</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">22%</div>
+                  <div className="text-sm text-gray-600">Average open rate</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">3x</div>
+                  <div className="text-sm text-gray-600">ROI achieved</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

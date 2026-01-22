@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Marketing Automation Dubai | CRM Integration Services UAE',
-  description: 'Leading marketing automation services in Dubai. Streamline marketing with lead nurturing, workflow automation & CRM integration. Expert automation solutions in UAE.',
-  keywords: ['Marketing Automation Dubai', 'Marketing Automation UAE', 'CRM Integration Dubai', 'Lead Nurturing Dubai', 'HubSpot Dubai', 'Salesforce Dubai'],
+  title: 'Marketing Automation Dubai | Save 50% Time | HubSpot Partner UAE',
+  description: 'Marketing automation services in Dubai. Automated workflows, lead nurturing & email sequences. HubSpot certified. 50% time saved, 3x lead conversion. From AED 3,000/month. Perfect for B2B UAE companies.',
+  keywords: ['Marketing Automation Dubai', 'HubSpot Dubai', 'Marketing Automation UAE', 'Email Automation Dubai', 'Lead Nurturing UAE', 'CRM Automation Dubai', 'Salesforce Automation UAE', 'ActiveCampaign Dubai'],
   openGraph: {
-    title: 'Marketing Automation Dubai | CRM Integration Services UAE',
-    description: 'Expert marketing automation in Dubai. Automate workflows, nurture leads and integrate CRM systems.',
+    title: 'Marketing Automation Dubai | Save 50% Time | HubSpot Certified',
+    description: 'Automate your marketing & save time. Expert HubSpot automation for UAE B2B businesses.',
   },
 }
 
@@ -45,8 +48,18 @@ const faqs = [
 ]
 
 export default function MarketingAutomationPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Marketing Automation Dubai',
+    description: 'Professional marketing automation services in Dubai. Automate email campaigns, lead nurturing, and customer journeys to save time and increase conversions.',
+    url: `${siteConfig.url}/services/marketing-automation`,
+    serviceType: 'Marketing Automation',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="marketing-automation-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
       <section className="section-padding bg-gradient-to-br from-violet-50 to-purple-50">
         <div className="container-custom">
@@ -57,6 +70,50 @@ export default function MarketingAutomationPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Marketing Automation Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Automated Marketing Workflows</div>
+              </div>
+              <div className="bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600">
+                <div className="text-sm font-semibold text-indigo-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">B2B companies with long sales cycles</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">2-3 weeks for implementation</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 3,000/month</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">50%</div>
+                  <div className="text-sm text-gray-600">Time saved</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">3x</div>
+                  <div className="text-sm text-gray-600">Lead nurturing</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">24/7</div>
+                  <div className="text-sm text-gray-600">Automated</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">

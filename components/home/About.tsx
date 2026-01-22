@@ -7,23 +7,23 @@ import { FiAward, FiUsers, FiTrendingUp, FiTarget } from 'react-icons/fi'
 const features = [
   {
     icon: FiAward,
-    title: 'Award-Winning Agency',
-    description: 'Recognized for excellence in digital marketing',
+    title: 'Google Partner Certified',
+    description: 'Official Google Partner since 2020 with proven expertise',
   },
   {
     icon: FiUsers,
-    title: 'Expert Team',
-    description: 'Certified professionals with 10+ years experience',
+    title: '50+ Expert Team',
+    description: 'Google Ads, Analytics & Meta Blueprint certified professionals',
   },
   {
     icon: FiTrendingUp,
-    title: 'Proven Results',
-    description: '300% average ROI increase for our clients',
+    title: '200+ Happy Clients',
+    description: '4.9/5 Google rating with 98% client satisfaction rate',
   },
   {
     icon: FiTarget,
-    title: 'Data-Driven',
-    description: 'Strategic approach backed by analytics',
+    title: '3x Average ROI',
+    description: 'Data-driven strategies delivering measurable business growth',
   },
 ]
 
@@ -138,11 +138,11 @@ export default function About() {
             </h2>
             
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              We are a full-service digital marketing agency based in UAE, dedicated to helping businesses achieve their online goals. Our team of experts combines creativity with data-driven strategies to deliver exceptional results.
+              We are a <strong>Google Partner certified</strong> digital marketing agency based in Dubai, UAE. Since 2020, we've helped 200+ businesses achieve exceptional online growth through data-driven strategies that deliver real ROI.
             </p>
 
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              From startups to established enterprises, we have helped hundreds of businesses in UAE and across the Middle East grow their digital presence and drive real business outcomes.
+              Our team of 50+ certified professionals holds <strong>Google Ads</strong>, <strong>Google Analytics</strong>, and <strong>Meta Business Partner</strong> certifications. We combine technical expertise with deep UAE market knowledge to drive measurable business outcomes.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-8">

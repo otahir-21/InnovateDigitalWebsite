@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FiHome, FiChevronRight } from 'react-icons/fi'
+import { siteConfig } from '@/lib/config'
 
 interface BreadcrumbItem {
   label: string
@@ -46,7 +47,7 @@ export default function Breadcrumbs() {
       '@type': 'ListItem',
       'position': index + 1,
       'name': item.label,
-      'item': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://innovatedigital.ae'}${item.href}`,
+      'item': `${siteConfig.url}${item.href}`,
     })),
   }
 

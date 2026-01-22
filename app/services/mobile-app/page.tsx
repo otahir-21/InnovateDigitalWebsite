@@ -1,16 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight, FiSmartphone } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Mobile App Development Dubai | iOS & Android Apps UAE',
-  description: 'Leading mobile app development company in Dubai. Build custom iOS & Android apps with expert developers. User-friendly, high-performance mobile solutions in UAE.',
-  keywords: ['Mobile App Development Dubai', 'App Development Dubai', 'iOS App Dubai', 'Android App Dubai', 'Mobile App Company Dubai', 'App Developer Dubai'],
+  title: 'Mobile App Development Dubai | iOS & Android Apps UAE | MVP in 3 Months',
+  description: 'Mobile app development company in Dubai. Custom iOS & Android apps, cross-platform solutions. App Store ready, scalable architecture. 3-6 months MVP delivery. From AED 50,000. Serving all UAE.',
+  keywords: ['Mobile App Development Dubai', 'iOS App Developer UAE', 'Android App Dubai', 'App Development Company UAE', 'React Native Dubai', 'Flutter Developer UAE', 'Mobile Apps Abu Dhabi', 'Cross Platform Apps Dubai'],
   openGraph: {
-    title: 'Mobile App Development Dubai | iOS & Android Apps UAE',
-    description: 'Expert mobile app development in Dubai. Create powerful iOS and Android apps that engage users.',
+    title: 'Mobile App Development Dubai | MVP in 3-6 Months | App Store Ready',
+    description: 'Build scalable iOS & Android apps in Dubai. Expert mobile app development for UAE businesses.',
   },
 }
 
@@ -45,8 +48,18 @@ const faqs = [
 ]
 
 export default function MobileAppPage() {
+  const serviceSchema = generateServiceSchema({
+    name: 'Mobile App Development Dubai',
+    description: 'Professional mobile app development in Dubai. iOS and Android app development with modern UI/UX design and seamless functionality.',
+    url: `${siteConfig.url}/services/mobile-app`,
+    serviceType: 'Mobile App Development',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$$',
+  })
+
   return (
     <div className="pt-20">
+      <Script id="mobile-app-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
       <section className="section-padding bg-gradient-to-br from-cyan-50 to-blue-50">
         <div className="container-custom">
@@ -57,6 +70,50 @@ export default function MobileAppPage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Mobile App Development Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600">
+                <div className="text-sm font-semibold text-indigo-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">iOS & Android App Development</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses needing mobile presence</div>
+              </div>
+              <div className="bg-pink-50 p-6 rounded-lg border-l-4 border-pink-600">
+                <div className="text-sm font-semibold text-pink-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">3-6 months for MVP</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 50,000</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-indigo-600 mb-1">App Store</div>
+                  <div className="text-sm text-gray-600">Ready deployment</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-indigo-600 mb-1">Cross</div>
+                  <div className="text-sm text-gray-600">Platform support</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-indigo-600 mb-1">Scalable</div>
+                  <div className="text-sm text-gray-600">Architecture</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">

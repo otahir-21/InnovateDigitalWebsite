@@ -1,8 +1,11 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
+import { generateServiceSchema } from '@/lib/schema'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'SEO Company Dubai | #1 SEO Services UAE | Innovate Digital',
@@ -136,8 +139,25 @@ const faqs = [
 ]
 
 export default function SEOServicesPage() {
+  // Generate Service Schema
+  const serviceSchema = generateServiceSchema({
+    name: 'SEO Services Dubai',
+    description: 'Professional SEO services in Dubai and UAE. Rank #1 on Google with proven search engine optimization strategies, keyword research, on-page optimization, and link building.',
+    url: `${siteConfig.url}/services/seo`,
+    serviceType: 'Search Engine Optimization',
+    areaServed: 'United Arab Emirates',
+    priceRange: '$$',
+  })
+
   return (
     <div className="pt-20">
+      {/* Service Schema */}
+      <Script
+        id="seo-service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
@@ -156,6 +176,49 @@ export default function SEOServicesPage() {
               Get Free SEO Audit
               <FiArrowRight className="ml-2" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Facts - AI & Voice Search Optimized */}
+      <section className="py-8 bg-white border-b">
+        <div className="container-custom">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">SEO Services Quick Facts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
+                <div className="text-lg font-bold text-gray-900">Search Engine Optimization</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                <div className="text-sm font-semibold text-green-900 mb-2">Best For</div>
+                <div className="text-lg font-bold text-gray-900">Businesses wanting organic traffic & leads</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
+                <div className="text-lg font-bold text-gray-900">3-6 months for significant results</div>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
+                <div className="text-lg font-bold text-gray-900">From AED 3,000/month</div>
+              </div>
+            </div>
+            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">5x</div>
+                  <div className="text-sm text-gray-600">Average ROI in 12 months</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">Top 3</div>
+                  <div className="text-sm text-gray-600">Rankings for target keywords</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">200%</div>
+                  <div className="text-sm text-gray-600">Organic traffic increase</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -292,6 +355,39 @@ export default function SEOServicesPage() {
 
       {/* FAQ Section */}
       <FAQ faqs={faqs} title="SEO Services FAQ" />
+
+      {/* Related Services - Internal Linking for SEO */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Services That Work Great With SEO</h2>
+            <p className="text-xl text-gray-600">Maximize your results with complementary services</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/services/content-marketing" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Content Marketing</h3>
+              <p className="text-gray-600 mb-4">SEO needs quality content. Regular blog posts and articles boost your rankings and establish authority in your industry.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/web-development" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">Web Development</h3>
+              <p className="text-gray-600 mb-4">Fast, mobile-responsive websites are crucial for SEO. We build sites that rank high and convert visitors into customers.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <Link href="/services/ppc" className="card hover:shadow-xl transition-shadow group">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">PPC Advertising</h3>
+              <p className="text-gray-600 mb-4">Get immediate traffic while waiting for SEO results. PPC + SEO creates a powerful dual strategy for maximum visibility.</p>
+              <div className="flex items-center text-primary-600 font-medium">
+                Learn More <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">

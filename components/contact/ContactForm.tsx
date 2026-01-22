@@ -2,96 +2,7 @@
 
 import { useState } from 'react'
 import { FiSend } from 'react-icons/fi'
-
-const countryCodes = [
-  // Middle East (Priority)
-  { code: '+971', country: '🇦🇪 UAE', flag: '🇦🇪' },
-  { code: '+966', country: '🇸🇦 Saudi Arabia', flag: '🇸🇦' },
-  { code: '+965', country: '🇰🇼 Kuwait', flag: '🇰🇼' },
-  { code: '+974', country: '🇶🇦 Qatar', flag: '🇶🇦' },
-  { code: '+973', country: '🇧🇭 Bahrain', flag: '🇧🇭' },
-  { code: '+968', country: '🇴🇲 Oman', flag: '🇴🇲' },
-  { code: '+20', country: '🇪🇬 Egypt', flag: '🇪🇬' },
-  { code: '+962', country: '🇯🇴 Jordan', flag: '🇯🇴' },
-  { code: '+961', country: '🇱🇧 Lebanon', flag: '🇱🇧' },
-  { code: '+964', country: '🇮🇶 Iraq', flag: '🇮🇶' },
-  { code: '+963', country: '🇸🇾 Syria', flag: '🇸🇾' },
-  { code: '+967', country: '🇾🇪 Yemen', flag: '🇾🇪' },
-  { code: '+970', country: '🇵🇸 Palestine', flag: '🇵🇸' },
-  
-  // North America
-  { code: '+1', country: '🇺🇸 USA', flag: '🇺🇸' },
-  { code: '+1', country: '🇨🇦 Canada', flag: '🇨🇦' },
-  { code: '+52', country: '🇲🇽 Mexico', flag: '🇲🇽' },
-  
-  // Europe
-  { code: '+44', country: '🇬🇧 UK', flag: '🇬🇧' },
-  { code: '+49', country: '🇩🇪 Germany', flag: '🇩🇪' },
-  { code: '+33', country: '🇫🇷 France', flag: '🇫🇷' },
-  { code: '+39', country: '🇮🇹 Italy', flag: '🇮🇹' },
-  { code: '+34', country: '🇪🇸 Spain', flag: '🇪🇸' },
-  { code: '+31', country: '🇳🇱 Netherlands', flag: '🇳🇱' },
-  { code: '+32', country: '🇧🇪 Belgium', flag: '🇧🇪' },
-  { code: '+41', country: '🇨🇭 Switzerland', flag: '🇨🇭' },
-  { code: '+43', country: '🇦🇹 Austria', flag: '🇦🇹' },
-  { code: '+46', country: '🇸🇪 Sweden', flag: '🇸🇪' },
-  { code: '+47', country: '🇳🇴 Norway', flag: '🇳🇴' },
-  { code: '+45', country: '🇩🇰 Denmark', flag: '🇩🇰' },
-  { code: '+358', country: '🇫🇮 Finland', flag: '🇫🇮' },
-  { code: '+48', country: '🇵🇱 Poland', flag: '🇵🇱' },
-  { code: '+351', country: '🇵🇹 Portugal', flag: '🇵🇹' },
-  { code: '+30', country: '🇬🇷 Greece', flag: '🇬🇷' },
-  { code: '+353', country: '🇮🇪 Ireland', flag: '🇮🇪' },
-  { code: '+420', country: '🇨🇿 Czech Republic', flag: '🇨🇿' },
-  { code: '+7', country: '🇷🇺 Russia', flag: '🇷🇺' },
-  { code: '+380', country: '🇺🇦 Ukraine', flag: '🇺🇦' },
-  { code: '+90', country: '🇹🇷 Turkey', flag: '🇹🇷' },
-  
-  // Asia
-  { code: '+91', country: '🇮🇳 India', flag: '🇮🇳' },
-  { code: '+92', country: '🇵🇰 Pakistan', flag: '🇵🇰' },
-  { code: '+880', country: '🇧🇩 Bangladesh', flag: '🇧🇩' },
-  { code: '+86', country: '🇨🇳 China', flag: '🇨🇳' },
-  { code: '+81', country: '🇯🇵 Japan', flag: '🇯🇵' },
-  { code: '+82', country: '🇰🇷 South Korea', flag: '🇰🇷' },
-  { code: '+65', country: '🇸🇬 Singapore', flag: '🇸🇬' },
-  { code: '+60', country: '🇲🇾 Malaysia', flag: '🇲🇾' },
-  { code: '+66', country: '🇹🇭 Thailand', flag: '🇹🇭' },
-  { code: '+62', country: '🇮🇩 Indonesia', flag: '🇮🇩' },
-  { code: '+63', country: '🇵🇭 Philippines', flag: '🇵🇭' },
-  { code: '+84', country: '🇻🇳 Vietnam', flag: '🇻🇳' },
-  { code: '+852', country: '🇭🇰 Hong Kong', flag: '🇭🇰' },
-  { code: '+886', country: '🇹🇼 Taiwan', flag: '🇹🇼' },
-  { code: '+977', country: '🇳🇵 Nepal', flag: '🇳🇵' },
-  { code: '+94', country: '🇱🇰 Sri Lanka', flag: '🇱🇰' },
-  { code: '+98', country: '🇮🇷 Iran', flag: '🇮🇷' },
-  { code: '+93', country: '🇦🇫 Afghanistan', flag: '🇦🇫' },
-  
-  // Oceania
-  { code: '+61', country: '🇦🇺 Australia', flag: '🇦🇺' },
-  { code: '+64', country: '🇳🇿 New Zealand', flag: '🇳🇿' },
-  
-  // Africa
-  { code: '+27', country: '🇿🇦 South Africa', flag: '🇿🇦' },
-  { code: '+234', country: '🇳🇬 Nigeria', flag: '🇳🇬' },
-  { code: '+254', country: '🇰🇪 Kenya', flag: '🇰🇪' },
-  { code: '+233', country: '🇬🇭 Ghana', flag: '🇬🇭' },
-  { code: '+212', country: '🇲🇦 Morocco', flag: '🇲🇦' },
-  { code: '+213', country: '🇩🇿 Algeria', flag: '🇩🇿' },
-  { code: '+216', country: '🇹🇳 Tunisia', flag: '🇹🇳' },
-  { code: '+218', country: '🇱🇾 Libya', flag: '🇱🇾' },
-  { code: '+249', country: '🇸🇩 Sudan', flag: '🇸🇩' },
-  { code: '+251', country: '🇪🇹 Ethiopia', flag: '🇪🇹' },
-  { code: '+256', country: '🇺🇬 Uganda', flag: '🇺🇬' },
-  
-  // South America
-  { code: '+55', country: '🇧🇷 Brazil', flag: '🇧🇷' },
-  { code: '+54', country: '🇦🇷 Argentina', flag: '🇦🇷' },
-  { code: '+56', country: '🇨🇱 Chile', flag: '🇨🇱' },
-  { code: '+57', country: '🇨🇴 Colombia', flag: '🇨🇴' },
-  { code: '+51', country: '🇵🇪 Peru', flag: '🇵🇪' },
-  { code: '+58', country: '🇻🇪 Venezuela', flag: '🇻🇪' },
-]
+import { countryCodes, popularCountries, otherCountries } from '@/lib/countryCodes'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -110,6 +21,25 @@ export default function ContactForm() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    })
+  }
+
+  // Handle phone number input - only allow numbers
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    // Remove all non-digit characters
+    const numbersOnly = value.replace(/\D/g, '')
+    
+    // Get max length for selected country
+    const selectedCountry = countryCodes.find(c => c.code === formData.countryCode)
+    const maxLength = selectedCountry?.maxLength || 15
+    
+    // Limit to max length
+    const limitedValue = numbersOnly.slice(0, maxLength)
+    
+    setFormData({
+      ...formData,
+      phone: limitedValue
     })
   }
 
@@ -202,32 +132,51 @@ export default function ContactForm() {
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
           Phone Number
         </label>
-        <div className="flex gap-2">
+        
+        {/* Unified Phone Input - Modern Design */}
+        <div className="relative flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-primary-500 focus-within:border-primary-500 transition-all bg-white overflow-hidden">
+          {/* Country Code Selector - Compact */}
           <select
             name="countryCode"
             value={formData.countryCode}
             onChange={handleChange}
-            className="px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition bg-white"
-            style={{ minWidth: '140px' }}
+            className="px-3 py-3 border-r border-gray-300 bg-transparent focus:outline-none text-sm font-medium cursor-pointer hover:bg-gray-50 transition-colors"
+            title="Select country code"
+            style={{ minWidth: '100px' }}
           >
-            {countryCodes.map((item) => (
-              <option key={item.code} value={item.code}>
+            {/* Popular countries first */}
+            {popularCountries.map((item, index) => (
+              <option key={`popular-${item.code}-${index}`} value={item.code}>
+                {item.flag} {item.code}
+              </option>
+            ))}
+            {/* Separator */}
+            <option disabled>──────────</option>
+            {/* Other countries */}
+            {otherCountries.map((item, index) => (
+              <option key={`other-${item.code}-${index}`} value={item.code}>
                 {item.flag} {item.code}
               </option>
             ))}
           </select>
+          
+          {/* Phone Number Input - Full Width */}
           <input
             type="tel"
             id="phone"
             name="phone"
             value={formData.phone}
-            onChange={handleChange}
-            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+            onChange={handlePhoneChange}
+            pattern="[0-9]*"
+            inputMode="numeric"
+            maxLength={countryCodes.find(c => c.code === formData.countryCode)?.maxLength || 15}
+            className="flex-1 px-4 py-3 border-0 focus:outline-none bg-transparent text-base"
             placeholder="50 123 4567"
           />
         </div>
-        <p className="text-xs text-gray-500 mt-1">
-          Select country code and enter your phone number
+        
+        <p className="text-xs text-gray-500 mt-2">
+          📱 Numbers only • Max {countryCodes.find(c => c.code === formData.countryCode)?.maxLength} digits
         </p>
       </div>
 
