@@ -210,9 +210,9 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
                         name="countryCode"
                         value={formData.countryCode}
                         onChange={handleChange}
-                        className="px-2 py-3 border-r border-gray-300 bg-transparent focus:outline-none text-xs font-medium cursor-pointer"
+                        className="px-2 py-3 border-r border-gray-300 bg-transparent focus:outline-none text-xs font-medium cursor-pointer flex-shrink-0 appearance-none bg-white"
                         title="Select country"
-                        style={{ minWidth: '85px' }}
+                        style={{ width: '80px', maxWidth: '80px', minWidth: '80px' }}
                       >
                         {/* Popular countries first */}
                         {popularCountries.map((country, index) => (

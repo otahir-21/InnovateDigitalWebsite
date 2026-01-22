@@ -140,9 +140,9 @@ export default function ContactForm() {
             name="countryCode"
             value={formData.countryCode}
             onChange={handleChange}
-            className="px-3 py-3 border-r border-gray-300 bg-transparent focus:outline-none text-sm font-medium cursor-pointer hover:bg-gray-50 transition-colors"
+            className="px-2 py-3 border-r border-gray-300 bg-transparent focus:outline-none text-xs font-medium cursor-pointer hover:bg-gray-50 transition-colors flex-shrink-0 appearance-none bg-white"
             title="Select country code"
-            style={{ minWidth: '100px' }}
+            style={{ width: '80px', maxWidth: '80px', minWidth: '80px' }}
           >
             {/* Popular countries first */}
             {popularCountries.map((item, index) => (
