@@ -40,6 +40,30 @@ const nextConfig = {
     return config
   },
   
+  // Redirects for SEO
+  async redirects() {
+    return [
+      // Redirect www to non-www (canonical URL)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.innovatedigital.ae',
+          },
+        ],
+        destination: 'https://innovatedigital.ae/:path*',
+        permanent: true,
+      },
+      // Redirect trailing slashes to non-trailing (except root)
+      {
+        source: '/:path+/',
+        destination: '/:path+',
+        permanent: true,
+      },
+    ]
+  },
+  
   // Security headers
   async headers() {
     return [
