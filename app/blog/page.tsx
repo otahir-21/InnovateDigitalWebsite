@@ -4,72 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { FiCalendar, FiUser, FiArrowRight, FiClock } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { getAllBlogPosts, getAllBlogCategories } from '@/lib/blogPostsData'
 
-// Sample blog posts - Replace with your actual blog data/CMS
-const blogPosts = [
-  {
-    id: 1,
-    title: 'The Ultimate Guide to SEO in UAE for 2026',
-    excerpt: 'Discover the latest SEO strategies specifically tailored for the UAE market. Learn how to dominate local search results.',
-    author: 'Sarah Ahmed',
-    date: '2026-01-15',
-    category: 'SEO',
-    readTime: '8 min read',
-    image: '🔍',
-  },
-  {
-    id: 2,
-    title: 'Social Media Trends in Middle East for 2026',
-    excerpt: 'Stay ahead of the curve with the latest social media trends dominating the Middle East digital landscape.',
-    author: 'Michael Chen',
-    date: '2026-01-12',
-    category: 'Social Media',
-    readTime: '6 min read',
-    image: '📱',
-  },
-  {
-    id: 3,
-    title: 'How to Maximize ROI with Google Ads in Dubai',
-    excerpt: 'Learn proven strategies to get the most out of your Google Ads budget in the competitive Dubai market.',
-    author: 'John Smith',
-    date: '2026-01-10',
-    category: 'PPC',
-    readTime: '10 min read',
-    image: '💰',
-  },
-  {
-    id: 4,
-    title: 'Content Marketing Strategies for UAE Businesses',
-    excerpt: 'Create compelling content that resonates with UAE audiences and drives real business results.',
-    author: 'Fatima Ali',
-    date: '2026-01-08',
-    category: 'Content Marketing',
-    readTime: '7 min read',
-    image: '✍️',
-  },
-  {
-    id: 5,
-    title: 'Website Speed Optimization: A Complete Guide',
-    excerpt: 'Improve your website loading speed and boost your Google rankings with these proven techniques.',
-    author: 'Michael Chen',
-    date: '2026-01-05',
-    category: 'Web Development',
-    readTime: '12 min read',
-    image: '⚡',
-  },
-  {
-    id: 6,
-    title: 'Building a Strong Brand Identity in UAE',
-    excerpt: 'Learn how to create a memorable brand that stands out in the competitive UAE market.',
-    author: 'Sarah Ahmed',
-    date: '2026-01-03',
-    category: 'Branding',
-    readTime: '9 min read',
-    image: '🎨',
-  },
-]
-
-const categories = ['All', 'SEO', 'Social Media', 'PPC', 'Content Marketing', 'Web Development', 'Branding']
+// Get blog posts and categories from our data file
+const blogPosts = getAllBlogPosts()
+const allCategories = getAllBlogCategories()
+const categories = ['All', ...allCategories]
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -137,7 +77,7 @@ export default function BlogPage() {
 
                 {/* Title */}
                 <h2 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">
-                  <Link href={`/blog/${post.id}`}>
+                  <Link href={`/blog/${post.slug}`}>
                     {post.title}
                   </Link>
                 </h2>
@@ -176,7 +116,7 @@ export default function BlogPage() {
 
                 {/* Read More Link */}
                 <Link
-                  href={`/blog/${post.id}`}
+                  href={`/blog/${post.slug}`}
                   className="mt-4 text-primary-600 font-medium inline-flex items-center group-hover:gap-2 transition-all"
                 >
                   Read Full Article

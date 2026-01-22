@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer'
 import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { organizationSchema, localBusinessSchema, websiteSchema, combineSchemas } from '@/lib/schema'
 
 const WhatsAppButton = dynamic(() => import('@/components/layout/WhatsAppButton'), {
   ssr: false,
@@ -131,6 +132,19 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "v3ggwzgd4g");
           `}
         </Script>
+
+        {/* Structured Data - Schema.org JSON-LD */}
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(combineSchemas(
+              organizationSchema,
+              localBusinessSchema,
+              websiteSchema
+            ))
+          }}
+        />
 
         <Header />
         <main className="min-h-screen">
