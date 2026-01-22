@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: siteConfig.url,
+  },
   icons: {
     icon: '/logo.svg',
   },
