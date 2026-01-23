@@ -107,6 +107,31 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Locations We Serve */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Locations We Serve</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/dubai" className="text-sm hover:text-primary-400 transition-colors">
+                  Digital Marketing Dubai
+                </Link>
+              </li>
+              <li>
+                <Link href="/abu-dhabi" className="text-sm hover:text-primary-400 transition-colors">
+                  Digital Marketing Abu Dhabi
+                </Link>
+              </li>
+              <li>
+                <Link href="/sharjah" className="text-sm hover:text-primary-400 transition-colors">
+                  Digital Marketing Sharjah
+                </Link>
+              </li>
+            </ul>
+            <p className="text-xs text-gray-400 mt-3">
+              Also serving: Business Bay, Downtown Dubai, JLT, Dubai Marina & more
+            </p>
+          </div>
+
           {/* Contact Info */}
           <div>
             <h4 className="text-white font-semibold mb-4">Contact Us</h4>
