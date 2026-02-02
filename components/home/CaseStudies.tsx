@@ -71,7 +71,7 @@ export default function CaseStudies() {
             Success <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Stories</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real results for real businesses across UAE
+          Digital Marketing Success Stories from <strong>Dubai & UAE</strong> Businesses.
           </p>
         </motion.div>
 

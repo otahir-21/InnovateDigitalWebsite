@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'PPC Agency Dubai | Google Ads Management UAE | Innovate Digital',
   description: 'Leading PPC agency in Dubai. Maximize ROI with expert Google Ads, Facebook Ads & Instagram campaigns. Certified PPC specialists with proven results in UAE market.',
   keywords: ['PPC Agency Dubai', 'Google Ads Dubai', 'PPC Management UAE', 'Google Ads Agency Dubai', 'Paid Advertising Dubai', 'Facebook Ads UAE'],
+  alternates: {
+    canonical: '/services/ppc',
+  },
   openGraph: {
     title: 'PPC Agency Dubai | Google Ads Management UAE',
     description: 'Expert PPC management in Dubai. Drive targeted traffic and maximize ROI with certified Google Ads specialists.',
+    url: `${siteConfig.url}/services/ppc`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PPC Agency Dubai | Google Ads Management UAE',
+    description: 'Expert PPC management in Dubai. Drive targeted traffic and maximize ROI with certified Google Ads specialists.',
+    images: [siteConfig.ogImage],
   },
 }
 

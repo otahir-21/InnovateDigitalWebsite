@@ -19,9 +19,20 @@ export const metadata: Metadata = {
     'Web Development Business Bay',
     'PPC Agency Business Bay'
   ],
+  alternates: {
+    canonical: '/business-bay',
+  },
   openGraph: {
     title: 'Digital Marketing Agency Business Bay Dubai | Local SEO Experts',
     description: 'Business Bay\'s leading digital marketing agency. 50+ local projects, 4.9/5 rating.',
+    url: `${siteConfig.url}/business-bay`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Business Bay Dubai | Local SEO Experts',
+    description: 'Business Bay\'s leading digital marketing agency. 50+ local projects, 4.9/5 rating.',
+    images: [siteConfig.ogImage],
   },
 }
 

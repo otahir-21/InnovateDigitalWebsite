@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Mobile App Development Dubai | iOS & Android Apps UAE | MVP in 3 Months',
   description: 'Mobile app development company in Dubai. Custom iOS & Android apps, cross-platform solutions. App Store ready, scalable architecture. 3-6 months MVP delivery. From AED 50,000. Serving all UAE.',
   keywords: ['Mobile App Development Dubai', 'iOS App Developer UAE', 'Android App Dubai', 'App Development Company UAE', 'React Native Dubai', 'Flutter Developer UAE', 'Mobile Apps Abu Dhabi', 'Cross Platform Apps Dubai'],
+  alternates: {
+    canonical: '/services/mobile-app',
+  },
   openGraph: {
     title: 'Mobile App Development Dubai | MVP in 3-6 Months | App Store Ready',
     description: 'Build scalable iOS & Android apps in Dubai. Expert mobile app development for UAE businesses.',
+    url: `${siteConfig.url}/services/mobile-app`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mobile App Development Dubai | MVP in 3-6 Months | App Store Ready',
+    description: 'Build scalable iOS & Android apps in Dubai. Expert mobile app development for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

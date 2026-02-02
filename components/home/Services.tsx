@@ -8,42 +8,42 @@ const services = [
   {
     icon: FiSearch,
     title: 'SEO Services',
-    description: 'Dominate search rankings with our proven SEO strategies. Increase organic traffic and visibility in UAE market.',
+    description: 'Improve Google rankings with SEO services in Dubai. Grow organic traffic, leads and visibility across the UAE market.',
     href: '/services/seo',
     color: 'from-blue-500 to-blue-600',
   },
   {
     icon: FiTrendingUp,
     title: 'Social Media Marketing',
-    description: 'Build a strong social presence. Engage your audience and grow your brand across all platforms.',
+    description: 'Build your brand on Instagram, Facebook, LinkedIn and TikTok. Engage your audience and grow across the UAE.',
     href: '/services/social-media',
     color: 'from-purple-500 to-purple-600',
   },
   {
     icon: FiTarget,
     title: 'PPC Management',
-    description: 'Maximize ROI with targeted Google Ads and social media campaigns. Get immediate results.',
+    description: 'Drive immediate results with Google Ads & Meta Ads. Target the right audience and maximize ROI across UAE markets.',
     href: '/services/ppc',
     color: 'from-green-500 to-green-600',
   },
   {
     icon: FiEdit,
     title: 'Content Marketing',
-    description: 'Engage your audience with compelling content that drives conversions and builds authority.',
+    description: 'Content marketing and blog writing that attracts, engages and converts your ideal audience across the UAE.',
     href: '/services/content-marketing',
     color: 'from-orange-500 to-orange-600',
   },
   {
     icon: FiMonitor,
     title: 'Web Development',
-    description: 'Lightning-fast, SEO-optimized websites that convert visitors into customers.',
+    description: 'Professional web design & development in Dubai built to convert and support long-term growth across the UAE.',
     href: '/services/web-development',
     color: 'from-pink-500 to-pink-600',
   },
   {
     icon: FiVolume2,
-    title: 'Branding',
-    description: 'Create a memorable brand identity that resonates with your target audience.',
+    title: 'Branding & Design',
+    description: 'Branding and identity design that builds a memorable presence and resonates with customers across the UAE.',
     href: '/services/branding',
     color: 'from-indigo-500 to-indigo-600',
   },
@@ -64,7 +64,7 @@ export default function Services() {
             Our <span className="gradient-text">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive digital marketing solutions tailored for UAE businesses
+          Full-service digital marketing in Dubai and across the UAE — SEO, social media, PPC, content and web — plus email marketing, marketing automation and video production.
           </p>
         </motion.div>
 

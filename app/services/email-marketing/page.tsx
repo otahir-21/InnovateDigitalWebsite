@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Email Marketing Dubai | 22% Open Rate | Newsletter Services UAE',
   description: 'Email marketing agency in Dubai. Campaign management, automation & newsletter design. 4.2% avg CTR, 22% open rate, 3x ROI. Mailchimp, HubSpot certified. From AED 1,500/month. Serving all UAE.',
   keywords: ['Email Marketing Dubai', 'Email Campaign UAE', 'Newsletter Design Dubai', 'Email Automation UAE', 'Mailchimp Expert Dubai', 'Email Marketing Agency Abu Dhabi', 'HubSpot Email Marketing Dubai', 'Klaviyo UAE'],
+  alternates: {
+    canonical: '/services/email-marketing',
+  },
   openGraph: {
     title: 'Email Marketing Dubai | 22% Open Rate | Mailchimp Certified',
     description: 'Drive sales with strategic email campaigns. Expert email marketing for UAE businesses.',
+    url: `${siteConfig.url}/services/email-marketing`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Email Marketing Dubai | 22% Open Rate | Mailchimp Certified',
+    description: 'Drive sales with strategic email campaigns. Expert email marketing for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   keywords: [
     'Digital Marketing Agency Dubai',
     'Digital Marketing Dubai',
+    'Digital Marketing Company Dubai',
+    'Online Marketing Company Dubai',
+    'Digital Marketing Consultant Dubai',
+    'Digital Marketing Firm Dubai',
+    'Best Digital Marketing Services in Dubai',
     'Marketing Agency Dubai',
     'SEO Company Dubai',
     'Social Media Marketing Dubai',
@@ -21,9 +26,20 @@ export const metadata: Metadata = {
     'PPC Agency Dubai',
     'Best Digital Marketing Agency Dubai'
   ],
+  alternates: {
+    canonical: '/dubai',
+  },
   openGraph: {
     title: 'Digital Marketing Agency Dubai | #1 Rated | Free Consultation',
     description: 'Dubai\'s leading digital marketing agency. 200+ successful projects, 4.9/5 rating, Google Partner certified.',
+    url: `${siteConfig.url}/dubai`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Dubai | #1 Rated | Free Consultation',
+    description: 'Dubai\'s leading digital marketing agency. 200+ successful projects, 4.9/5 rating, Google Partner certified.',
+    images: [siteConfig.ogImage],
   },
 }
 
@@ -70,6 +86,10 @@ const dubaiFaqs = [
   {
     question: 'What makes you the best digital marketing agency in Dubai?',
     answer: 'Innovate Digital stands out in Dubai for several reasons: We\'re a certified Google Partner since 2020, we\'ve completed 200+ successful projects across Dubai, we have a 4.9/5 Google rating with 98% client satisfaction, and we deliver an average 3x ROI. Unlike other agencies, we specialize in the Dubai market with deep understanding of local consumer behavior, Arabic content requirements, and UAE business culture. Our office is based in Dubai, and we serve clients across all Dubai areas including Business Bay, Downtown Dubai, Dubai Marina, JLT, DIFC, and more.'
+  },
+  {
+    question: 'Do you provide a digital marketing consultant in Dubai?',
+    answer: 'Yes. If you\'re comparing digital marketing companies in Dubai, you can speak with a dedicated strategist who reviews your goals and recommends the right channels. We operate as a full-service digital marketing firm in Dubai (an online marketing company in Dubai) covering SEO, PPC, social media, content, web, branding and more—focused on delivering the best digital marketing services in Dubai for your business goals.',
   },
   {
     question: 'Do you serve businesses in all areas of Dubai?',
@@ -165,6 +185,7 @@ export default function DubaiPage() {
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               From Business Bay to Dubai Marina, we help Dubai businesses dominate their market through expert SEO, 
               social media marketing, PPC advertising, and web development. Based in Dubai, built for Dubai success.
+              If you're comparing digital marketing companies in Dubai, our team can act as your digital marketing consultant in Dubai with a clear, ROI-focused plan.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

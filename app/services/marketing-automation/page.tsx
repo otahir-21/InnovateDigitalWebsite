@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Marketing Automation Dubai | Save 50% Time | HubSpot Partner UAE',
   description: 'Marketing automation services in Dubai. Automated workflows, lead nurturing & email sequences. HubSpot certified. 50% time saved, 3x lead conversion. From AED 3,000/month. Perfect for B2B UAE companies.',
   keywords: ['Marketing Automation Dubai', 'HubSpot Dubai', 'Marketing Automation UAE', 'Email Automation Dubai', 'Lead Nurturing UAE', 'CRM Automation Dubai', 'Salesforce Automation UAE', 'ActiveCampaign Dubai'],
+  alternates: {
+    canonical: '/services/marketing-automation',
+  },
   openGraph: {
     title: 'Marketing Automation Dubai | Save 50% Time | HubSpot Certified',
     description: 'Automate your marketing & save time. Expert HubSpot automation for UAE B2B businesses.',
+    url: `${siteConfig.url}/services/marketing-automation`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Marketing Automation Dubai | Save 50% Time | HubSpot Certified',
+    description: 'Automate your marketing & save time. Expert HubSpot automation for UAE B2B businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

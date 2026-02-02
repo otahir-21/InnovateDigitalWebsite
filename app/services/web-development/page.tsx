@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Web Development Dubai | 95+ Speed Score | Modern Websites UAE',
   description: 'Top web development company in Dubai since 2020. Custom websites, web apps & e-commerce. 95+ PageSpeed scores, 100% mobile responsive, 24/7 support. From AED 15,000. Serving all UAE.',
   keywords: ['Web Development Dubai', 'Website Design UAE', 'Web Developer Dubai', 'Custom Website Dubai', 'Responsive Website UAE', 'E-commerce Website Dubai', 'Next.js Developer UAE', 'React Developer Dubai'],
+  alternates: {
+    canonical: '/services/web-development',
+  },
   openGraph: {
     title: 'Web Development Dubai | 95+ Speed Score | 24/7 Support',
     description: 'Award-winning web development in Dubai. Modern, fast, SEO-optimized websites for UAE businesses.',
+    url: `${siteConfig.url}/services/web-development`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Development Dubai | 95+ Speed Score | 24/7 Support',
+    description: 'Award-winning web development in Dubai. Modern, fast, SEO-optimized websites for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

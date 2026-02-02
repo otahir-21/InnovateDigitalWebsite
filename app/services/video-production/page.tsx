@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Video Production Dubai | Corporate Videos UAE | 95% Satisfaction',
   description: 'Professional video production in Dubai. Corporate videos, commercials, social content & animations. 80% engagement increase, 95% client satisfaction. 2-4 week delivery. From AED 5,000/video. Serving all UAE.',
   keywords: ['Video Production Dubai', 'Corporate Video Dubai', 'Video Marketing UAE', 'Commercial Production Dubai', 'Social Media Videos UAE', 'Animation Dubai', 'Videographer Dubai', 'Video Editing UAE'],
+  alternates: {
+    canonical: '/services/video-production',
+  },
   openGraph: {
     title: 'Video Production Dubai | 95% Client Satisfaction | 2-4 Week Delivery',
     description: 'Cinematic quality video production in Dubai. Corporate videos, commercials & social content.',
+    url: `${siteConfig.url}/services/video-production`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Video Production Dubai | 95% Client Satisfaction | 2-4 Week Delivery',
+    description: 'Cinematic quality video production in Dubai. Corporate videos, commercials & social content.',
+    images: [siteConfig.ogImage],
   },
 }
 

@@ -20,9 +20,20 @@ export const metadata: Metadata = {
     'Web Development Sharjah',
     'Affordable Digital Marketing Sharjah'
   ],
+  alternates: {
+    canonical: '/sharjah',
+  },
   openGraph: {
     title: 'Digital Marketing Agency Sharjah | Affordable SEO & Social Media',
     description: 'Sharjah\'s leading digital marketing agency. 80+ successful projects, affordable packages, 4.9/5 rating.',
+    url: `${siteConfig.url}/sharjah`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Sharjah | Affordable SEO & Social Media',
+    description: 'Sharjah\'s leading digital marketing agency. 80+ successful projects, affordable packages, 4.9/5 rating.',
+    images: [siteConfig.ogImage],
   },
 }
 

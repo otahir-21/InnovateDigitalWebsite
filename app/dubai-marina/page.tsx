@@ -18,9 +18,20 @@ export const metadata: Metadata = {
     'Social Media Marina Dubai',
     'Restaurant Marketing Dubai Marina'
   ],
+  alternates: {
+    canonical: '/dubai-marina',
+  },
   openGraph: {
     title: 'Digital Marketing Agency Dubai Marina | Marina Walk SEO Experts',
     description: 'Dubai Marina\'s leading digital marketing agency. Expert in hospitality, retail, and lifestyle brands.',
+    url: `${siteConfig.url}/dubai-marina`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Dubai Marina | Marina Walk SEO Experts',
+    description: 'Dubai Marina\'s leading digital marketing agency. Expert in hospitality, retail, and lifestyle brands.',
+    images: [siteConfig.ogImage],
   },
 }
 

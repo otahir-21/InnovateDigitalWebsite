@@ -4,13 +4,25 @@ import { FiSearch, FiTrendingUp, FiMonitor, FiEdit, FiVolume2, FiTarget, FiArrow
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 import { servicesFAQs } from '@/lib/faqData'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Digital Marketing Services in UAE | SEO, PPC, Social Media',
   description: 'Comprehensive digital marketing services in UAE. Expert SEO, social media marketing, PPC, web development, content marketing, and branding services.',
+  alternates: {
+    canonical: '/services',
+  },
   openGraph: {
     title: 'Digital Marketing Services - Innovate Digital UAE',
     description: 'Full-service digital marketing agency offering SEO, PPC, social media, and web development services in UAE.',
+    url: `${siteConfig.url}/services`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Services - Innovate Digital UAE',
+    description: 'Full-service digital marketing agency offering SEO, PPC, social media, and web development services in UAE.',
+    images: [siteConfig.ogImage],
   },
 }
 
