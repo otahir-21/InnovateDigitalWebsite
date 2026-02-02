@@ -267,7 +267,7 @@ export default function PrivacyPolicy() {
               <p className="text-gray-700 mb-2">Meydan Free Zone, Dubai, UAE</p>
               <p className="text-gray-700 mb-2">Email: <a href="mailto:privacy@innovatedigital.ae" className="text-blue-600 hover:underline">privacy@innovatedigital.ae</a></p>
               <p className="text-gray-700 mb-2">Phone: <a href="tel:+971523949010" className="text-blue-600 hover:underline">+971 52 394 9010</a></p>
-              <p className="text-gray-700">Website: <a href="https://innovatedigital.ae" className="text-blue-600 hover:underline">innovatedigital.ae</a></p>
+              <p className="text-gray-700">Website: <a href="https://www.innovatedigital.ae" className="text-blue-600 hover:underline">innovatedigital.ae</a></p>
             </div>
           </section>
 

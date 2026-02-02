@@ -129,15 +129,15 @@ export default function AbuDhabiPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services Abu Dhabi',
     description: 'Comprehensive digital marketing services in Abu Dhabi, UAE including SEO, social media marketing, PPC advertising, web development, and content marketing.',
-    url: 'https://innovatedigital.ae/abu-dhabi',
+    url: `${siteConfig.url}/abu-dhabi`,
     serviceType: 'Digital Marketing',
     areaServed: 'Abu Dhabi, UAE',
     priceRange: 'AED 5000-20000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Abu Dhabi', url: 'https://innovatedigital.ae/abu-dhabi' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Abu Dhabi', url: `${siteConfig.url}/abu-dhabi` },
   ])
 
   return (

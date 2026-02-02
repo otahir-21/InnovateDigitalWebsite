@@ -68,16 +68,16 @@ export default function DubaiMarinaPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services Dubai Marina',
     description: 'Premium digital marketing services in Dubai Marina including local SEO, social media, PPC for hospitality, retail, and lifestyle businesses.',
-    url: 'https://innovatedigital.ae/dubai-marina',
+    url: `${siteConfig.url}/dubai-marina`,
     serviceType: 'Digital Marketing',
     areaServed: 'Dubai Marina, Marina Walk, JBR, Dubai, UAE',
     priceRange: 'AED 6000-18000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Dubai', url: 'https://innovatedigital.ae/dubai' },
-    { name: 'Dubai Marina', url: 'https://innovatedigital.ae/dubai-marina' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Dubai', url: `${siteConfig.url}/dubai` },
+    { name: 'Dubai Marina', url: `${siteConfig.url}/dubai-marina` },
   ])
 
   return (

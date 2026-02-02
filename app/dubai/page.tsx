@@ -143,15 +143,15 @@ export default function DubaiPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services Dubai',
     description: 'Comprehensive digital marketing services in Dubai including SEO, social media marketing, PPC advertising, web development, and content marketing.',
-    url: 'https://innovatedigital.ae/dubai',
+    url: `${siteConfig.url}/dubai`,
     serviceType: 'Digital Marketing',
     areaServed: 'Dubai, UAE',
     priceRange: 'AED 5000-20000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Dubai', url: 'https://innovatedigital.ae/dubai' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Dubai', url: `${siteConfig.url}/dubai` },
   ])
 
   return (
