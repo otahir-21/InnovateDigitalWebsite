@@ -12,9 +12,20 @@ export const metadata: Metadata = {
   title: 'Social Media Marketing Dubai | 300% Engagement Growth | Google Partner',
   description: 'Leading social media agency in Dubai since 2020. Expert Instagram, Facebook, TikTok & LinkedIn marketing. 50K+ combined reach achieved for UAE clients. Free strategy session. Serving Dubai, Abu Dhabi & Sharjah.',
   keywords: ['Social Media Marketing Dubai', 'Instagram Marketing UAE', 'Facebook Ads Dubai', 'Social Media Agency Abu Dhabi', 'TikTok Marketing UAE', 'LinkedIn Marketing Dubai', 'Influencer Marketing UAE', 'Social Media Management Sharjah'],
+  alternates: {
+    canonical: '/services/social-media',
+  },
   openGraph: {
     title: 'Social Media Marketing Dubai | 300% Engagement Growth',
     description: 'Google Partner certified agency delivering 300% average engagement growth. Expert social media management for UAE businesses.',
+    url: `${siteConfig.url}/services/social-media`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Social Media Marketing Dubai | 300% Engagement Growth',
+    description: 'Google Partner certified agency delivering 300% average engagement growth. Expert social media management for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'E-commerce Development Dubai | Online Store UAE | Shopify Expert',
   description: 'E-commerce development in Dubai. Custom online stores with secure payments, inventory management & mobile optimization. Shopify, WooCommerce, custom solutions. From AED 25,000. 99.9% uptime guaranteed.',
   keywords: ['E-commerce Development Dubai', 'Online Store Dubai', 'Shopify Developer UAE', 'WooCommerce Dubai', 'E-commerce Website UAE', 'Online Shopping Platform Dubai', 'Payment Integration UAE', 'Magento Developer Dubai'],
+  alternates: {
+    canonical: '/services/ecommerce',
+  },
   openGraph: {
     title: 'E-commerce Development Dubai | Shopify Expert | 99.9% Uptime',
     description: 'Build high-converting online stores in Dubai. Secure, scalable e-commerce solutions for UAE businesses.',
+    url: `${siteConfig.url}/services/ecommerce`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'E-commerce Development Dubai | Shopify Expert | 99.9% Uptime',
+    description: 'Build high-converting online stores in Dubai. Secure, scalable e-commerce solutions for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Content Marketing Dubai | 200% Traffic Growth | SEO Content UAE',
   description: 'Content marketing agency in Dubai. SEO-optimized blog writing, articles & content strategy. 10+ articles/month, 200% organic traffic growth. Arabic & English content. From AED 4,000/month. Serving all UAE.',
   keywords: ['Content Marketing Dubai', 'Content Writing UAE', 'Blog Writing Dubai', 'SEO Content UAE', 'Content Strategy Dubai', 'Copywriting Services UAE', 'Arabic Content Dubai', 'Content Creator UAE'],
+  alternates: {
+    canonical: '/services/content-marketing',
+  },
   openGraph: {
     title: 'Content Marketing Dubai | 200% Traffic Growth | SEO Optimized',
     description: 'Drive organic traffic with strategic content. Expert content marketing for UAE businesses.',
+    url: `${siteConfig.url}/services/content-marketing`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Content Marketing Dubai | 200% Traffic Growth | SEO Optimized',
+    description: 'Drive organic traffic with strategic content. Expert content marketing for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

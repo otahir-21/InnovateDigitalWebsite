@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Branding Agency Dubai | 100+ Brands Created | Logo Design UAE',
   description: 'Award-winning branding agency in Dubai since 2020. Logo design, brand identity & visual design for UAE startups & businesses. 48hrs initial concepts, unlimited revisions. From AED 5,000.',
   keywords: ['Branding Agency Dubai', 'Logo Design Dubai', 'Brand Identity UAE', 'Corporate Branding Dubai', 'Graphic Design Abu Dhabi', 'Rebranding Services UAE', 'Visual Identity Dubai', 'Brand Strategy UAE'],
+  alternates: {
+    canonical: '/services/branding',
+  },
   openGraph: {
     title: 'Branding Agency Dubai | 100+ Brands Created | 48hrs Delivery',
     description: 'Create memorable brand identities. Expert logo design and branding for UAE businesses.',
+    url: `${siteConfig.url}/services/branding`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Branding Agency Dubai | 100+ Brands Created | 48hrs Delivery',
+    description: 'Create memorable brand identities. Expert logo design and branding for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

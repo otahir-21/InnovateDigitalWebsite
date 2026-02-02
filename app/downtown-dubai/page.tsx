@@ -18,9 +18,20 @@ export const metadata: Metadata = {
     'Social Media Downtown Dubai',
     'Burj Khalifa Marketing Agency'
   ],
+  alternates: {
+    canonical: '/downtown-dubai',
+  },
   openGraph: {
     title: 'Digital Marketing Agency Downtown Dubai | SEO & Social Media Experts',
     description: 'Downtown Dubai\'s premier digital marketing agency. Serving businesses near Burj Khalifa & Dubai Mall.',
+    url: `${siteConfig.url}/downtown-dubai`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Downtown Dubai | SEO & Social Media Experts',
+    description: 'Downtown Dubai\'s premier digital marketing agency. Serving businesses near Burj Khalifa & Dubai Mall.',
+    images: [siteConfig.ogImage],
   },
 }
 

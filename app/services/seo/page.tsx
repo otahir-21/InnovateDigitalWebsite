@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'SEO Company Dubai | #1 SEO Services UAE | Innovate Digital',
   description: 'Leading SEO company in Dubai & UAE. Rank #1 on Google with proven SEO strategies. Expert keyword research, on-page optimization, and link building services.',
   keywords: ['SEO Company Dubai', 'SEO Services UAE', 'Best SEO Agency Dubai', 'SEO Expert Dubai', 'Search Engine Optimization Dubai', 'Google Ranking Dubai'],
+  alternates: {
+    canonical: '/services/seo',
+  },
   openGraph: {
     title: 'SEO Company Dubai | #1 SEO Services UAE | Innovate Digital',
     description: 'Top-rated SEO company in Dubai. Dominate Google search rankings with expert SEO strategies.',
+    url: `${siteConfig.url}/services/seo`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO Company Dubai | #1 SEO Services UAE | Innovate Digital',
+    description: 'Top-rated SEO company in Dubai. Dominate Google search rankings with expert SEO strategies.',
+    images: [siteConfig.ogImage],
   },
 }
 

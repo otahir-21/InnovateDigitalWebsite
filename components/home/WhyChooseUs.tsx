@@ -6,27 +6,27 @@ import { FiCheckCircle } from 'react-icons/fi'
 const reasons = [
   {
     title: 'Google Partner Certified Agency',
-    description: 'Official Google Partner since 2020. Only 3% of agencies worldwide achieve this certification.',
+    description: 'Official Google Partner certified digital marketing agency in Dubai since 2020, delivering expert SEO, paid ads and performance marketing services.',
   },
   {
     title: 'Proven Track Record',
-    description: '200+ successful projects in Dubai & UAE with 4.9/5 Google rating and 98% client satisfaction.',
+    description: '200+ successful digital marketing campaigns in Dubai and across the UAE with 4.9/5 Google rating and 98% client satisfaction.',
   },
   {
     title: 'Expert Certified Team',
-    description: '50+ professionals with Google Ads, Analytics, and Meta Blueprint certifications.',
+    description: '50+ certified digital marketing professionals specializing in SEO, Google Ads, Analytics and Meta advertising solutions.',
   },
   {
     title: 'UAE Market Specialists',
-    description: 'Deep expertise in Dubai, Abu Dhabi & UAE market. Bilingual Arabic & English services.',
+    description: 'Deep expertise in Dubai, Abu Dhabi and UAE markets, offering bilingual digital marketing services in Arabic and English.',
   },
   {
     title: 'Transparent ROI Reporting',
-    description: 'Monthly performance dashboards showing exact metrics, conversions, and 3x average ROI.',
+    description: 'Monthly performance reports showing SEO rankings, campaign metrics, conversions and measurable ROI growth',
   },
   {
     title: 'Dedicated Account Manager',
-    description: 'Single point of contact responding within 2 hours during business hours.',
+    description: 'A dedicated digital marketing expert managing your campaigns with fast response times and ongoing optimization.',
   },
 ]
 
@@ -42,10 +42,10 @@ export default function WhyChooseUs() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Why Choose <span className="gradient-text">Innovate Digital</span>
+            Why Choose  Our Digital Marketing<br/><span className="gradient-text">Agency in Dubai And UAE</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Certified by Google, trusted by 200+ UAE businesses, delivering 3x average ROI
+          Google-certified digital marketing experts trusted by 200+ businesses in Dubai & UAE, delivering up to 3x average ROI.
           </p>
         </motion.div>
 

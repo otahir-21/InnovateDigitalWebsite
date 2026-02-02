@@ -18,9 +18,20 @@ export const metadata: Metadata = {
     'Social Media Marketing JLT',
     'PPC JLT Dubai'
   ],
+  alternates: {
+    canonical: '/jlt',
+  },
   openGraph: {
     title: 'Digital Marketing Agency JLT Dubai | Jumeirah Lakes Towers SEO',
     description: 'JLT\'s leading digital marketing agency. Serving 40+ businesses in Jumeirah Lakes Towers.',
+    url: `${siteConfig.url}/jlt`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency JLT Dubai | Jumeirah Lakes Towers SEO',
+    description: 'JLT\'s leading digital marketing agency. Serving 40+ businesses in Jumeirah Lakes Towers.',
+    images: [siteConfig.ogImage],
   },
 }
 

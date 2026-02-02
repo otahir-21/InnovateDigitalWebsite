@@ -11,9 +11,20 @@ export const metadata: Metadata = {
   title: 'Analytics & Tracking Dubai | Google Analytics UAE | ROI Dashboard',
   description: 'Data analytics services in Dubai. Google Analytics setup, conversion tracking & ROI dashboards. 360° tracking, real-time insights. 1-2 week setup. From AED 2,000 + AED 500/month. Serving all UAE.',
   keywords: ['Analytics Setup Dubai', 'Google Analytics UAE', 'Conversion Tracking Dubai', 'Data Analytics UAE', 'Google Tag Manager Dubai', 'Marketing Analytics UAE', 'GA4 Setup Dubai', 'ROI Tracking UAE'],
+  alternates: {
+    canonical: '/services/analytics',
+  },
   openGraph: {
     title: 'Analytics & Tracking Dubai | 360° Tracking | Real-time Dashboards',
     description: 'Optimize marketing ROI with expert analytics setup. Google Analytics & tracking for UAE businesses.',
+    url: `${siteConfig.url}/services/analytics`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Analytics & Tracking Dubai | 360° Tracking | Real-time Dashboards',
+    description: 'Optimize marketing ROI with expert analytics setup. Google Analytics & tracking for UAE businesses.',
+    images: [siteConfig.ogImage],
   },
 }
 

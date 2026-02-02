@@ -48,10 +48,10 @@ export default function ClientLogos() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-            Trusted by Leading Brands in UAE
+          Trusted Digital Marketing Agency in Dubai & UAE
           </h2>
           <p className="text-gray-600">
-            Certified partners and recognized by top platforms
+          Certified digital marketing experts and partners with leading platforms helping businesses in Dubai <br/>grow through <strong>SEO, social media marketing and paid advertising</strong>.
           </p>
         </motion.div>
 
@@ -89,19 +89,19 @@ export default function ClientLogos() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">200+</div>
-              <div className="text-sm text-gray-600">Happy Clients</div>
+              <div className="text-sm text-gray-600">Happy Clients Across Dubai & UAE</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">98%</div>
-              <div className="text-sm text-gray-600">Success Rate</div>
+              <div className="text-sm text-gray-600">Campaign Success Rate</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">10+</div>
-              <div className="text-sm text-gray-600">Years Experience</div>
+              <div className="text-sm text-gray-600">Years of Digital Marketing Experience</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-orange-600 mb-2">4.9★</div>
-              <div className="text-sm text-gray-600">Average Rating</div>
+              <div className="text-sm text-gray-600">Client Satisfaction Rating</div>
             </div>
           </div>
         </motion.div>

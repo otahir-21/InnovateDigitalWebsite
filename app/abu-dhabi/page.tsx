@@ -21,9 +21,20 @@ export const metadata: Metadata = {
     'PPC Agency Abu Dhabi',
     'Best Digital Marketing Abu Dhabi'
   ],
+  alternates: {
+    canonical: '/abu-dhabi',
+  },
   openGraph: {
     title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
     description: 'Abu Dhabi\'s leading digital marketing agency. 100+ successful projects, 4.9/5 rating, Google Partner certified.',
+    url: `${siteConfig.url}/abu-dhabi`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
+    description: 'Abu Dhabi\'s leading digital marketing agency. 100+ successful projects, 4.9/5 rating, Google Partner certified.',
+    images: [siteConfig.ogImage],
   },
 }
 

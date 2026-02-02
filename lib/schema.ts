@@ -5,7 +5,7 @@ export const organizationSchema = {
   '@type': 'Organization',
   name: 'Innovate Digital',
   url: siteConfig.url,
-  logo: `${siteConfig.url}/logo.png`,
+  logo: `${siteConfig.url}/logo.svg`,
   description: siteConfig.description,
   address: {
     '@type': 'PostalAddress',
@@ -32,7 +32,7 @@ export const localBusinessSchema = {
   '@type': 'LocalBusiness',
   '@id': siteConfig.url,
   name: 'Innovate Digital',
-  image: `${siteConfig.url}/logo.png`,
+  image: `${siteConfig.url}/logo.svg`,
   url: siteConfig.url,
   telephone: siteConfig.contact.phone,
   email: siteConfig.contact.email,
@@ -66,7 +66,7 @@ export const websiteSchema = {
     name: 'Innovate Digital',
     logo: {
       '@type': 'ImageObject',
-      url: `${siteConfig.url}/logo.png`,
+      url: `${siteConfig.url}/logo.svg`,
     },
   },
   potentialAction: {
@@ -140,7 +140,7 @@ export function generateBlogPostingSchema(post: {
     '@id': post.url,
     headline: post.title,
     description: post.description,
-    image: post.image || `${siteConfig.url}/og-image.jpg`,
+    image: post.image || siteConfig.ogImage,
     datePublished: post.date,
     dateModified: post.date,
     author: {
@@ -153,7 +153,7 @@ export function generateBlogPostingSchema(post: {
       name: 'Innovate Digital',
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/logo.png`,
+        url: `${siteConfig.url}/logo.svg`,
       },
     },
     mainEntityOfPage: {

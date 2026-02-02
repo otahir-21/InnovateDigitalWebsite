@@ -108,11 +108,11 @@ export default function Hero() {
             </h1>
 
             <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 leading-snug">
-              Trusted by 200+ UAE Businesses in Dubai, Abu Dhabi & Sharjah
+              Trusted by 200+ UAE Businesses in Dubai, Abu Dhabi, Sharjah & across all emirates
             </h2>
 
             <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
-              Expert SEO, PPC, social media marketing, and web development services tailored for the UAE market. We deliver 3x average ROI through data-driven strategies and proven results.
+            Full-service digital marketing in Dubai & across the UAE: SEO to improve Google rankings, social media marketing (Instagram, Facebook, LinkedIn & TikTok), PPC advertising (Google Ads & Meta Ads), content marketing and blog writing, web design & development, branding, email marketing, marketing automation and video production — in Arabic and English.
             </p>
 
             {/* Trust Signals - New */}
@@ -147,21 +147,6 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* Stats - Enhanced with geo-signals */}
-            <div className="grid grid-cols-3 gap-4 pt-6 mt-6 border-t border-gray-200 lg:mt-12 lg:pt-12 lg:gap-6">
-              <div className="text-center md:text-left">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">200+</div>
-                <div className="text-xs sm:text-sm text-gray-600">UAE Clients Served</div>
-              </div>
-              <div className="text-center md:text-left">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">3x</div>
-                <div className="text-xs sm:text-sm text-gray-600">Average ROI</div>
-              </div>
-              <div className="text-center md:text-left">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600 mb-1 md:mb-2">4.9/5</div>
-                <div className="text-xs sm:text-sm text-gray-600">Google Rating</div>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Contact Form - Hidden on Mobile */}

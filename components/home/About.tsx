@@ -7,22 +7,22 @@ import { FiAward, FiUsers, FiTrendingUp, FiTarget } from 'react-icons/fi'
 const features = [
   {
     icon: FiAward,
-    title: 'Google Partner Certified',
+    title: 'Google Partner Certified Digital Marketing Agency',
     description: 'Official Google Partner since 2020 with proven expertise',
   },
   {
     icon: FiUsers,
-    title: '50+ Expert Team',
+    title: '50+ Certified Digital Marketing Experts',
     description: 'Google Ads, Analytics & Meta Blueprint certified professionals',
   },
   {
     icon: FiTrendingUp,
-    title: '200+ Happy Clients',
+    title: '200+ Businesses Served in Dubai & UAE',
     description: '4.9/5 Google rating with 98% client satisfaction rate',
   },
   {
     icon: FiTarget,
-    title: '3x Average ROI',
+    title: 'Data-Driven SEO & Marketing Strategies',
     description: 'Data-driven strategies delivering measurable business growth',
   },
 ]
@@ -134,15 +134,15 @@ export default function About() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Your Growth Partner in the <span className="gradient-text">Digital World</span>
+              Your <span className="gradient-text">Digital Marketing</span> Growth Partner in Dubai & UAE.
             </h2>
             
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              We are a <strong>Google Partner certified</strong> digital marketing agency based in Dubai, UAE. Since 2020, we've helped 200+ businesses achieve exceptional online growth through data-driven strategies that deliver real ROI.
+            We are a <strong>Google Partner certified</strong> digital marketing agency in Dubai, UAE. Since 2020, we’ve helped 200+ businesses grow online with full-service digital marketing: SEO (Search Engine Optimization), social media marketing, PPC advertising (Google Ads & Meta Ads), content marketing and blog writing, web design & development, branding, email marketing, marketing automation and video production.
             </p>
 
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Our team of 50+ certified professionals holds <strong>Google Ads</strong>, <strong>Google Analytics</strong>, and <strong>Meta Business Partner</strong> certifications. We combine technical expertise with deep UAE market knowledge to drive measurable business outcomes.
+            Our team combines <strong>Google Ads, Google Analytics</strong> and <strong>Meta</strong> expertise with deep UAE market knowledge. We deliver Arabic and English marketing solutions tailored for the UAE — supporting businesses in Dubai, Abu Dhabi, Sharjah and all other emirates with measurable growth in visibility, leads and conversions.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-8">

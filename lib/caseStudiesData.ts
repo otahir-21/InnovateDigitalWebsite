@@ -46,7 +46,8 @@ export const caseStudies: CaseStudy[] = [
       'Ranked #1 for 20+ target keywords',
       '250K+ social media impressions monthly',
     ],
-    image: '/case-studies/ecommerce.jpg',
+    // Note: replace with a real image in `/public/case-studies/` when available
+    image: '/logo.svg',
     color: 'from-blue-500 to-cyan-500',
     services: ['SEO', 'PPC', 'Social Media Marketing'],
     testimonial: {
@@ -120,7 +121,8 @@ export const caseStudies: CaseStudy[] = [
       'Built audience of 25,000+ across platforms',
       'Achieved 95/100 Google PageSpeed score',
     ],
-    image: '/case-studies/tech-startup.jpg',
+    // Note: replace with a real image in `/public/case-studies/` when available
+    image: '/logo.svg',
     color: 'from-purple-500 to-pink-500',
     services: ['Branding', 'Web Development', 'Social Media'],
     testimonial: {
@@ -194,7 +196,8 @@ export const caseStudies: CaseStudy[] = [
       '4.8 star average rating across all locations',
       '1,200+ new positive reviews',
     ],
-    image: '/case-studies/restaurant.jpg',
+    // Note: replace with a real image in `/public/case-studies/` when available
+    image: '/logo.svg',
     color: 'from-orange-500 to-red-500',
     services: ['Local SEO', 'Google Ads', 'Content Marketing'],
     testimonial: {
@@ -268,7 +271,8 @@ export const caseStudies: CaseStudy[] = [
       'Website conversion rate improved from 0.8% to 2.5%',
       'Generated AED 12M+ in property sales',
     ],
-    image: '/case-studies/real-estate.jpg',
+    // Note: replace with a real image in `/public/case-studies/` when available
+    image: '/logo.svg',
     color: 'from-green-500 to-emerald-500',
     services: ['SEO', 'Content Marketing', 'Web Development'],
     testimonial: {
@@ -342,7 +346,8 @@ export const caseStudies: CaseStudy[] = [
       'Top 3 local ranking for medical services',
       '85% increase in website traffic',
     ],
-    image: '/case-studies/healthcare.jpg',
+    // Note: replace with a real image in `/public/case-studies/` when available
+    image: '/logo.svg',
     color: 'from-teal-500 to-blue-500',
     services: ['Local SEO', 'Social Media', 'Branding'],
     testimonial: {
@@ -416,7 +421,8 @@ export const caseStudies: CaseStudy[] = [
       'Built community of 35,000+ followers',
       '4.2x return on advertising spend',
     ],
-    image: '/case-studies/fitness.jpg',
+    // Note: replace with a real image in `/public/case-studies/` when available
+    image: '/logo.svg',
     color: 'from-pink-500 to-purple-500',
     services: ['Social Media', 'Influencer Marketing', 'PPC'],
     testimonial: {
