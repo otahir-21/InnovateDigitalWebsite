@@ -68,16 +68,16 @@ export default function JLTPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services JLT Dubai',
     description: 'Digital marketing services in JLT (Jumeirah Lakes Towers) including local SEO, social media, PPC for JLT businesses.',
-    url: 'https://innovatedigital.ae/jlt',
+    url: `${siteConfig.url}/jlt`,
     serviceType: 'Digital Marketing',
     areaServed: 'JLT, Jumeirah Lakes Towers, Dubai, UAE',
     priceRange: 'AED 4000-12000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Dubai', url: 'https://innovatedigital.ae/dubai' },
-    { name: 'JLT', url: 'https://innovatedigital.ae/jlt' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Dubai', url: `${siteConfig.url}/dubai` },
+    { name: 'JLT', url: `${siteConfig.url}/jlt` },
   ])
 
   return (

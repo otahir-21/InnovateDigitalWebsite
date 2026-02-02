@@ -128,15 +128,15 @@ export default function SharjahPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services Sharjah',
     description: 'Affordable digital marketing services in Sharjah, UAE including SEO, social media marketing, PPC advertising, web development, and e-commerce solutions.',
-    url: 'https://innovatedigital.ae/sharjah',
+    url: `${siteConfig.url}/sharjah`,
     serviceType: 'Digital Marketing',
     areaServed: 'Sharjah, UAE',
     priceRange: 'AED 2500-15000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Sharjah', url: 'https://innovatedigital.ae/sharjah' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Sharjah', url: `${siteConfig.url}/sharjah` },
   ])
 
   return (

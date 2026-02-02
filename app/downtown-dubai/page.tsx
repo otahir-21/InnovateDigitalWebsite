@@ -68,16 +68,16 @@ export default function DowntownDubaiPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services Downtown Dubai',
     description: 'Premium digital marketing services in Downtown Dubai including SEO, social media, PPC for businesses near Burj Khalifa and Dubai Mall.',
-    url: 'https://innovatedigital.ae/downtown-dubai',
+    url: `${siteConfig.url}/downtown-dubai`,
     serviceType: 'Digital Marketing',
     areaServed: 'Downtown Dubai, Burj Khalifa, Dubai, UAE',
     priceRange: 'AED 7000-25000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Dubai', url: 'https://innovatedigital.ae/dubai' },
-    { name: 'Downtown Dubai', url: 'https://innovatedigital.ae/downtown-dubai' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Dubai', url: `${siteConfig.url}/dubai` },
+    { name: 'Downtown Dubai', url: `${siteConfig.url}/downtown-dubai` },
   ])
 
   return (

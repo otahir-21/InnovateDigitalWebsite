@@ -92,16 +92,16 @@ export default function BusinessBayPage() {
   const serviceSchema = generateServiceSchema({
     name: 'Digital Marketing Services Business Bay Dubai',
     description: 'Comprehensive digital marketing services in Business Bay, Dubai including local SEO, social media marketing, PPC advertising, and web development.',
-    url: 'https://innovatedigital.ae/business-bay',
+    url: `${siteConfig.url}/business-bay`,
     serviceType: 'Digital Marketing',
     areaServed: 'Business Bay, Dubai, UAE',
     priceRange: 'AED 5000-15000'
   })
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://innovatedigital.ae/' },
-    { name: 'Dubai', url: 'https://innovatedigital.ae/dubai' },
-    { name: 'Business Bay', url: 'https://innovatedigital.ae/business-bay' },
+    { name: 'Home', url: siteConfig.url },
+    { name: 'Dubai', url: `${siteConfig.url}/dubai` },
+    { name: 'Business Bay', url: `${siteConfig.url}/business-bay` },
   ])
 
   return (
