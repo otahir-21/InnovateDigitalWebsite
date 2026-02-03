@@ -1,10 +1,26 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Innovate Digital',
   description: 'Privacy Policy for Innovate Digital. Learn how we collect, use, and protect your personal information.',
+  alternates: {
+    canonical: '/privacy',
+  },
+  openGraph: {
+    title: 'Privacy Policy - Innovate Digital',
+    description: 'Privacy Policy for Innovate Digital. Learn how we collect, use, and protect your personal information.',
+    url: `${siteConfig.url}/privacy`,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy - Innovate Digital',
+    description: 'Privacy Policy for Innovate Digital. Learn how we collect, use, and protect your personal information.',
+    images: [siteConfig.ogImage],
+  },
   robots: {
     index: true,
     follow: true,
