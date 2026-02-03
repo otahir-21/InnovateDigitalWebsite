@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FiArrowLeft, FiCalendar, FiMapPin, FiBriefcase, FiCheckCircle, FiTrendingUp } from 'react-icons/fi'
 import { getCaseStudyBySlug, getAllCaseStudySlugs } from '@/lib/caseStudiesData'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { siteConfig } from '@/lib/config'
 
 interface PageProps {
   params: {
@@ -28,10 +29,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  const canonicalPath = `/portfolio/${caseStudy.slug}`
+
   return {
     title: `${caseStudy.title} - Case Study | Innovate Digital`,
     description: caseStudy.challenge,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
+      title: caseStudy.title,
+      description: caseStudy.challenge,
+      images: [caseStudy.image],
+      url: `${siteConfig.url}${canonicalPath}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
       title: caseStudy.title,
       description: caseStudy.challenge,
       images: [caseStudy.image],

@@ -21,10 +21,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const canonicalPath = `/blog/${post.slug}`
+
   return {
     title: `${post.title} | Innovate Digital Blog`,
     description: post.excerpt,
     keywords: post.keywords,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -32,6 +37,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
+      url: `${siteConfig.url}${canonicalPath}`,
+      images: [
+        typeof post.image === 'string' && post.image.startsWith('/')
+          ? `${siteConfig.url}${post.image}`
+          : siteConfig.ogImage,
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [
+        typeof post.image === 'string' && post.image.startsWith('/')
+          ? `${siteConfig.url}${post.image}`
+          : siteConfig.ogImage,
+      ],
     },
   }
 }
