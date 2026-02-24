@@ -65,9 +65,15 @@ export default function BlogPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
               <article key={post.id} className="card group hover:-translate-y-2 cursor-pointer">
-                {/* Image Placeholder */}
-                <div className="mb-6 h-48 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg flex items-center justify-center text-6xl">
-                  {post.image}
+                {/* Featured image - semantic img with alt for SEO */}
+                <div className="mb-6 h-48 rounded-lg overflow-hidden bg-gradient-to-br from-primary-100 to-secondary-100">
+                  <img
+                    src={post.image.startsWith('/') || post.image.startsWith('http') ? post.image : '/blog-placeholder.svg'}
+                    alt={`${post.title} - Innovate Digital Blog`}
+                    className="w-full h-full object-cover"
+                    width={800}
+                    height={450}
+                  />
                 </div>
 
                 {/* Category Badge */}

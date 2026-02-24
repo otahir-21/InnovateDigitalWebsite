@@ -166,12 +166,20 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
+      <section className="py-16" aria-label="Article content">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
+            {/* Featured image for SEO and visual hierarchy */}
+            <img
+              src={post.image.startsWith('/') || post.image.startsWith('http') ? post.image : '/blog-placeholder.svg'}
+              alt={`${post.title} - Featured image`}
+              className="w-full rounded-xl shadow-lg mb-12 object-cover max-h-[400px]"
+              width={800}
+              height={450}
+            />
             {/* Article Content */}
             <div 
-              className="prose prose-lg max-w-none
+              className="blog-article-content prose prose-lg max-w-none
                 prose-headings:font-bold prose-headings:text-gray-900
                 prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:flex prose-h2:items-center prose-h2:gap-3 prose-h2:before:content-[''] prose-h2:before:w-1 prose-h2:before:h-8 prose-h2:before:bg-gradient-to-b prose-h2:before:from-primary-600 prose-h2:before:to-secondary-600 prose-h2:before:rounded-full
                 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-primary-700 prose-h3:font-bold
@@ -241,8 +249,14 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     href={`/blog/${relatedPost.slug}`}
                     className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300"
                   >
-                    <div className="h-48 bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center text-6xl">
-                      {relatedPost.image}
+                    <div className="h-48 bg-gradient-to-br from-primary-100 to-secondary-100 overflow-hidden">
+                      <img
+                        src={relatedPost.image.startsWith('/') || relatedPost.image.startsWith('http') ? relatedPost.image : '/blog-placeholder.svg'}
+                        alt={`${relatedPost.title} - Innovate Digital Blog`}
+                        className="w-full h-full object-cover"
+                        width={800}
+                        height={450}
+                      />
                     </div>
                     <div className="p-6">
                       <div className="text-xs font-semibold text-primary-600 mb-2 uppercase tracking-wide">
