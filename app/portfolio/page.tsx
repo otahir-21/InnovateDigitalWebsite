@@ -1,10 +1,83 @@
 'use client'
 
 import { useState } from 'react'
-import { Metadata } from 'next'
 import Link from 'next/link'
-import { FiArrowRight } from 'react-icons/fi'
+import { FiArrowRight, FiExternalLink } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+
+const websiteProjects = [
+  {
+    id: 1,
+    title: 'Anton Oilfield Management',
+    url: 'https://aomserv.com',
+    description: 'Enterprise platform for managing field operations and workforce coordination.',
+    contributions: [
+      'Developed RESTful APIs for task tracking and job scheduling.',
+      'Implemented secure JWT authentication systems.',
+      'Built real-time data synchronization for operational dashboards.',
+    ],
+  },
+  {
+    id: 2,
+    title: 'New Edge Realty',
+    url: 'https://www.newedgerealty.in',
+    description: 'Real estate platform for property listings and customer inquiries.',
+    contributions: [
+      'Designed scalable backend infrastructure.',
+      'Developed secure APIs for property listings and client inquiries.',
+    ],
+  },
+  {
+    id: 3,
+    title: 'RPH UAE',
+    url: 'https://rphuae.ae',
+    description: 'Corporate website with dynamic content management and optimized performance.',
+    contributions: [
+      'Developed backend functionality and dynamic content pages.',
+      'Implemented secure form processing and improved web performance.',
+    ],
+  },
+  {
+    id: 4,
+    title: 'Carpediem DXB',
+    url: 'https://www.carpediemdxb.com',
+    description: 'Luxury property management and booking platform.',
+    contributions: [
+      'Implemented property search and booking features.',
+      'Developed backend tools for property management workflows.',
+    ],
+  },
+  {
+    id: 5,
+    title: 'Makeen Real Estate',
+    url: 'https://makeen.ae',
+    description: 'Enterprise real estate platform.',
+    contributions: [
+      'Developed backend systems for booking and property inquiries.',
+      'Improved SEO performance and API response time.',
+    ],
+  },
+  {
+    id: 6,
+    title: 'CERT',
+    url: 'https://cert.ae',
+    description: 'Corporate website with modern frontend architecture.',
+    contributions: [
+      'Developed frontend architecture and user interface.',
+      'Improved site performance, SEO, and responsiveness.',
+    ],
+  },
+  {
+    id: 7,
+    title: 'MAHA Balloon Adventures',
+    url: 'https://mahaballoonadventures.ae/en',
+    description: 'Tourism booking platform.',
+    contributions: [
+      'Implemented responsive frontend development.',
+      'Improved site speed, SEO optimization, and user experience.',
+    ],
+  },
+]
 
 const portfolioItems = [
   {
@@ -207,8 +280,57 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Selected Web & Backend Projects */}
       <section className="section-padding bg-gradient-to-br from-gray-50 to-white">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">
+              Selected <span className="gradient-text">Web & Backend</span> Projects
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Enterprise platforms, real estate solutions, and corporate websites we've built and optimized.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {websiteProjects.map((project) => (
+              <a
+                key={project.id}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group hover:-translate-y-2 block"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-xl font-bold group-hover:text-primary-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <FiExternalLink className="text-gray-400 group-hover:text-primary-600 flex-shrink-0 ml-2" size={18} />
+                </div>
+                <p className="text-sm text-primary-600 font-medium mb-3 truncate" title={project.url}>
+                  {project.url.replace(/^https?:\/\//, '')}
+                </p>
+                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                  {project.description}
+                </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-xs font-semibold text-gray-700 mb-2">Key Contributions</p>
+                  <ul className="space-y-1.5">
+                    {project.contributions.map((contribution, idx) => (
+                      <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                        <span className="text-primary-600 mt-0.5">●</span>
+                        <span>{contribution}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Results That Speak</h2>

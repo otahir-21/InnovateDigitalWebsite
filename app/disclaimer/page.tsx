@@ -160,7 +160,7 @@ export default function Disclaimer() {
             </p>
             <p className="text-gray-700 mb-4">
               If you believe any content on our website violates your copyright, please contact us immediately at 
-              <a href="mailto:legal@innovatedigital.ae" className="text-blue-600 hover:underline"> legal@innovatedigital.ae</a>
+              <a href="mailto:info@osama-me.digital" className="text-blue-600 hover:underline"> info@osama-me.digital</a>
             </p>
           </section>
 
@@ -209,7 +209,7 @@ export default function Disclaimer() {
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
               <p className="text-gray-700 mb-2"><strong>Innovate Digital</strong></p>
               <p className="text-gray-700 mb-2">Meydan Free Zone, Dubai, UAE</p>
-              <p className="text-gray-700 mb-2">Email: <a href="mailto:legal@innovatedigital.ae" className="text-blue-600 hover:underline">legal@innovatedigital.ae</a></p>
+              <p className="text-gray-700 mb-2">Email: <a href="mailto:info@osama-me.digital" className="text-blue-600 hover:underline">info@osama-me.digital</a></p>
               <p className="text-gray-700 mb-2">Phone: <a href="tel:+971523949010" className="text-blue-600 hover:underline">+971 52 394 9010</a></p>
             </div>
           </section>

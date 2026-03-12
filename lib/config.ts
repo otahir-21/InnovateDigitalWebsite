@@ -13,7 +13,7 @@ export const siteConfig = {
     facebook: 'https://facebook.com/innovatedigital',
   },
   contact: {
-    email: 'info@innovatedigital.ae',
+    email: 'info@osama-me.digital',
     phone: '+971 52 394 9010',
     whatsapp: '+971523949010',
     address: 'Meydan Free Zone, Dubai, UAE',

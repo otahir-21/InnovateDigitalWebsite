@@ -7,7 +7,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Free Marketing Audit | Dubai Digital Agency | 2hr Response',
-  description: 'Contact Innovate Digital Dubai. Get your free marketing audit today. 2-hour response time, no long-term contracts, free strategy session. Office in Dubai. Call +971 52 394 9010 or email contact@innovatedigital.ae.',
+  description: 'Contact Innovate Digital Dubai. Get your free marketing audit today. 2-hour response time, no long-term contracts, free strategy session. Office in Dubai. Call +971 52 394 9010 or email info@osama-me.digital.',
   keywords: ['Contact Digital Agency Dubai', 'Marketing Consultation Dubai', 'Free Marketing Audit UAE', 'Dubai Marketing Agency Contact', 'Get Quote Dubai'],
   openGraph: {
     title: 'Contact Us | Free Marketing Audit | 2hr Response',
