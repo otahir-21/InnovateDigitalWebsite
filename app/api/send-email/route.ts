@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
-import { siteConfig } from '@/lib/config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Email content
     const mailOptions = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: process.env.TO_EMAIL || siteConfig.contact.email, // Recipient email
+      to: 'osama@innovatedigital.ae', // Recipient email
       replyTo: email, // User's email for reply
       subject: `New Contact Form Submission from ${name}`,
       html: `
