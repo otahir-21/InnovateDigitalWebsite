@@ -175,7 +175,6 @@ async function generateBlogPost(topic: string, internalLinks: typeof SERVICE_PAG
   const stream = anthropic.messages.stream({
     model: "claude-opus-4-6",
     max_tokens: 8000,
-    thinking: { type: "enabled", budgetTokens: 2000 },
     messages: [{
       role: "user",
       content: `You are a senior content strategist at Innovate Digital, Dubai's leading digital marketing agency (innovatedigital.ae).
