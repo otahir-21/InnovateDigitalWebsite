@@ -156,56 +156,89 @@ export async function createPost(post: GmbPost): Promise<GmbPost> {
 export async function listLocations(): Promise<void> {
   console.log("\n📍 Discovering your Google Business Profile IDs...\n");
 
-  // Step 1: List accounts via new Account Management API
+  // Step 0: Get user's Google ID from OAuth token
+  const token = await getAccessToken();
+  const userInfo = await new Promise<any>((resolve) => {
+    const req = https.request(
+      { hostname: "www.googleapis.com", path: "/oauth2/v3/userinfo", headers: { Authorization: `Bearer ${token}` } },
+      (res) => { let d = ""; res.on("data", c => d += c); res.on("end", () => resolve(JSON.parse(d))); }
+    );
+    req.on("error", () => resolve({}));
+    req.end();
+  });
+  console.log("  [DEBUG] OAuth user:", JSON.stringify(userInfo));
+  const googleUserId = userInfo.sub || "";
+  if (googleUserId) {
+    console.log(`\n  ✅ Your Google User ID: ${googleUserId}`);
+    console.log(`     Try setting: GMB_ACCOUNT_ID = accounts/${googleUserId}`);
+  }
+
+  // Attempt 1: List accounts
   const accountsRes = await apiRequest<any>(
     "mybusinessaccountmanagement.googleapis.com",
     "/v1/accounts"
   );
+  console.log("  [DEBUG] accounts response:", JSON.stringify(accountsRes, null, 2));
 
   const accounts = accountsRes.accounts || [];
 
   if (accounts.length > 0) {
     for (const account of accounts) {
       console.log(`  Account: ${account.name}  (${account.accountName})`);
-
-      // Step 2: List locations via new Business Information API
       const locRes = await apiRequest<any>(
         "mybusinessinformation.googleapis.com",
         `/v1/${account.name}/locations?readMask=name,title`
       );
-
       for (const loc of locRes.locations || []) {
         console.log(`\n  ✅ Location found!`);
-        console.log(`     Name:  ${loc.title || loc.name}`);
-        console.log(`     ID:    ${loc.name}`);
-        console.log(`\n  Add to GitHub Secrets:`);
         console.log(`     GMB_ACCOUNT_ID  = ${account.name}`);
         console.log(`     GMB_LOCATION_ID = ${loc.name}`);
       }
     }
-  } else {
-    // Try with known account ID directly
-    console.log("  No accounts returned via API — trying direct location lookup...");
-    const knownAccount = "accounts/302207200511455403";
-    const locRes = await apiRequest<any>(
-      "mybusinessinformation.googleapis.com",
-      `/v1/${knownAccount}/locations?readMask=name,title`
-    );
+    return;
+  }
 
-    if (locRes.locations?.length > 0) {
-      for (const loc of locRes.locations) {
-        console.log(`\n  ✅ Location found!`);
-        console.log(`     GMB_ACCOUNT_ID  = ${knownAccount}`);
-        console.log(`     GMB_LOCATION_ID = ${loc.name}`);
-      }
-    } else {
-      console.log(`  API response: ${JSON.stringify(locRes, null, 2)}`);
-      console.log(`\n  ⚠️  APIs not enabled yet. Go to:`);
-      console.log(`     console.cloud.google.com → APIs & Services → Enable APIs`);
-      console.log(`     Search and enable:`);
-      console.log(`       1. "My Business Account Management API"`);
-      console.log(`       2. "My Business Business Information API"`);
-      console.log(`     Then run this command again.`);
+  // Attempt 2: Access location directly by known Business Profile ID
+  console.log("\n  Trying direct location access...");
+  const knownLocationId = "302207200511455403";
+  const directRes = await apiRequest<any>(
+    "mybusinessinformation.googleapis.com",
+    `/v1/locations/${knownLocationId}?readMask=name,title`
+  );
+  console.log("  [DEBUG] direct location response:", JSON.stringify(directRes).slice(0, 300));
+
+  if (directRes.name) {
+    // Location found — now find its account
+    const accountName = directRes.name.split("/locations/")[0]; // e.g. "accounts/123"
+    console.log(`\n  ✅ Location found!`);
+    console.log(`     Title: ${directRes.title}`);
+    console.log(`\n  Add to GitHub Secrets:`);
+    console.log(`     GMB_ACCOUNT_ID  = ${accountName}`);
+    console.log(`     GMB_LOCATION_ID = ${directRes.name}`);
+    return;
+  }
+
+  // Attempt 3: v4 accounts list
+  console.log("\n  Trying v4 accounts API...");
+  const v4Res = await apiRequest<any>("mybusiness.googleapis.com", "/v4/accounts");
+  console.log("  [DEBUG] v4 accounts response:", JSON.stringify(v4Res).slice(0, 500));
+
+  const v4Accounts = v4Res.accounts || [];
+  for (const account of v4Accounts) {
+    console.log(`  Account: ${account.name}`);
+    const locRes = await apiRequest<any>(
+      "mybusiness.googleapis.com",
+      `/v4/${account.name}/locations?pageSize=20`
+    );
+    for (const loc of locRes.locations || []) {
+      console.log(`\n  ✅ Location: ${loc.name} → ${loc.locationName}`);
+      console.log(`     GMB_ACCOUNT_ID  = ${account.name}`);
+      console.log(`     GMB_LOCATION_ID = ${loc.name}`);
     }
+  }
+
+  if (v4Accounts.length === 0) {
+    console.log("\n  ⚠️  Could not find any accounts or locations.");
+    console.log("  Full debug responses logged above — share with support.");
   }
 }
