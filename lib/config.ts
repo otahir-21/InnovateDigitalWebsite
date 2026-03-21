@@ -3,9 +3,8 @@ export const siteConfig = {
   description: 'Leading digital marketing agency in UAE. Expert SEO, social media marketing, web development, and PPC services. Transform your business with data-driven strategies.',
   // Canonical domain (your deployment redirects non-www -> www)
   url: 'https://www.innovatedigital.ae',
-  // Use an existing asset to avoid broken OG previews.
-  // You can replace this later with a dedicated 1200×630 image at `/public/og-image.jpg`.
-  ogImage: 'https://www.innovatedigital.ae/logo.svg',
+  // Served dynamically by app/opengraph-image.tsx (Next.js ImageResponse)
+  ogImage: 'https://www.innovatedigital.ae/opengraph-image',
   links: {
     twitter: 'https://twitter.com/innovatedigital',
     linkedin: 'https://linkedin.com/company/innovatedigital',
