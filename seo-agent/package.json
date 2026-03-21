@@ -4,11 +4,16 @@
   "type": "module",
   "scripts": {
     "start": "tsx index.ts",
-    "blog": "tsx blog-agent.ts"
+    "blog": "tsx blog-agent.ts",
+    "smart-seo": "tsx smart-seo-agent.ts",
+    "smart-blog": "tsx smart-blog-agent.ts",
+    "weekly-report": "tsx weekly-report.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "latest",
     "@anthropic-ai/sdk": "latest",
+    "googleapis": "^171.4.0",
+    "node-fetch": "^3.3.2",
     "tsx": "latest"
   }
 }

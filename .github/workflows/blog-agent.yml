@@ -41,13 +41,16 @@ jobs:
           cd seo-agent
           npm install
 
-      - name: Run blog agent
+      - name: Run smart blog agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          COMPETITOR_URLS: ${{ secrets.COMPETITOR_URLS }}
         run: |
           cd seo-agent
-          npm run blog 2>&1 | tee ../blog-agent-log.txt
+          npm run smart-blog 2>&1 | tee ../blog-agent-log.txt
           EXIT_CODE=${PIPESTATUS[0]}
           echo "--- Full log ---"
           cat ../blog-agent-log.txt

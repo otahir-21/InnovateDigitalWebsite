@@ -36,12 +36,14 @@ jobs:
           cd seo-agent
           npm install
 
-      - name: Run SEO audit agent
+      - name: Run smart SEO agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
         run: |
           cd seo-agent
-          npm run start 2>&1 | tee ../seo-agent-log.txt
+          npm run smart-seo 2>&1 | tee ../seo-agent-log.txt
           echo "Exit code: ${PIPESTATUS[0]}"
           if [ ${PIPESTATUS[0]} -ne 0 ]; then
             cat ../seo-agent-log.txt
