@@ -15,6 +15,8 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { getLowCTRPages, getPage2Keywords, getSiteStats } from "./gsc-client.js";
 import { getHighTrafficLowConversion, getHighBouncePages, getGA4SiteStats } from "./ga4-client.js";
+import { buildGoalsContext } from "./seo-goals.js";
+import { sendActionRequired } from "./email-client.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -134,6 +136,8 @@ a digital marketing agency in Dubai, UAE.
 
 SITE ROOT: ${ROOT}
 
+${buildGoalsContext()}
+
 ${ga4Context}
 
 BUSINESS:
@@ -215,7 +219,17 @@ CHANGES_END`;
     console.log(`\n📝 Logged ${changes.length} changes`);
   }
 
-  // ── 5. Output report for GitHub Issue ──────────────────────────────────────
+  // ── 5. Email if anything needs attention ────────────────────────────────
+  const actionItems: string[] = [];
+  if (!siteStats) actionItems.push("GSC credentials not working — check GSC_SERVICE_ACCOUNT_JSON secret");
+  if (highBouncePages.length > 3) actionItems.push(`${highBouncePages.length} pages still have high bounce rate after this run`);
+  if (changes.length === 0 && lowCTRPages.length > 0) actionItems.push(`${lowCTRPages.length} low-CTR pages found but no changes made — review agent logs`);
+
+  if (actionItems.length > 0) {
+    await sendActionRequired(actionItems);
+  }
+
+  // ── 6. Output report for GitHub Issue ──────────────────────────────────
   console.log("\n📋 REPORT_DATA_START");
   console.log(JSON.stringify({
     date: new Date().toISOString().split("T")[0],
