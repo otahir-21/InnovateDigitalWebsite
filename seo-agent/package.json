@@ -14,6 +14,7 @@
     "@anthropic-ai/sdk": "latest",
     "googleapis": "^171.4.0",
     "node-fetch": "^3.3.2",
+    "openai": "^6.32.0",
     "tsx": "latest"
   }
 }
