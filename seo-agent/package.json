@@ -7,7 +7,8 @@
     "blog": "tsx blog-agent.ts",
     "smart-seo": "tsx smart-seo-agent.ts",
     "smart-blog": "tsx smart-blog-agent.ts",
-    "weekly-report": "tsx weekly-report.ts"
+    "weekly-report": "tsx weekly-report.ts",
+    "gmb": "tsx gmb-agent.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "latest",
