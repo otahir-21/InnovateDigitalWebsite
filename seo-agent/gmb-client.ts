@@ -10,24 +10,56 @@
  * Add service account as Manager on your GBP listing first.
  */
 
-import { google } from "googleapis";
 import https from "https";
 
 const ACCOUNT_ID  = process.env.GMB_ACCOUNT_ID  || "";  // e.g. "accounts/302207200511455403"
 const LOCATION_ID = process.env.GMB_LOCATION_ID || "";  // e.g. "locations/XXXXXXXXXXXXXXXX"
 
-// ── Auth ──────────────────────────────────────────────────────────────────────
+// ── Auth (OAuth2 refresh token — required for GBP API) ────────────────────────
 async function getAccessToken(): Promise<string> {
-  const json = process.env.GSC_SERVICE_ACCOUNT_JSON;
-  if (!json) throw new Error("GSC_SERVICE_ACCOUNT_JSON not set");
-  const credentials = JSON.parse(json);
-  const auth = new google.auth.GoogleAuth({
-    credentials,
-    scopes: ["https://www.googleapis.com/auth/business.manage"],
+  const clientId     = process.env.GMB_CLIENT_ID     || "";
+  const clientSecret = process.env.GMB_CLIENT_SECRET || "";
+  const refreshToken = process.env.GMB_REFRESH_TOKEN || "";
+
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error(
+      "GMB_CLIENT_ID, GMB_CLIENT_SECRET and GMB_REFRESH_TOKEN must be set.\n" +
+      "Run: npx tsx gmb-oauth-setup.ts  to generate them."
+    );
+  }
+
+  const payload = new URLSearchParams({
+    client_id:     clientId,
+    client_secret: clientSecret,
+    refresh_token: refreshToken,
+    grant_type:    "refresh_token",
+  }).toString();
+
+  return new Promise((resolve, reject) => {
+    const req = https.request(
+      {
+        hostname: "oauth2.googleapis.com",
+        path: "/token",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Length": Buffer.byteLength(payload),
+        },
+      },
+      (res) => {
+        let data = "";
+        res.on("data", (c) => (data += c));
+        res.on("end", () => {
+          const parsed = JSON.parse(data);
+          if (parsed.access_token) resolve(parsed.access_token);
+          else reject(new Error(`GBP auth failed: ${JSON.stringify(parsed)}`));
+        });
+      }
+    );
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
   });
-  const token = await auth.getAccessToken();
-  if (!token) throw new Error("Could not get GBP access token");
-  return token;
 }
 
 // ── Generic HTTPS helper ──────────────────────────────────────────────────────
