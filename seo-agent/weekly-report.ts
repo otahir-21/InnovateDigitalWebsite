@@ -8,6 +8,7 @@
  */
 
 import { getSiteStats, getTopPages, getPage2Keywords } from "./gsc-client.js";
+import { getGA4SiteStats, getConvertingBlogPosts, getHighTrafficLowConversion } from "./ga4-client.js";
 import https from "https";
 import path from "path";
 import fs from "fs";
@@ -83,15 +84,21 @@ async function main() {
   console.log("📋 Weekly Report Agent starting...\n");
 
   // ── Gather data ─────────────────────────────────────────────────────────────
-  const [statsResult, topPagesResult, page2Result] = await Promise.allSettled([
+  const [statsResult, topPagesResult, page2Result, ga4Result, convertingResult, noLeadsResult] = await Promise.allSettled([
     getSiteStats(7),
     getTopPages(7),
     getPage2Keywords(28),
+    getGA4SiteStats(7),
+    getConvertingBlogPosts(30),
+    getHighTrafficLowConversion(28),
   ]);
 
   const stats = statsResult.status === "fulfilled" ? statsResult.value : null;
   const topPages = topPagesResult.status === "fulfilled" ? topPagesResult.value : [];
   const page2 = page2Result.status === "fulfilled" ? page2Result.value : [];
+  const ga4 = ga4Result.status === "fulfilled" ? ga4Result.value : null;
+  const convertingPosts = convertingResult.status === "fulfilled" ? convertingResult.value : [];
+  const noLeadsPages = noLeadsResult.status === "fulfilled" ? noLeadsResult.value : [];
 
   const recentPosts = getRecentBlogPosts(7);
   const recentFixes = getRecentSEOChanges(7);
@@ -99,15 +106,31 @@ async function main() {
   const weekOf = new Date().toISOString().split("T")[0];
 
   // ── Build issue body ────────────────────────────────────────────────────────
-  const statsSection = stats
-    ? `## 📊 Search Performance (Last 7 Days)
+  const statsSection = (stats || ga4)
+    ? `## 📊 Performance This Week
 | Metric | Value |
 |--------|-------|
-| Total Clicks | ${stats.totalClicks.toLocaleString()} |
-| Total Impressions | ${stats.totalImpressions.toLocaleString()} |
-| Average CTR | ${stats.avgCTR}% |
-| Average Position | ${stats.avgPosition} |`
-    : `## 📊 Search Performance\n_GSC data unavailable this week_`;
+${stats ? `| Google Clicks | ${stats.totalClicks.toLocaleString()} |
+| Impressions | ${stats.totalImpressions.toLocaleString()} |
+| Avg CTR | ${stats.avgCTR}% |
+| Avg Position | ${stats.avgPosition} |` : ""}
+${ga4 ? `| Sessions (GA4) | ${ga4.totalSessions.toLocaleString()} |
+| Conversions / Leads | **${ga4.totalConversions}** |
+| Engagement Rate | ${ga4.engagementRate}% |
+| Top Traffic Source | ${ga4.topSource} |` : ""}`
+    : `## 📊 Performance\n_Data unavailable — check secrets_`;
+
+  const conversionSection = convertingPosts.length > 0
+    ? `## 💰 Blog Posts Generating Leads (Last 30 Days)
+${convertingPosts.map((p) => `- \`${p.page}\` → **${p.conversions} leads** from ${p.sessions} sessions`).join("\n")}
+> These formats work. Blog agent will write more like these.`
+    : "";
+
+  const noLeadsSection = noLeadsPages.length > 0
+    ? `## ⚡ High Traffic Pages With Zero Leads
+${noLeadsPages.slice(0, 5).map((p) => `- \`${p.page}\` — ${p.sessions} sessions, 0 conversions`).join("\n")}
+> SEO agent will add CTAs to these pages.`
+    : "";
 
   const topPagesSection = topPages.length > 0
     ? `## 🏆 Top Pages This Week\n${topPages.slice(0, 5).map((p) =>

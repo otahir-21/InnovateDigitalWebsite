@@ -27,7 +27,7 @@ export default function WavyText({ text, className = '', delay = 0 }: WavyTextPr
   return (
     <span className={`inline-flex flex-wrap gap-x-[0.25em] ${className}`}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-flex overflow-hidden">
+        <span key={wi} className="inline-flex">
           {word.split('').map((char, ci) => {
             const globalIndex = words.slice(0, wi).join('').length + wi + ci
             return (

@@ -19,6 +19,7 @@ import https from "https";
 import http from "http";
 import { fileURLToPath } from "url";
 import { getPage2Keywords, getTopPages, getSiteStats } from "./gsc-client.js";
+import { getConvertingBlogPosts, getGA4SiteStats } from "./ga4-client.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -117,34 +118,43 @@ async function pickBestTopic(
   page2Keywords: { query: string; position: number; impressions: number }[],
   competitorTopics: string[],
   existingTitles: string[],
-  topPages: { page: string; clicks: number }[]
+  topPages: { page: string; clicks: number }[],
+  convertingPosts: { page: string; conversions: number; sessions: number }[]
 ): Promise<string> {
   const prompt = `You are an SEO strategist for Innovate Digital, a digital marketing agency in Dubai, UAE.
 
-GOAL: Pick the single best blog topic to write today for maximum organic traffic growth.
+GOAL: Pick the single best blog topic to write today. Prioritise topics that will generate leads, not just traffic.
 
-DATA AVAILABLE:
+SIGNAL 1 — CONVERTING BLOG POSTS (highest priority — these formats actually generate leads)
+${convertingPosts.length > 0
+  ? convertingPosts.map((p) => `- ${p.page} → ${p.conversions} leads from ${p.sessions} sessions`).join("\n")
+  : "No conversion data yet — site may be new"}
 
-## Page 2 Keywords (our site ranks 11-20 — one good post can push to page 1)
-${page2Keywords.length > 0 ? page2Keywords.map((k) => `- "${k.query}" (position ${k.position}, ${k.impressions} impressions/month)`).join("\n") : "No GSC data available yet"}
+SIGNAL 2 — PAGE 2 KEYWORDS (quick win — one good post pushes these to page 1)
+${page2Keywords.length > 0
+  ? page2Keywords.map((k) => `- "${k.query}" (position ${k.position}, ${k.impressions} impressions/month)`).join("\n")
+  : "No GSC data available yet"}
 
-## Competitor Topics (what competitors cover that we might be missing)
-${competitorTopics.length > 0 ? competitorTopics.slice(0, 20).map((t) => `- ${t}`).join("\n") : "No competitor data available"}
+SIGNAL 3 — COMPETITOR CONTENT GAPS (what competitors cover that we don't)
+${competitorTopics.length > 0 ? competitorTopics.slice(0, 20).map((t) => `- ${t}`).join("\n") : "No competitor data"}
 
-## Our Top Performing Pages (what works for us)
+SIGNAL 4 — OUR TOP PAGES BY CLICKS
 ${topPages.map((p) => `- ${p.page} (${p.clicks} clicks)`).join("\n")}
 
-## Topics We Already Covered (do NOT repeat these)
+TOPICS WE ALREADY COVERED — DO NOT REPEAT:
 ${existingTitles.slice(0, 30).map((t) => `- ${t}`).join("\n")}
 
-RULES:
-- Must target Dubai/UAE audience specifically
-- Must be a topic people actually search for (commercial or informational intent)
-- Must be something we haven't written about yet
-- Prefer page-2 keywords if available — they have the fastest path to page 1
-- If no GSC data, find a gap competitors cover that we don't
+DECISION RULES (in order):
+1. If converting posts exist → pick a topic in the same category/format as the highest converter
+2. Else if page-2 keywords exist → pick the one with most impressions and write a dedicated post
+3. Else → find the most valuable competitor gap for Dubai/UAE audience
 
-Return ONLY the blog post title. Nothing else. No explanation. Just the title.`;
+CONSTRAINTS:
+- Must target Dubai/UAE audience specifically
+- Must have real search demand
+- Must not duplicate existing content
+
+Return ONLY the blog post title. Nothing else.`;
 
   const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
@@ -259,20 +269,25 @@ async function main() {
   console.log("🚀 Smart Blog Agent starting...\n");
 
   // ── 1. Gather intelligence ──────────────────────────────────────────────────
-  console.log("📊 Fetching GSC data...");
-  const [page2Keywords, topPages, siteStats] = await Promise.allSettled([
+  console.log("📊 Fetching GSC + GA4 data...");
+  const [page2Keywords, topPages, siteStats, convertingPosts, ga4Stats] = await Promise.allSettled([
     getPage2Keywords(28),
     getTopPages(28),
     getSiteStats(7),
+    getConvertingBlogPosts(90),
+    getGA4SiteStats(7),
   ]);
 
   const keywords = page2Keywords.status === "fulfilled" ? page2Keywords.value : [];
   const pages = topPages.status === "fulfilled" ? topPages.value : [];
   const stats = siteStats.status === "fulfilled" ? siteStats.value : null;
+  const converting = convertingPosts.status === "fulfilled" ? convertingPosts.value : [];
+  const ga4 = ga4Stats.status === "fulfilled" ? ga4Stats.value : null;
 
-  console.log(`  ↳ Page-2 keywords found: ${keywords.length}`);
-  console.log(`  ↳ Top pages: ${pages.length}`);
-  if (stats) console.log(`  ↳ Last 7 days: ${stats.totalClicks} clicks, ${stats.totalImpressions} impressions`);
+  console.log(`  ↳ Page-2 keywords: ${keywords.length}`);
+  console.log(`  ↳ Converting blog posts (last 90d): ${converting.length}`);
+  if (stats) console.log(`  ↳ GSC last 7d: ${stats.totalClicks} clicks, ${stats.totalImpressions} impressions`);
+  if (ga4) console.log(`  ↳ GA4 last 7d: ${ga4.totalSessions} sessions, ${ga4.totalConversions} conversions, top source: ${ga4.topSource}`);
 
   console.log("\n🔍 Scraping competitors...");
   const competitorTopics: string[] = [];
@@ -289,7 +304,7 @@ async function main() {
   console.log("\n🧠 Picking best topic...");
   let topic: string;
   try {
-    topic = await pickBestTopic(keywords, competitorTopics, existingTitles, pages);
+    topic = await pickBestTopic(keywords, competitorTopics, existingTitles, pages, converting);
   } catch {
     topic = FALLBACK_TOPICS[Math.floor(Math.random() * FALLBACK_TOPICS.length)];
     console.log("  ↳ GSC unavailable, using fallback topic");

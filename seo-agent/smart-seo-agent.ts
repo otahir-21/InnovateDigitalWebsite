@@ -14,6 +14,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import { getLowCTRPages, getPage2Keywords, getSiteStats } from "./gsc-client.js";
+import { getHighTrafficLowConversion, getHighBouncePages, getGA4SiteStats } from "./ga4-client.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -47,23 +48,56 @@ async function main() {
   let lowCTRPages: Awaited<ReturnType<typeof getLowCTRPages>> = [];
   let page2Keywords: Awaited<ReturnType<typeof getPage2Keywords>> = [];
   let siteStats: Awaited<ReturnType<typeof getSiteStats>> | null = null;
+  let highTrafficLowConversion: Awaited<ReturnType<typeof getHighTrafficLowConversion>> = [];
+  let highBouncePages: Awaited<ReturnType<typeof getHighBouncePages>> = [];
+  let ga4Stats: Awaited<ReturnType<typeof getGA4SiteStats>> | null = null;
 
-  try {
-    [lowCTRPages, page2Keywords, siteStats] = await Promise.all([
-      getLowCTRPages(28),
-      getPage2Keywords(28),
-      getSiteStats(7),
-    ]);
-    console.log(`  ↳ Low CTR pages (high impressions, low clicks): ${lowCTRPages.length}`);
-    console.log(`  ↳ Page-2 keywords: ${page2Keywords.length}`);
-    if (siteStats) {
-      console.log(`  ↳ Last 7 days: ${siteStats.totalClicks} clicks | ${siteStats.totalImpressions} impressions | avg position ${siteStats.avgPosition}`);
-    }
-  } catch (err) {
-    console.warn("  ↳ GSC unavailable — running standard audit instead");
-  }
+  const [gscCTR, gscP2, gscStats, ga4HiTraffic, ga4Bounce, ga4Overall] = await Promise.allSettled([
+    getLowCTRPages(28),
+    getPage2Keywords(28),
+    getSiteStats(7),
+    getHighTrafficLowConversion(28),
+    getHighBouncePages(28),
+    getGA4SiteStats(7),
+  ]);
+
+  if (gscCTR.status === "fulfilled") lowCTRPages = gscCTR.value;
+  if (gscP2.status === "fulfilled") page2Keywords = gscP2.value;
+  if (gscStats.status === "fulfilled") siteStats = gscStats.value;
+  if (ga4HiTraffic.status === "fulfilled") highTrafficLowConversion = ga4HiTraffic.value;
+  if (ga4Bounce.status === "fulfilled") highBouncePages = ga4Bounce.value;
+  if (ga4Overall.status === "fulfilled") ga4Stats = ga4Overall.value;
+
+  console.log(`  ↳ Low CTR pages (GSC): ${lowCTRPages.length}`);
+  console.log(`  ↳ High traffic, zero leads (GA4): ${highTrafficLowConversion.length}`);
+  console.log(`  ↳ High bounce pages (GA4): ${highBouncePages.length}`);
+  console.log(`  ↳ Page-2 keywords: ${page2Keywords.length}`);
+  if (siteStats) console.log(`  ↳ GSC: ${siteStats.totalClicks} clicks | pos ${siteStats.avgPosition}`);
+  if (ga4Stats) console.log(`  ↳ GA4: ${ga4Stats.totalSessions} sessions | ${ga4Stats.totalConversions} conversions`);
 
   // ── 2. Build targeted prompt based on real data ─────────────────────────────
+  const ga4Context = highTrafficLowConversion.length > 0 || highBouncePages.length > 0 ? `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRIORITY 1 — HIGH TRAFFIC BUT ZERO LEADS (from Google Analytics)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+These pages get real visitors but nobody converts. Fix CTAs first — this is the highest revenue impact.
+
+${highTrafficLowConversion.map((p) => `Page: ${p.page}
+  Sessions: ${p.sessions} | Conversions: ${p.conversions} | Engagement: ${Math.round(p.engagementRate * 100)}%
+  Fix: Add a prominent CTA section (WhatsApp button, free audit offer, or contact form) above the fold.
+  Make the value proposition clear — what do they get by contacting you?`).join("\n\n")}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRIORITY 2 — HIGH BOUNCE RATE PAGES (from Google Analytics)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+People land and immediately leave. The content doesn't match what they expected.
+
+${highBouncePages.map((p) => `Page: ${p.page}
+  Sessions: ${p.sessions} | Engagement rate: ${Math.round(p.engagementRate * 100)}% | Avg time: ${Math.round(p.avgSessionDuration)}s
+  Fix: Check the H1 matches the keyword bringing traffic. Improve the opening paragraph.
+  Add internal links to keep people on the site longer.`).join("\n\n")}
+` : "";
+
   const gscContext = lowCTRPages.length > 0
     ? `
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -99,6 +133,8 @@ headings, alt text, canonicals, and sitemap.
 a digital marketing agency in Dubai, UAE.
 
 SITE ROOT: ${ROOT}
+
+${ga4Context}
 
 BUSINESS:
 - Name: Innovate Digital
