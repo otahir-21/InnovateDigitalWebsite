@@ -1,0 +1,14 @@
+{
+  "name": "innovate-digital-seo-agent",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "blog": "tsx blog-agent.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "latest",
+    "@anthropic-ai/sdk": "latest",
+    "tsx": "latest"
+  }
+}

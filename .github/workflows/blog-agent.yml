@@ -1,0 +1,81 @@
+name: Daily Blog Post Generator
+
+on:
+  schedule:
+    # 5AM UTC = 9AM Dubai (GMT+4)
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check API keys
+        run: |
+          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "❌ ANTHROPIC_API_KEY secret is not set"
+            exit 1
+          fi
+          echo "✅ ANTHROPIC_API_KEY is set"
+          if [ -z "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "⚠️  OPENAI_API_KEY not set — images will use placeholder"
+          else
+            echo "✅ OPENAI_API_KEY is set"
+          fi
+
+      - name: Install blog agent dependencies
+        run: |
+          cd seo-agent
+          npm install
+
+      - name: Run blog agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cd seo-agent
+          npm run blog 2>&1 | tee ../blog-agent-log.txt
+          EXIT_CODE=${PIPESTATUS[0]}
+          echo "--- Full log ---"
+          cat ../blog-agent-log.txt
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "❌ Blog agent exited with code $EXIT_CODE"
+            exit 1
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet lib/blogPostsData.ts public/blog/ 2>/dev/null \
+            && echo "changed=false" >> $GITHUB_OUTPUT \
+            || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push blog post
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "Innovate Digital Blog Bot"
+          git config user.email "blog-bot@innovatedigital.ae"
+          git add lib/blogPostsData.ts public/blog/
+          git commit -m "content: daily blog post $(date '+%Y-%m-%d')"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            echo "Push failed, retrying in 10s..."
+            sleep 10
+          done
+
+      - name: No changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "ℹ️  No new blog post generated today (may already exist)"

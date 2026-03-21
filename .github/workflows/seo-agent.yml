@@ -1,0 +1,67 @@
+name: Daily SEO Audit & Fix
+
+on:
+  schedule:
+    # 3AM UTC = 7AM Dubai (GMT+4)
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check ANTHROPIC_API_KEY
+        run: |
+          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "❌ ANTHROPIC_API_KEY secret is not set"
+            exit 1
+          fi
+          echo "✅ ANTHROPIC_API_KEY is set"
+
+      - name: Install SEO agent dependencies
+        run: |
+          cd seo-agent
+          npm install
+
+      - name: Run SEO audit agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          cd seo-agent
+          npm run start 2>&1 | tee ../seo-agent-log.txt
+          echo "Exit code: ${PIPESTATUS[0]}"
+          if [ ${PIPESTATUS[0]} -ne 0 ]; then
+            cat ../seo-agent-log.txt
+            exit 1
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push SEO fixes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "Innovate Digital SEO Bot"
+          git config user.email "seo-bot@innovatedigital.ae"
+          git add -A
+          git commit -m "chore: daily SEO audit fixes $(date '+%Y-%m-%d')"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            echo "Push failed, retrying in 10s..."
+            sleep 10
+          done
