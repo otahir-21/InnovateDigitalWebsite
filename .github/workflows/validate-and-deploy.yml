@@ -1,0 +1,90 @@
+name: Validate & Deploy to Production
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  build-check:
+    name: Build Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: staging
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript check
+        run: npx tsc --noEmit
+        continue-on-error: false
+
+      - name: Run Next.js build
+        run: npm run build
+        env:
+          # Dummy values so build doesn't fail on missing env vars
+          NEXT_PUBLIC_SITE_URL: https://www.innovatedigital.ae
+
+      - name: ✅ Build passed — merge staging into main
+        if: success()
+        run: |
+          git config user.name "Deploy Bot"
+          git config user.email "deploy-bot@innovatedigital.ae"
+          git checkout main
+          git pull origin main
+          git merge staging --no-ff -m "deploy: merge staging into main (build validated) $(date '+%Y-%m-%d %H:%M')"
+          git push origin main
+          echo "✅ Staging merged into main — Vercel will now deploy"
+
+      - name: ❌ Build failed — open GitHub issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🚨 Build Failed — Staging blocked from deploying (${new Date().toISOString().split('T')[0]})`
+            const body = `## Build Validation Failed
+
+            The automated agent pushed changes to \`staging\` but the **Next.js build failed**, so \`main\` was **not updated** and Vercel was **not triggered**.
+
+            ### What to do
+            1. Check the [failed workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for the error
+            2. Fix the issue locally
+            3. Push the fix to \`staging\` — the build check will run again automatically
+
+            ### Triggered by
+            - Commit: \`${{ github.sha }}\`
+            - Pushed by: ${{ github.actor }}
+            - Time: ${new Date().toUTCString()}
+
+            > ⚠️ **Production (main) is unaffected** — the broken code never reached Vercel.`
+
+            // Check if a similar issue already exists to avoid spam
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'build-failure'
+            })
+
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['build-failure', 'automated']
+              })
+            }
