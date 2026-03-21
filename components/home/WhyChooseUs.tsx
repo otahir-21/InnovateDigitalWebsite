@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { FiCheckCircle } from 'react-icons/fi'
+import { fadeUp, staggerContainer, staggerItem } from '@/lib/animations'
+import ScrollRevealText from '@/components/ui/ScrollRevealText'
 
 const reasons = [
   {
@@ -35,28 +37,31 @@ export default function WhyChooseUs() {
     <section className="section-padding bg-white">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Why Choose  Our Digital Marketing<br/><span className="gradient-text">Agency in Dubai And UAE</span>
+            <ScrollRevealText text="Why Choose Our Digital Marketing Agency in Dubai" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Google-certified digital marketing experts trusted by 200+ businesses in Dubai & UAE, delivering up to 3x average ROI.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map((reason, index) => (
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {reasons.map((reason) => (
             <motion.div
               key={reason.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={staggerItem}
               className="flex items-start space-x-4 p-6 rounded-xl hover:bg-gray-50 transition-colors"
             >
               <div className="flex-shrink-0">
@@ -68,14 +73,14 @@ export default function WhyChooseUs() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Stats Row */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-gray-200"
         >
           <div className="text-center">

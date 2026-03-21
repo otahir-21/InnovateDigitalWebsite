@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans, DM_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
+import SmoothScroll from '@/components/ui/SmoothScroll'
+import ScrollProgressBar from '@/components/ui/ScrollProgressBar'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { organizationSchema, localBusinessSchema, websiteSchema, combineSchemas } from '@/lib/schema'
 
@@ -21,10 +23,18 @@ const ExitIntentPopup = dynamic(() => import('@/components/ui/ExitIntentPopup'),
   ssr: false,
 })
 
-const inter = Inter({ 
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-heading',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -94,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${plusJakartaSans.variable} ${dmSans.variable}`}>
       <head>
         <link rel="icon" href="/logo.svg" type="image/svg+xml" />
         <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
@@ -105,7 +115,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <meta property="og:site_name" content="Innovate Digital" />
       </head>
-      <body className={`${inter.className} overflow-x-hidden`}>
+      <body className={`${dmSans.className} overflow-x-hidden`}>
         {/* Google Analytics - Deferred for better performance */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-63PVWT802B"
@@ -146,6 +156,8 @@ export default function RootLayout({
           }}
         />
 
+        <SmoothScroll />
+        <ScrollProgressBar />
         <Header />
         <main className="min-h-screen">
           {children}

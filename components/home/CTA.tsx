@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FiArrowRight, FiMail, FiPhone } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import { siteConfig } from '@/lib/config'
+import { fadeUp } from '@/lib/animations'
 
 export default function CTA() {
   return (
@@ -18,10 +19,10 @@ export default function CTA() {
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-4">
               🏆 Trusted by 200+ Dubai & UAE Businesses
@@ -63,10 +64,10 @@ export default function CTA() {
 
             {/* Contact Options */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col md:flex-row gap-6 justify-center items-center text-blue-100"
             >
               <a

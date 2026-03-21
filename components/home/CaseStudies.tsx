@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
+import { fadeUp, staggerContainer, staggerItem } from '@/lib/animations'
+import ScrollRevealText from '@/components/ui/ScrollRevealText'
 
 // Sample case studies displayed on homepage - full data is in caseStudiesData.ts
 const caseStudies = [
   {
-    slug: 'ecommerce-seo-success',
+    slug: 'ecommerce-fashion-brand',
     title: 'E-commerce SEO Success',
     client: 'Dubai Fashion Retailer',
     industry: 'Retail',
@@ -23,7 +25,7 @@ const caseStudies = [
     color: 'from-blue-500 to-cyan-500',
   },
   {
-    slug: 'social-media-transformation',
+    slug: 'fitness-studio-transformation',
     title: 'Social Media Transformation',
     client: 'UAE Hospitality Brand',
     industry: 'Hospitality',
@@ -39,7 +41,7 @@ const caseStudies = [
     color: 'from-purple-500 to-pink-500',
   },
   {
-    slug: 'web-development-redesign',
+    slug: 'real-estate-portal',
     title: 'Website Redesign & Optimization',
     client: 'Tech Startup UAE',
     industry: 'Technology',
@@ -61,28 +63,31 @@ export default function CaseStudies() {
     <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Success <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Stories</span>
+            <ScrollRevealText text="Success Stories" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Digital Marketing Success Stories from <strong>Dubai & UAE</strong> Businesses.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {caseStudies.map((study, index) => (
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {caseStudies.map((study) => (
             <motion.div
               key={study.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={staggerItem}
               className={`relative rounded-2xl p-8 text-white overflow-hidden group hover:scale-105 transition-transform duration-300 cursor-pointer bg-gradient-to-br ${study.color}`}
             >
               {/* Background decoration */}
@@ -138,13 +143,13 @@ export default function CaseStudies() {
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
           <Link

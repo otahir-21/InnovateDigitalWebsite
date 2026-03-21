@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FiAward, FiUsers, FiTrendingUp, FiTarget } from 'react-icons/fi'
+import { fadeLeft, fadeRight, fadeUp, staggerContainer, staggerItem } from '@/lib/animations'
 
 const features = [
   {
@@ -34,10 +35,10 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Image/Visual */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
             className="relative"
           >
             <div className="relative h-[500px] rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 p-8">
@@ -115,10 +116,10 @@ export default function About() {
 
             {/* Floating stats card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
               className="absolute -bottom-8 -right-8 bg-white rounded-xl shadow-2xl p-6"
             >
               <div className="text-4xl font-bold text-primary-600 mb-1">5+ Years</div>
@@ -128,10 +129,10 @@ export default function About() {
 
           {/* Right Column - Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Your <span className="gradient-text">Digital Marketing</span> Growth Partner in Dubai & UAE.
@@ -145,14 +146,17 @@ export default function About() {
             Our team combines <strong>Google Ads, Google Analytics</strong> and <strong>Meta</strong> expertise with deep UAE market knowledge. We deliver Arabic and English marketing solutions tailored for the UAE — supporting businesses in Dubai, Abu Dhabi, Sharjah and all other emirates with measurable growth in visibility, leads and conversions.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              {features.map((feature, index) => (
+            <motion.div
+              className="grid sm:grid-cols-2 gap-6 mb-8"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {features.map((feature) => (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  variants={staggerItem}
                   className="flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
@@ -164,7 +168,7 @@ export default function About() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             <Link href="/about" className="btn-primary inline-flex items-center">
               Learn More About Us

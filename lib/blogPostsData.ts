@@ -2681,7 +2681,9 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     metaDescription: 'Why your business needs a professional web design company in Dubai. Fast, mobile-first sites that rank and convert.',
     keywords: ['web design company Dubai', 'web design Dubai', 'website development UAE', 'professional web design', 'Dubai web design']
-=======
+  },
+  {
+    id: '15',
     slug: 'seo-services-dubai',
     title: 'SEO Services in Dubai: How to Rank Higher and Get More Leads',
     excerpt: 'In today’s digital-first world, appearing on the first page of Google can make or break a business. Professional SEO services in Dubai help businesses improve search rankings, attract qualified traffic, and generate consistent leads.',

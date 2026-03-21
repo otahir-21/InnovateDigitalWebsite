@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { FiArrowRight, FiPlay, FiUser, FiMail, FiPhone, FiMessageSquare, FiCheck } from 'react-icons/fi'
 import { countryCodes, popularCountries, otherCountries } from '@/lib/countryCodes'
+import WavyText from '@/components/ui/WavyText'
 
 export default function Hero() {
   const [formData, setFormData] = useState({
@@ -84,36 +86,94 @@ export default function Hero() {
     }
   }
 
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  // Parallax layers — each moves at a different speed
+  const blob1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-40%'])
+  const blob2Y = useTransform(scrollYProgress, [0, 1], ['0%', '-25%'])
+  const blob3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 px-5 pt-20">
-      {/* Animated background elements - hidden on mobile for performance */}
-      <div className="absolute inset-0 overflow-hidden hidden md:block" aria-hidden="true">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    <section ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-[#f8f9ff] px-5 pt-20">
+
+      {/* Deep radial glow layers — parallax */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <motion.div
+          style={{ y: blob1Y }}
+          className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full"
+          animate={{ scale: [1, 1.08, 1], opacity: [0.55, 0.7, 0.55] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <div className="w-full h-full rounded-full bg-blue-400 blur-[100px] opacity-30" />
+        </motion.div>
+
+        <motion.div
+          style={{ y: blob2Y }}
+          className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full"
+          animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.6, 0.4] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        >
+          <div className="w-full h-full rounded-full bg-purple-400 blur-[100px] opacity-25" />
+        </motion.div>
+
+        <motion.div
+          style={{ y: blob3Y }}
+          className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+        >
+          <div className="w-full h-full rounded-full bg-pink-300 blur-[80px] opacity-20" />
+        </motion.div>
+
+        {/* Subtle grain overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: '128px',
+          }}
+        />
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10 w-full h-full flex items-center py-6 pt-10">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="container mx-auto max-w-7xl relative z-10 w-full h-full flex items-center py-6 pt-10"
+      >
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
           {/* Left Column - Content */}
           <div className="order-2 lg:order-1 text-center md:text-left mx-auto md:mx-0 max-w-xl md:max-w-none space-y-4">
-            <div className="inline-block">
+
+            <motion.div
+              className="inline-block"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-xs sm:text-sm font-medium">
                 🏆 Google Partner • Since 2020
               </span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mt-2">
-              Dubai's Leading <span className="gradient-text">Digital Marketing Agency</span> for Growth-Driven Results
+            <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mt-2">
+              <WavyText text="Dubai's Leading" className="block" delay={0.1} />
+              <WavyText text="Digital Marketing Agency" className="block gradient-text" delay={0.4} />
             </h1>
 
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 leading-snug">
-              Trusted by 200+ UAE Businesses in Dubai, Abu Dhabi, Sharjah & across all emirates
-            </h2>
-
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
-            Full-service digital marketing in Dubai & across the UAE: SEO to improve Google rankings, social media marketing (Instagram, Facebook, LinkedIn & TikTok), PPC advertising (Google Ads & Meta Ads), content marketing and blog writing, web design & development, branding, email marketing, marketing automation and video production — in Arabic and English.
-            </p>
+            <motion.p
+              className="text-base text-gray-600 leading-relaxed max-w-lg"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              SEO, Google Ads, social media, web development & branding — helping UAE businesses grow online since 2020.
+            </motion.p>
 
             {/* Trust Signals - New */}
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs sm:text-sm text-gray-600">
@@ -384,7 +444,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

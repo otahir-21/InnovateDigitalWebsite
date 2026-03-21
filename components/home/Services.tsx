@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FiSearch, FiTrendingUp, FiMonitor, FiEdit, FiVolume2, FiTarget } from 'react-icons/fi'
+import { fadeUp, staggerContainer, staggerItem } from '@/lib/animations'
+import ScrollRevealText from '@/components/ui/ScrollRevealText'
 
 const services = [
   {
@@ -54,28 +56,31 @@ export default function Services() {
     <section className="section-padding bg-white">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our <span className="gradient-text">Services</span>
+            <ScrollRevealText text="Our Services" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Full-service digital marketing in Dubai and across the UAE — SEO, social media, PPC, content and web — plus email marketing, marketing automation and video production.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {services.map((service) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={staggerItem}
             >
               <Link href={service.href}>
                 <div className="card group hover:-translate-y-2 cursor-pointer h-full">
@@ -101,13 +106,13 @@ export default function Services() {
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center mt-12"
         >
           <Link href="/services" className="btn-primary inline-flex items-center">
