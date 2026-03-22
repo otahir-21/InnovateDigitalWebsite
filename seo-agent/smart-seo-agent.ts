@@ -296,18 +296,53 @@ Make the change. You can edit:
 - image alt text
 - canonical tags
 
-After every file edit, run: cd ${ROOT} && npx tsc --noEmit 2>&1 | tail -5
-Fix any TypeScript errors before moving on.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXECUTION LOOP — follow this exactly after every file change
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LOOP 1 — TypeScript validation (up to 5 attempts):
+  Run: cd ${ROOT} && npx tsc --noEmit 2>&1
+  IF errors exist:
+    - Read the full error output
+    - Fix the exact issue in the exact file reported
+    - Do NOT make unrelated changes while fixing
+    - Re-run TypeScript check
+    - Repeat up to 5 attempts total
+  IF TypeScript passes with zero errors → proceed to LOOP 2
+
+LOOP 2 — Build validation (up to 3 attempts):
+  Run: cd ${ROOT} && npm run build 2>&1 | tail -30
+  IF build fails:
+    - Read the error logs carefully
+    - Fix the exact issue causing the failure
+    - Re-run build
+    - Repeat up to 3 attempts total
+  IF build passes → SEO changes are safe, proceed to output
+
+FAILURE RULE:
+  If after all retries TypeScript or build still fails:
+  - STOP making further changes immediately
+  - Revert the breaking change if possible
+  - In the output JSON, set "build_status": "failed" and populate "error_report"
+  - The error report must include: file affected, error message, what was attempted, why it failed
+
+SUCCESS RULE:
+  If build passes:
+  - Set "build_status": "passed" in output JSON
+  - All SEO changes are confirmed safe
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HARD RULES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- NEVER publish a blog post unless it is clearly the highest-value action and no existing-page opportunity scores higher
+- NEVER leave the codebase in a broken state
+- NEVER push or commit if the build is failing
+- NEVER fix TypeScript errors by rewriting large unrelated sections of code — fix surgically
+- NEVER publish a blog post unless it is clearly the highest-value action
 - NEVER make scattered minor edits just to appear productive
 - NEVER create location doorway pages
 - NEVER create a new page that cannibalises an existing target page
 - NEVER add Dubai/UAE modifiers in a spammy or unnatural way
-- ALWAYS prefer one strong strategic improvement over many weak ones
+- ALWAYS preserve the SEO change while fixing build errors — do not revert good SEO work
 - ALWAYS check that the page you are optimising actually exists in the codebase first
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -334,15 +369,33 @@ CHANGES_START
     "expected_outcome": "...",
     "risk": "low"
   },
+  "build_status": "passed",
+  "error_report": null,
   "changes": [
     {
       "page": "url or file path",
       "keyword_goal": "target keyword",
-      "action_type": "letter and name e.g. A — service-page-optimization",
+      "action_type": "letter and name e.g. A — ctr-snippet-refinement",
       "summary": "exactly what you changed",
       "expected_impact": "what ranking/conversion improvement you expect"
     }
   ]
+}
+CHANGES_END
+
+If build failed, use this format instead:
+CHANGES_START
+{
+  "opportunity_analysis": [...],
+  "decision": {...},
+  "build_status": "failed",
+  "error_report": {
+    "file": "path/to/file.tsx",
+    "error_message": "exact error from tsc or build output",
+    "attempted_fixes": ["description of fix 1", "description of fix 2"],
+    "reason_failed": "why it could not be resolved"
+  },
+  "changes": []
 }
 CHANGES_END`;
 
@@ -366,6 +419,7 @@ CHANGES_END`;
       if (match) {
         try {
           const parsed = JSON.parse(match[1]);
+
           // Log opportunity analysis
           if (parsed.opportunity_analysis) {
             console.log("\n📋 Opportunity Analysis:");
@@ -373,6 +427,7 @@ CHANGES_END`;
               console.log(`  #${opp.rank} [score:${opp.score}] ${opp.action} — "${opp.keyword}" on ${opp.page}`);
             }
           }
+
           // Log the decision
           if (parsed.decision) {
             const d = parsed.decision;
@@ -382,12 +437,27 @@ CHANGES_END`;
             console.log(`   Expected: ${d.expected_outcome}`);
             console.log(`   Risk: ${d.risk}`);
           }
-          changes.push(
-            ...(parsed.changes || []).map((c: any) => ({
-              date: new Date().toISOString(),
-              ...c,
-            }))
-          );
+
+          // Log build status
+          if (parsed.build_status === "failed" && parsed.error_report) {
+            const e = parsed.error_report;
+            console.log(`\n❌ BUILD FAILED`);
+            console.log(`   File: ${e.file}`);
+            console.log(`   Error: ${e.error_message}`);
+            console.log(`   Attempted: ${(e.attempted_fixes || []).join(", ")}`);
+            console.log(`   Reason: ${e.reason_failed}`);
+          } else if (parsed.build_status === "passed") {
+            console.log(`\n✅ Build passed — changes are safe`);
+          }
+
+          if (parsed.build_status !== "failed") {
+            changes.push(
+              ...(parsed.changes || []).map((c: any) => ({
+                date: new Date().toISOString(),
+                ...c,
+              }))
+            );
+          }
         } catch {}
       }
       console.log("\n✅ SEO Agent complete");
@@ -414,6 +484,8 @@ CHANGES_END`;
   if (!ga4Stats)  actionItems.push("GA4 not returning data — check GA4_PROPERTY_ID secret");
   if (hiTraffic.length > 3 && changes.length === 0)
     actionItems.push(`${hiTraffic.length} high-traffic pages still have zero conversions — agent made no changes, manual review needed`);
+  if (changes.length === 0 && allKeywords.length > 0)
+    actionItems.push("SEO agent found opportunities but made no changes — may have hit a build error. Check today's action logs.");
 
   if (actionItems.length > 0) await sendActionRequired(actionItems);
 
