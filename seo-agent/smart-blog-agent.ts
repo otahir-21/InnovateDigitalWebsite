@@ -51,14 +51,8 @@ const COMPETITOR_URLS = (process.env.COMPETITOR_URLS || "")
   .map((u) => u.trim())
   .filter(Boolean);
 
-// ── Fallback topics if GSC + competitors return nothing useful ─────────────────
-const FALLBACK_TOPICS = [
-  "Digital marketing trends UAE 2026: what every business needs to know",
-  "How to choose the right digital marketing agency in Dubai",
-  "WhatsApp marketing for Dubai businesses: complete guide 2026",
-  "Google Business Profile optimisation Dubai: step by step guide",
-  "Content marketing ROI for UAE businesses: how to measure and improve",
-];
+// ── Services we offer — used for keyword research when GSC has no data ────────
+const OUR_SERVICES = SERVICE_PAGES.map((s) => s.name);
 
 // ── HTTP fetch helper ──────────────────────────────────────────────────────────
 function fetchUrl(url: string, timeoutMs = 8000): Promise<string> {
@@ -195,6 +189,70 @@ async function downloadImage(url: string, dest: string): Promise<void> {
       file.on("finish", () => { file.close(); resolve(); });
     }).on("error", (err) => { fs.unlink(dest, () => {}); reject(err); });
   });
+}
+
+/**
+ * When GSC/GA4 have no data (new site), use Claude to do real keyword research:
+ * analyses our services, existing content, competitor topics, and Dubai market
+ * demand to generate 20 specific long-tail keyword opportunities — then picks best.
+ */
+async function researchKeywordsFromScratch(
+  existingTitles: string[],
+  competitorTopics: string[]
+): Promise<string> {
+  console.log("  ↳ No GSC data — running Claude keyword research...");
+
+  const response = await anthropic.messages.create({
+    model: "claude-opus-4-6",
+    max_tokens: 1500,
+    messages: [{
+      role: "user",
+      content: `You are a senior SEO strategist. Innovate Digital is a full-service digital marketing agency based in Dubai, UAE (website: innovatedigital.ae).
+
+OUR SERVICES:
+${OUR_SERVICES.map((s) => `- ${s}`).join("\n")}
+
+CONTENT WE HAVE ALREADY PUBLISHED (do NOT repeat these):
+${existingTitles.length > 0 ? existingTitles.map((t) => `- ${t}`).join("\n") : "None yet"}
+
+COMPETITOR TOPICS FOUND:
+${competitorTopics.length > 0 ? competitorTopics.slice(0, 30).map((t) => `- ${t}`).join("\n") : "None found"}
+
+TASK: Generate 20 specific, high-value blog post topics for the Dubai/UAE B2B market. Each topic must:
+1. Target a real search query a Dubai business owner would Google
+2. Map to one of our services (so it can convert readers into leads)
+3. Be specific and long-tail (e.g. "How to run Google Ads for a restaurant in Dubai" not "Google Ads tips")
+4. NOT duplicate any content we already have
+5. Prioritise topics competitors haven't covered (content gaps)
+
+Think about: industry-specific guides (real estate, F&B, healthcare, retail), UAE-specific regulations/platforms (VAT, Dubai DED, TikTok UAE, WhatsApp Business), cost/pricing questions, comparison posts, how-to guides with AED figures.
+
+Return a JSON array of 20 objects, each with:
+- "title": the exact blog post title
+- "intent": "informational" | "commercial" (commercial = high lead intent)
+- "service": which of our services it maps to
+- "difficulty": "low" | "medium" | "high" (competition level)
+
+Return ONLY valid JSON. No markdown, no explanation.`,
+    }],
+  });
+
+  const raw = (response.content[0] as any).text.trim();
+  const jsonMatch = raw.match(/\[[\s\S]*\]/);
+  if (!jsonMatch) throw new Error("No JSON array in keyword research response");
+
+  const topics: { title: string; intent: string; service: string; difficulty: string }[] = JSON.parse(jsonMatch[0]);
+  console.log(`  ↳ Generated ${topics.length} keyword opportunities`);
+
+  // Prioritise: commercial intent first, then low difficulty
+  const scored = topics.sort((a, b) => {
+    const intentScore = (t: typeof a) => t.intent === "commercial" ? 2 : 1;
+    const diffScore = (t: typeof a) => t.difficulty === "low" ? 3 : t.difficulty === "medium" ? 2 : 1;
+    return (intentScore(b) + diffScore(b)) - (intentScore(a) + diffScore(a));
+  });
+
+  console.log(`  ↳ Top pick: "${scored[0].title}" (${scored[0].intent}, ${scored[0].difficulty} competition, maps to: ${scored[0].service})`);
+  return scored[0].title;
 }
 
 /** Ask Claude to pick the best topic given all the data */
@@ -385,12 +443,15 @@ async function main() {
   const existingSlugs = getExistingSlugs();
 
   console.log("\n🧠 Picking best topic...");
+  const hasRealData = keywords.length > 0 || converting.length > 0;
   let topic: string;
-  try {
+
+  if (hasRealData || competitorTopics.length > 0) {
+    // We have real signals — let Claude weigh them
     topic = await pickBestTopic(keywords, competitorTopics, existingTitles, pages, converting);
-  } catch {
-    topic = FALLBACK_TOPICS[Math.floor(Math.random() * FALLBACK_TOPICS.length)];
-    console.log("  ↳ GSC unavailable, using fallback topic");
+  } else {
+    // No GSC/GA4 data yet — run proper keyword research instead of random fallback
+    topic = await researchKeywordsFromScratch(existingTitles, competitorTopics);
   }
   console.log(`  ↳ Topic selected: "${topic}"`);
 
