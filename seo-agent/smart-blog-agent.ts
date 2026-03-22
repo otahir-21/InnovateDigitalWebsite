@@ -60,31 +60,115 @@ const FALLBACK_TOPICS = [
   "Content marketing ROI for UAE businesses: how to measure and improve",
 ];
 
-// ── Scrape competitor blog titles (lightweight, no heavy libs) ─────────────────
-async function fetchCompetitorTopics(url: string): Promise<string[]> {
-  return new Promise((resolve) => {
+// ── HTTP fetch helper ──────────────────────────────────────────────────────────
+function fetchUrl(url: string, timeoutMs = 8000): Promise<string> {
+  return new Promise((resolve, reject) => {
     const client = url.startsWith("https") ? https : http;
     const req = client.get(
       url,
-      { headers: { "User-Agent": "Mozilla/5.0 (compatible; InnovateDigitalBot/1.0)" }, timeout: 8000 },
+      { headers: { "User-Agent": "Mozilla/5.0 (compatible; InnovateDigitalBot/1.0)" }, timeout: timeoutMs },
       (res) => {
-        let html = "";
-        res.on("data", (chunk) => (html += chunk));
-        res.on("end", () => {
-          // Extract <title>, <h1>, <h2> tags as topic signals
-          const titles: string[] = [];
-          const matches = html.matchAll(/<(?:h1|h2|title)[^>]*>([^<]{20,120})<\/(?:h1|h2|title)>/gi);
-          for (const m of matches) {
-            const text = m[1].replace(/&amp;/g, "&").replace(/&#\d+;/g, "").trim();
-            if (text.length > 20) titles.push(text);
-          }
-          resolve(titles.slice(0, 30));
-        });
+        // Follow one redirect
+        if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          return fetchUrl(res.headers.location, timeoutMs).then(resolve).catch(reject);
+        }
+        if (res.statusCode && res.statusCode >= 400) return reject(new Error(`HTTP ${res.statusCode}`));
+        let body = "";
+        res.on("data", (chunk) => (body += chunk));
+        res.on("end", () => resolve(body));
       }
     );
-    req.on("error", () => resolve([]));
-    req.on("timeout", () => { req.destroy(); resolve([]); });
+    req.on("error", reject);
+    req.on("timeout", () => { req.destroy(); reject(new Error("timeout")); });
   });
+}
+
+function decodeEntities(s: string): string {
+  return s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n))).trim();
+}
+
+// Strategy 1: RSS / Atom feed
+async function tryRss(url: string): Promise<string[]> {
+  try {
+    const xml = await fetchUrl(url, 6000);
+    if (!xml.includes("<rss") && !xml.includes("<feed") && !xml.includes("<channel")) return [];
+    const titles: string[] = [];
+    // RSS <item><title> and Atom <entry><title>
+    for (const m of xml.matchAll(/<(?:item|entry)[\s\S]*?<\/(?:item|entry)>/gi)) {
+      const t = m[0].match(/<title[^>]*>(?:<!\[CDATA\[)?\s*([\s\S]*?)\s*(?:\]\]>)?<\/title>/i);
+      if (t) { const text = decodeEntities(t[1]); if (text.length > 20 && text.length < 200) titles.push(text); }
+    }
+    return titles.slice(0, 30);
+  } catch { return []; }
+}
+
+// Strategy 2: XML sitemap (handles sitemap index too, one level deep)
+async function trySitemap(url: string, depth = 0): Promise<string[]> {
+  try {
+    const xml = await fetchUrl(url, 6000);
+    if (!xml.includes("<urlset") && !xml.includes("<sitemapindex")) return [];
+
+    // Sitemap index — recurse into blog/post sub-sitemap
+    if (xml.includes("<sitemapindex")) {
+      if (depth > 0) return [];
+      const locs = [...xml.matchAll(/<loc>(https?:\/\/[^<]+)<\/loc>/gi)].map(m => m[1]);
+      const blogSitemap = locs.find(u => /post|blog|article/i.test(u)) ?? locs[0];
+      return blogSitemap ? trySitemap(blogSitemap, 1) : [];
+    }
+
+    const titles: string[] = [];
+    // Prefer <news:title>
+    for (const m of xml.matchAll(/<news:title>([\s\S]*?)<\/news:title>/gi))
+      titles.push(decodeEntities(m[1]));
+
+    // Fall back: humanise URL slugs
+    if (titles.length === 0) {
+      for (const m of xml.matchAll(/<loc>(https?:\/\/[^<]+)<\/loc>/gi)) {
+        const seg = m[1].replace(/\/$/, "").split("/").pop() ?? "";
+        if (/\/(blog|post|article|insight)\//i.test(m[1]) && seg.length > 20) {
+          titles.push(seg.replace(/-/g, " "));
+        }
+      }
+    }
+    return titles.slice(0, 30);
+  } catch { return []; }
+}
+
+// Strategy 3: HTML scrape with improved regex (handles nested tags like <h2><a>Title</a></h2>)
+async function tryHtml(url: string): Promise<string[]> {
+  try {
+    const html = await fetchUrl(url, 8000);
+    const titles: string[] = [];
+    // Strip inner tags to get text content of h1/h2
+    for (const m of html.matchAll(/<h[12][^>]*>([\s\S]*?)<\/h[12]>/gi)) {
+      const text = decodeEntities(m[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+      if (text.length > 20 && text.length < 200) titles.push(text);
+    }
+    return titles.slice(0, 30);
+  } catch { return []; }
+}
+
+// ── Smart competitor topic fetcher (RSS → sitemap → HTML) ─────────────────────
+async function fetchCompetitorTopics(baseUrl: string): Promise<string[]> {
+  const origin = new URL(baseUrl).origin;
+
+  // Try RSS feeds
+  for (const path of ["/feed", "/rss.xml", "/blog/feed", "/feed/rss", "/atom.xml"]) {
+    const titles = await tryRss(`${origin}${path}`);
+    if (titles.length > 0) { console.log(`    (via RSS: ${origin}${path})`); return titles; }
+  }
+
+  // Try sitemaps
+  for (const path of ["/sitemap.xml", "/sitemap_index.xml", "/post-sitemap.xml", "/blog-sitemap.xml"]) {
+    const titles = await trySitemap(`${origin}${path}`);
+    if (titles.length > 0) { console.log(`    (via sitemap: ${origin}${path})`); return titles; }
+  }
+
+  // Fall back to HTML scraping
+  const titles = await tryHtml(baseUrl);
+  if (titles.length > 0) console.log(`    (via HTML scrape)`);
+  return titles;
 }
 
 function getExistingSlugs(): string[] {
@@ -291,7 +375,7 @@ async function main() {
   console.log("\n🔍 Scraping competitors...");
   const competitorTopics: string[] = [];
   for (const url of COMPETITOR_URLS) {
-    const topics = await fetchCompetitorTopics(url + "/blog");
+    const topics = await fetchCompetitorTopics(url);
     competitorTopics.push(...topics);
     console.log(`  ↳ ${url}: ${topics.length} topics found`);
   }
