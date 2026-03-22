@@ -198,14 +198,14 @@ Before deciding anything, read the actual files:
 You are acting as Head of SEO. List exactly 5 opportunities found in the data and codebase.
 For each one:
 - Action type — choose ONE of:
-  A. service-page-optimization  (improve existing commercial page content/structure)
-  B. page-2-expansion           (expand page ranking pos 11-20 to reach page 1)
-  C. ctr-improvement            (rewrite title/meta for high-impression low-CTR page)
-  D. internal-linking           (add links from supporting pages to money pages)
-  E. conversion-cro             (fix CTA, trust signals, lead capture on commercial page)
-  F. schema-fix                 (add/fix structured data on service or location page)
-  G. new-supporting-content     (new blog/article, only if nothing else scores higher)
-  H. no-action                  (no strong opportunity — report why)
+  A. ctr-snippet-refinement     (pos 4-10: tighten on-page + improve CTR without full rewrite)
+  B. page-2-expansion           (pos 11-20: expand content + proof + internal links to reach page 1)
+  C. ctr-improvement            (high impressions + low CTR: rewrite title/meta for SERP appeal)
+  D. internal-linking           (supporting pages not passing authority to money pages)
+  E. conversion-cro             (commercial page gets traffic but weak CTA/trust/form)
+  F. technical-schema-fix       (schema, canonical, alt text, indexability issues)
+  G. new-supporting-content     (clear keyword gap, no cannibalization, SERP supports new page)
+  H. no-action                  (no opportunity meets the bar — explain why)
 - Page/URL affected
 - Keyword goal it supports
 - Current problem found in the codebase
@@ -213,33 +213,65 @@ For each one:
 - Score (1-10): revenue potential × ranking potential × confidence × speed
 
 ## STEP 3 — CHOOSE ONE ACTION
-Apply this exact decision rule in order — stop at the first rule that matches:
+Work through this waterfall in strict order. Stop at the first rule that matches.
 
-RULE 1: If a commercial page ranks positions 4-20 for a target keyword
-  → Choose A (service-page-optimization) or B (page-2-expansion)
-  → This is the highest-value move. One strong page improvement can mean 3-5 position jumps.
+RULE 1 — pos 4-10 for a target keyword?
+  → Action A: CTR + snippet + on-page refinement
+  → Goal: push from page-1 mid to page-1 top. Improve title for CTR, tighten H1/intro to
+    match query intent more precisely, improve meta description snippet appeal.
+    Do NOT rewrite the whole page — surgical improvements only.
 
-RULE 2: If a commercial page has high impressions but CTR below 3%
-  → Choose C (ctr-improvement)
-  → More clicks from existing impressions = free traffic. Title/meta fix is low-risk, high-speed.
+RULE 2 — pos 11-20 for a target keyword?
+  → Action B: expand content + add proof + add internal links
+  → Goal: break onto page 1. Add a missing section targeting the keyword, add UAE-specific
+    proof (stats, case studies, pricing context), strengthen internal links TO this page
+    from relevant supporting content.
 
-RULE 3: If relevant blog/supporting pages exist but do not link to a money page
-  → Choose D (internal-linking)
-  → Internal links pass authority directly to service pages. Quick win, zero content needed.
+RULE 3 — commercial page has high impressions + CTR below threshold (< 3% for pos 1-5, < 2% for pos 6-10, < 1% for pos 11-20)?
+  → Action C: rewrite title/meta and improve SERP appeal
+  → Goal: more clicks from existing rankings without touching rankings themselves.
+    Title should include primary keyword, clear benefit, and UAE/Dubai signal where natural.
+    Meta description should create curiosity or urgency in 140-160 chars.
 
-RULE 4: If a commercial page receives traffic but shows weak conversion signals (no clear CTA, no trust block, no WhatsApp/form above fold)
-  → Choose E (conversion-cro)
-  → Traffic without leads is wasted. Fix the page to capture what is already coming.
+RULE 4 — relevant supporting pages (blog posts, guides, location pages) exist but do NOT link to a money page?
+  → Action D: internal link optimisation
+  → Goal: pass link authority from supporting content to service pages.
+    Use natural anchor text. Add 2-4 contextual links per supporting page.
+    Do not over-optimise anchors.
 
-RULE 5: If technical/schema issues exist on a service or location page
-  → Choose F (schema-fix)
+RULE 5 — commercial page gets traffic but shows weak conversion signals (no CTA above fold, no WhatsApp button, no trust block, no form)?
+  → Action E: improve CTA / trust / form / WhatsApp UX
+  → Goal: convert existing traffic into leads. Add or improve:
+    WhatsApp click-to-chat button, free audit CTA, trust signals (reviews, client count),
+    or contact form visibility. Keep it natural — do not add spammy urgency.
 
-RULE 6: If no stronger opportunity exists and a supporting article clearly targets a keyword cluster that feeds a money page
-  → Choose G (new-supporting-content)
-  → Only valid if the article targets a specific commercial-intent keyword and includes internal links back to the service page.
+RULE 6 — technical or schema issues on service or location pages (missing schema, broken canonical, missing alt text on key images)?
+  → Action F: fix technical SEO blockers
+  → Goal: remove indexability or trust signals that hold rankings back.
 
-RULE 7: If no opportunity has strong business value
-  → Choose H (no-action) and explain why.
+RULE 7 — clear keyword gap AND no cannibalization risk AND the SERP supports a new page?
+  → Action G: create supporting content or new page
+  → Only choose this if ALL three conditions are true:
+    1. A specific high-intent keyword has no existing page targeting it
+    2. Writing this page will NOT compete with an existing service page
+    3. The SERP for this keyword shows informational or comparison content, not just service pages
+  → New content must include internal links to the relevant service page.
+
+RULE 8 — none of the above fire with confidence?
+  → Action H: no change
+  → Explain exactly why no opportunity met the bar. This is a valid and correct outcome.
+
+State clearly:
+- Chosen action letter (A through H)
+- Target page
+- Target keyword
+- Which rule fired
+- Why this is the highest-value move today (1-2 sentences)
+- Expected SEO outcome
+- Risk level (low / medium / high)
+- Exact files you will edit
+
+Do NOT do multiple actions. Do ONE thing deeply and correctly.
 
 State clearly:
 - Chosen action type (letter A–H)
@@ -296,7 +328,8 @@ CHANGES_START
     "chosen_action": "A",
     "target_page": "...",
     "target_keyword": "...",
-    "rule_fired": "RULE 1 — commercial page ranking pos X for target keyword",
+    "current_position": 0,
+    "rule_fired": "RULE 1 — pos 4-10 for target keyword",
     "reason": "...",
     "expected_outcome": "...",
     "risk": "low"
@@ -343,7 +376,7 @@ CHANGES_END`;
           // Log the decision
           if (parsed.decision) {
             const d = parsed.decision;
-            console.log(`\n🎯 Decision: Action ${d.chosen_action} — ${d.target_keyword} on ${d.target_page}`);
+            console.log(`\n🎯 Decision: Action ${d.chosen_action} — "${d.target_keyword}" (pos ${d.current_position}) on ${d.target_page}`);
             console.log(`   Rule: ${d.rule_fired}`);
             console.log(`   Reason: ${d.reason}`);
             console.log(`   Expected: ${d.expected_outcome}`);
