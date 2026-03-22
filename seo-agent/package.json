@@ -8,7 +8,8 @@
     "smart-seo": "tsx smart-seo-agent.ts",
     "smart-blog": "tsx smart-blog-agent.ts",
     "weekly-report": "tsx weekly-report.ts",
-    "gmb": "tsx gmb-agent.ts"
+    "gmb": "tsx gmb-agent.ts",
+    "fix-images": "tsx fix-missing-images.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "latest",

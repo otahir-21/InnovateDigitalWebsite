@@ -1,0 +1,58 @@
+name: Fix Missing Blog Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: cd seo-agent && npm install
+
+      - name: Generate missing images
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cd seo-agent
+          npm run fix-images 2>&1 | tee ../fix-images-log.txt
+          EXIT_CODE=${PIPESTATUS[0]}
+          cat ../fix-images-log.txt
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "❌ Image generation failed"
+            exit 1
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push to main
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "Innovate Digital Bot"
+          git config user.email "bot@innovatedigital.ae"
+          git add lib/blogPostsData.ts public/blog/
+          git commit -m "fix: add missing blog post images"
+          git push origin main
+          echo "✅ Blog images pushed to main — Vercel deploying"
+
+      - name: No changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "ℹ️  All images already exist"
