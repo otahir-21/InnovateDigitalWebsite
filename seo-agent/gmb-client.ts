@@ -12,8 +12,8 @@
 
 import https from "https";
 
-const ACCOUNT_ID  = process.env.GMB_ACCOUNT_ID  || "";  // e.g. "accounts/302207200511455403"
-const LOCATION_ID = process.env.GMB_LOCATION_ID || "";  // e.g. "locations/XXXXXXXXXXXXXXXX"
+const ACCOUNT_ID  = (process.env.GMB_ACCOUNT_ID  || "").trim();  // e.g. "accounts/302207200511455403"
+const LOCATION_ID = (process.env.GMB_LOCATION_ID || "").trim();  // e.g. "locations/XXXXXXXXXXXXXXXX"
 
 // ── Auth (OAuth2 refresh token — required for GBP API) ────────────────────────
 async function getAccessToken(): Promise<string> {
