@@ -272,12 +272,20 @@ ${convertingPosts.length > 0
   ? convertingPosts.map((p) => `- ${p.page} → ${p.conversions} leads from ${p.sessions} sessions`).join("\n")
   : "No conversion data yet — site may be new"}
 
-SIGNAL 2 — PAGE 2 KEYWORDS (quick win — one good post pushes these to page 1)
+SIGNAL 2 — GSC RANKING KEYWORDS (real data from Google Search Console)
 ${page2Keywords.length > 0
-  ? page2Keywords.map((k) => `- "${k.query}" (position ${k.position}, ${k.impressions} impressions/month)`).join("\n")
+  ? page2Keywords.map((k) => `- "${k.query}" pos:${k.position} impressions:${k.impressions} clicks:${k.clicks}`).join("\n")
   : "No GSC data available yet"}
 
-SIGNAL 3 — COMPETITOR CONTENT GAPS (what competitors cover that we don't)
+HOW TO READ THE GSC DATA:
+- pos 1-3 = already ranking well, don't need a new post
+- pos 4-10 = page 1 but low — a better post could push to top 3
+- pos 11-20 = page 2 — BEST opportunity, one strong post gets to page 1
+- pos 21+ = early rankings — worth targeting if impressions > 0
+- Low impressions on a relevant query = underserved topic, write it first
+- High impressions + low clicks = title/meta needs fixing, not a new post
+
+SIGNAL 3 — COMPETITOR CONTENT GAPS (topics competitors cover that we don't)
 ${competitorTopics.length > 0 ? competitorTopics.slice(0, 20).map((t) => `- ${t}`).join("\n") : "No competitor data"}
 
 SIGNAL 4 — OUR TOP PAGES BY CLICKS
@@ -288,13 +296,15 @@ ${existingTitles.slice(0, 30).map((t) => `- ${t}`).join("\n")}
 
 DECISION RULES (in order):
 1. If converting posts exist → pick a topic in the same category/format as the highest converter
-2. Else if page-2 keywords exist → pick the one with most impressions and write a dedicated post
-3. Else → find the most valuable competitor gap for Dubai/UAE audience
+2. Else if GSC has pos 11-20 keywords → pick highest impressions one and write a dedicated post
+3. Else if GSC has pos 4-10 keywords → pick one and write a stronger, more comprehensive post
+4. Else if GSC has any keywords at all → pick the most relevant and expand on it
+5. Else → find the most valuable competitor gap for Dubai/UAE audience
 
 CONSTRAINTS:
 - Must target Dubai/UAE audience specifically
-- Must have real search demand
 - Must not duplicate existing content
+- Prefer topics with commercial intent (leads over traffic)
 
 Return ONLY the blog post title. Nothing else.`;
 
@@ -425,7 +435,12 @@ async function main() {
   const converting = convertingPosts.status === "fulfilled" ? convertingPosts.value : [];
   const ga4 = ga4Stats.status === "fulfilled" ? ga4Stats.value : null;
 
-  console.log(`  ↳ Page-2 keywords: ${keywords.length}`);
+  console.log(`  ↳ GSC keywords (all positions): ${keywords.length}`);
+  if (keywords.length > 0) {
+    const p2 = keywords.filter(k => k.position >= 11 && k.position <= 20);
+    console.log(`    ↳ Page-2 opportunities (pos 11-20): ${p2.length}`);
+    console.log(`    ↳ Top keyword: "${keywords[0]?.query}" at pos ${keywords[0]?.position} (${keywords[0]?.impressions} impressions)`);
+  }
   console.log(`  ↳ Converting blog posts (last 90d): ${converting.length}`);
   if (stats) console.log(`  ↳ GSC last 7d: ${stats.totalClicks} clicks, ${stats.totalImpressions} impressions`);
   if (ga4) console.log(`  ↳ GA4 last 7d: ${ga4.totalSessions} sessions, ${ga4.totalConversions} conversions, top source: ${ga4.topSource}`);
@@ -443,7 +458,7 @@ async function main() {
   const existingSlugs = getExistingSlugs();
 
   console.log("\n🧠 Picking best topic...");
-  const hasRealData = keywords.length > 0 || converting.length > 0;
+  const hasRealData = keywords.length > 0 || converting.length > 0 || competitorTopics.length > 0;
   let topic: string;
 
   if (hasRealData || competitorTopics.length > 0) {

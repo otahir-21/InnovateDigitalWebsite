@@ -60,7 +60,8 @@ export async function getLowCTRPages(days = 28): Promise<GSCRow[]> {
     }));
 }
 
-/** Queries ranking on page 2 (positions 11–20) — one good blog post can push to page 1 */
+/** All ranking queries — works for new sites with low impressions too.
+ *  Includes page-2 quick wins, low-CTR opportunities, and any branded queries to exclude. */
 export async function getPage2Keywords(days = 28): Promise<GSCRow[]> {
   const auth = getAuth();
   const sc = google.searchconsole({ version: "v1", auth });
@@ -75,14 +76,14 @@ export async function getPage2Keywords(days = 28): Promise<GSCRow[]> {
       startDate: startDate.toISOString().split("T")[0],
       endDate: endDate.toISOString().split("T")[0],
       dimensions: ["query"],
-      rowLimit: 100,
+      rowLimit: 200,
       orderBy: [{ fieldName: "impressions", sortOrder: "DESCENDING" }],
     },
   });
 
   const rows = (res.data.rows || []) as any[];
+  // No impression floor — return everything GSC has, let Claude decide what's valuable
   return rows
-    .filter((r) => r.position >= 11 && r.position <= 20 && r.impressions > 50)
     .map((r) => ({
       query: r.keys[0],
       page: "",
@@ -91,7 +92,7 @@ export async function getPage2Keywords(days = 28): Promise<GSCRow[]> {
       ctr: r.ctr,
       position: Math.round(r.position * 10) / 10,
     }))
-    .slice(0, 20);
+    .slice(0, 100);
 }
 
 /** Top performing pages — understand what's already working */
