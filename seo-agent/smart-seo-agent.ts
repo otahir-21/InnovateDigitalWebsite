@@ -1,21 +1,24 @@
 /**
- * Innovate Digital — Smart SEO Agent
+ * Innovate Digital — Master SEO Agent
  *
- * Thinks for itself:
- * 1. Pulls low-CTR pages from GSC (real data, not guesswork)
- * 2. Only fixes pages that actually need fixing
- * 3. Uses Claude Agent SDK to read + rewrite metadata intelligently
- * 4. Logs every change made for the weekly report
- * 5. Opens a GitHub issue if it finds something it can't fix alone
+ * Primary goal: increase UAE commercial keyword rankings and qualified leads.
+ * NOT a content machine — a strategic SEO operator.
+ *
+ * Every run:
+ * 1. Gather real data (GSC + GA4 + codebase)
+ * 2. Build scored opportunity list
+ * 3. Choose ONE highest-value action
+ * 4. Execute it deeply and correctly
+ * 5. Log the change with full context
  */
 
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { getLowCTRPages, getPage2Keywords, getSiteStats } from "./gsc-client.js";
-import { getHighTrafficLowConversion, getHighBouncePages, getGA4SiteStats } from "./ga4-client.js";
-import { buildGoalsContext } from "./seo-goals.js";
+import { getLowCTRPages, getPage2Keywords, getSiteStats, getTopPages } from "./gsc-client.js";
+import { getHighTrafficLowConversion, getHighBouncePages, getGA4SiteStats, getConvertingBlogPosts } from "./ga4-client.js";
+import { KEYWORD_GOALS, SERVICE_GOALS, buildGoalsContext } from "./seo-goals.js";
 import { sendActionRequired } from "./email-client.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,157 +28,255 @@ const CHANGES_LOG = path.join(__dirname, "seo-changes-log.json");
 interface ChangeEntry {
   date: string;
   page: string;
-  issue: string;
-  fixed: string;
+  keyword_goal: string;
+  action_type: string;
+  summary: string;
+  expected_impact: string;
 }
 
 function loadChangesLog(): ChangeEntry[] {
-  try {
-    return JSON.parse(fs.readFileSync(CHANGES_LOG, "utf-8"));
-  } catch {
-    return [];
-  }
+  try { return JSON.parse(fs.readFileSync(CHANGES_LOG, "utf-8")); }
+  catch { return []; }
 }
 
 function saveChangesLog(entries: ChangeEntry[]) {
   fs.writeFileSync(CHANGES_LOG, JSON.stringify(entries.slice(-200), null, 2));
 }
 
+function buildGSCDataBlock(
+  allKeywords: Awaited<ReturnType<typeof getPage2Keywords>>,
+  lowCTRPages: Awaited<ReturnType<typeof getLowCTRPages>>,
+  topPages: Awaited<ReturnType<typeof getTopPages>>,
+  siteStats: Awaited<ReturnType<typeof getSiteStats>> | null
+): string {
+  if (allKeywords.length === 0 && lowCTRPages.length === 0) {
+    return `GSC DATA: Not available yet — site may be new or secrets misconfigured.
+Run codebase audit instead: read existing service page files and identify on-page gaps.`;
+  }
+
+  // Segment keywords by position
+  const pos4to10   = allKeywords.filter(k => k.position >= 4  && k.position <= 10);
+  const pos11to20  = allKeywords.filter(k => k.position >= 11 && k.position <= 20);
+  const pos21plus  = allKeywords.filter(k => k.position > 20).slice(0, 20);
+
+  return `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GSC DATA (last 28 days)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${siteStats ? `Site-wide: ${siteStats.totalClicks} clicks | ${siteStats.totalImpressions} impressions | CTR ${siteStats.avgCTR}% | Avg pos ${siteStats.avgPosition}` : ""}
+
+POSITIONS 4-10 — Close to top 3, high revenue potential if pushed up:
+${pos4to10.length > 0 ? pos4to10.slice(0, 15).map(k => `  "${k.query}" pos:${k.position} impressions:${k.impressions} clicks:${k.clicks} CTR:${(k.ctr * 100).toFixed(1)}%`).join("\n") : "  None"}
+
+POSITIONS 11-20 — Page 2, one strong page can reach page 1:
+${pos11to20.length > 0 ? pos11to20.slice(0, 15).map(k => `  "${k.query}" pos:${k.position} impressions:${k.impressions} clicks:${k.clicks} CTR:${(k.ctr * 100).toFixed(1)}%`).join("\n") : "  None"}
+
+POSITIONS 21+ — Early signals, lower priority:
+${pos21plus.length > 0 ? pos21plus.slice(0, 10).map(k => `  "${k.query}" pos:${k.position} impressions:${k.impressions}`).join("\n") : "  None"}
+
+LOW CTR PAGES — Getting impressions but not clicks (title/meta problem):
+${lowCTRPages.length > 0 ? lowCTRPages.slice(0, 10).map(p => `  ${p.page} | impressions:${p.impressions} clicks:${p.clicks} CTR:${(p.ctr * 100).toFixed(1)}% pos:${p.position.toFixed(1)}`).join("\n") : "  None"}
+
+TOP PAGES BY CLICKS:
+${topPages.length > 0 ? topPages.slice(0, 5).map(p => `  ${p.page} — ${p.clicks} clicks pos:${p.position}`).join("\n") : "  None"}`;
+}
+
+function buildGA4DataBlock(
+  highTrafficLowConversion: Awaited<ReturnType<typeof getHighTrafficLowConversion>>,
+  highBouncePages: Awaited<ReturnType<typeof getHighBouncePages>>,
+  convertingPosts: Awaited<ReturnType<typeof getConvertingBlogPosts>>,
+  ga4Stats: Awaited<ReturnType<typeof getGA4SiteStats>> | null
+): string {
+  if (!ga4Stats && highTrafficLowConversion.length === 0) return "GA4 DATA: Not available.";
+
+  return `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GA4 DATA (last 28 days)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${ga4Stats ? `Sessions: ${ga4Stats.totalSessions} | Conversions: ${ga4Stats.totalConversions} | Engagement: ${ga4Stats.engagementRate}% | Top source: ${ga4Stats.topSource}` : ""}
+
+HIGH TRAFFIC — ZERO LEADS (highest revenue impact to fix):
+${highTrafficLowConversion.length > 0
+  ? highTrafficLowConversion.slice(0, 8).map(p => `  ${p.page} | sessions:${p.sessions} conversions:${p.conversions} engagement:${Math.round(p.engagementRate * 100)}%`).join("\n")
+  : "  None"}
+
+HIGH BOUNCE PAGES (content/intent mismatch):
+${highBouncePages.length > 0
+  ? highBouncePages.slice(0, 8).map(p => `  ${p.page} | sessions:${p.sessions} engagement:${Math.round(p.engagementRate * 100)}% avg_time:${Math.round(p.avgSessionDuration)}s`).join("\n")
+  : "  None"}
+
+BLOG POSTS GENERATING LEADS:
+${convertingPosts.length > 0
+  ? convertingPosts.slice(0, 5).map(p => `  ${p.page} → ${p.conversions} leads from ${p.sessions} sessions`).join("\n")
+  : "  None yet"}`;
+}
+
 async function main() {
-  console.log("🚀 Smart SEO Agent starting...\n");
+  console.log("🚀 Master SEO Agent starting...\n");
 
-  // ── 1. Get real data from GSC ───────────────────────────────────────────────
-  console.log("📊 Fetching GSC intelligence...");
+  // ── 1. Gather all data ──────────────────────────────────────────────────────
+  console.log("📊 Fetching GSC + GA4 data...");
 
-  let lowCTRPages: Awaited<ReturnType<typeof getLowCTRPages>> = [];
-  let page2Keywords: Awaited<ReturnType<typeof getPage2Keywords>> = [];
-  let siteStats: Awaited<ReturnType<typeof getSiteStats>> | null = null;
-  let highTrafficLowConversion: Awaited<ReturnType<typeof getHighTrafficLowConversion>> = [];
-  let highBouncePages: Awaited<ReturnType<typeof getHighBouncePages>> = [];
-  let ga4Stats: Awaited<ReturnType<typeof getGA4SiteStats>> | null = null;
-
-  const [gscCTR, gscP2, gscStats, ga4HiTraffic, ga4Bounce, ga4Overall] = await Promise.allSettled([
-    getLowCTRPages(28),
+  const [gscAll, gscCTR, gscTop, gscStats, ga4HiTraffic, ga4Bounce, ga4Overall, ga4Converting] = await Promise.allSettled([
     getPage2Keywords(28),
+    getLowCTRPages(28),
+    getTopPages(28),
     getSiteStats(7),
     getHighTrafficLowConversion(28),
     getHighBouncePages(28),
     getGA4SiteStats(7),
+    getConvertingBlogPosts(30),
   ]);
 
-  if (gscCTR.status === "fulfilled") lowCTRPages = gscCTR.value;
-  if (gscP2.status === "fulfilled") page2Keywords = gscP2.value;
-  if (gscStats.status === "fulfilled") siteStats = gscStats.value;
-  if (ga4HiTraffic.status === "fulfilled") highTrafficLowConversion = ga4HiTraffic.value;
-  if (ga4Bounce.status === "fulfilled") highBouncePages = ga4Bounce.value;
-  if (ga4Overall.status === "fulfilled") ga4Stats = ga4Overall.value;
+  const allKeywords    = gscAll.status        === "fulfilled" ? gscAll.value        : [];
+  const lowCTRPages    = gscCTR.status        === "fulfilled" ? gscCTR.value        : [];
+  const topPages       = gscTop.status        === "fulfilled" ? gscTop.value        : [];
+  const siteStats      = gscStats.status      === "fulfilled" ? gscStats.value      : null;
+  const hiTraffic      = ga4HiTraffic.status  === "fulfilled" ? ga4HiTraffic.value  : [];
+  const highBounce     = ga4Bounce.status     === "fulfilled" ? ga4Bounce.value     : [];
+  const ga4Stats       = ga4Overall.status    === "fulfilled" ? ga4Overall.value    : null;
+  const convertingPosts= ga4Converting.status === "fulfilled" ? ga4Converting.value : [];
 
-  console.log(`  ↳ Low CTR pages (GSC): ${lowCTRPages.length}`);
-  console.log(`  ↳ High traffic, zero leads (GA4): ${highTrafficLowConversion.length}`);
-  console.log(`  ↳ High bounce pages (GA4): ${highBouncePages.length}`);
-  console.log(`  ↳ Page-2 keywords: ${page2Keywords.length}`);
-  if (siteStats) console.log(`  ↳ GSC: ${siteStats.totalClicks} clicks | pos ${siteStats.avgPosition}`);
-  if (ga4Stats) console.log(`  ↳ GA4: ${ga4Stats.totalSessions} sessions | ${ga4Stats.totalConversions} conversions`);
+  const p2count = allKeywords.filter(k => k.position >= 11 && k.position <= 20).length;
+  console.log(`  ↳ GSC keywords total: ${allKeywords.length} (${p2count} on page 2)`);
+  console.log(`  ↳ Low CTR pages: ${lowCTRPages.length}`);
+  console.log(`  ↳ High traffic / zero leads: ${hiTraffic.length}`);
+  console.log(`  ↳ High bounce pages: ${highBounce.length}`);
+  if (siteStats) console.log(`  ↳ Site: ${siteStats.totalClicks} clicks | pos ${siteStats.avgPosition}`);
+  if (ga4Stats)  console.log(`  ↳ GA4: ${ga4Stats.totalSessions} sessions | ${ga4Stats.totalConversions} conversions`);
 
-  // ── 2. Build targeted prompt based on real data ─────────────────────────────
-  const ga4Context = highTrafficLowConversion.length > 0 || highBouncePages.length > 0 ? `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PRIORITY 1 — HIGH TRAFFIC BUT ZERO LEADS (from Google Analytics)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-These pages get real visitors but nobody converts. Fix CTAs first — this is the highest revenue impact.
-
-${highTrafficLowConversion.map((p) => `Page: ${p.page}
-  Sessions: ${p.sessions} | Conversions: ${p.conversions} | Engagement: ${Math.round(p.engagementRate * 100)}%
-  Fix: Add a prominent CTA section (WhatsApp button, free audit offer, or contact form) above the fold.
-  Make the value proposition clear — what do they get by contacting you?`).join("\n\n")}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PRIORITY 2 — HIGH BOUNCE RATE PAGES (from Google Analytics)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-People land and immediately leave. The content doesn't match what they expected.
-
-${highBouncePages.map((p) => `Page: ${p.page}
-  Sessions: ${p.sessions} | Engagement rate: ${Math.round(p.engagementRate * 100)}% | Avg time: ${Math.round(p.avgSessionDuration)}s
-  Fix: Check the H1 matches the keyword bringing traffic. Improve the opening paragraph.
-  Add internal links to keep people on the site longer.`).join("\n\n")}
-` : "";
-
-  const gscContext = lowCTRPages.length > 0
-    ? `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PRIORITY TASK — FIX LOW CTR PAGES (from Google Search Console)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-These pages get impressions on Google but people don't click.
-The title and meta description need to be more compelling.
-
-${lowCTRPages.map((p) => `Page: ${p.page}
-  Impressions: ${p.impressions} | Clicks: ${p.clicks} | CTR: ${(p.ctr * 100).toFixed(1)}% | Position: ${p.position.toFixed(1)}
-  Fix: Rewrite the metadata export in the corresponding page.tsx file.
-  The title should be specific, benefit-driven, and include the primary keyword.
-  The description should create urgency or curiosity (140-160 chars).`
-).join("\n\n")}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PAGE-2 KEYWORDS (ranking 11-20 — add content to push to page 1)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-These keywords are close to page 1. Find the page ranking for each
-and add a section or paragraph targeting it more specifically.
-
-${page2Keywords.slice(0, 10).map((k) => `- "${k.query}" (position ${k.position.toFixed(1)}, ${k.impressions} impressions)`).join("\n")}
-`
-    : `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-GSC DATA UNAVAILABLE — RUN STANDARD AUDIT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Run the standard 12-task audit covering metadata, schema,
-headings, alt text, canonicals, and sitemap.
-`;
-
-  const PROMPT = `You are an expert SEO engineer for Innovate Digital (innovatedigital.ae),
-a digital marketing agency in Dubai, UAE.
+  // ── 2. Build the strategic prompt ───────────────────────────────────────────
+  const PROMPT = `You are the Master SEO Agent for Innovate Digital (innovatedigital.ae).
+This is a UAE digital marketing agency website.
 
 SITE ROOT: ${ROOT}
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BUSINESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name: Innovate Digital
+Domain: https://www.innovatedigital.ae
+Phone: +971 52 394 9010
+Email: info@innovatedigital.ae
+Address: Meydan Free Zone, Dubai, UAE
+Trust signals: 5.0/5 (47 reviews) | Founded 2020 | 200+ clients
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRIMARY GOAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Increase rankings for UAE commercial keywords and generate more qualified leads.
+NOT to publish content for its own sake.
+Your definition of success: better rankings, more leads, stronger service pages.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TARGET KEYWORDS (highest priority)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${buildGoalsContext()}
 
-${ga4Context}
-
-BUSINESS:
-- Name: Innovate Digital
-- Domain: https://www.innovatedigital.ae
-- Phone: +971 52 394 9010
-- Email: info@innovatedigital.ae
-- Address: Meydan Free Zone, Dubai, UAE
-- Rating: 5.0/5 (47 reviews) | Founded: 2020 | 200+ clients
-
-${gscContext}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIVE DATA FROM GOOGLE SEARCH CONSOLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${buildGSCDataBlock(allKeywords, lowCTRPages, topPages, siteStats)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-STANDARD CHECKS (run after priority tasks)
+LIVE DATA FROM GOOGLE ANALYTICS 4
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. Every page has a unique, keyword-rich title (50-60 chars)
-2. Every page has a meta description (140-160 chars)
-3. Every page has a canonical URL
-4. All service pages have FAQ schema
-5. All location pages have AggregateRating schema
-6. No images missing alt text
-7. Sitemap includes all pages with correct priorities
-8. llms.txt exists at public/llms.txt and is up to date
+${buildGA4DataBlock(hiTraffic, highBounce, convertingPosts, ga4Stats)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EXECUTION RULES
+YOUR TASK — 4 STEPS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- Fix priority (low CTR) pages FIRST
-- After EVERY file edit, run: cd ${ROOT} && npx tsc --noEmit 2>&1 | tail -3
-- If TypeScript errors appear, fix them immediately
-- Do NOT add dummy data — if real content is needed, note it in output
-- At the end, output a JSON summary:
+
+## STEP 1 — READ THE CODEBASE
+Before deciding anything, read the actual files:
+- Use Glob to find all service pages: app/**/page.tsx, components/services/**
+- Read the pages that correspond to the GSC/GA4 data above
+- Look at their metadata, H1, content, schema, internal links, CTAs
+- Check what keywords they are targeting vs what they are actually ranking for
+
+## STEP 2 — BUILD TOP 5 OPPORTUNITIES
+List exactly 5 opportunities. For each one:
+- Opportunity type (one of: service-page-optimization, ctr-improvement, page-2-expansion, internal-linking, conversion-cro, schema-fix, technical-seo, content-refresh, new-supporting-content)
+- Page/URL affected
+- Keyword goal it supports
+- Current problem
+- Proposed action
+- Score (1-10) based on: revenue potential, ranking potential, speed, confidence
+
+Use this strict priority order when scoring:
+1. Commercial service pages ranking 4-20 → highest score
+2. High-impression low-CTR commercial pages → high score
+3. High-traffic zero-conversion pages → high score
+4. Pages with weak internal linking to money pages → medium score
+5. Technical/schema fixes → medium score
+6. Content refresh of existing ranking pages → medium score
+7. New blog post → LOW score, only if no stronger opportunity exists
+
+## STEP 3 — CHOOSE ONE ACTION
+Pick the single highest-scoring opportunity.
+State clearly:
+- Which opportunity you chose
+- Why (1-2 sentences)
+- Expected SEO outcome
+- Risk level (low/medium/high)
+- Exact files you will edit
+
+Do NOT do 5 things. Do ONE thing deeply and correctly.
+
+## STEP 4 — EXECUTE
+Make the change. You can edit:
+- title tag and meta description
+- H1 and page headings
+- intro and body content
+- FAQ sections
+- schema markup (JSON-LD)
+- internal links (add links to service pages from supporting pages)
+- CTA sections and conversion blocks
+- image alt text
+- canonical tags
+
+After every file edit, run: cd ${ROOT} && npx tsc --noEmit 2>&1 | tail -5
+Fix any TypeScript errors before moving on.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HARD RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- NEVER publish a blog post unless it is clearly the highest-value action and no existing-page opportunity scores higher
+- NEVER make scattered minor edits just to appear productive
+- NEVER create location doorway pages
+- NEVER create a new page that cannibalises an existing target page
+- NEVER add Dubai/UAE modifiers in a spammy or unnatural way
+- ALWAYS prefer one strong strategic improvement over many weak ones
+- ALWAYS check that the page you are optimising actually exists in the codebase first
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OUTPUT FORMAT (required at the end)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+After completing the work, output this exact block:
 
 CHANGES_START
-{ "changes": [ { "page": "url", "issue": "what was wrong", "fixed": "what you changed" } ] }
+{
+  "opportunity_analysis": [
+    { "rank": 1, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 2, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 3, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 4, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 5, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." }
+  ],
+  "changes": [
+    {
+      "page": "url or file path",
+      "keyword_goal": "target keyword",
+      "action_type": "one of the opportunity types above",
+      "summary": "exactly what you changed",
+      "expected_impact": "what ranking/conversion improvement you expect"
+    }
+  ]
+}
 CHANGES_END`;
 
   // ── 3. Run the agent ────────────────────────────────────────────────────────
+  console.log("\n🧠 Agent thinking...\n");
   const changes: ChangeEntry[] = [];
 
   for await (const message of query({
@@ -189,15 +290,21 @@ CHANGES_END`;
     },
   })) {
     if ("result" in message) {
-      // Parse changes from agent output
       const resultText = message.result || "";
       const match = resultText.match(/CHANGES_START\s*([\s\S]*?)\s*CHANGES_END/);
       if (match) {
         try {
           const parsed = JSON.parse(match[1]);
+          // Log opportunity analysis
+          if (parsed.opportunity_analysis) {
+            console.log("\n📋 Opportunity Analysis:");
+            for (const opp of parsed.opportunity_analysis) {
+              console.log(`  #${opp.rank} [score:${opp.score}] ${opp.type} — "${opp.keyword}" on ${opp.page}`);
+            }
+          }
           changes.push(
             ...(parsed.changes || []).map((c: any) => ({
-              date: new Date().toISOString().split("T")[0],
+              date: new Date().toISOString(),
               ...c,
             }))
           );
@@ -216,26 +323,28 @@ CHANGES_END`;
     const log = loadChangesLog();
     log.push(...changes);
     saveChangesLog(log);
-    console.log(`\n📝 Logged ${changes.length} changes`);
+    console.log(`\n📝 Logged ${changes.length} change(s)`);
+  } else {
+    console.log("\nℹ️  No changes made today — agent found no strong enough opportunity");
   }
 
-  // ── 5. Email if anything needs attention ────────────────────────────────
+  // ── 5. Email alerts ─────────────────────────────────────────────────────────
   const actionItems: string[] = [];
-  if (!siteStats) actionItems.push("GSC credentials not working — check GSC_SERVICE_ACCOUNT_JSON secret");
-  if (highBouncePages.length > 3) actionItems.push(`${highBouncePages.length} pages still have high bounce rate after this run`);
-  if (changes.length === 0 && lowCTRPages.length > 0) actionItems.push(`${lowCTRPages.length} low-CTR pages found but no changes made — review agent logs`);
+  if (!siteStats) actionItems.push("GSC not returning data — check GSC_SERVICE_ACCOUNT_JSON secret");
+  if (!ga4Stats)  actionItems.push("GA4 not returning data — check GA4_PROPERTY_ID secret");
+  if (hiTraffic.length > 3 && changes.length === 0)
+    actionItems.push(`${hiTraffic.length} high-traffic pages still have zero conversions — agent made no changes, manual review needed`);
 
-  if (actionItems.length > 0) {
-    await sendActionRequired(actionItems);
-  }
+  if (actionItems.length > 0) await sendActionRequired(actionItems);
 
-  // ── 6. Output report for GitHub Issue ──────────────────────────────────
+  // ── 6. Report data for weekly report ────────────────────────────────────────
   console.log("\n📋 REPORT_DATA_START");
   console.log(JSON.stringify({
     date: new Date().toISOString().split("T")[0],
-    lowCTRPagesFixed: lowCTRPages.length,
-    page2Keywords: page2Keywords.slice(0, 5),
+    gscKeywordsTotal: allKeywords.length,
+    page2Keywords: allKeywords.filter(k => k.position >= 11 && k.position <= 20).slice(0, 5),
     siteStats,
+    ga4Stats,
     changesCount: changes.length,
     changes: changes.slice(0, 10),
   }));
@@ -243,6 +352,6 @@ CHANGES_END`;
 }
 
 main().catch((err) => {
-  console.error("❌ Smart SEO Agent failed:", err);
+  console.error("❌ Master SEO Agent failed:", err);
   process.exit(1);
 });
