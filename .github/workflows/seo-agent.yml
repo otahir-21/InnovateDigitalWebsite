@@ -10,6 +10,8 @@ jobs:
   seo-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -47,8 +49,9 @@ jobs:
         run: |
           cd seo-agent
           npm run smart-seo 2>&1 | tee ../seo-agent-log.txt
-          echo "Exit code: ${PIPESTATUS[0]}"
-          if [ ${PIPESTATUS[0]} -ne 0 ]; then
+          EXIT_CODE=${PIPESTATUS[0]}
+          echo "Exit code: $EXIT_CODE"
+          if [ $EXIT_CODE -ne 0 ]; then
             cat ../seo-agent-log.txt
             exit 1
           fi
