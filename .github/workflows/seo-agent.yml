@@ -61,19 +61,32 @@ jobs:
         run: |
           git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
-      - name: Commit and push SEO fixes to staging
+      - name: Install site dependencies
+        if: steps.changes.outputs.changed == 'true'
+        run: npm ci
+
+      - name: TypeScript check
+        if: steps.changes.outputs.changed == 'true'
+        run: npx tsc --noEmit
+
+      - name: Build check
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://www.innovatedigital.ae
+
+      - name: Commit and push SEO fixes to main
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "Innovate Digital SEO Bot"
           git config user.email "seo-bot@innovatedigital.ae"
 
-          # Always base staging off latest main to avoid drift
-          git fetch origin
-          git checkout -B staging origin/main
-
           git add -A
-          git commit -m "chore: daily SEO audit fixes $(date '+%Y-%m-%d')"
+          git commit -m "seo: daily audit fixes $(date '+%Y-%m-%d')"
 
-          # Push to staging — validate-and-deploy.yml will merge to main if build passes
-          git push origin staging --force-with-lease
-          echo "✅ SEO fixes pushed to staging — build validation will run next"
+          git push origin main
+          echo "✅ SEO fixes validated and pushed directly to main — Vercel will deploy"
+
+      - name: No changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "ℹ️  No SEO changes made today"
