@@ -115,7 +115,7 @@ export interface GmbPost {
 
 // ── Reviews (v4 — still active for reviews) ───────────────────────────────────
 export async function getReviews(): Promise<GmbReview[]> {
-  const path = `/v4/${ACCOUNT_ID}/${LOCATION_ID}/reviews?orderBy=updateTime+desc&pageSize=50`;
+  const path = `/v4/${ACCOUNT_ID}/${LOCATION_ID}/reviews?orderBy=updateTime%20desc&pageSize=50`;
   const res = await apiRequest<{ reviews?: GmbReview[] }>("mybusiness.googleapis.com", path);
   return res.reviews || [];
 }
