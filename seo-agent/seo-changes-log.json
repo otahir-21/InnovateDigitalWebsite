@@ -1,0 +1,92 @@
+[
+  {
+    "date": "2026-03-22",
+    "page": "/dubai",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/abu-dhabi",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/sharjah",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/business-bay",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/downtown-dubai",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/dubai-marina",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/jlt",
+    "issue": "Missing AggregateRating schema on location page",
+    "fixed": "Added AggregateRating schema (5.0/5, 47 reviews) via generateAggregateRatingSchema"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/",
+    "issue": "Missing canonical URL on homepage",
+    "fixed": "Added alternates.canonical: '/'"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/about",
+    "issue": "Missing canonical URL",
+    "fixed": "Added alternates.canonical: '/about'"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/contact",
+    "issue": "Missing canonical URL",
+    "fixed": "Added alternates.canonical: '/contact'"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/terms",
+    "issue": "Missing canonical URL",
+    "fixed": "Added alternates.canonical: '/terms'"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/disclaimer",
+    "issue": "Missing canonical URL",
+    "fixed": "Added alternates.canonical: '/disclaimer'"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/blog",
+    "issue": "Non-descriptive title ('Blog') and generic meta description",
+    "fixed": "Updated title to 'Digital Marketing Blog Dubai | SEO & Social Media Tips UAE' with keyword-rich description (155 chars)"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "/portfolio",
+    "issue": "Non-descriptive title ('Portfolio') and generic meta description",
+    "fixed": "Updated title to 'Portfolio & Case Studies | Digital Marketing Results Dubai' with keyword-rich description (155 chars)"
+  },
+  {
+    "date": "2026-03-22",
+    "page": "public/llms.txt",
+    "issue": "llms.txt file missing entirely",
+    "fixed": "Created comprehensive llms.txt with company info, all 12 services with URLs, 7 locations, key pages, and blog topics description"
+  }
+]

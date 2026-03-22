@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     'ROI-Focused Marketing Dubai',
     'Growth Marketing UAE'
   ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Dubai\'s Leading Digital Marketing Agency | 200+ UAE Clients',
     description: 'Google Partner certified agency delivering 3x average ROI. Expert SEO, PPC, social media & web development in Dubai, Abu Dhabi & Sharjah.',
