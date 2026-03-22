@@ -1,9 +1,9 @@
-name: Daily Blog Post Generator
+name: Daily Blog Post Generator (DISABLED — blog creation now handled by Master SEO Agent Rule G only)
 
 on:
-  schedule:
-    # 5AM UTC = 9AM Dubai (GMT+4)
-    - cron: "0 5 * * *"
+  # Schedule removed — blog posts are only created when the Master SEO Agent
+  # selects Rule G (keyword gap + no cannibalization + SERP supports new page).
+  # This workflow is kept for manual emergency use only.
   workflow_dispatch:
 
 jobs:

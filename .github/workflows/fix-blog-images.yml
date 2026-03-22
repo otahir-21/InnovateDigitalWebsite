@@ -43,15 +43,22 @@ jobs:
         run: |
           git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
-      - name: Commit and push to main
+      - name: Commit and push to staging
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "Innovate Digital Bot"
           git config user.email "bot@innovatedigital.ae"
+
+          # Always base staging off latest main to avoid drift
+          git fetch origin
+          git checkout -B staging origin/main
+
           git add lib/blogPostsData.ts public/blog/
           git commit -m "fix: add missing blog post images"
-          git push origin main
-          echo "✅ Blog images pushed to main — Vercel deploying"
+
+          # Push to staging — validate-and-deploy.yml will merge to main if build passes
+          git push origin staging --force-with-lease
+          echo "✅ Blog images pushed to staging — build validation will run next"
 
       - name: No changes
         if: steps.changes.outputs.changed == 'false'

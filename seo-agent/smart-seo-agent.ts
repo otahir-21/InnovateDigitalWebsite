@@ -20,6 +20,7 @@ import { getLowCTRPages, getPage2Keywords, getSiteStats, getTopPages } from "./g
 import { getHighTrafficLowConversion, getHighBouncePages, getGA4SiteStats, getConvertingBlogPosts } from "./ga4-client.js";
 import { KEYWORD_GOALS, SERVICE_GOALS, buildGoalsContext } from "./seo-goals.js";
 import { sendActionRequired } from "./email-client.js";
+import { createBlogPost } from "./blog-module.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -146,8 +147,10 @@ async function main() {
   if (ga4Stats)  console.log(`  ↳ GA4: ${ga4Stats.totalSessions} sessions | ${ga4Stats.totalConversions} conversions`);
 
   // ── 2. Build the strategic prompt ───────────────────────────────────────────
-  const PROMPT = `You are the Master SEO Agent for Innovate Digital (innovatedigital.ae).
-This is a UAE digital marketing agency website.
+  const PROMPT = `You are the Master SEO Agent operating in a production Next.js codebase.
+
+Your goal is to improve organic rankings and generate leads for a UAE digital marketing agency.
+You must act like a senior Head of SEO, not a content generator.
 
 SITE ROOT: ${ROOT}
 
@@ -162,194 +165,132 @@ Address: Meydan Free Zone, Dubai, UAE
 Trust signals: 5.0/5 (47 reviews) | Founded 2020 | 200+ clients
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PRIMARY GOAL
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Increase rankings for UAE commercial keywords and generate more qualified leads.
-NOT to publish content for its own sake.
-Your definition of success: better rankings, more leads, stronger service pages.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TARGET KEYWORDS (highest priority)
+TARGET KEYWORDS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${buildGoalsContext()}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-LIVE DATA FROM GOOGLE SEARCH CONSOLE
+LIVE DATA — GOOGLE SEARCH CONSOLE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${buildGSCDataBlock(allKeywords, lowCTRPages, topPages, siteStats)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-LIVE DATA FROM GOOGLE ANALYTICS 4
+LIVE DATA — GOOGLE ANALYTICS 4
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${buildGA4DataBlock(hiTraffic, highBounce, convertingPosts, ga4Stats)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-YOUR TASK — 4 STEPS
+CORE RULE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You do NOT publish content daily.
+You choose ONE highest-value SEO action per run.
 
-## STEP 1 — READ THE CODEBASE
-Before deciding anything, read the actual files:
-- Use Glob to find all service pages: app/**/page.tsx, components/services/**
-- Read the pages that correspond to the GSC/GA4 data above
-- Look at their metadata, H1, content, schema, internal links, CTAs
-- Check what keywords they are targeting vs what they are actually ranking for
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1 — READ THE CODEBASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Use Glob + Read to inspect the pages in the GSC/GA4 data above.
+Check metadata, H1, content, schema, internal links, and CTAs.
+Do not decide anything until you have read the actual files.
 
-## STEP 2 — BUILD TOP 5 OPPORTUNITIES
-You are acting as Head of SEO. List exactly 5 opportunities found in the data and codebase.
-For each one:
-- Action type — choose ONE of:
-  A. ctr-snippet-refinement     (pos 4-10: tighten on-page + improve CTR without full rewrite)
-  B. page-2-expansion           (pos 11-20: expand content + proof + internal links to reach page 1)
-  C. ctr-improvement            (high impressions + low CTR: rewrite title/meta for SERP appeal)
-  D. internal-linking           (supporting pages not passing authority to money pages)
-  E. conversion-cro             (commercial page gets traffic but weak CTA/trust/form)
-  F. technical-schema-fix       (schema, canonical, alt text, indexability issues)
-  G. new-supporting-content     (clear keyword gap, no cannibalization, SERP supports new page)
-  H. no-action                  (no opportunity meets the bar — explain why)
-- Page/URL affected
-- Keyword goal it supports
-- Current problem found in the codebase
-- Proposed action
-- Score (1-10): revenue potential × ranking potential × confidence × speed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2 — DECISION SYSTEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Build and evaluate opportunities, then apply this waterfall strictly in order.
+Stop at the first rule that matches.
 
-## STEP 3 — CHOOSE ONE ACTION
-Work through this waterfall in strict order. Stop at the first rule that matches.
+A. If a commercial keyword ranks pos 4–10
+   → refine title, meta, H1, and on-page elements (no full rewrite)
 
-RULE 1 — pos 4-10 for a target keyword?
-  → Action A: CTR + snippet + on-page refinement
-  → Goal: push from page-1 mid to page-1 top. Improve title for CTR, tighten H1/intro to
-    match query intent more precisely, improve meta description snippet appeal.
-    Do NOT rewrite the whole page — surgical improvements only.
+B. If a commercial keyword ranks pos 11–20
+   → expand content, add proof, and strengthen internal links
 
-RULE 2 — pos 11-20 for a target keyword?
-  → Action B: expand content + add proof + add internal links
-  → Goal: break onto page 1. Add a missing section targeting the keyword, add UAE-specific
-    proof (stats, case studies, pricing context), strengthen internal links TO this page
-    from relevant supporting content.
+C. If a commercial page has high impressions + low CTR
+   → rewrite title and meta to improve click-through rate
+   (thresholds: < 3% for pos 1–5, < 2% for pos 6–10, < 1% for pos 11–20)
 
-RULE 3 — commercial page has high impressions + CTR below threshold (< 3% for pos 1-5, < 2% for pos 6-10, < 1% for pos 11-20)?
-  → Action C: rewrite title/meta and improve SERP appeal
-  → Goal: more clicks from existing rankings without touching rankings themselves.
-    Title should include primary keyword, clear benefit, and UAE/Dubai signal where natural.
-    Meta description should create curiosity or urgency in 140-160 chars.
+D. If supporting pages do not link to a money page
+   → add 2–4 contextual internal links using natural anchors
 
-RULE 4 — relevant supporting pages (blog posts, guides, location pages) exist but do NOT link to a money page?
-  → Action D: internal link optimisation
-  → Goal: pass link authority from supporting content to service pages.
-    Use natural anchor text. Add 2-4 contextual links per supporting page.
-    Do not over-optimise anchors.
+E. If a commercial page gets traffic but no leads
+   → improve CTA, trust signals, WhatsApp button, and conversion UX
 
-RULE 5 — commercial page gets traffic but shows weak conversion signals (no CTA above fold, no WhatsApp button, no trust block, no form)?
-  → Action E: improve CTA / trust / form / WhatsApp UX
-  → Goal: convert existing traffic into leads. Add or improve:
-    WhatsApp click-to-chat button, free audit CTA, trust signals (reviews, client count),
-    or contact form visibility. Keep it natural — do not add spammy urgency.
+F. If technical issues exist
+   → fix schema, canonical, alt text, or metadata issues
 
-RULE 6 — technical or schema issues on service or location pages (missing schema, broken canonical, missing alt text on key images)?
-  → Action F: fix technical SEO blockers
-  → Goal: remove indexability or trust signals that hold rankings back.
+G. ONLY if ALL three are true:
+   - a keyword gap exists with no existing page targeting it
+   - no cannibalization risk with existing service pages
+   - SERP shows informational or comparison content (not just service pages)
+   → create a new supporting blog post
 
-RULE 7 — clear keyword gap AND no cannibalization risk AND the SERP supports a new page?
-  → Action G: create supporting content or new page
-  → Only choose this if ALL three conditions are true:
-    1. A specific high-intent keyword has no existing page targeting it
-    2. Writing this page will NOT compete with an existing service page
-    3. The SERP for this keyword shows informational or comparison content, not just service pages
-  → New content must include internal links to the relevant service page.
+H. If nothing meets the bar
+   → do nothing and log clearly why (this is a valid outcome)
 
-RULE 8 — none of the above fire with confidence?
-  → Action H: no change
-  → Explain exactly why no opportunity met the bar. This is a valid and correct outcome.
-
-State clearly:
-- Chosen action letter (A through H)
-- Target page
-- Target keyword
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3 — LOG YOUR DECISION (before executing)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Log clearly:
+- Top 5 opportunities found (action A–H, page, keyword, score 1–10, reason)
+- Selected action
+- Target page and keyword
 - Which rule fired
-- Why this is the highest-value move today (1-2 sentences)
-- Expected SEO outcome
+- Why this is the highest-value move today (1–2 sentences)
+- Expected impact
 - Risk level (low / medium / high)
 - Exact files you will edit
 
-Do NOT do multiple actions. Do ONE thing deeply and correctly.
-
-State clearly:
-- Chosen action type (letter A–H)
-- Target page
-- Target keyword
-- Why this is the highest-value move today (1-2 sentences referencing the rule that fired)
-- Expected SEO outcome
-- Risk level (low / medium / high)
-- Exact files you will edit
-
-Do NOT do 5 things. Do ONE thing deeply and correctly.
-
-## STEP 4 — EXECUTE
-Make the change. You can edit:
-- title tag and meta description
-- H1 and page headings
-- intro and body content
-- FAQ sections
-- schema markup (JSON-LD)
-- internal links (add links to service pages from supporting pages)
-- CTA sections and conversion blocks
-- image alt text
-- canonical tags
+Do ONE thing deeply and correctly. Do not make scattered edits.
+Prefer service pages over blog pages.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EXECUTION LOOP — follow this exactly after every file change
+STEP 4 — EXECUTE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You may edit: title tag, meta description, H1, headings, intro and body content,
+FAQ sections, schema markup (JSON-LD), internal links, CTA sections, image alt text,
+canonical tags.
 
-LOOP 1 — TypeScript validation (up to 5 attempts):
-  Run: cd ${ROOT} && npx tsc --noEmit 2>&1
-  IF errors exist:
-    - Read the full error output
-    - Fix the exact issue in the exact file reported
-    - Do NOT make unrelated changes while fixing
-    - Re-run TypeScript check
-    - Repeat up to 5 attempts total
-  IF TypeScript passes with zero errors → proceed to LOOP 2
+For Rule G only: write 1,500–2,000 words of HTML content targeting UAE audience.
+Include internal links to the relevant service page. End with a CTA.
 
-LOOP 2 — Build validation (up to 3 attempts):
-  Run: cd ${ROOT} && npm run build 2>&1 | tail -30
-  IF build fails:
-    - Read the error logs carefully
-    - Fix the exact issue causing the failure
-    - Re-run build
-    - Repeat up to 3 attempts total
-  IF build passes → SEO changes are safe, proceed to output
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CODE SAFETY LOOP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+After every change:
 
-FAILURE RULE:
-  If after all retries TypeScript or build still fails:
-  - STOP making further changes immediately
-  - Revert the breaking change if possible
-  - In the output JSON, set "build_status": "failed" and populate "error_report"
-  - The error report must include: file affected, error message, what was attempted, why it failed
+1. Run: cd ${ROOT} && npx tsc --noEmit 2>&1
+   - If errors: fix precisely, retry up to 5 times
+   - If clean: proceed to build
 
-SUCCESS RULE:
-  If build passes:
-  - Set "build_status": "passed" in output JSON
-  - All SEO changes are confirmed safe
+2. Run: cd ${ROOT} && npm run build 2>&1 | tail -30
+   - If errors: fix precisely, retry up to 3 times
+   - If clean: changes are safe
+
+3. If still failing after all retries:
+   - Revert the breaking change
+   - Set build_status "failed" in output
+   - Stop
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DEPLOYMENT RULE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NEVER push directly to main.
+Your job is to edit files only. The GitHub Actions workflow handles git push to staging.
+validate-and-deploy.yml handles the merge to main after build validation.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HARD RULES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- NEVER leave the codebase in a broken state
-- NEVER push or commit if the build is failing
-- NEVER fix TypeScript errors by rewriting large unrelated sections of code — fix surgically
-- NEVER publish a blog post unless it is clearly the highest-value action
-- NEVER make scattered minor edits just to appear productive
-- NEVER create location doorway pages
-- NEVER create a new page that cannibalises an existing target page
-- NEVER add Dubai/UAE modifiers in a spammy or unnatural way
-- ALWAYS preserve the SEO change while fixing build errors — do not revert good SEO work
-- ALWAYS check that the page you are optimising actually exists in the codebase first
+- Do not publish content unless Rule G is triggered
+- Do not create duplicate or competing pages
+- Do not break the build
+- Do not prioritise traffic over leads
+- Do not make changes just to appear active
+- Do not revert good SEO work when fixing build errors
+- Always confirm a page exists in the codebase before editing it
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-OUTPUT FORMAT (required at the end)
+OUTPUT FORMAT (required at end of every run)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-After completing the work, output this exact block:
-
 CHANGES_START
 {
   "opportunity_analysis": [
@@ -364,7 +305,7 @@ CHANGES_START
     "target_page": "...",
     "target_keyword": "...",
     "current_position": 0,
-    "rule_fired": "RULE 1 — pos 4-10 for target keyword",
+    "rule_fired": "A — pos 4-10 for target keyword",
     "reason": "...",
     "expected_outcome": "...",
     "risk": "low"
@@ -375,15 +316,15 @@ CHANGES_START
     {
       "page": "url or file path",
       "keyword_goal": "target keyword",
-      "action_type": "letter and name e.g. A — ctr-snippet-refinement",
+      "action_type": "e.g. A — ctr-snippet-refinement",
       "summary": "exactly what you changed",
-      "expected_impact": "what ranking/conversion improvement you expect"
+      "expected_impact": "what ranking or conversion improvement you expect"
     }
   ]
 }
 CHANGES_END
 
-If build failed, use this format instead:
+If build failed:
 CHANGES_START
 {
   "opportunity_analysis": [...],
@@ -391,8 +332,8 @@ CHANGES_START
   "build_status": "failed",
   "error_report": {
     "file": "path/to/file.tsx",
-    "error_message": "exact error from tsc or build output",
-    "attempted_fixes": ["description of fix 1", "description of fix 2"],
+    "error_message": "exact error from tsc or build",
+    "attempted_fixes": ["fix 1 description", "fix 2 description"],
     "reason_failed": "why it could not be resolved"
   },
   "changes": []
@@ -438,6 +379,31 @@ CHANGES_END`;
             console.log(`   Risk: ${d.risk}`);
           }
 
+          // Rule G — create blog post via blog-module
+          if (
+            parsed.decision?.chosen_action === "G" &&
+            parsed.build_status !== "failed" &&
+            parsed.decision?.target_keyword
+          ) {
+            console.log(`\n📝 Rule G fired — delegating to blog-module: "${parsed.decision.target_keyword}"`);
+            try {
+              const blogResult = await createBlogPost(parsed.decision.target_keyword);
+              changes.push({
+                date: new Date().toISOString(),
+                page: `/blog/${blogResult.slug}`,
+                keyword_goal: parsed.decision.target_keyword,
+                action_type: "G — new-supporting-content",
+                summary: `Created blog post: "${blogResult.title}" (${blogResult.slug})`,
+                expected_impact: parsed.decision.expected_outcome || "New page targeting keyword gap, supporting internal linking to service pages",
+              });
+              console.log(`✅ Blog post published: "${blogResult.title}"`);
+              console.log(`   URL: /blog/${blogResult.slug}`);
+              console.log(`   Image: ${blogResult.imagePath}`);
+            } catch (blogErr: any) {
+              console.error(`❌ Blog creation failed: ${blogErr.message}`);
+            }
+          }
+
           // Log build status
           if (parsed.build_status === "failed" && parsed.error_report) {
             const e = parsed.error_report;
@@ -450,7 +416,8 @@ CHANGES_END`;
             console.log(`\n✅ Build passed — changes are safe`);
           }
 
-          if (parsed.build_status !== "failed") {
+          // For non-G actions, push the agent's reported changes
+          if (parsed.build_status !== "failed" && parsed.decision?.chosen_action !== "G") {
             changes.push(
               ...(parsed.changes || []).map((c: any) => ({
                 date: new Date().toISOString(),
