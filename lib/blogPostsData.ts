@@ -200,7 +200,7 @@ export const blogPosts: BlogPost[] = [
     category: 'SEO',
     tags: ['SEO', 'UAE', 'Digital Marketing', 'Search Engine Optimization', 'Local SEO', 'Arabic SEO'],
     readTime: '12 min read',
-    image: '🔍',
+    image: '/blog/ultimate-seo-guide-uae-2026.jpg',
     featured: true,
     metaDescription: 'Complete SEO guide for UAE 2026. Learn mobile-first optimization, bilingual SEO, local search strategies, and advanced techniques to rank #1 in Dubai and Abu Dhabi.',
     keywords: ['SEO UAE', 'SEO Dubai', 'SEO Abu Dhabi', 'UAE search optimization', 'Arabic SEO', 'local SEO UAE', 'mobile SEO']
@@ -430,7 +430,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Social Media',
     tags: ['Social Media', 'Middle East', 'Instagram', 'TikTok', 'Digital Marketing', 'UAE', 'Content Strategy'],
     readTime: '10 min read',
-    image: '📱',
+    image: '/blog/social-media-trends-middle-east-2026.jpg',
     featured: true,
     metaDescription: 'Discover top social media trends in Middle East 2026. TikTok strategies, Arabic content tips, influencer marketing, and platform-specific tactics for UAE success.',
     keywords: ['social media Middle East', 'social media UAE', 'TikTok marketing', 'Instagram UAE', 'Arabic content', 'influencer marketing Dubai']
@@ -674,7 +674,7 @@ export const blogPosts: BlogPost[] = [
     category: 'PPC',
     tags: ['PPC', 'Google Ads', 'Paid Advertising', 'Dubai', 'SEM', 'Digital Advertising'],
     readTime: '11 min read',
-    image: '💰',
+    image: '/blog/google-ads-ppc-guide-dubai-2026.jpg',
     featured: false,
     metaDescription: 'Master Google Ads in Dubai 2026. Complete PPC guide covering campaign setup, bidding strategies, Arabic ads, landing page optimization, and ROI maximization.',
     keywords: ['Google Ads Dubai', 'PPC Dubai', 'paid advertising UAE', 'Google Ads UAE', 'SEM Dubai', 'digital advertising Dubai']
@@ -954,7 +954,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Content Marketing',
     tags: ['Content Marketing', 'Content Strategy', 'UAE', 'Digital Marketing', 'SEO', 'Blogging'],
     readTime: '13 min read',
-    image: '✍️',
+    image: '/blog/content-marketing-strategy-uae-2026.jpg',
     featured: false,
     metaDescription: 'Complete content marketing guide for UAE 2026. Learn bilingual content strategy, distribution channels, content types, and tactics that drive results in Dubai.',
     keywords: ['content marketing UAE', 'content strategy Dubai', 'bilingual content', 'Arabic content marketing', 'content marketing Dubai']
@@ -1250,7 +1250,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Email Marketing',
     tags: ['Email Marketing', 'Marketing Automation', 'UAE', 'Digital Marketing', 'Email Strategy'],
     readTime: '11 min read',
-    image: '📧',
+    image: '/blog/email-marketing-best-practices-uae-2026.jpg',
     featured: false,
     metaDescription: 'Complete email marketing guide for UAE 2026. Learn list building, Arabic email strategies, automation workflows, and tactics that deliver 4200% ROI.',
     keywords: ['email marketing UAE', 'email marketing Dubai', 'email automation', 'Arabic email marketing', 'newsletter marketing UAE']
@@ -1563,7 +1563,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Web Development',
     tags: ['Web Design', 'UX/UI', 'Web Development', 'Dubai', 'Website Trends', 'Mobile Design'],
     readTime: '14 min read',
-    image: '💻',
+    image: '/blog/web-design-trends-dubai-2026.jpg',
     featured: false,
     metaDescription: 'Discover web design trends dominating Dubai 2026. Learn mobile-first design, Arabic RTL, AI personalization, and conversion optimization tactics.',
     keywords: ['web design Dubai', 'website design UAE', 'web development Dubai', 'UX design UAE', 'mobile web design', 'Arabic website design']
@@ -1744,7 +1744,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Social Media',
     tags: ['Instagram', 'Social Media', 'Instagram Marketing', 'Influencer Marketing', 'UAE', 'Reels', 'Instagram Ads'],
     readTime: '9 min read',
-    image: '📸',
+    image: '/blog/instagram-marketing-uae-2026.jpg',
     featured: false,
     metaDescription: 'Master Instagram marketing in UAE 2026. Complete guide to Reels, hashtags, influencer partnerships, Instagram Shopping, and growth strategies for Dubai businesses.',
     keywords: ['Instagram marketing UAE', 'Instagram Dubai', 'Instagram Reels', 'Instagram growth Dubai', 'influencer marketing UAE', 'Instagram ads Dubai']
@@ -1950,7 +1950,7 @@ export const blogPosts: BlogPost[] = [
     category: 'E-commerce',
     tags: ['E-commerce', 'Online Store', 'UAE', 'Shopify', 'Digital Commerce', 'Online Business'],
     readTime: '12 min read',
-    image: '🛒',
+    image: '/blog/e-commerce-success-uae-2026.jpg',
     featured: false,
     metaDescription: 'Complete e-commerce guide for UAE 2026. Learn platform selection, payment gateways, logistics, marketing strategies, and how to build profitable online store in Dubai.',
     keywords: ['e-commerce UAE', 'online store Dubai', 'e-commerce Dubai', 'Shopify UAE', 'online business UAE', 'e-commerce payment gateway UAE']
@@ -2133,7 +2133,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Social Media',
     tags: ['LinkedIn', 'B2B Marketing', 'LinkedIn Ads', 'Lead Generation', 'UAE', 'Professional Networking'],
     readTime: '10 min read',
-    image: '💼',
+    image: '/blog/linkedin-marketing-b2b-uae-2026.jpg',
     featured: false,
     metaDescription: 'Complete LinkedIn marketing guide for B2B in UAE 2026. Learn profile optimization, content strategy, LinkedIn Ads, lead generation, and thought leadership tactics.',
     keywords: ['LinkedIn marketing UAE', 'LinkedIn B2B Dubai', 'LinkedIn Ads UAE', 'B2B lead generation', 'LinkedIn strategy Dubai', 'professional networking UAE']
@@ -2356,7 +2356,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Content Marketing',
     tags: ['Video Marketing', 'YouTube', 'TikTok', 'Reels', 'Video Ads', 'Content Creation', 'Dubai'],
     readTime: '11 min read',
-    image: '🎥',
+    image: '/blog/video-marketing-dubai-2026.jpg',
     featured: false,
     metaDescription: 'Complete video marketing guide for Dubai 2026. Learn YouTube SEO, TikTok/Reels strategies, video production, advertising tactics, and analytics for business growth.',
     keywords: ['video marketing Dubai', 'YouTube marketing UAE', 'TikTok marketing Dubai', 'video production Dubai', 'video ads UAE', 'content video Dubai']
@@ -2789,7 +2789,7 @@ export const blogPosts: BlogPost[] = [
     category: 'SEO',
     tags: ['SEO Services Dubai', 'SEO agency Dubai', 'search engine optimization Dubai', 'SEO company UAE', 'professional SEO services Dubai', 'Dubai', 'UAE'],
     readTime: '5 min read',
-    image: '📈',
+    image: '/blog/seo-services-dubai.jpg',
     featured: false,
     metaDescription: 'Innovate Digital offers professional SEO services in Dubai to improve website rankings, organic traffic, and lead generation.',
     keywords: ['SEO Services in Dubai', 'SEO agency Dubai', 'search engine optimization Dubai', 'SEO company UAE', 'professional SEO services Dubai']
@@ -2883,7 +2883,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Digital Marketing',
     tags: ['Digital Marketing Agency Dubai', 'digital marketing services Dubai', 'online marketing company Dubai', 'best digital marketing agency UAE', 'digital marketing agency UAE', 'Dubai', 'UAE'],
     readTime: '6 min read',
-    image: '🚀',
+    image: '/blog/digital-marketing-agency-dubai.jpg',
     featured: false,
     metaDescription: 'Innovate Digital is a Dubai-based digital marketing agency offering SEO, social media marketing, and paid advertising services for business growth.',
     keywords: ['Digital Marketing Agency in Dubai', 'digital marketing services Dubai', 'online marketing company Dubai', 'best digital marketing agency UAE', 'digital marketing agency UAE']
@@ -2981,7 +2981,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Social Media',
     tags: ['Social Media Marketing Dubai', 'social media agency Dubai', 'Instagram marketing Dubai', 'Facebook marketing UAE', 'Dubai', 'UAE'],
     readTime: '5 min read',
-    image: '📱',
+    image: '/blog/social-media-marketing-dubai.jpg',
     featured: false,
     metaDescription: 'Innovate Digital offers professional social media marketing in Dubai to increase brand awareness, engagement and lead generation.',
     keywords: ['Social Media Marketing in Dubai', 'social media agency Dubai', 'social media marketing Dubai', 'social media marketing UAE', 'Instagram marketing Dubai']
@@ -3074,7 +3074,7 @@ export const blogPosts: BlogPost[] = [
     category: 'PPC',
     tags: ['Google Ads Dubai', 'PPC Dubai', 'PPC management Dubai', 'Google Ads agency UAE', 'paid search Dubai', 'Dubai', 'UAE'],
     readTime: '5 min read',
-    image: '🎯',
+    image: '/blog/google-ads-agency-dubai.jpg',
     featured: false,
     metaDescription: 'Looking for a Google Ads agency in Dubai? Innovate Digital provides expert PPC management and Google Ads services to generate quality leads.',
     keywords: ['Google Ads Agency in Dubai', 'PPC management Dubai', 'Google Ads Dubai', 'PPC agency UAE', 'paid search Dubai']
