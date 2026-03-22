@@ -6,7 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 import { siteConfig } from '@/lib/config'
-import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema'
+import { generateServiceSchema, generateBreadcrumbSchema, generateAggregateRatingSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
   title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
@@ -148,6 +148,9 @@ export default function AbuDhabiPage() {
       </Script>
       <Script id="breadcrumb-schema" type="application/ld+json">
         {JSON.stringify(breadcrumbSchema)}
+      </Script>
+      <Script id="aggregate-rating-schema" type="application/ld+json">
+        {JSON.stringify(generateAggregateRatingSchema({ ratingValue: 5.0, reviewCount: 47 }))}
       </Script>
 
       <Breadcrumbs />

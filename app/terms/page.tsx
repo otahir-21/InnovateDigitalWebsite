@@ -5,6 +5,9 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 export const metadata: Metadata = {
   title: 'Terms and Conditions - Innovate Digital',
   description: 'Terms and Conditions for using Innovate Digital services. Read our terms of service, usage policies, and legal agreements.',
+  alternates: {
+    canonical: '/terms',
+  },
   robots: {
     index: true,
     follow: true,

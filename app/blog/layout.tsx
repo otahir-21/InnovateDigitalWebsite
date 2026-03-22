@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Latest insights, tips, and strategies from digital marketing experts in the UAE.',
+  title: 'Digital Marketing Blog Dubai | SEO & Social Media Tips UAE',
+  description: 'Expert digital marketing insights from Dubai. SEO tips, social media strategies, Google Ads guides, and web design trends for UAE businesses. Updated weekly.',
   alternates: {
     canonical: '/blog',
   },
   openGraph: {
-    title: `Blog | ${siteConfig.name}`,
-    description: 'Latest insights, tips, and strategies from digital marketing experts in the UAE.',
+    title: 'Digital Marketing Blog Dubai | SEO & Social Media Tips UAE',
+    description: 'Expert digital marketing insights from Dubai. SEO tips, social media strategies, Google Ads guides, and web design trends for UAE businesses.',
     url: `${siteConfig.url}/blog`,
     images: [siteConfig.ogImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Blog | ${siteConfig.name}`,
-    description: 'Latest insights, tips, and strategies from digital marketing experts in the UAE.',
+    title: 'Digital Marketing Blog Dubai | SEO & Social Media Tips UAE',
+    description: 'Expert digital marketing insights from Dubai. SEO tips, social media strategies, Google Ads guides, and web design trends for UAE businesses.',
     images: [siteConfig.ogImage],
   },
 }

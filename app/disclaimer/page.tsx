@@ -5,6 +5,9 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 export const metadata: Metadata = {
   title: 'Disclaimer - Innovate Digital',
   description: 'Legal disclaimer for Innovate Digital website and services. Important information about our digital marketing services and results.',
+  alternates: {
+    canonical: '/disclaimer',
+  },
   robots: {
     index: true,
     follow: true,
