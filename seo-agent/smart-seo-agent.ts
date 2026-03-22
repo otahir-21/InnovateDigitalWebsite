@@ -195,30 +195,59 @@ Before deciding anything, read the actual files:
 - Check what keywords they are targeting vs what they are actually ranking for
 
 ## STEP 2 — BUILD TOP 5 OPPORTUNITIES
-List exactly 5 opportunities. For each one:
-- Opportunity type (one of: service-page-optimization, ctr-improvement, page-2-expansion, internal-linking, conversion-cro, schema-fix, technical-seo, content-refresh, new-supporting-content)
+You are acting as Head of SEO. List exactly 5 opportunities found in the data and codebase.
+For each one:
+- Action type — choose ONE of:
+  A. service-page-optimization  (improve existing commercial page content/structure)
+  B. page-2-expansion           (expand page ranking pos 11-20 to reach page 1)
+  C. ctr-improvement            (rewrite title/meta for high-impression low-CTR page)
+  D. internal-linking           (add links from supporting pages to money pages)
+  E. conversion-cro             (fix CTA, trust signals, lead capture on commercial page)
+  F. schema-fix                 (add/fix structured data on service or location page)
+  G. new-supporting-content     (new blog/article, only if nothing else scores higher)
+  H. no-action                  (no strong opportunity — report why)
 - Page/URL affected
 - Keyword goal it supports
-- Current problem
+- Current problem found in the codebase
 - Proposed action
-- Score (1-10) based on: revenue potential, ranking potential, speed, confidence
-
-Use this strict priority order when scoring:
-1. Commercial service pages ranking 4-20 → highest score
-2. High-impression low-CTR commercial pages → high score
-3. High-traffic zero-conversion pages → high score
-4. Pages with weak internal linking to money pages → medium score
-5. Technical/schema fixes → medium score
-6. Content refresh of existing ranking pages → medium score
-7. New blog post → LOW score, only if no stronger opportunity exists
+- Score (1-10): revenue potential × ranking potential × confidence × speed
 
 ## STEP 3 — CHOOSE ONE ACTION
-Pick the single highest-scoring opportunity.
+Apply this exact decision rule in order — stop at the first rule that matches:
+
+RULE 1: If a commercial page ranks positions 4-20 for a target keyword
+  → Choose A (service-page-optimization) or B (page-2-expansion)
+  → This is the highest-value move. One strong page improvement can mean 3-5 position jumps.
+
+RULE 2: If a commercial page has high impressions but CTR below 3%
+  → Choose C (ctr-improvement)
+  → More clicks from existing impressions = free traffic. Title/meta fix is low-risk, high-speed.
+
+RULE 3: If relevant blog/supporting pages exist but do not link to a money page
+  → Choose D (internal-linking)
+  → Internal links pass authority directly to service pages. Quick win, zero content needed.
+
+RULE 4: If a commercial page receives traffic but shows weak conversion signals (no clear CTA, no trust block, no WhatsApp/form above fold)
+  → Choose E (conversion-cro)
+  → Traffic without leads is wasted. Fix the page to capture what is already coming.
+
+RULE 5: If technical/schema issues exist on a service or location page
+  → Choose F (schema-fix)
+
+RULE 6: If no stronger opportunity exists and a supporting article clearly targets a keyword cluster that feeds a money page
+  → Choose G (new-supporting-content)
+  → Only valid if the article targets a specific commercial-intent keyword and includes internal links back to the service page.
+
+RULE 7: If no opportunity has strong business value
+  → Choose H (no-action) and explain why.
+
 State clearly:
-- Which opportunity you chose
-- Why (1-2 sentences)
+- Chosen action type (letter A–H)
+- Target page
+- Target keyword
+- Why this is the highest-value move today (1-2 sentences referencing the rule that fired)
 - Expected SEO outcome
-- Risk level (low/medium/high)
+- Risk level (low / medium / high)
 - Exact files you will edit
 
 Do NOT do 5 things. Do ONE thing deeply and correctly.
@@ -257,17 +286,26 @@ After completing the work, output this exact block:
 CHANGES_START
 {
   "opportunity_analysis": [
-    { "rank": 1, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
-    { "rank": 2, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
-    { "rank": 3, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
-    { "rank": 4, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
-    { "rank": 5, "type": "...", "page": "...", "keyword": "...", "score": 0, "reason": "..." }
+    { "rank": 1, "action": "A", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 2, "action": "B", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 3, "action": "C", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 4, "action": "D", "page": "...", "keyword": "...", "score": 0, "reason": "..." },
+    { "rank": 5, "action": "E", "page": "...", "keyword": "...", "score": 0, "reason": "..." }
   ],
+  "decision": {
+    "chosen_action": "A",
+    "target_page": "...",
+    "target_keyword": "...",
+    "rule_fired": "RULE 1 — commercial page ranking pos X for target keyword",
+    "reason": "...",
+    "expected_outcome": "...",
+    "risk": "low"
+  },
   "changes": [
     {
       "page": "url or file path",
       "keyword_goal": "target keyword",
-      "action_type": "one of the opportunity types above",
+      "action_type": "letter and name e.g. A — service-page-optimization",
       "summary": "exactly what you changed",
       "expected_impact": "what ranking/conversion improvement you expect"
     }
@@ -299,8 +337,17 @@ CHANGES_END`;
           if (parsed.opportunity_analysis) {
             console.log("\n📋 Opportunity Analysis:");
             for (const opp of parsed.opportunity_analysis) {
-              console.log(`  #${opp.rank} [score:${opp.score}] ${opp.type} — "${opp.keyword}" on ${opp.page}`);
+              console.log(`  #${opp.rank} [score:${opp.score}] ${opp.action} — "${opp.keyword}" on ${opp.page}`);
             }
+          }
+          // Log the decision
+          if (parsed.decision) {
+            const d = parsed.decision;
+            console.log(`\n🎯 Decision: Action ${d.chosen_action} — ${d.target_keyword} on ${d.target_page}`);
+            console.log(`   Rule: ${d.rule_fired}`);
+            console.log(`   Reason: ${d.reason}`);
+            console.log(`   Expected: ${d.expected_outcome}`);
+            console.log(`   Risk: ${d.risk}`);
           }
           changes.push(
             ...(parsed.changes || []).map((c: any) => ({
