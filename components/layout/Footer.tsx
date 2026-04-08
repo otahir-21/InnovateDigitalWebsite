@@ -72,6 +72,11 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/login" className="text-sm hover:text-primary-400 transition-colors">
+                  Client login
+                </Link>
+              </li>
             </ul>
           </div>
 
