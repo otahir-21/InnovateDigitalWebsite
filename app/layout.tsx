@@ -159,9 +159,7 @@ export default function RootLayout({
         <SmoothScroll />
         <ScrollProgressBar />
         <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
         <WhatsAppButton />
         <MobileContactButton />

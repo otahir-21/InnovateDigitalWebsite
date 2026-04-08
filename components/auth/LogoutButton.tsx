@@ -3,7 +3,10 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export default function LogoutButton() {
+const defaultClass =
+  'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 border-gray-300 text-gray-700 hover:border-gray-400 disabled:opacity-60 transition-colors'
+
+export default function LogoutButton({ className }: { className?: string }) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
@@ -23,7 +26,7 @@ export default function LogoutButton() {
       type="button"
       onClick={logout}
       disabled={loading}
-      className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 border-gray-300 text-gray-700 hover:border-gray-400 disabled:opacity-60 transition-colors"
+      className={className ?? defaultClass}
     >
       {loading ? 'Signing out…' : 'Sign out'}
     </button>

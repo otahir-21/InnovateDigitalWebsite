@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FiLock, FiMail } from 'react-icons/fi'
 
@@ -9,7 +8,13 @@ import { FiLock, FiMail } from 'react-icons/fi'
 const DEMO_HINT_EMAIL = 'demo@innovatedigital.ae'
 const DEMO_HINT_PASSWORD = 'InnovateDemo2026!'
 
-export default function LoginForm() {
+function safeRedirect(path: string | undefined): string {
+  if (!path || !path.startsWith('/') || path.startsWith('//')) return '/'
+  if (path.includes('://') || path.includes('\\')) return '/'
+  return path
+}
+
+export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -31,7 +36,7 @@ export default function LoginForm() {
         setError(typeof data.error === 'string' ? data.error : 'Sign-in failed')
         return
       }
-      router.push('/client-portal')
+      router.push(safeRedirect(redirectTo))
       router.refresh()
     } catch {
       setError('Something went wrong. Try again.')
@@ -41,13 +46,18 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
+    <div className="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 py-6 bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-2xl sm:rounded-3xl border border-gray-100/80 shadow-sm">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
+          <p className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-1">
+            Innovate Digital
+          </p>
           <h1 className="text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">
-            Client portal
+            Sign in
           </h1>
-          <p className="text-gray-600 mt-2">Demo access — replace with real auth when you go live.</p>
+          <p className="text-gray-600 mt-2 text-sm">
+            This site is private. Enter the demo credentials below.
+          </p>
         </div>
 
         <form
@@ -116,11 +126,6 @@ export default function LoginForm() {
           <span className="font-mono text-gray-800">{DEMO_HINT_PASSWORD}</span>
         </p>
 
-        <p className="text-center mt-6 text-sm text-gray-500">
-          <Link href="/" className="text-blue-600 hover:underline">
-            ← Back to website
-          </Link>
-        </p>
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { siteConfig, navigationLinks } from '@/lib/config'
+import FooterSessionLink from '@/components/layout/FooterSessionLink'
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
 import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa'
 
@@ -73,9 +74,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/login" className="text-sm hover:text-primary-400 transition-colors">
-                  Client login
-                </Link>
+                <FooterSessionLink />
               </li>
             </ul>
           </div>

@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default function LoginPage() {
-  return <LoginForm />
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: { from?: string }
+}) {
+  return <LoginForm redirectTo={searchParams.from} />
 }
