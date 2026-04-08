@@ -5,7 +5,6 @@
 export const DEMO_AUTH_COOKIE = 'innovate_demo_session'
 export const DEMO_AUTH_COOKIE_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
 
-/** Defaults — must match DEMO_HINT_* in components/auth/LoginForm.tsx */
 const DEFAULT_EMAIL = 'demo@innovatedigital.ae'
 const DEFAULT_PASSWORD = 'InnovateDemo2026!'
 

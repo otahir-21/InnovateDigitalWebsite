@@ -4,10 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FiLock, FiMail } from 'react-icons/fi'
 
-/** Shown on the page only — must stay in sync with defaults in lib/demo-auth.ts */
-const DEMO_HINT_EMAIL = 'demo@innovatedigital.ae'
-const DEMO_HINT_PASSWORD = 'InnovateDemo2026!'
-
 function safeRedirect(path: string | undefined): string {
   if (!path || !path.startsWith('/') || path.startsWith('//')) return '/'
   if (path.includes('://') || path.includes('\\')) return '/'
@@ -56,7 +52,7 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
             Sign in
           </h1>
           <p className="text-gray-600 mt-2 text-sm">
-            This site is private. Enter the demo credentials below.
+            This site is private. Sign in to continue.
           </p>
         </div>
 
@@ -118,13 +114,6 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
             {loading ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
-
-        <p className="mt-4 text-sm text-gray-600 bg-gray-50 border border-gray-100 rounded-lg p-3">
-          <span className="font-medium text-gray-800">Dummy credentials:</span>{' '}
-          <span className="text-gray-800">{DEMO_HINT_EMAIL}</span>
-          <span className="mx-1 text-gray-400">·</span>
-          <span className="font-mono text-gray-800">{DEMO_HINT_PASSWORD}</span>
-        </p>
 
       </div>
     </div>
