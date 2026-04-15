@@ -20,7 +20,6 @@ import { getLowCTRPages, getPage2Keywords, getSiteStats, getTopPages } from "./g
 import { getHighTrafficLowConversion, getHighBouncePages, getGA4SiteStats, getConvertingBlogPosts } from "./ga4-client.js";
 import { KEYWORD_GOALS, SERVICE_GOALS, buildGoalsContext } from "./seo-goals.js";
 import { sendActionRequired } from "./email-client.js";
-import { createBlogPost } from "./blog-module.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -387,6 +386,7 @@ CHANGES_END`;
           ) {
             console.log(`\n📝 Rule G fired — delegating to blog-module: "${parsed.decision.target_keyword}"`);
             try {
+              const { createBlogPost } = await import("./blog-module.js");
               const blogResult = await createBlogPost(parsed.decision.target_keyword);
               changes.push({
                 date: new Date().toISOString(),
