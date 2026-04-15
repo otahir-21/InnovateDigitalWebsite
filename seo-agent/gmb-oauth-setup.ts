@@ -11,8 +11,8 @@ import https from "https";
 import http from "http";
 import { URL } from "url";
 
-const CLIENT_ID     = process.env.GMB_CLIENT_ID     || "";
-const CLIENT_SECRET = process.env.GMB_CLIENT_SECRET || "";
+const CLIENT_ID     = (process.env.GMB_CLIENT_ID     || "").trim();
+const CLIENT_SECRET = (process.env.GMB_CLIENT_SECRET || "").trim();
 const REDIRECT_URI  = "http://localhost:4242/callback";
 const PORT          = 4242;
 

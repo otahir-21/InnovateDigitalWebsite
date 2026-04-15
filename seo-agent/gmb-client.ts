@@ -6,8 +6,8 @@
  *   - My Business Business Information API
  *   - My Business Notifications API (optional)
  *
- * Auth: same service account as GSC/GA4
- * Add service account as Manager on your GBP listing first.
+ * Auth: OAuth2 user credentials (GMB_CLIENT_ID / SECRET / REFRESH_TOKEN).
+ * Service accounts cannot refresh GBP tokens; use gmb-oauth-setup.ts once, then store secrets in GitHub Actions.
  */
 
 import https from "https";
@@ -16,10 +16,32 @@ const ACCOUNT_ID  = (process.env.GMB_ACCOUNT_ID  || "").trim();  // e.g. "accoun
 const LOCATION_ID = (process.env.GMB_LOCATION_ID || "").trim();  // e.g. "locations/XXXXXXXXXXXXXXXX"
 
 // ── Auth (OAuth2 refresh token — required for GBP API) ────────────────────────
+
+function formatGmbAuthHelp(parsed: { error?: string; error_description?: string }): string {
+  const err = parsed.error || "";
+  const lines = [
+    `Google token response: ${JSON.stringify(parsed)}`,
+    "",
+    "If you see invalid_grant, the refresh token no longer matches this OAuth client. Typical causes:",
+    "  • GMB_CLIENT_SECRET was rotated in Google Cloud — create a new secret and re-run OAuth.",
+    "  • GMB_REFRESH_TOKEN was revoked or is from a different OAuth client ID.",
+    "  • Extra spaces/newlines when pasting secrets into GitHub Actions (re-save trimmed values).",
+    "",
+    "Fix (local machine, seo-agent folder):",
+    "  1. Google Cloud → APIs & Services → Credentials → your OAuth client (same type as before, e.g. Desktop).",
+    "  2. GMB_CLIENT_ID=... GMB_CLIENT_SECRET=... npx tsx gmb-oauth-setup.ts",
+    "  3. Update GitHub → Settings → Secrets → GMB_REFRESH_TOKEN (and GMB_CLIENT_SECRET if it changed).",
+  ];
+  if (err === "invalid_grant") {
+    lines.unshift("GBP OAuth: invalid_grant — refresh token exchange rejected.\n");
+  }
+  return lines.join("\n");
+}
+
 async function getAccessToken(): Promise<string> {
-  const clientId     = process.env.GMB_CLIENT_ID     || "";
-  const clientSecret = process.env.GMB_CLIENT_SECRET || "";
-  const refreshToken = process.env.GMB_REFRESH_TOKEN || "";
+  const clientId     = (process.env.GMB_CLIENT_ID     || "").trim();
+  const clientSecret = (process.env.GMB_CLIENT_SECRET || "").trim();
+  const refreshToken = (process.env.GMB_REFRESH_TOKEN || "").trim();
 
   if (!clientId || !clientSecret || !refreshToken) {
     throw new Error(
@@ -50,9 +72,22 @@ async function getAccessToken(): Promise<string> {
         let data = "";
         res.on("data", (c) => (data += c));
         res.on("end", () => {
-          const parsed = JSON.parse(data);
-          if (parsed.access_token) resolve(parsed.access_token);
-          else reject(new Error(`GBP auth failed: ${JSON.stringify(parsed)}`));
+          let parsed: Record<string, unknown>;
+          try {
+            parsed = JSON.parse(data) as Record<string, unknown>;
+          } catch {
+            reject(
+              new Error(
+                `GBP auth: non-JSON response from oauth2.googleapis.com (HTTP ${res.statusCode}). Body starts with: ${data.slice(0, 200)}`
+              )
+            );
+            return;
+          }
+          if (typeof parsed.access_token === "string") {
+            resolve(parsed.access_token);
+            return;
+          }
+          reject(new Error(formatGmbAuthHelp(parsed as { error?: string; error_description?: string })));
         });
       }
     );
