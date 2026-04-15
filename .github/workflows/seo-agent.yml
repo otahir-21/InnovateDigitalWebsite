@@ -33,6 +33,15 @@ jobs:
           fi
           echo "✅ ANTHROPIC_API_KEY is set"
 
+      - name: Check OPENAI_API_KEY
+        run: |
+          if [ -z "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "❌ OPENAI_API_KEY secret is not set (required for Rule G blog images in smart-seo)"
+            echo "Add it: GitHub repo → Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+          echo "✅ OPENAI_API_KEY is set"
+
       - name: Install SEO agent dependencies
         run: |
           cd seo-agent
@@ -41,6 +50,7 @@ jobs:
       - name: Run smart SEO agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}

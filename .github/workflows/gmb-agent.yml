@@ -1,5 +1,10 @@
 name: GMB Post & Review Agent
 
+# Secrets: GitHub → Settings → Secrets and variables → Actions
+#   GMB_CLIENT_ID, GMB_CLIENT_SECRET, GMB_REFRESH_TOKEN, GMB_ACCOUNT_ID, GMB_LOCATION_ID
+# invalid_grant fix: rotate client secret if needed, run `npx tsx gmb-oauth-setup.ts` locally,
+# update GMB_REFRESH_TOKEN (+ GMB_CLIENT_SECRET) in Actions secrets.
+
 on:
   schedule:
     # Tuesday 5AM UTC = 9AM Dubai (GMT+4)

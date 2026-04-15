@@ -24,7 +24,18 @@ const BLOG_DATA_FILE = path.join(ROOT, "lib", "blogPostsData.ts");
 const BLOG_IMAGES_DIR = path.join(ROOT, "public", "blog");
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+let openaiClient: OpenAI | null = null;
+function getOpenAI(): OpenAI {
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) {
+    throw new Error(
+      "OPENAI_API_KEY is missing. Set it in GitHub: Settings → Secrets and variables → Actions → OPENAI_API_KEY"
+    );
+  }
+  if (!openaiClient) openaiClient = new OpenAI({ apiKey: key });
+  return openaiClient;
+}
 
 export const SERVICE_PAGES = [
   { name: "SEO Services Dubai",        url: "/services/seo",                keywords: ["seo", "search engine", "ranking", "organic"] },
@@ -151,7 +162,7 @@ async function downloadImage(url: string, dest: string): Promise<void> {
 async function generateBlogImage(topic: string, slug: string): Promise<string> {
   console.log("🎨 Generating image...");
   try {
-    const response = await openai.images.generate({
+    const response = await getOpenAI().images.generate({
       model: "dall-e-3",
       prompt: `Professional blog header for: "${topic}". Dubai/UAE business context. Clean, modern, corporate. Deep blue and gold tones. No text. 16:9 format.`,
       n: 1, size: "1792x1024", quality: "standard",
