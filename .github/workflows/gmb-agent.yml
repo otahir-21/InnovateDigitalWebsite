@@ -42,4 +42,4 @@ jobs:
           GMB_LOCATION_ID: ${{ secrets.GMB_LOCATION_ID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
-        run: cd seo-agent && npm run gmb -- --test-post
+        run: cd seo-agent && npm run gmb

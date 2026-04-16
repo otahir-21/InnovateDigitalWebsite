@@ -5,7 +5,7 @@
 
 import { google } from "googleapis";
 
-const SITE_URL = process.env.GSC_SITE_URL || "https://www.innovatedigital.ae";
+const SITE_URL = process.env.GSC_SITE_URL || "sc-domain:innovatedigital.ae";
 
 function getAuth() {
   const json = process.env.GSC_SERVICE_ACCOUNT_JSON;
