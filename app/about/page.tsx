@@ -8,7 +8,7 @@ import { aboutFAQs } from '@/lib/faqData'
 
 export const metadata: Metadata = {
   title: 'About Innovate Digital | Google Partner Agency Dubai Since 2020',
-  description: 'Leading digital marketing agency in Dubai since 2020. Google Partner, Meta Business Partner. 200+ UAE clients, 4.9/5 Google rating, 50+ team experts. Led by Osama Tahir. Serving Dubai, Abu Dhabi & Sharjah.',
+  description: 'Innovate Digital — Dubai-based digital marketing agency led by Osama Tahir. SEO, social media, branding & paid ads for UAE businesses. Serving Dubai, Abu Dhabi & Sharjah.',
   keywords: ['Digital Agency Dubai', 'Marketing Team Dubai', 'Google Partner UAE', 'Best Digital Agency Dubai', 'About Innovate Digital', 'Digital Marketing Company UAE'],
   alternates: {
     canonical: '/about',
@@ -46,7 +46,6 @@ const team = [
   { name: 'Osama Tahir', role: 'CEO & Founder', emoji: '👨‍💼' },
   { name: 'Syed Shahjahan', role: 'Head of SEO', emoji: '👨‍💼' },
   { name: 'Ali Husnain', role: 'Creative Director', emoji: '👨‍🎨' },
-  { name: 'Fatima Ali', role: 'Social Media Manager', emoji: '👩‍💻' },
 ]
 
 export default function AboutPage() {
@@ -70,8 +69,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder Section - Temporarily Hidden */}
-      {/* <Founder /> */}
+      <Founder />
 
       {/* Story Section */}
       <section className="section-padding bg-white">
@@ -80,13 +78,13 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold mb-6">Our Story</h2>
               <p className="text-lg text-gray-600 mb-4 leading-relaxed">
-                Founded in 2018, Innovate Digital was born from a simple belief: every business deserves access to world-class digital marketing services.
+                Innovate Digital was founded in Dubai with one belief: businesses in the UAE deserve digital marketing that actually works — not just reports that look good.
               </p>
               <p className="text-lg text-gray-600 mb-4 leading-relaxed">
-                What started as a small team of three passionate marketers has grown into a full-service digital agency serving over 200 clients across the UAE and Middle East.
+                We started small and stayed focused: SEO, social media, branding, and paid ads — done properly, with real results you can track. Today we serve businesses across Dubai, Abu Dhabi, and Sharjah.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Today, we are proud to be recognized as one of the leading digital marketing agencies in UAE, known for our innovative strategies and exceptional client results.
+                Every client gets a dedicated team, transparent reporting, and a strategy built around their specific market — not a copy-paste template.
               </p>
             </div>
             <div className="relative h-96 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 flex items-center justify-center overflow-hidden">
@@ -177,7 +175,7 @@ export default function AboutPage() {
                 {/* Success stats 2024 */}
                 <circle cx="310" cy="140" r="22" fill="#D1FAE5"/>
                 <text x="310" y="150" textAnchor="middle" fontSize="20">🏆</text>
-                <text x="310" y="122" textAnchor="middle" fill="#10B981" fontSize="11" fontWeight="bold">200+ Clients</text>
+                <text x="310" y="122" textAnchor="middle" fill="#10B981" fontSize="11" fontWeight="bold">100+ Clients</text>
                 
                 {/* Growth arrow connecting all */}
                 <path d="M 100 260 Q 180 200 260 180" stroke="#F59E0B" strokeWidth="3" 
@@ -190,15 +188,15 @@ export default function AboutPage() {
                 <text x="200" y="55" textAnchor="middle" fill="#6B7280" fontSize="13">From Startup to Leading Agency</text>
                 
                 {/* Achievement badges */}
-                <rect x="20" y="80" width="90" height="40" rx="8" fill="white" opacity="0.95" 
+                <rect x="20" y="80" width="90" height="40" rx="8" fill="white" opacity="0.95"
                       stroke="#3B82F6" strokeWidth="2"/>
-                <text x="65" y="97" textAnchor="middle" fill="#3B82F6" fontSize="14" fontWeight="bold">500+</text>
-                <text x="65" y="113" textAnchor="middle" fill="#6B7280" fontSize="10">Projects</text>
-                
-                <rect x="290" y="60" width="90" height="40" rx="8" fill="white" opacity="0.95" 
+                <text x="65" y="97" textAnchor="middle" fill="#3B82F6" fontSize="14" fontWeight="bold">100+</text>
+                <text x="65" y="113" textAnchor="middle" fill="#6B7280" fontSize="10">Brands Created</text>
+
+                <rect x="290" y="60" width="90" height="40" rx="8" fill="white" opacity="0.95"
                       stroke="#10B981" strokeWidth="2"/>
-                <text x="335" y="77" textAnchor="middle" fill="#10B981" fontSize="14" fontWeight="bold">98%</text>
-                <text x="335" y="93" textAnchor="middle" fill="#6B7280" fontSize="10">Satisfaction</text>
+                <text x="335" y="77" textAnchor="middle" fill="#10B981" fontSize="14" fontWeight="bold">UAE</text>
+                <text x="335" y="93" textAnchor="middle" fill="#6B7280" fontSize="10">Based Agency</text>
                 
                 {/* Decorative stars */}
                 <circle cx="140" cy="170" r="3" fill="#F59E0B"/>

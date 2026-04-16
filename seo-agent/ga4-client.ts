@@ -5,7 +5,7 @@
 
 import { google } from "googleapis";
 
-const PROPERTY_ID = process.env.GA4_PROPERTY_ID || "";
+const PROPERTY_ID = process.env.GA4_PROPERTY_ID || "520222539";
 
 function getAuth() {
   const json = process.env.GSC_SERVICE_ACCOUNT_JSON;

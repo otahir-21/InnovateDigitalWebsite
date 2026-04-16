@@ -68,15 +68,24 @@ export default function ContactForm() {
 
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({ 
-          name: '', 
-          email: '', 
+        setFormData({
+          name: '',
+          email: '',
           countryCode: '+971',
-          phone: '', 
-          company: '', 
-          message: '' 
+          phone: '',
+          company: '',
+          message: ''
         })
-        
+
+        // Fire GA4 conversion event
+        if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+          ;(window as any).gtag('event', 'generate_lead', {
+            event_category: 'contact',
+            event_label: 'contact_form',
+            value: 1,
+          })
+        }
+
         // Reset success message after 5 seconds
         setTimeout(() => {
           setSubmitStatus('idle')
