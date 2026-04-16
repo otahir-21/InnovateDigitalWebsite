@@ -425,8 +425,8 @@ async function main() {
     console.log(`\n🔴 Rule A fired: ${unanswered.length} unanswered review(s)\n`);
     actions = await runReviewReplies();
 
-  // B — Posting day
-  } else if (isPostingDay()) {
+  // B — Posting day (or forced via --test-post)
+  } else if (isPostingDay() || process.argv.includes("--test-post")) {
     // Check if we already posted today to avoid duplicates
     const recentPosts = await getRecentPosts(5);
     const lastPostAge = recentPosts[0]?.createTime
