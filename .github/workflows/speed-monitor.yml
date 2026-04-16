@@ -1,0 +1,111 @@
+name: Page Speed Monitor
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Every Monday 6AM UTC = 10AM Dubai
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse
+        id: lhci
+        run: |
+          lhci collect \
+            --url=https://www.innovatedigital.ae \
+            --url=https://www.innovatedigital.ae/services/branding \
+            --url=https://www.innovatedigital.ae/blog/local-seo-services-dubai \
+            --numberOfRuns=1 \
+            --settings.chromeFlags="--no-sandbox" \
+            2>&1 | tee lhci-output.txt
+
+          lhci upload --target=temporary-public-storage 2>&1 | tee -a lhci-output.txt || true
+
+          # Extract scores
+          REPORT_DIR=$(ls -d .lighthouseci/*.json 2>/dev/null | head -1 | xargs dirname || echo ".lighthouseci")
+          echo "report_dir=$REPORT_DIR" >> $GITHUB_OUTPUT
+
+      - name: Parse scores and send alert
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const dir = '.lighthouseci';
+          if (!fs.existsSync(dir)) { console.log('No reports found'); process.exit(0); }
+
+          const files = fs.readdirSync(dir).filter(f => f.endsWith('.json') && !f.includes('manifest'));
+          if (!files.length) { console.log('No JSON reports'); process.exit(0); }
+
+          let html = '<h2>🚦 Page Speed Report — innovatedigital.ae</h2>';
+          let hasAlert = false;
+          const THRESHOLD = 70;
+
+          for (const file of files) {
+            const report = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+            const url = report.finalUrl || report.requestedUrl || 'unknown';
+            const cats = report.categories || {};
+            const perf  = Math.round((cats.performance?.score  || 0) * 100);
+            const seo   = Math.round((cats.seo?.score           || 0) * 100);
+            const a11y  = Math.round((cats.accessibility?.score || 0) * 100);
+
+            const perfEmoji = perf >= 90 ? '🟢' : perf >= 70 ? '🟡' : '🔴';
+            if (perf < THRESHOLD) hasAlert = true;
+
+            const audits = report.audits || {};
+            const lcp  = audits['largest-contentful-paint']?.displayValue  || 'n/a';
+            const cls  = audits['cumulative-layout-shift']?.displayValue    || 'n/a';
+            const fid  = audits['total-blocking-time']?.displayValue        || 'n/a';
+
+            html += \`<hr>
+            <h3>\${url}</h3>
+            <table border='1' cellpadding='6' style='border-collapse:collapse'>
+              <tr><th>Metric</th><th>Score</th></tr>
+              <tr><td>\${perfEmoji} Performance</td><td><b>\${perf}/100</b></td></tr>
+              <tr><td>SEO</td><td>\${seo}/100</td></tr>
+              <tr><td>Accessibility</td><td>\${a11y}/100</td></tr>
+              <tr><td>LCP</td><td>\${lcp}</td></tr>
+              <tr><td>CLS</td><td>\${cls}</td></tr>
+              <tr><td>TBT</td><td>\${fid}</td></tr>
+            </table>\`;
+          }
+
+          if (!process.env.RESEND_API_KEY || !process.env.ALERT_EMAIL) {
+            console.log('No email env — printing report only');
+            console.log('Has alert:', hasAlert);
+            process.exit(0);
+          }
+
+          const subject = hasAlert
+            ? '🔴 Speed Alert: innovatedigital.ae dropped below 70'
+            : '✅ Speed OK: innovatedigital.ae weekly check';
+
+          fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + process.env.RESEND_API_KEY,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              from: 'seo-bot@innovatedigital.ae',
+              to: [process.env.ALERT_EMAIL],
+              subject,
+              html,
+            }),
+          }).then(r => r.json()).then(d => console.log('Email sent:', d.id || JSON.stringify(d)));
+          "

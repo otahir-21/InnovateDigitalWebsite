@@ -31,6 +31,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Compress images
+        run: npm run compress-images
+
+      - name: Commit compressed images
+        run: |
+          git config user.name "Deploy Bot"
+          git config user.email "deploy-bot@innovatedigital.ae"
+          git add public/
+          git diff --staged --quiet || git commit -m "chore: compress images [skip ci]"
+
       - name: Run TypeScript check
         run: npx tsc --noEmit
         continue-on-error: false
