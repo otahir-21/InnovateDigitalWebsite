@@ -118,8 +118,21 @@ async function apiRequest<T>(hostname: string, path: string, method = "GET", bod
         let data = "";
         res.on("data", (c) => (data += c));
         res.on("end", () => {
+          const status = res.statusCode ?? 0;
+          // Non-2xx or HTML response = API error
+          if (status < 200 || status >= 300 || data.trimStart().startsWith("<")) {
+            reject(new Error(
+              `GBP API ${method} ${path} → HTTP ${status}\n` +
+              `Response: ${data.slice(0, 500)}\n\n` +
+              `This usually means:\n` +
+              `  • The v4 API path is deprecated — Google moved posts/reviews to new endpoints\n` +
+              `  • GMB_ACCOUNT_ID or GMB_LOCATION_ID is wrong\n` +
+              `  • The OAuth token lacks permission for this resource`
+            ));
+            return;
+          }
           try { resolve(JSON.parse(data) as T); }
-          catch { resolve(data as unknown as T); }
+          catch { reject(new Error(`GBP API ${method} ${path} → non-JSON response: ${data.slice(0, 300)}`)); }
         });
       }
     );
