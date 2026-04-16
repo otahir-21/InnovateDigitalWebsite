@@ -235,20 +235,48 @@ async function runGbpPost(): Promise<string[]> {
     ctaUrl   = "https://www.innovatedigital.ae/services";
   }
 
+  // Try live API first; fall back to email draft if API access not yet approved
+  let posted = false;
   try {
     await createPost({
       topicType: "STANDARD",
       summary: postText,
-      callToAction: {
-        actionType: "LEARN_MORE",
-        url: ctaUrl,
-      },
+      callToAction: { actionType: "LEARN_MORE", url: ctaUrl },
     });
     console.log(`✅ GBP post published (${postType})`);
     actions.push(`Published GBP post: ${postType}`);
+    posted = true;
   } catch (err: any) {
-    console.error("❌ Failed to create post:", err.message);
-    actions.push(`⚠️ Post failed: ${err.message}`);
+    console.log(`ℹ️  API not approved yet — sending email draft instead`);
+  }
+
+  if (!posted) {
+    // Email draft mode — agent writes post, you paste it into GBP manually
+    await sendEmail({
+      subject: `📋 GBP Post Draft Ready — paste into Google Business Profile`,
+      html: `
+        <h2 style="color:white;margin:0 0 16px">Your GBP post is ready to publish</h2>
+        <p style="color:rgba(255,255,255,0.7);margin-bottom:8px">Type: <strong style="color:white">${postType}</strong></p>
+
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:20px;margin:16px 0;white-space:pre-wrap;font-size:15px;line-height:1.6">${postText}</div>
+
+        <p style="margin-top:20px"><strong>Steps (2 minutes):</strong></p>
+        <ol style="padding-left:20px;margin:8px 0;line-height:2">
+          <li>Go to <a href="https://business.google.com" style="color:#60A5FA">business.google.com</a></li>
+          <li>Click <strong>Posts → Add update</strong></li>
+          <li>Paste the text above</li>
+          <li>Add CTA button: <strong>Learn more</strong> → <code>${ctaUrl}</code></li>
+          <li>Click <strong>Publish</strong></li>
+        </ol>
+
+        <p style="margin-top:20px;color:rgba(255,255,255,0.5);font-size:13px">
+          Once Google approves your GBP API access request, posts will publish automatically — no more manual steps.
+        </p>
+      `,
+      priority: "info",
+    });
+    console.log(`📧 Post draft emailed — paste into GBP manually`);
+    actions.push(`Draft emailed for manual GBP posting: ${postType}`);
   }
 
   return actions;
