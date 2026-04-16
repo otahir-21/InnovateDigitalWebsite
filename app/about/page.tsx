@@ -8,7 +8,7 @@ import { aboutFAQs } from '@/lib/faqData'
 
 export const metadata: Metadata = {
   title: 'About Innovate Digital | Google Partner Agency Dubai Since 2020',
-  description: 'Innovate Digital — Dubai-based digital marketing agency led by Osama Tahir. SEO, social media, branding & paid ads for UAE businesses. Serving Dubai, Abu Dhabi & Sharjah.',
+  description: 'Innovate Digital — Dubai-based digital marketing agency led by Hamza Tahir. SEO, social media, branding & paid ads for UAE businesses. Serving Dubai, Abu Dhabi & Sharjah.',
   keywords: ['Digital Agency Dubai', 'Marketing Team Dubai', 'Google Partner UAE', 'Best Digital Agency Dubai', 'About Innovate Digital', 'Digital Marketing Company UAE'],
   alternates: {
     canonical: '/about',
@@ -42,11 +42,6 @@ const values = [
   },
 ]
 
-const team = [
-  { name: 'Osama Tahir', role: 'CEO & Founder', emoji: '👨‍💼' },
-  { name: 'Syed Shahjahan', role: 'Head of SEO', emoji: '👨‍💼' },
-  { name: 'Ali Husnain', role: 'Creative Director', emoji: '👨‍🎨' },
-]
 
 export default function AboutPage() {
   return (
@@ -69,7 +64,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Founder />
+      {/* <Founder /> */}
 
       {/* Story Section */}
       <section className="section-padding bg-white">
@@ -230,24 +225,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Meet Our Team</h2>
-            <p className="text-xl text-gray-600">Talented professionals who make it all happen</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member) => (
-              <div key={member.name} className="card text-center group hover:-translate-y-2">
-                <div className="text-6xl mb-4">{member.emoji}</div>
-                <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                <p className="text-primary-600 font-medium">{member.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <FAQ faqs={aboutFAQs} title="About Innovate Digital - FAQ" />

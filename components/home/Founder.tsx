@@ -42,11 +42,12 @@ export default function Founder() {
               <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/founder.png"
-                  alt="Osama Tahir - Founder & CEO of Innovate Digital"
+                  alt="Hamza Tahir - Founder & CEO of Innovate Digital"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority
+                  style={{ filter: 'blur(8px)', transform: 'scale(1.1)' }}
                 />
               </div>
 
@@ -65,7 +66,7 @@ export default function Founder() {
             >
               <div>
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                  Osama Tahir
+                  Hamza Tahir
                 </h3>
                 <p className="text-xl text-blue-600 font-semibold mb-4">
                   Founder & CEO
