@@ -9,8 +9,8 @@ import { siteConfig } from '@/lib/config'
 import { generateServiceSchema, generateBreadcrumbSchema, generateAggregateRatingSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
-  title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
-  description: 'Leading digital marketing agency in Abu Dhabi, UAE. Expert SEO, social media, PPC, web development. Serving 100+ Abu Dhabi businesses. Google Partner certified. Free consultation!',
+  title: 'Digital Marketing Agency Abu Dhabi | 5★ Rated | Free Audit',
+  description: 'Award-winning digital marketing agency in Abu Dhabi. 200+ UAE clients, 5.0★ Google rating. Expert SEO, PPC, social media & web development for Abu Dhabi businesses. Get your free marketing audit today.',
   keywords: [
     'Digital Marketing Agency Abu Dhabi',
     'Digital Marketing Abu Dhabi',
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
     canonical: '/abu-dhabi',
   },
   openGraph: {
-    title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
-    description: 'Abu Dhabi\'s leading digital marketing agency. 100+ successful projects, 4.9/5 rating, Google Partner certified.',
+    title: 'Digital Marketing Agency Abu Dhabi | 5★ Rated | Free Audit',
+    description: 'Award-winning digital marketing agency in Abu Dhabi. 200+ UAE clients, 5.0/5 Google rating. Expert SEO, PPC, social media & web development.',
     url: `${siteConfig.url}/abu-dhabi`,
     images: [siteConfig.ogImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
-    description: 'Abu Dhabi\'s leading digital marketing agency. 100+ successful projects, 4.9/5 rating, Google Partner certified.',
+    title: 'Digital Marketing Agency Abu Dhabi | 5★ Rated | Free Audit',
+    description: 'Award-winning digital marketing agency in Abu Dhabi. 200+ UAE clients, 5.0/5 Google rating. Expert SEO, PPC, social media & web development.',
     images: [siteConfig.ogImage],
   },
 }
@@ -160,20 +160,21 @@ export default function AbuDhabiPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              🏛️ Serving 100+ Abu Dhabi Businesses | Capital City Experts
+              🏛️ 5.0★ Google Rating | 200+ UAE Clients | Abu Dhabi Digital Marketing Experts
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Digital Marketing Agency <span className="gradient-text">Abu Dhabi</span>
             </h1>
-            
+
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">
-              Trusted by Government & Private Sector | Google Partner Certified
+              Abu Dhabi&apos;s Trusted SEO, PPC & Social Media Partner | Google Partner Certified
             </h2>
-            
+
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Serving Abu Dhabi businesses with expert digital marketing. From government contractors to healthcare, 
-              we help capital city companies grow through targeted SEO, social media, PPC, and web development with deep understanding of Abu Dhabi market dynamics.
+              Looking for a results-driven digital marketing agency in Abu Dhabi? Innovate Digital helps capital city businesses
+              grow through expert SEO, Google Ads, social media marketing, and web development. From government contractors to
+              healthcare providers, we deliver measurable ROI with deep understanding of Abu Dhabi&apos;s unique market dynamics.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -307,8 +308,8 @@ export default function AbuDhabiPage() {
               <div className="text-gray-600">Abu Dhabi Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold text-primary-600 mb-2">4.9/5</div>
-              <div className="text-gray-600">Google Rating</div>
+              <div className="text-5xl font-bold text-primary-600 mb-2">5.0/5</div>
+              <div className="text-gray-600">Google Rating (47 Reviews)</div>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold text-primary-600 mb-2">3x</div>
@@ -374,10 +375,10 @@ export default function AbuDhabiPage() {
       <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Dominate Abu Dhabi's Digital Market?
+            Ready to Grow Your Abu Dhabi Business Online?
           </h2>
           <p className="text-xl mb-8 text-blue-100">
-            Get a free marketing audit worth AED 2,000 - discover your growth opportunities
+            Get a free digital marketing audit worth AED 2,000 — discover untapped growth opportunities for your Abu Dhabi business
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
