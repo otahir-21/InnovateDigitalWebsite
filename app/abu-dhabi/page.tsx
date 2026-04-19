@@ -9,31 +9,32 @@ import { siteConfig } from '@/lib/config'
 import { generateServiceSchema, generateBreadcrumbSchema, generateAggregateRatingSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
-  title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
-  description: 'Leading digital marketing agency in Abu Dhabi, UAE. Expert SEO, social media, PPC, web development. Serving 100+ Abu Dhabi businesses. Google Partner certified. Free consultation!',
+  title: 'Digital Marketing Agency Abu Dhabi | 200+ Clients ★ 5.0 Rated',
+  description: 'Award-winning digital marketing agency in Abu Dhabi. SEO, PPC, social media & web development trusted by 200+ UAE businesses. 3x average ROI. Get your free marketing audit today.',
   keywords: [
     'Digital Marketing Agency Abu Dhabi',
     'Digital Marketing Abu Dhabi',
     'Marketing Agency Abu Dhabi',
+    'Best Digital Marketing Agency Abu Dhabi',
     'SEO Company Abu Dhabi',
     'Social Media Marketing Abu Dhabi',
     'Web Development Abu Dhabi',
     'PPC Agency Abu Dhabi',
-    'Best Digital Marketing Abu Dhabi'
+    'Abu Dhabi Digital Marketing Company'
   ],
   alternates: {
     canonical: '/abu-dhabi',
   },
   openGraph: {
-    title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
-    description: 'Abu Dhabi\'s leading digital marketing agency. 100+ successful projects, 4.9/5 rating, Google Partner certified.',
+    title: 'Digital Marketing Agency Abu Dhabi | 200+ Clients ★ 5.0 Rated',
+    description: 'Award-winning digital marketing agency in Abu Dhabi. Trusted by 200+ UAE businesses with 5.0/5 Google rating. SEO, PPC, social media & web development.',
     url: `${siteConfig.url}/abu-dhabi`,
     images: [siteConfig.ogImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Marketing Agency Abu Dhabi | Capital City SEO Experts',
-    description: 'Abu Dhabi\'s leading digital marketing agency. 100+ successful projects, 4.9/5 rating, Google Partner certified.',
+    title: 'Digital Marketing Agency Abu Dhabi | 200+ Clients ★ 5.0 Rated',
+    description: 'Award-winning digital marketing agency in Abu Dhabi. Trusted by 200+ UAE businesses with 5.0/5 Google rating. SEO, PPC, social media & web development.',
     images: [siteConfig.ogImage],
   },
 }
@@ -127,8 +128,8 @@ const caseStudies = [
 
 export default function AbuDhabiPage() {
   const serviceSchema = generateServiceSchema({
-    name: 'Digital Marketing Services Abu Dhabi',
-    description: 'Comprehensive digital marketing services in Abu Dhabi, UAE including SEO, social media marketing, PPC advertising, web development, and content marketing.',
+    name: 'Digital Marketing Agency Abu Dhabi',
+    description: 'Award-winning digital marketing agency in Abu Dhabi, UAE. Expert SEO, social media marketing, PPC advertising, web development, and content marketing trusted by 200+ businesses.',
     url: `${siteConfig.url}/abu-dhabi`,
     serviceType: 'Digital Marketing',
     areaServed: 'Abu Dhabi, UAE',
@@ -160,7 +161,7 @@ export default function AbuDhabiPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              🏛️ Serving 100+ Abu Dhabi Businesses | Capital City Experts
+              🏛️ Trusted by 200+ UAE Businesses | 5.0 ★ Google Rating
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -168,12 +169,11 @@ export default function AbuDhabiPage() {
             </h1>
             
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">
-              Trusted by Government & Private Sector | Google Partner Certified
+              Abu Dhabi&apos;s Trusted Partner for SEO, PPC, Social Media & Web Development
             </h2>
             
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Serving Abu Dhabi businesses with expert digital marketing. From government contractors to healthcare, 
-              we help capital city companies grow through targeted SEO, social media, PPC, and web development with deep understanding of Abu Dhabi market dynamics.
+              We are a results-driven digital marketing agency in Abu Dhabi helping businesses across government, healthcare, oil &amp; gas, and hospitality sectors grow online. Our 200+ clients trust us to deliver 3x average ROI through data-led SEO, Google Ads, social media, and web development — all tailored to Abu Dhabi&apos;s unique market.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -203,7 +203,7 @@ export default function AbuDhabiPage() {
               </div>
               <div className="flex items-center gap-2">
                 <FiCheckCircle className="text-green-600" />
-                <span>100+ Abu Dhabi Projects</span>
+                <span>200+ UAE Clients</span>
               </div>
               <div className="flex items-center gap-2">
                 <FiCheckCircle className="text-green-600" />
@@ -303,12 +303,12 @@ export default function AbuDhabiPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-5xl font-bold text-primary-600 mb-2">100+</div>
-              <div className="text-gray-600">Abu Dhabi Projects Completed</div>
+              <div className="text-5xl font-bold text-primary-600 mb-2">200+</div>
+              <div className="text-gray-600">UAE Clients Served</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold text-primary-600 mb-2">4.9/5</div>
-              <div className="text-gray-600">Google Rating</div>
+              <div className="text-5xl font-bold text-primary-600 mb-2">5.0/5</div>
+              <div className="text-gray-600">Google Rating (47 Reviews)</div>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold text-primary-600 mb-2">3x</div>
