@@ -9,13 +9,7 @@ import { fadeUp } from '@/lib/animations'
 
 export default function CTA() {
   return (
-    <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl"></div>
-      </div>
-
+    <section className="section-padding bg-black text-white relative overflow-hidden">
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -24,30 +18,33 @@ export default function CTA() {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-4">
-              🏆 Trusted by 200+ Dubai & UAE Businesses
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Ready to 3x Your Business Growth?
-            </h2>
-            
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Get a <strong>FREE Marketing Audit</strong> worth AED 2,000 - discover untapped opportunities
+            <p className="inline-flex items-center gap-3 text-[11px] sm:text-xs uppercase tracking-[0.22em] text-white/45 font-medium mb-6">
+              <span className="w-8 h-px bg-white/30" aria-hidden="true" />
+              Trusted by 200+ Dubai & UAE Businesses
             </p>
             
-            <p className="text-lg mb-12 text-blue-200 flex items-center justify-center gap-4 flex-wrap">
-              <span>✓ No Commitment Required</span>
-              <span>✓ 24h Response Time</span>
-              <span>✓ Google Partner Certified</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+              Ready to 3x Your <span className="font-light italic">Business Growth?</span>
+            </h2>
+            
+            <p className="text-xl md:text-2xl mb-8 text-white/70">
+              Get a <strong className="text-white">FREE Marketing Audit</strong> worth AED 2,000 — discover untapped opportunities
+            </p>
+            
+            <p className="text-sm uppercase tracking-[0.14em] mb-12 text-white/45 flex items-center justify-center gap-4 flex-wrap">
+              <span>No Commitment Required</span>
+              <span className="hidden sm:inline text-secondary-400">—</span>
+              <span>24h Response Time</span>
+              <span className="hidden sm:inline text-secondary-400">—</span>
+              <span>Google Partner Certified</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
                 href="/contact"
-                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center justify-center"
+                className="bg-white text-black px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-secondary-100 transition-colors inline-flex items-center justify-center"
               >
-                Get Your Free AED 2,000 Audit 🎯
+                Get Your Free AED 2,000 Audit
                 <FiArrowRight className="ml-2" />
               </Link>
               
@@ -55,20 +52,19 @@ export default function CTA() {
                 href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center justify-center"
+                className="bg-transparent text-white border border-white/25 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-white hover:text-black transition-colors inline-flex items-center justify-center"
               >
                 <FaWhatsapp className="mr-2 w-5 h-5" />
                 WhatsApp Us
               </a>
             </div>
 
-            {/* Contact Options */}
             <motion.div
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="flex flex-col md:flex-row gap-6 justify-center items-center text-blue-100"
+              className="flex flex-col md:flex-row gap-6 justify-center items-center text-white/50"
             >
               <a
                 href={`tel:${siteConfig.contact.phone}`}
@@ -78,7 +74,7 @@ export default function CTA() {
                 <span>{siteConfig.contact.phone}</span>
               </a>
               
-              <span className="hidden md:inline">|</span>
+              <span className="hidden md:inline text-secondary-400">—</span>
               
               <a
                 href={`mailto:${siteConfig.contact.email}`}

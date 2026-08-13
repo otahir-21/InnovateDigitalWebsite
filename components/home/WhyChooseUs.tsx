@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             <ScrollRevealText text="Why Choose Our Digital Marketing Agency in Dubai" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
               className="flex items-start space-x-4 p-6 rounded-xl hover:bg-gray-50 transition-colors"
             >
               <div className="flex-shrink-0">
-                <FiCheckCircle className="w-8 h-8 text-green-500" />
+                <FiCheckCircle className="w-8 h-8 text-black" />
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-2">{reason.title}</h3>
@@ -84,19 +84,19 @@ export default function WhyChooseUs() {
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-gray-200"
         >
           <div className="text-center">
-            <div className="text-5xl font-bold gradient-text mb-2">500+</div>
+              <div className="text-5xl font-bold text-black mb-2">500+</div>
             <div className="text-gray-600">Successful Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold gradient-text mb-2">200+</div>
+              <div className="text-5xl font-bold text-black mb-2">200+</div>
             <div className="text-gray-600">Happy Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold gradient-text mb-2">50+</div>
+              <div className="text-5xl font-bold text-black mb-2">50+</div>
             <div className="text-gray-600">Team Members</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold gradient-text mb-2">5+</div>
+              <div className="text-5xl font-bold text-black mb-2">5+</div>
             <div className="text-gray-600">Years Experience</div>
           </div>
         </motion.div>

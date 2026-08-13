@@ -30,7 +30,7 @@ export default function ClientPortalPage() {
         <div className="flex flex-wrap gap-4">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-95 transition-opacity"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-black hover:opacity-95 transition-opacity"
           >
             Contact your account manager
           </Link>

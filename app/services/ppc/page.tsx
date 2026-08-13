@@ -109,7 +109,7 @@ export default function PPCPage() {
         <Breadcrumbs />
       </div>
       
-      <section className="section-padding bg-gradient-to-br from-green-50 to-emerald-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -136,20 +136,20 @@ export default function PPCPage() {
                 <div className="text-sm font-semibold text-green-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Pay-Per-Click Advertising</div>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Businesses needing immediate traffic & leads</div>
               </div>
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">Instant traffic, results in 1-2 weeks</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 2,500/month + ad spend</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-3xl font-bold text-green-600 mb-1">5:1</div>
@@ -225,7 +225,7 @@ export default function PPCPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-green-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -235,24 +235,24 @@ export default function PPCPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-green-600 to-emerald-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">5:1</div>
-              <p className="text-green-100">Average ROI achieved</p>
+              <p className="text-white/50">Average ROI achieved</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">$2M+</div>
-              <p className="text-green-100">Ad spend managed</p>
+              <p className="text-white/50">Ad spend managed</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">3.5%</div>
-              <p className="text-green-100">Average CTR</p>
+              <p className="text-white/50">Average CTR</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">100+</div>
-              <p className="text-green-100">Active campaigns</p>
+              <p className="text-white/50">Active campaigns</p>
             </div>
           </div>
         </div>
@@ -293,17 +293,17 @@ export default function PPCPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Drive Immediate Traffic?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Get a free PPC audit and discover how to maximize your advertising ROI
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center"
+            className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center"
           >
             Get Free PPC Audit
             <FiArrowRight className="ml-2" />

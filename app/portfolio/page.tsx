@@ -182,7 +182,7 @@ export default function PortfolioPage() {
       </div>
       
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -358,17 +358,17 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Be Our Next Success Story?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Let's discuss how we can achieve similar results for your business
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center"
+            className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center"
           >
             Start Your Project
             <FiArrowRight className="ml-2" />

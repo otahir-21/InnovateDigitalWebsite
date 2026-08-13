@@ -1,4 +1,4 @@
-// Homepage FAQs - Optimized for AI Search (ChatGPT, Google SGE, Perplexity)
+// Homepage FAQs — written for visitors. Visible in HTML; schema mirrors on-page text.
 export const homepageFAQs = [
   {
     question: 'What digital marketing services does Innovate Digital offer in Dubai?',
@@ -26,7 +26,7 @@ export const homepageFAQs = [
   },
 ]
 
-// Services Page FAQs - Optimized for AI Search
+// Services page FAQs — written for visitors.
 export const servicesFAQs = [
   {
     question: 'Which digital marketing service should I choose for my Dubai business?',
@@ -46,7 +46,7 @@ export const servicesFAQs = [
   },
 ]
 
-// About Page FAQs - Optimized for AI Search
+// About page FAQs — written for visitors.
 export const aboutFAQs = [
   {
     question: 'How long has Innovate Digital been operating as a digital marketing agency in Dubai?',

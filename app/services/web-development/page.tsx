@@ -109,7 +109,7 @@ export default function WebDevelopmentPage() {
         <Breadcrumbs />
       </div>
       
-      <section className="section-padding bg-gradient-to-br from-pink-50 to-rose-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -132,7 +132,7 @@ export default function WebDevelopmentPage() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">Web Development Quick Facts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Custom Website & Web Application Development</div>
               </div>
@@ -140,27 +140,27 @@ export default function WebDevelopmentPage() {
                 <div className="text-sm font-semibold text-green-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Businesses needing modern, fast websites</div>
               </div>
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">4-12 weeks depending on complexity</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 15,000</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">95+</div>
+                  <div className="text-3xl font-bold text-black mb-1">95+</div>
                   <div className="text-sm text-gray-600">Page Speed score achieved</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">100%</div>
+                  <div className="text-3xl font-bold text-black mb-1">100%</div>
                   <div className="text-sm text-gray-600">Mobile responsive</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">24/7</div>
+                  <div className="text-3xl font-bold text-black mb-1">24/7</div>
                   <div className="text-sm text-gray-600">Ongoing support</div>
                 </div>
               </div>
@@ -205,7 +205,7 @@ export default function WebDevelopmentPage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-pink-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -225,7 +225,7 @@ export default function WebDevelopmentPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-pink-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -235,24 +235,24 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-pink-600 to-rose-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">300+</div>
-              <p className="text-pink-100">Websites launched</p>
+              <p className="text-white/50">Websites launched</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">&lt;2s</div>
-              <p className="text-pink-100">Average load time</p>
+              <p className="text-white/50">Average load time</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">99.9%</div>
-              <p className="text-pink-100">Uptime guarantee</p>
+              <p className="text-white/50">Uptime guarantee</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">100%</div>
-              <p className="text-pink-100">Mobile responsive</p>
+              <p className="text-white/50">Mobile responsive</p>
             </div>
           </div>
         </div>
@@ -293,17 +293,17 @@ export default function WebDevelopmentPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Build Your Dream Website?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Get a free consultation and custom quote for your web development project
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center"
+            className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center"
           >
             Get Free Consultation
             <FiArrowRight className="ml-2" />

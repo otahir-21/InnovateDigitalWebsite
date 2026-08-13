@@ -18,7 +18,7 @@ export default function MobileContactButton() {
       {/* Mobile Contact Button - Stacked above WhatsApp button */}
       <motion.button
         onClick={() => setIsModalOpen(true)}
-        className="md:hidden fixed bottom-28 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-4 rounded-full shadow-2xl touch-manipulation will-change-transform"
+        className="md:hidden fixed bottom-28 right-6 z-50 bg-black hover:bg-neutral-800 text-white p-4 rounded-full shadow-2xl touch-manipulation will-change-transform"
         aria-label="Open contact form"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

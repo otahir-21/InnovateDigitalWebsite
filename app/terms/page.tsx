@@ -22,7 +22,7 @@ export default function TermsAndConditions() {
       </div>
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <div className="bg-black text-white py-20">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Terms and Conditions</h1>
           <p className="text-xl text-white/90">
@@ -305,14 +305,14 @@ export default function TermsAndConditions() {
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
               <p className="text-gray-700 mb-2"><strong>Innovate Digital</strong></p>
               <p className="text-gray-700 mb-2">Meydan Free Zone, Dubai, UAE</p>
-              <p className="text-gray-700 mb-2">Email: <a href="mailto:legal@innovatedigital.ae" className="text-blue-600 hover:underline">legal@innovatedigital.ae</a></p>
-              <p className="text-gray-700 mb-2">Phone: <a href="tel:+971523949010" className="text-blue-600 hover:underline">+971 52 394 9010</a></p>
-              <p className="text-gray-700">Website: <a href="https://www.innovatedigital.ae" className="text-blue-600 hover:underline">innovatedigital.ae</a></p>
+              <p className="text-gray-700 mb-2">Email: <a href="mailto:legal@innovatedigital.ae" className="text-black hover:underline">legal@innovatedigital.ae</a></p>
+              <p className="text-gray-700 mb-2">Phone: <a href="tel:+971523949010" className="text-black hover:underline">+971 52 394 9010</a></p>
+              <p className="text-gray-700">Website: <a href="https://www.innovatedigital.ae" className="text-black hover:underline">innovatedigital.ae</a></p>
             </div>
           </section>
 
           {/* Acceptance */}
-          <section className="mb-12 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+          <section className="mb-12 bg-secondary-50 border-l-4 border-black p-6 rounded-r-lg">
             <h3 className="text-xl font-bold text-gray-900 mb-3">Acceptance of Terms</h3>
             <p className="text-gray-700">
               By using our website and services, you acknowledge that you have read, understood, and agree to 
@@ -324,7 +324,7 @@ export default function TermsAndConditions() {
           <div className="mt-12 pt-8 border-t border-gray-200 text-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow"
+              className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow"
             >
               ← Back to Home
             </Link>

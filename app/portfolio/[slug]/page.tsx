@@ -66,7 +66,7 @@ export default function CaseStudyPage({ params }: PageProps) {
         <Breadcrumbs />
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
         >
           <FiArrowLeft />
           <span>Back to Portfolio</span>
@@ -128,7 +128,7 @@ export default function CaseStudyPage({ params }: PageProps) {
                 className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow"
               >
                 <div className="flex items-center justify-center mb-2">
-                  <FiTrendingUp className="text-blue-600 mr-2" />
+                  <FiTrendingUp className="text-black mr-2" />
                   <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}>
                     {metric.value}
                   </div>
@@ -175,7 +175,7 @@ export default function CaseStudyPage({ params }: PageProps) {
               <ul className="space-y-4">
                 {caseStudy.detailedDescription.approach.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-black mt-1 flex-shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </li>
                 ))}
@@ -201,7 +201,7 @@ export default function CaseStudyPage({ params }: PageProps) {
             </div>
 
             {/* Solution */}
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+            <div className="bg-secondary-50 border-l-4 border-black p-6 rounded-r-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-3">The Solution</h3>
               <p className="text-gray-700">{caseStudy.solution}</p>
             </div>

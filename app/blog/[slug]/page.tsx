@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import { FiArrowLeft, FiCalendar, FiClock, FiUser, FiShare2, FiTwitter, FiFacebook, FiLinkedin, FiBookOpen } from 'react-icons/fi'
-import { getBlogPostBySlug, getAllBlogPostSlugs, getRelatedBlogPosts } from '@/lib/blogPostsData'
+import { getBlogPostBySlug, getAllBlogPostSlugs, getRelatedBlogPosts, isAiAssistedPost, isAiGeneratedImage } from '@/lib/blogPostsData'
 import { generateBlogPostingSchema } from '@/lib/schema'
 import { siteConfig } from '@/lib/config'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
@@ -23,16 +23,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const canonicalPath = `/blog/${post.slug}`
 
+  const description = post.metaDescription || post.excerpt
+
   return {
     title: `${post.title} | Innovate Digital Blog`,
-    description: post.excerpt,
+    description,
     keywords: post.keywords,
     alternates: {
       canonical: canonicalPath,
     },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
@@ -47,7 +49,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt,
+      description,
       images: [
         typeof post.image === 'string' && post.image.startsWith('/')
           ? `${siteConfig.url}${post.image}`
@@ -65,17 +67,21 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     notFound()
   }
 
-  // Generate BlogPosting schema
+  const aiAssisted = isAiAssistedPost(post)
+  const aiImage = isAiGeneratedImage(post)
+  const imageUrl = typeof post.image === 'string' && post.image.startsWith('/') ? `${siteConfig.url}${post.image}` : undefined
+
   const blogSchema = generateBlogPostingSchema({
     title: post.title,
-    description: post.excerpt,
+    description: post.metaDescription || post.excerpt,
     author: post.author,
     authorRole: post.authorRole,
     date: post.date,
     url: `${siteConfig.url}/blog/${post.slug}`,
-    image: typeof post.image === 'string' && post.image.startsWith('/') ? `${siteConfig.url}${post.image}` : undefined,
+    image: imageUrl,
     keywords: post.keywords,
     category: post.category,
+    imageIsAiGenerated: aiImage,
   })
 
   return (
@@ -104,7 +110,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white overflow-hidden">
+      <section className="relative py-20 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
@@ -170,13 +176,29 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Featured image for SEO and visual hierarchy */}
-            <img
-              src={post.image.startsWith('/') || post.image.startsWith('http') ? post.image : '/blog-placeholder.svg'}
-              alt={`${post.title} - Featured image`}
-              className="w-full rounded-xl shadow-lg mb-12 object-cover max-h-[400px]"
-              width={800}
-              height={450}
-            />
+            <figure className="mb-12">
+              <img
+                src={post.image.startsWith('/') || post.image.startsWith('http') ? post.image : '/blog-placeholder.svg'}
+                alt={aiImage
+                  ? `AI-generated illustration for: ${post.title}`
+                  : `${post.title} — Innovate Digital`}
+                className="w-full rounded-xl shadow-lg object-cover max-h-[400px]"
+                width={800}
+                height={450}
+              />
+              {aiImage && (
+                <figcaption className="mt-3 text-sm text-gray-500">
+                  AI-generated illustration. Not a photograph of a client or project.
+                </figcaption>
+              )}
+            </figure>
+            {aiAssisted && (
+              <p className="mb-8 text-sm text-gray-600 border-l-2 border-black/20 pl-4">
+                This article was drafted with generative AI and checked against our Dubai client work.
+                Figures that are not linked to a named source are estimates, not original research.{' '}
+                <Link href="/disclaimer" className="underline hover:text-black">How we use AI on this site</Link>.
+              </p>
+            )}
             {/* Article Content */}
             <div 
               className="blog-article-content prose prose-lg max-w-none
@@ -194,11 +216,11 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             />
 
             {/* CTA Section */}
-            <div className="mt-16 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-2xl p-12 text-center">
+            <div className="mt-16 bg-black text-white rounded-2xl p-12 text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Implement These Strategies?
               </h2>
-              <p className="text-lg md:text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl mb-8 text-white/70 max-w-2xl mx-auto">
                 Get a free consultation and let our experts help you achieve your digital marketing goals.
               </p>
               <Link

@@ -72,7 +72,7 @@ export default function AnalyticsPage() {
     <div className="pt-20">
       <Script id="analytics-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
-      <section className="section-padding bg-gradient-to-br from-lime-50 to-green-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6"><span className="gradient-text">Analytics & Reporting</span> Services in UAE</h1>
@@ -88,7 +88,7 @@ export default function AnalyticsPage() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">Analytics & Tracking Quick Facts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Data Analytics & Conversion Tracking</div>
               </div>
@@ -96,27 +96,27 @@ export default function AnalyticsPage() {
                 <div className="text-sm font-semibold text-green-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Businesses optimizing marketing ROI</div>
               </div>
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">1-2 weeks for full setup</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 2,000 + AED 500/month</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">360°</div>
+                  <div className="text-3xl font-bold text-black mb-1">360°</div>
                   <div className="text-sm text-gray-600">Complete tracking</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">Real-time</div>
+                  <div className="text-3xl font-bold text-black mb-1">Real-time</div>
                   <div className="text-sm text-gray-600">Dashboards</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">ROI</div>
+                  <div className="text-3xl font-bold text-black mb-1">ROI</div>
                   <div className="text-sm text-gray-600">Insights</div>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default function AnalyticsPage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-lime-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -181,7 +181,7 @@ export default function AnalyticsPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-lime-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -191,24 +191,24 @@ export default function AnalyticsPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-lime-600 to-green-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">500+</div>
-              <p className="text-lime-100">Dashboards created</p>
+              <p className="text-white/50">Dashboards created</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">98%</div>
-              <p className="text-lime-100">Tracking accuracy</p>
+              <p className="text-white/50">Tracking accuracy</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">40%</div>
-              <p className="text-lime-100">Avg ROI improvement</p>
+              <p className="text-white/50">Avg ROI improvement</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">24/7</div>
-              <p className="text-lime-100">Real-time monitoring</p>
+              <p className="text-white/50">Real-time monitoring</p>
             </div>
           </div>
         </div>
@@ -216,11 +216,11 @@ export default function AnalyticsPage() {
 
       <FAQ faqs={faqs} title="Analytics & Reporting FAQ" />
       
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Make Data-Driven Decisions?</h2>
-          <p className="text-xl mb-8 text-blue-100">Get a free analytics audit and discover insights hidden in your data</p>
-          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center">Get Free Audit<FiArrowRight className="ml-2" /></Link>
+          <p className="text-xl mb-8 text-white/70">Get a free analytics audit and discover insights hidden in your data</p>
+          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center">Get Free Audit<FiArrowRight className="ml-2" /></Link>
         </div>
       </section>
     </div>

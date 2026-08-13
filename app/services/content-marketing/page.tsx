@@ -72,7 +72,7 @@ export default function ContentMarketingPage() {
     <div className="pt-20">
       <Script id="content-marketing-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
-      <section className="section-padding bg-gradient-to-br from-orange-50 to-amber-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6"><span className="gradient-text">Content Marketing</span> Services in UAE</h1>
@@ -92,20 +92,20 @@ export default function ContentMarketingPage() {
                 <div className="text-sm font-semibold text-green-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Content Strategy & Creation</div>
               </div>
-              <div className="bg-teal-50 p-6 rounded-lg border-l-4 border-teal-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-teal-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Businesses building thought leadership</div>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">Ongoing monthly retainer</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 4,000/month</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-3xl font-bold text-green-600 mb-1">10+</div>
@@ -161,7 +161,7 @@ export default function ContentMarketingPage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-orange-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -181,7 +181,7 @@ export default function ContentMarketingPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-orange-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -191,24 +191,24 @@ export default function ContentMarketingPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-orange-600 to-amber-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">10K+</div>
-              <p className="text-orange-100">Articles published</p>
+              <p className="text-white/50">Articles published</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">5M+</div>
-              <p className="text-orange-100">Organic visitors driven</p>
+              <p className="text-white/50">Organic visitors driven</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">300%</div>
-              <p className="text-orange-100">Avg traffic increase</p>
+              <p className="text-white/50">Avg traffic increase</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">3x</div>
-              <p className="text-orange-100">Better lead quality</p>
+              <p className="text-white/50">Better lead quality</p>
             </div>
           </div>
         </div>
@@ -216,11 +216,11 @@ export default function ContentMarketingPage() {
 
       <FAQ faqs={faqs} title="Content Marketing FAQ" />
       
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Create Compelling Content?</h2>
-          <p className="text-xl mb-8 text-blue-100">Get a free content strategy and discover how we can help you engage your audience</p>
-          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center">Get Free Strategy<FiArrowRight className="ml-2" /></Link>
+          <p className="text-xl mb-8 text-white/70">Get a free content strategy and discover how we can help you engage your audience</p>
+          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center">Get Free Strategy<FiArrowRight className="ml-2" /></Link>
         </div>
       </section>
     </div>

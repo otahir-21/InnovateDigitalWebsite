@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FiArrowRight, FiPlay, FiUser, FiMail, FiPhone, FiMessageSquare, FiCheck } from 'react-icons/fi'
 import { countryCodes, popularCountries, otherCountries } from '@/lib/countryCodes'
-import WavyText from '@/components/ui/WavyText'
+import Marquee from '@/components/ui/Marquee'
 
 export default function Hero() {
   const [formData, setFormData] = useState({
@@ -86,91 +86,34 @@ export default function Hero() {
     }
   }
 
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-
-  // Parallax layers — each moves at a different speed
-  const blob1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-40%'])
-  const blob2Y = useTransform(scrollYProgress, [0, 1], ['0%', '-25%'])
-  const blob3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
   return (
-    <section ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-[#f8f9ff] px-5 pt-20">
-
-      {/* Deep radial glow layers — parallax */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <motion.div
-          style={{ y: blob1Y }}
-          className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full"
-          animate={{ scale: [1, 1.08, 1], opacity: [0.55, 0.7, 0.55] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <div className="w-full h-full rounded-full bg-blue-400 blur-[100px] opacity-30" />
-        </motion.div>
-
-        <motion.div
-          style={{ y: blob2Y }}
-          className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full"
-          animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.6, 0.4] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        >
-          <div className="w-full h-full rounded-full bg-purple-400 blur-[100px] opacity-25" />
-        </motion.div>
-
-        <motion.div
-          style={{ y: blob3Y }}
-          className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        >
-          <div className="w-full h-full rounded-full bg-pink-300 blur-[80px] opacity-20" />
-        </motion.div>
-
-        {/* Subtle grain overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat',
-            backgroundSize: '128px',
-          }}
-        />
-      </div>
-
-      <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="container mx-auto max-w-7xl relative z-10 w-full h-full flex items-center py-6 pt-10"
-      >
+    <section className="relative min-h-screen flex flex-col bg-white pt-20">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full flex-1 flex items-center px-5 py-10 lg:py-16">
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
           {/* Left Column - Content */}
           <div className="order-2 lg:order-1 text-center md:text-left mx-auto md:mx-0 max-w-xl md:max-w-none space-y-4">
 
-            <motion.div
-              className="inline-block"
+            <motion.p
+            className="title-kicker justify-center md:justify-start"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <span className="bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-xs sm:text-sm font-medium">
-                🏆 Google Partner • Since 2020
-              </span>
-            </motion.div>
+              Google Partner · Since 2020
+            </motion.p>
 
-            <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mt-2">
-              <WavyText text="Dubai's Leading" className="block" delay={0.1} />
-              <WavyText text="Digital Marketing Agency" className="block gradient-text" delay={0.4} />
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-[3.75rem] xl:text-7xl leading-[0.95] mt-2">
+              <span className="block uppercase tracking-tight">Dubai&apos;s Leading</span>
+              <span className="block font-light italic normal-case tracking-normal text-black/70 mt-1">
+                Digital Marketing Agency
+              </span>
             </h1>
 
             <motion.p
               className="text-base text-gray-600 leading-relaxed max-w-lg"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ delay: 0.35, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               SEO, Google Ads, social media, web development & branding — helping UAE businesses grow online since 2020.
             </motion.p>
@@ -178,15 +121,15 @@ export default function Hero() {
             {/* Trust Signals - New */}
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs sm:text-sm text-gray-600">
               <div className="flex items-center gap-2">
-                <FiCheck className="text-green-500 flex-shrink-0" />
+                <FiCheck className="text-black flex-shrink-0" />
                 <span>50+ 5-Star Reviews</span>
               </div>
               <div className="flex items-center gap-2">
-                <FiCheck className="text-green-500 flex-shrink-0" />
+                <FiCheck className="text-black flex-shrink-0" />
                 <span>3x Average ROI</span>
               </div>
               <div className="flex items-center gap-2">
-                <FiCheck className="text-green-500 flex-shrink-0" />
+                <FiCheck className="text-black flex-shrink-0" />
                 <span>Free Marketing Audit</span>
               </div>
             </div>
@@ -211,10 +154,10 @@ export default function Hero() {
 
           {/* Right Column - Contact Form - Hidden on Mobile */}
           <div className="order-1 lg:order-2 hidden md:block">
-            <div className="bg-white rounded-xl shadow-xl p-6 lg:p-7 border border-gray-100 max-w-lg mx-auto lg:mx-0">
+            <div className="bg-white rounded-4xl p-6 lg:p-7 border border-black/10 max-w-lg mx-auto lg:mx-0">
               {/* Form Header */}
               <div className="text-center mb-5">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-3">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-black rounded-full mb-3">
                   <FiMessageSquare className="w-7 h-7 text-white" />
                 </div>
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-1.5">
@@ -228,15 +171,15 @@ export default function Hero() {
               {/* Trust Badges */}
               <div className="flex flex-wrap justify-center gap-2.5 mb-5 pb-5 border-b border-gray-100">
                 <div className="flex items-center text-xs text-gray-600">
-                  <FiCheck className="w-3 h-3 text-green-500 mr-1 flex-shrink-0" />
+                  <FiCheck className="w-3 h-3 text-black mr-1 flex-shrink-0" />
                   <span>Free Strategy</span>
                 </div>
                 <div className="flex items-center text-xs text-gray-600">
-                  <FiCheck className="w-3 h-3 text-green-500 mr-1 flex-shrink-0" />
+                  <FiCheck className="w-3 h-3 text-black mr-1 flex-shrink-0" />
                   <span>No Commitment</span>
                 </div>
                 <div className="flex items-center text-xs text-gray-600">
-                  <FiCheck className="w-3 h-3 text-green-500 mr-1 flex-shrink-0" />
+                  <FiCheck className="w-3 h-3 text-black mr-1 flex-shrink-0" />
                   <span>24h Response</span>
                 </div>
               </div>
@@ -255,7 +198,7 @@ export default function Hero() {
                   </p>
                   <button
                     onClick={() => setIsSuccess(false)}
-                    className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                    className="text-black hover:text-black/70 font-medium text-sm underline underline-offset-2"
                   >
                     Submit Another Request
                   </button>
@@ -279,7 +222,7 @@ export default function Hero() {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm"
+                          className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black/20 focus:border-black transition-all outline-none text-sm"
                           placeholder="John Smith"
                         />
                       </div>
@@ -299,7 +242,7 @@ export default function Hero() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm"
+                          className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black/20 focus:border-black transition-all outline-none text-sm"
                           placeholder="john@company.com"
                         />
                       </div>
@@ -377,7 +320,7 @@ export default function Hero() {
                         required
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black/20 focus:border-black transition-all outline-none text-sm"
                       >
                         <option value="">Select service</option>
                         <option value="Increase Website Traffic (SEO)">Increase Website Traffic (SEO)</option>
@@ -409,7 +352,7 @@ export default function Hero() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={2}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none resize-none text-sm"
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black/20 focus:border-black transition-all outline-none resize-none text-sm"
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -418,7 +361,7 @@ export default function Hero() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-bold text-sm hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center"
+                    className="w-full bg-black text-white py-3 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                   >
                     {isSubmitting ? (
                       <>
@@ -444,7 +387,8 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
+      <Marquee />
     </section>
   )
 }

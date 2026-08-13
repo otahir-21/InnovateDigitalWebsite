@@ -72,7 +72,7 @@ export default function MarketingAutomationPage() {
     <div className="pt-20">
       <Script id="marketing-automation-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
-      <section className="section-padding bg-gradient-to-br from-violet-50 to-purple-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6"><span className="gradient-text">Marketing Automation</span> Services in UAE</h1>
@@ -88,35 +88,35 @@ export default function MarketingAutomationPage() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">Marketing Automation Quick Facts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Automated Marketing Workflows</div>
               </div>
-              <div className="bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-indigo-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">B2B companies with long sales cycles</div>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">2-3 weeks for implementation</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 3,000/month</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-1">50%</div>
+                  <div className="text-3xl font-bold text-black mb-1">50%</div>
                   <div className="text-sm text-gray-600">Time saved</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-1">3x</div>
+                  <div className="text-3xl font-bold text-black mb-1">3x</div>
                   <div className="text-sm text-gray-600">Lead nurturing</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-1">24/7</div>
+                  <div className="text-3xl font-bold text-black mb-1">24/7</div>
                   <div className="text-sm text-gray-600">Automated</div>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default function MarketingAutomationPage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-violet-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -191,7 +191,7 @@ export default function MarketingAutomationPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-violet-600 to-purple-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
@@ -216,11 +216,11 @@ export default function MarketingAutomationPage() {
 
       <FAQ faqs={faqs} title="Marketing Automation FAQ" />
       
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Automate Your Marketing?</h2>
-          <p className="text-xl mb-8 text-blue-100">Get a free consultation and discover how automation can save you time and increase revenue</p>
-          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center">Get Free Consultation<FiArrowRight className="ml-2" /></Link>
+          <p className="text-xl mb-8 text-white/70">Get a free consultation and discover how automation can save you time and increase revenue</p>
+          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center">Get Free Consultation<FiArrowRight className="ml-2" /></Link>
         </div>
       </section>
     </div>

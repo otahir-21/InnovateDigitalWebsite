@@ -20,6 +20,7 @@ import http from "http";
 import { fileURLToPath } from "url";
 import { getPage2Keywords, getTopPages, getSiteStats } from "./gsc-client.js";
 import { getConvertingBlogPosts, getGA4SiteStats } from "./ga4-client.js";
+import { BLOG_WRITING_POLICY } from "./ai-content-policy.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -331,13 +332,13 @@ async function generateBlogPost(topic: string, internalLinks: typeof SERVICE_PAG
       role: "user",
       content: `You are a senior content strategist at Innovate Digital, Dubai's leading digital marketing agency (innovatedigital.ae).
 
-Write a comprehensive SEO blog post on this topic:
+Write a blog post on this topic:
 TOPIC: ${topic}
 
+${BLOG_WRITING_POLICY}
+
 REQUIREMENTS:
-- 1,500–2,000 words of ACTUAL content (not counting headings)
 - Targets UAE/Dubai businesses specifically
-- Uses UAE-relevant statistics, AED pricing where applicable
 - Written in British English
 - One H1 (the title), clear H2s and H3s
 - Natural internal links to our services where relevant:
@@ -407,6 +408,8 @@ async function appendPost(post: Record<string, any>): Promise<void> {
     featured: false,
     metaDescription: '${post.metaDescription.replace(/'/g, "\\'")}',
     keywords: ${JSON.stringify(post.keywords)},
+    creationMethod: 'ai-assisted',
+    imageSource: '${post.image && post.image !== "/blog-placeholder.svg" ? "ai-generated" : "illustration"}',
   },`;
 
   const updated = content.replace(
@@ -444,6 +447,17 @@ async function main() {
   console.log(`  ↳ Converting blog posts (last 90d): ${converting.length}`);
   if (stats) console.log(`  ↳ GSC last 7d: ${stats.totalClicks} clicks, ${stats.totalImpressions} impressions`);
   if (ga4) console.log(`  ↳ GA4 last 7d: ${ga4.totalSessions} sessions, ${ga4.totalConversions} conversions, top source: ${ga4.topSource}`);
+
+  const page2Opps = keywords.filter((k) => k.position >= 11 && k.position <= 20);
+  if (keywords.length === 0) {
+    console.log("\n⛔ No Search Console keyword gap. Not publishing a generative AI page.");
+    console.log("   Google: pages without added value may be scaled content abuse.");
+    return;
+  }
+  if (page2Opps.length === 0 && converting.length === 0) {
+    console.log("\n⛔ No page-2 keyword or converting-post signal. Skipping rather than publishing commodity AI content.");
+    return;
+  }
 
   console.log("\n🔍 Scraping competitors...");
   const competitorTopics: string[] = [];
@@ -489,6 +503,10 @@ async function main() {
   const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error("No JSON in response");
   const parsed = JSON.parse(jsonMatch[0]);
+  if (parsed.abort) {
+    console.log(`⛔ Writer aborted: ${parsed.reason || "no original value"}`);
+    return;
+  }
 
   const newId = String(existingSlugs.length + 1);
   await appendPost({

@@ -73,7 +73,7 @@ export default function Breadcrumbs() {
                 {index === 0 ? (
                   <Link
                     href={item.href}
-                    className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+                    className="flex items-center text-gray-600 hover:text-black transition-colors"
                   >
                     <FiHome className="w-4 h-4" />
                     <span className="ml-1">{item.label}</span>
@@ -85,7 +85,7 @@ export default function Breadcrumbs() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    className="text-gray-600 hover:text-black transition-colors"
                   >
                     {item.label}
                   </Link>

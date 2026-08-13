@@ -60,7 +60,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
+          ? 'bg-white/95 border-b border-black/5'
           : 'bg-transparent'
       }`}
       style={{ overflow: 'visible' }}
@@ -69,7 +69,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold gradient-text">
+            <div className="text-xl font-bold tracking-tight text-black">
               Innovate Digital
             </div>
           </Link>
@@ -85,10 +85,10 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className={`flex items-center space-x-1 text-sm font-medium transition-colors ${
+                  className={`flex items-center space-x-1 text-[13px] uppercase tracking-[0.12em] font-medium transition-colors ${
                     pathname === link.href
-                      ? 'text-primary-600'
-                      : 'text-gray-700 hover:text-primary-600'
+                      ? 'text-black'
+                      : 'text-black/55 hover:text-black'
                   }`}
                 >
                   <span>{link.name}</span>
@@ -107,12 +107,12 @@ export default function Header() {
                       maxHeight: 'calc(100vh - 120px)',
                     }}
                   >
-                    <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 140px)' }}>
+                    <div className="bg-white rounded-2xl border border-black/10 py-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 140px)' }}>
                       {link.submenu.map((item) => (
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          className="block px-4 py-2.5 text-sm text-black/70 hover:bg-secondary-50 hover:text-black transition-colors"
                           onClick={() => setActiveDropdown(null)}
                         >
                           {item.name}

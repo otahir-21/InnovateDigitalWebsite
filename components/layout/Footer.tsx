@@ -8,12 +8,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-black text-white/70">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-4 gradient-text">
+            <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
               Innovate Digital
             </h3>
             <p className="text-sm mb-6">
@@ -25,7 +25,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on LinkedIn"
-                className="hover:text-primary-400 transition-colors"
+                className="hover:text-secondary-400 transition-colors"
               >
                 <FaLinkedin className="w-5 h-5" />
               </a>
@@ -34,7 +34,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Twitter"
-                className="hover:text-primary-400 transition-colors"
+                className="hover:text-secondary-400 transition-colors"
               >
                 <FaTwitter className="w-5 h-5" />
               </a>
@@ -43,7 +43,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Facebook"
-                className="hover:text-primary-400 transition-colors"
+                className="hover:text-secondary-400 transition-colors"
               >
                 <FaFacebook className="w-5 h-5" />
               </a>
@@ -52,7 +52,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
-                className="hover:text-primary-400 transition-colors"
+                className="hover:text-secondary-400 transition-colors"
               >
                 <FaInstagram className="w-5 h-5" />
               </a>
@@ -67,7 +67,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-primary-400 transition-colors"
+                    className="text-sm hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -84,27 +84,27 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/seo" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/services/seo" className="text-sm hover:text-white transition-colors">
                   SEO Services
                 </Link>
               </li>
               <li>
-                <Link href="/services/social-media" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/services/social-media" className="text-sm hover:text-white transition-colors">
                   Social Media Marketing
                 </Link>
               </li>
               <li>
-                <Link href="/services/ppc" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/services/ppc" className="text-sm hover:text-white transition-colors">
                   PPC Management
                 </Link>
               </li>
               <li>
-                <Link href="/services/content-marketing" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/services/content-marketing" className="text-sm hover:text-white transition-colors">
                   Content Marketing
                 </Link>
               </li>
               <li>
-                <Link href="/services/web-development" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/services/web-development" className="text-sm hover:text-white transition-colors">
                   Web Development
                 </Link>
               </li>
@@ -116,17 +116,17 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Locations We Serve</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/dubai" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/dubai" className="text-sm hover:text-white transition-colors">
                   Digital Marketing Dubai
                 </Link>
               </li>
               <li>
-                <Link href="/abu-dhabi" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/abu-dhabi" className="text-sm hover:text-white transition-colors">
                   Digital Marketing Abu Dhabi
                 </Link>
               </li>
               <li>
-                <Link href="/sharjah" className="text-sm hover:text-primary-400 transition-colors">
+                <Link href="/sharjah" className="text-sm hover:text-white transition-colors">
                   Digital Marketing Sharjah
                 </Link>
               </li>
@@ -148,7 +148,7 @@ export default function Footer() {
                 <FiPhone className="w-5 h-5 flex-shrink-0" />
                 <a
                   href={`tel:${siteConfig.contact.phone}`}
-                  className="text-sm hover:text-primary-400 transition-colors"
+                  className="text-sm hover:text-white transition-colors"
                 >
                   {siteConfig.contact.phone}
                 </a>
@@ -157,7 +157,7 @@ export default function Footer() {
                 <FiMail className="w-5 h-5 flex-shrink-0" />
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="text-sm hover:text-primary-400 transition-colors"
+                  className="text-sm hover:text-white transition-colors"
                 >
                   {siteConfig.contact.email}
                 </a>
@@ -172,15 +172,15 @@ export default function Footer() {
             <p>
               We improve our products and services by using Microsoft Clarity to see how you use our website. 
               By using our site, you agree that we and Microsoft can collect and use this data. 
-              Our <Link href="/privacy" className="hover:text-primary-400 underline">privacy policy</Link> has more details.
+              Our <Link href="/privacy" className="hover:text-white underline">privacy policy</Link> has more details.
             </p>
           </div>
           
           <div className="text-center text-sm">
             <p>
               © {currentYear} Innovate Digital. All rights reserved. | 
-              <Link href="/privacy" className="hover:text-primary-400 ml-2">Privacy Policy</Link> | 
-              <Link href="/terms" className="hover:text-primary-400 ml-2">Terms of Service</Link>
+              <Link href="/privacy" className="hover:text-white ml-2">Privacy Policy</Link> | 
+              <Link href="/terms" className="hover:text-white ml-2">Terms of Service</Link>
             </p>
           </div>
         </div>

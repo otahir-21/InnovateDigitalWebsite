@@ -42,10 +42,10 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
   }
 
   return (
-    <div className="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 py-6 bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-2xl sm:rounded-3xl border border-gray-100/80 shadow-sm">
+    <div className="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 py-6 bg-gradient-to-br from-secondary-50 via-white to-secondary-100 rounded-2xl sm:rounded-3xl border border-gray-100/80 shadow-sm">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <p className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-1">
+          <p className="text-lg font-bold text-transparent bg-clip-text bg-black mb-1">
             Innovate Digital
           </p>
           <h1 className="text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">
@@ -109,7 +109,7 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-95 disabled:opacity-60 transition-opacity"
+            className="w-full py-3 rounded-lg font-semibold text-white bg-black hover:opacity-95 disabled:opacity-60 transition-opacity"
           >
             {loading ? 'Signing in…' : 'Sign in'}
           </button>

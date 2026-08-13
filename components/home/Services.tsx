@@ -12,42 +12,42 @@ const services = [
     title: 'SEO Services',
     description: 'Improve Google rankings with SEO services in Dubai. Grow organic traffic, leads and visibility across the UAE market.',
     href: '/services/seo',
-    color: 'from-blue-500 to-blue-600',
+    color: 'from-neutral-900 to-black',
   },
   {
     icon: FiTrendingUp,
     title: 'Social Media Marketing',
     description: 'Build your brand on Instagram, Facebook, LinkedIn and TikTok. Engage your audience and grow across the UAE.',
     href: '/services/social-media',
-    color: 'from-purple-500 to-purple-600',
+    color: 'from-neutral-900 to-black',
   },
   {
     icon: FiTarget,
     title: 'PPC Management',
     description: 'Drive immediate results with Google Ads & Meta Ads. Target the right audience and maximize ROI across UAE markets.',
     href: '/services/ppc',
-    color: 'from-green-500 to-green-600',
+    color: 'from-neutral-900 to-black',
   },
   {
     icon: FiEdit,
     title: 'Content Marketing',
     description: 'Content marketing and blog writing that attracts, engages and converts your ideal audience across the UAE.',
     href: '/services/content-marketing',
-    color: 'from-orange-500 to-orange-600',
+    color: 'from-neutral-900 to-black',
   },
   {
     icon: FiMonitor,
     title: 'Web Development',
     description: 'Professional web design & development in Dubai built to convert and support long-term growth across the UAE.',
     href: '/services/web-development',
-    color: 'from-pink-500 to-pink-600',
+    color: 'from-neutral-900 to-black',
   },
   {
     icon: FiVolume2,
     title: 'Branding & Design',
     description: 'Branding and identity design that builds a memorable presence and resonates with customers across the UAE.',
     href: '/services/branding',
-    color: 'from-indigo-500 to-indigo-600',
+    color: 'from-neutral-900 to-black',
   },
 ]
 
@@ -62,7 +62,7 @@ export default function Services() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
             <ScrollRevealText text="Our Services" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -83,8 +83,8 @@ export default function Services() {
               variants={staggerItem}
             >
               <Link href={service.href}>
-                <div className="card group hover:-translate-y-2 cursor-pointer h-full">
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="card group cursor-pointer h-full">
+                  <div className={`w-14 h-14 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mb-6`}>
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   

@@ -1,21 +1,22 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { FiAward, FiUsers, FiTrendingUp, FiTarget, FiHeart, FiZap } from 'react-icons/fi'
-import Founder from '@/components/home/Founder'
+import { FiAward, FiTarget, FiHeart, FiZap, FiCheckCircle, FiArrowRight } from 'react-icons/fi'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import FAQ from '@/components/ui/FAQ'
 import { aboutFAQs } from '@/lib/faqData'
+import { caseStudies } from '@/lib/caseStudiesData'
+import { founderPersonSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
   title: 'About Innovate Digital | Google Partner Agency Dubai Since 2020',
-  description: 'Innovate Digital — Dubai-based digital marketing agency led by Hamza Tahir. SEO, social media, branding & paid ads for UAE businesses. Serving Dubai, Abu Dhabi & Sharjah.',
+  description: 'Innovate Digital — Dubai digital marketing agency founded in 2020 by Osama Tahir. SEO, social media, branding and paid ads for UAE businesses in Dubai, Abu Dhabi and Sharjah.',
   keywords: ['Digital Agency Dubai', 'Marketing Team Dubai', 'Google Partner UAE', 'Best Digital Agency Dubai', 'About Innovate Digital', 'Digital Marketing Company UAE'],
   alternates: {
     canonical: '/about',
   },
   openGraph: {
     title: 'About Innovate Digital | Google Partner Since 2020 | 200+ Clients',
-    description: 'Meet Dubai\'s leading digital marketing team. Google Partner certified, serving 200+ UAE businesses.',
+    description: 'Meet the Dubai digital marketing team behind 200+ UAE client projects. Founded by Osama Tahir. Google Partner certified.',
   },
 }
 
@@ -42,169 +43,126 @@ const values = [
   },
 ]
 
+const proofStudies = caseStudies.slice(0, 3)
 
 export default function AboutPage() {
   return (
     <div className="pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(founderPersonSchema) }}
+      />
+
       <div className="container mx-auto px-4">
         <Breadcrumbs />
       </div>
-      
-      {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 to-purple-50">
+
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               We Are <span className="gradient-text">Innovate Digital</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              A passionate team of digital marketing experts dedicated to helping businesses in UAE achieve extraordinary online growth.
+              A Dubai agency started in 2020 to replace vanity marketing reports with work you can
+              trace in Search Console, ads, and sales.
             </p>
           </div>
         </div>
       </section>
 
-      {/* <Founder /> */}
-
-      {/* Story Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h2 className="text-4xl font-bold mb-6">Our Story</h2>
               <p className="text-lg text-gray-600 mb-4 leading-relaxed">
-                Innovate Digital was founded in Dubai with one belief: businesses in the UAE deserve digital marketing that actually works — not just reports that look good.
+                Innovate Digital was founded in Meydan Free Zone, Dubai, in 2020. The brief was
+                narrow on purpose: SEO, social, branding, and paid ads — done so a UAE business
+                owner can see what changed, not just what was delivered.
               </p>
               <p className="text-lg text-gray-600 mb-4 leading-relaxed">
-                We started small and stayed focused: SEO, social media, branding, and paid ads — done properly, with real results you can track. Today we serve businesses across Dubai, Abu Dhabi, and Sharjah.
+                That still shapes how we take work. We do not spin up a landing page for every
+                neighbourhood keyword. We pick the searches and offers that can actually produce
+                customers in Dubai, Abu Dhabi, and Sharjah, then build campaigns and content around
+                those.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Every client gets a dedicated team, transparent reporting, and a strategy built around their specific market — not a copy-paste template.
+                Each client gets a named account owner, monthly reporting against the numbers we
+                agreed up front, and a strategy written for their market — not a reused deck with
+                the city name swapped.
               </p>
             </div>
-            <div className="relative h-96 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 flex items-center justify-center overflow-hidden">
-              <svg viewBox="0 0 400 350" className="w-full h-full">
-                {/* Company Growth Journey Illustration */}
-                
-                {/* Timeline base */}
-                <path d="M 50 300 L 350 300" stroke="#E5E7EB" strokeWidth="3" strokeLinecap="round"/>
-                
-                {/* Timeline milestones */}
-                
-                {/* 2018 - Start (Small) */}
-                <circle cx="80" cy="300" r="8" fill="#3B82F6"/>
-                <text x="80" y="330" textAnchor="middle" fill="#6B7280" fontSize="12" fontWeight="bold">2018</text>
-                <text x="80" y="345" textAnchor="middle" fill="#9CA3AF" fontSize="10">Founded</text>
-                
-                {/* Building 1 - Small startup */}
-                <rect x="60" y="240" width="40" height="50" fill="#3B82F6" opacity="0.7"/>
-                <rect x="65" y="248" width="10" height="10" fill="#DBEAFE"/>
-                <rect x="80" y="248" width="10" height="10" fill="#DBEAFE"/>
-                <rect x="65" y="263" width="10" height="10" fill="#DBEAFE"/>
-                <rect x="80" y="263" width="10" height="10" fill="#DBEAFE"/>
-                <rect x="65" y="278" width="10" height="10" fill="#DBEAFE"/>
-                <rect x="80" y="278" width="10" height="10" fill="#DBEAFE"/>
-                
-                {/* Team icon 2018 */}
-                <circle cx="80" cy="220" r="15" fill="#DBEAFE"/>
-                <text x="80" y="228" textAnchor="middle" fontSize="16">👥</text>
-                <text x="80" y="210" textAnchor="middle" fill="#3B82F6" fontSize="11" fontWeight="bold">3 people</text>
-                
-                {/* 2020 - Growth */}
-                <circle cx="180" cy="300" r="8" fill="#8B5CF6"/>
-                <text x="180" y="330" textAnchor="middle" fill="#6B7280" fontSize="12" fontWeight="bold">2020</text>
-                <text x="180" y="345" textAnchor="middle" fill="#9CA3AF" fontSize="10">Expansion</text>
-                
-                {/* Building 2 - Medium size */}
-                <rect x="150" y="210" width="60" height="80" fill="#8B5CF6" opacity="0.7"/>
-                <rect x="157" y="220" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="175" y="220" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="193" y="220" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="157" y="238" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="175" y="238" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="193" y="238" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="157" y="256" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="175" y="256" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="193" y="256" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="157" y="274" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="175" y="274" width="12" height="12" fill="#EDE9FE"/>
-                <rect x="193" y="274" width="12" height="12" fill="#EDE9FE"/>
-                
-                {/* Clients icon 2020 */}
-                <circle cx="180" cy="185" r="18" fill="#EDE9FE"/>
-                <text x="180" y="194" textAnchor="middle" fontSize="18">📊</text>
-                <text x="180" y="172" textAnchor="middle" fill="#8B5CF6" fontSize="11" fontWeight="bold">50+ Clients</text>
-                
-                {/* 2024 - Now (Largest) */}
-                <circle cx="310" cy="300" r="8" fill="#10B981"/>
-                <text x="310" y="330" textAnchor="middle" fill="#6B7280" fontSize="12" fontWeight="bold">2024</text>
-                <text x="310" y="345" textAnchor="middle" fill="#9CA3AF" fontSize="10">Leading</text>
-                
-                {/* Building 3 - Large successful company */}
-                <rect x="270" y="170" width="80" height="120" fill="#10B981" opacity="0.7"/>
-                <rect x="278" y="180" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="298" y="180" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="318" y="180" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="338" y="180" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="278" y="200" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="298" y="200" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="318" y="200" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="338" y="200" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="278" y="220" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="298" y="220" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="318" y="220" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="338" y="220" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="278" y="240" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="298" y="240" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="318" y="240" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="338" y="240" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="278" y="260" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="298" y="260" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="318" y="260" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="338" y="260" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="278" y="280" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="298" y="280" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="318" y="280" width="14" height="14" fill="#D1FAE5"/>
-                <rect x="338" y="280" width="14" height="14" fill="#D1FAE5"/>
-                
-                {/* Success stats 2024 */}
-                <circle cx="310" cy="140" r="22" fill="#D1FAE5"/>
-                <text x="310" y="150" textAnchor="middle" fontSize="20">🏆</text>
-                <text x="310" y="122" textAnchor="middle" fill="#10B981" fontSize="11" fontWeight="bold">100+ Clients</text>
-                
-                {/* Growth arrow connecting all */}
-                <path d="M 100 260 Q 180 200 260 180" stroke="#F59E0B" strokeWidth="3" 
-                      fill="none" strokeLinecap="round" strokeDasharray="5,5"/>
-                <path d="M 260 180 L 252 183 M 260 180 L 257 188" 
-                      stroke="#F59E0B" strokeWidth="3" strokeLinecap="round"/>
-                
-                {/* Title at top */}
-                <text x="200" y="35" textAnchor="middle" fill="#3B82F6" fontSize="20" fontWeight="bold">Our Journey</text>
-                <text x="200" y="55" textAnchor="middle" fill="#6B7280" fontSize="13">From Startup to Leading Agency</text>
-                
-                {/* Achievement badges */}
-                <rect x="20" y="80" width="90" height="40" rx="8" fill="white" opacity="0.95"
-                      stroke="#3B82F6" strokeWidth="2"/>
-                <text x="65" y="97" textAnchor="middle" fill="#3B82F6" fontSize="14" fontWeight="bold">100+</text>
-                <text x="65" y="113" textAnchor="middle" fill="#6B7280" fontSize="10">Brands Created</text>
-
-                <rect x="290" y="60" width="90" height="40" rx="8" fill="white" opacity="0.95"
-                      stroke="#10B981" strokeWidth="2"/>
-                <text x="335" y="77" textAnchor="middle" fill="#10B981" fontSize="14" fontWeight="bold">UAE</text>
-                <text x="335" y="93" textAnchor="middle" fill="#6B7280" fontSize="10">Based Agency</text>
-                
-                {/* Decorative stars */}
-                <circle cx="140" cy="170" r="3" fill="#F59E0B"/>
-                <circle cx="240" cy="150" r="3" fill="#8B5CF6"/>
-                <circle cx="350" cy="140" r="4" fill="#10B981"/>
-                <circle cx="40" cy="250" r="2" fill="#3B82F6"/>
-              </svg>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-2xl border border-black/10 p-6 bg-secondary-50">
+                <div className="text-3xl font-bold text-gray-900 mb-1">2020</div>
+                <div className="text-sm text-gray-600">Founded in Dubai</div>
+              </div>
+              <div className="rounded-2xl border border-black/10 p-6 bg-secondary-50">
+                <div className="text-3xl font-bold text-gray-900 mb-1">200+</div>
+                <div className="text-sm text-gray-600">UAE businesses served</div>
+              </div>
+              <div className="rounded-2xl border border-black/10 p-6 bg-secondary-50">
+                <div className="text-3xl font-bold text-gray-900 mb-1">5.0</div>
+                <div className="text-sm text-gray-600">Google rating (47 reviews)</div>
+              </div>
+              <div className="rounded-2xl border border-black/10 p-6 bg-secondary-50">
+                <div className="text-3xl font-bold text-gray-900 mb-1">Google</div>
+                <div className="text-sm text-gray-600">Partner certified</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
+      <section className="section-padding bg-secondary-50">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Work we can point to</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Selected UAE projects with the numbers we tracked — not a generic &ldquo;success
+              stories&rdquo; collage.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {proofStudies.map((study) => (
+              <article
+                key={study.slug}
+                className="rounded-4xl p-8 bg-white border border-black/10"
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-black/35 mb-4">
+                  {study.location} · {study.projectDate}
+                </p>
+                <h3 className="text-2xl font-bold mb-2">{study.title}</h3>
+                <p className="text-black/60 mb-4 font-medium">{study.client}</p>
+                <p className="text-sm text-black/70 mb-6">{study.challenge}</p>
+                <ul className="space-y-2 mb-6">
+                  {study.results.slice(0, 3).map((result) => (
+                    <li key={result} className="flex items-start gap-2 text-sm text-black/80">
+                      <FiCheckCircle className="flex-shrink-0 mt-0.5" />
+                      <span>{result}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`/portfolio/${study.slug}`}
+                  className="inline-flex items-center gap-2 font-semibold uppercase tracking-wider text-sm hover:gap-3 transition-all"
+                >
+                  Full case study
+                  <FiArrowRight />
+                </Link>
+              </article>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/portfolio" className="btn-primary inline-flex items-center gap-2">
+              View all case studies
+              <FiArrowRight />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16">
@@ -225,16 +183,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-
-      {/* FAQ Section */}
       <FAQ faqs={aboutFAQs} title="About Innovate Digital - FAQ" />
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Work With Us?</h2>
-          <p className="text-xl mb-8 text-blue-100">Let's discuss how we can help grow your business</p>
-          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center">
+          <p className="text-xl mb-8 text-white/70">Let&apos;s discuss how we can help grow your business</p>
+          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center">
             Get in Touch
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

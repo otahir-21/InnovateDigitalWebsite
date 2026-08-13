@@ -25,6 +25,33 @@ export const organizationSchema = {
     siteConfig.links.facebook,
     siteConfig.links.instagram,
   ],
+  founder: {
+    '@type': 'Person',
+    name: 'Osama Tahir',
+    jobTitle: 'Founder & CEO',
+    url: `${siteConfig.url}/about`,
+    sameAs: 'https://www.linkedin.com/in/otahir21',
+  },
+}
+
+export const founderPersonSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Osama Tahir',
+  jobTitle: 'Founder & CEO',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Innovate Digital',
+    url: siteConfig.url,
+  },
+  url: `${siteConfig.url}/about`,
+  image: `${siteConfig.url}/founder.png`,
+  sameAs: ['https://www.linkedin.com/in/otahir21'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Dubai',
+    addressCountry: 'AE',
+  },
 }
 
 export const localBusinessSchema = {
@@ -133,14 +160,24 @@ export function generateBlogPostingSchema(post: {
   image?: string
   keywords?: string[]
   category?: string
+  imageIsAiGenerated?: boolean
 }) {
+  const image = post.imageIsAiGenerated && post.image
+    ? {
+        '@type': 'ImageObject',
+        url: post.image,
+        creditText: 'AI-generated illustration',
+        caption: 'AI-generated illustration. Not a photograph of a client or project.',
+      }
+    : post.image || siteConfig.ogImage
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     '@id': post.url,
     headline: post.title,
     description: post.description,
-    image: post.image || siteConfig.ogImage,
+    image,
     datePublished: post.date,
     dateModified: post.date,
     author: {

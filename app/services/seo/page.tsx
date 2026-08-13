@@ -174,7 +174,7 @@ export default function SEOServicesPage() {
       </div>
       
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -197,7 +197,7 @@ export default function SEOServicesPage() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">SEO Services Quick Facts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Search Engine Optimization</div>
               </div>
@@ -205,27 +205,27 @@ export default function SEOServicesPage() {
                 <div className="text-sm font-semibold text-green-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Businesses wanting organic traffic & leads</div>
               </div>
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">3-6 months for significant results</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 3,000/month</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">5x</div>
+                  <div className="text-3xl font-bold text-black mb-1">5x</div>
                   <div className="text-sm text-gray-600">Average ROI in 12 months</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">Top 3</div>
+                  <div className="text-3xl font-bold text-black mb-1">Top 3</div>
                   <div className="text-sm text-gray-600">Rankings for target keywords</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-1">200%</div>
+                  <div className="text-3xl font-bold text-black mb-1">200%</div>
                   <div className="text-sm text-gray-600">Organic traffic increase</div>
                 </div>
               </div>
@@ -401,17 +401,17 @@ export default function SEOServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Dominate Google?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Get a free SEO audit and discover your opportunities
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center"
+            className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center"
           >
             Get Free SEO Audit
             <FiArrowRight className="ml-2" />

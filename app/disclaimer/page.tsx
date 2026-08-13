@@ -22,11 +22,11 @@ export default function Disclaimer() {
       </div>
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <div className="bg-black text-white py-20">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Disclaimer</h1>
           <p className="text-xl text-white/90">
-            Last Updated: January 15, 2026
+            Last Updated: August 13, 2026
           </p>
         </div>
       </div>
@@ -103,6 +103,21 @@ export default function Disclaimer() {
             </p>
           </section>
 
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">4a. Generative AI content</h2>
+            <p className="text-gray-700 mb-4">
+              We sometimes use generative AI to research a topic or to help structure an article.
+              We do not publish large volumes of pages whose only purpose is to cover more search queries.
+              Where an article was drafted with AI, we say so on the page. Header images produced by an
+              image model are labelled as AI-generated illustrations — they are not photos of clients or projects.
+            </p>
+            <p className="text-gray-700 mb-4">
+              Titles, meta descriptions, and other metadata are written to describe the page accurately.
+              Statistics that are not attributed to a named public source should be treated as estimates.
+              Case studies on this site are individual examples, not guaranteed outcomes.
+            </p>
+          </section>
+
           {/* Platform Changes */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">5. Third-Party Platform Changes</h2>
@@ -163,7 +178,7 @@ export default function Disclaimer() {
             </p>
             <p className="text-gray-700 mb-4">
               If you believe any content on our website violates your copyright, please contact us immediately at 
-              <a href="mailto:legal@innovatedigital.ae" className="text-blue-600 hover:underline"> legal@innovatedigital.ae</a>
+              <a href="mailto:legal@innovatedigital.ae" className="text-black hover:underline"> legal@innovatedigital.ae</a>
             </p>
           </section>
 
@@ -212,8 +227,8 @@ export default function Disclaimer() {
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
               <p className="text-gray-700 mb-2"><strong>Innovate Digital</strong></p>
               <p className="text-gray-700 mb-2">Meydan Free Zone, Dubai, UAE</p>
-              <p className="text-gray-700 mb-2">Email: <a href="mailto:legal@innovatedigital.ae" className="text-blue-600 hover:underline">legal@innovatedigital.ae</a></p>
-              <p className="text-gray-700 mb-2">Phone: <a href="tel:+971523949010" className="text-blue-600 hover:underline">+971 52 394 9010</a></p>
+              <p className="text-gray-700 mb-2">Email: <a href="mailto:legal@innovatedigital.ae" className="text-black hover:underline">legal@innovatedigital.ae</a></p>
+              <p className="text-gray-700 mb-2">Phone: <a href="tel:+971523949010" className="text-black hover:underline">+971 52 394 9010</a></p>
             </div>
           </section>
 
@@ -231,7 +246,7 @@ export default function Disclaimer() {
           <div className="mt-12 pt-8 border-t border-gray-200 text-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow"
+              className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow"
             >
               ← Back to Home
             </Link>

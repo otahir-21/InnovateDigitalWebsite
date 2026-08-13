@@ -103,7 +103,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
       <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[60] max-w-lg mx-auto animate-in zoom-in slide-in-from-bottom-4 duration-300">
         <div className="bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+          <div className="sticky top-0 bg-black text-white p-4 rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
                 <FiMessageSquare className="w-5 h-5" />
@@ -305,7 +305,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-bold text-base hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center"
+                    className="w-full bg-black text-white py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                   >
                     {isSubmitting ? (
                       <>

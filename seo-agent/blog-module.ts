@@ -17,6 +17,7 @@ import path from "path";
 import https from "https";
 import http from "http";
 import { fileURLToPath } from "url";
+import { BLOG_WRITING_POLICY } from "./ai-content-policy.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -186,13 +187,13 @@ async function writeBlogContent(topic: string): Promise<string> {
       role: "user",
       content: `You are a senior content strategist at Innovate Digital, Dubai's leading digital marketing agency (innovatedigital.ae).
 
-Write a comprehensive SEO blog post on this topic:
+Write a blog post on this topic:
 TOPIC: ${topic}
 
+${BLOG_WRITING_POLICY}
+
 REQUIREMENTS:
-- 1,500–2,000 words of ACTUAL content (not counting headings)
 - Targets UAE/Dubai businesses specifically
-- Uses UAE-relevant statistics, AED pricing where applicable
 - Written in British English
 - One H1 (the title), clear H2s and H3s
 - Natural internal links to our services where relevant:
@@ -238,6 +239,8 @@ async function appendPost(post: Record<string, any>): Promise<void> {
     featured: false,
     metaDescription: '${post.metaDescription.replace(/'/g, "\\'")}',
     keywords: ${JSON.stringify(post.keywords)},
+    creationMethod: 'ai-assisted',
+    imageSource: '${post.image && post.image !== "/blog-placeholder.svg" ? "ai-generated" : "illustration"}',
   },`;
   const updated = content.replace("export const blogPosts: BlogPost[] = [", `export const blogPosts: BlogPost[] = [\n${entry}`);
   fs.writeFileSync(BLOG_DATA_FILE, updated, "utf-8");
@@ -275,6 +278,9 @@ export async function createBlogPost(topic: string): Promise<BlogPostResult> {
   const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error("No JSON in blog content response");
   const parsed = JSON.parse(jsonMatch[0]);
+  if (parsed.abort) {
+    throw new Error(`Writer aborted (no original value): ${parsed.reason || "unspecified"}`);
+  }
 
   const newId = String(existingSlugs.length + 1);
   await appendPost({ id: newId, slug, date, image: imagePath, ...parsed });

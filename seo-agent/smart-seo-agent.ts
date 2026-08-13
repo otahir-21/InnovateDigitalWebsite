@@ -216,11 +216,14 @@ E. If a commercial page gets traffic but no leads
 F. If technical issues exist
    → fix schema, canonical, alt text, or metadata issues
 
-G. ONLY if ALL three are true:
+G. ONLY if ALL of these are true:
    - a keyword gap exists with no existing page targeting it
    - no cannibalization risk with existing service pages
    - SERP shows informational or comparison content (not just service pages)
-   → create a new supporting blog post
+   - the post can add original value (first-hand UAE process or facts from
+     lib/caseStudiesData.ts / live GSC-GA4). Commodity "tips" or query-variation
+     pages are scaled content abuse — choose H instead.
+   → create a new supporting blog post via blog-module (do not invent statistics)
 
 H. If nothing meets the bar
    → do nothing and log clearly why (this is a valid outcome)
@@ -248,8 +251,10 @@ You may edit: title tag, meta description, H1, headings, intro and body content,
 FAQ sections, schema markup (JSON-LD), internal links, CTA sections, image alt text,
 canonical tags.
 
-For Rule G only: write 1,500–2,000 words of HTML content targeting UAE audience.
-Include internal links to the relevant service page. End with a CTA.
+For Rule G only: write original HTML grounded in case studies or GSC data.
+Do not invent statistics. Do not hit a word-count quota. If the topic would be
+a generic roundup, choose H instead. Follow Google's generative AI content
+guidance: https://developers.google.com/search/docs/fundamentals/using-gen-ai-content
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CODE SAFETY LOOP
@@ -281,11 +286,20 @@ HARD RULES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 - Do not publish content unless Rule G is triggered
 - Do not create duplicate or competing pages
+- Do not create new location, neighbourhood, or query-variation pages
+- Do not add, rewrite, or "optimize" llms.txt for Google Search (Google ignores it)
+- Do not add FAQPage schema as an AI Overview / GEO tactic
+- Do not chunk copy, stuff long-tail variants, or rewrite pages "for AI"
 - Do not break the build
 - Do not prioritise traffic over leads
 - Do not make changes just to appear active
 - Do not revert good SEO work when fixing build errors
 - Always confirm a page exists in the codebase before editing it
+- Follow Google's generative AI Search guide: unique people-first content + foundational SEO
+  (https://developers.google.com/search/docs/fundamentals/ai-optimization-guide)
+- Follow Google's generative AI *content* policy: do not publish scaled AI pages
+  without original value (https://developers.google.com/search/docs/fundamentals/using-gen-ai-content)
+- Title, meta description, schema, and alt text must be accurate — no invented claims
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 OUTPUT FORMAT (required at end of every run)

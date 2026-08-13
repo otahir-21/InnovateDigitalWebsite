@@ -38,7 +38,7 @@ const platforms = [
 
 export default function ClientLogos() {
   return (
-    <section className="py-16 bg-white border-y border-gray-100">
+    <section className="py-16 bg-white border-y border-black/5">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,19 +88,19 @@ export default function ClientLogos() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">200+</div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">200+</div>
               <div className="text-sm text-gray-600">Happy Clients Across Dubai & UAE</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">98%</div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">98%</div>
               <div className="text-sm text-gray-600">Campaign Success Rate</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">10+</div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">10+</div>
               <div className="text-sm text-gray-600">Years of Digital Marketing Experience</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-orange-600 mb-2">4.9★</div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">4.9★</div>
               <div className="text-sm text-gray-600">Client Satisfaction Rating</div>
             </div>
           </div>
@@ -114,23 +114,23 @@ export default function ClientLogos() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 px-6 py-3 rounded-full">
+          <div className="inline-flex items-center gap-2 bg-secondary-50 border border-black/5 px-6 py-3 rounded-full">
             <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+              <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                 M
               </div>
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+              <div className="w-8 h-8 rounded-full bg-secondary-600 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                 S
               </div>
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+              <div className="w-8 h-8 rounded-full bg-neutral-700 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                 A
               </div>
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+              <div className="w-8 h-8 rounded-full bg-neutral-400 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                 +
               </div>
             </div>
             <span className="text-sm font-medium text-gray-700">
-              Join <strong className="text-blue-600">200+ satisfied clients</strong> across UAE
+              Join <strong className="text-black">200+ satisfied clients</strong> across UAE
             </span>
           </div>
         </motion.div>

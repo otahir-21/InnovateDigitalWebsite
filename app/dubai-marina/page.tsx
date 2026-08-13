@@ -94,7 +94,7 @@ export default function DubaiMarinaPage() {
 
       <Breadcrumbs />
 
-      <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-secondary-50 via-white to-secondary-100">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -123,7 +123,7 @@ export default function DubaiMarinaPage() {
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi, I need marketing help in Dubai Marina`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold transition-all inline-flex items-center justify-center"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm transition-all inline-flex items-center justify-center"
               >
                 <FaWhatsapp className="mr-2 w-5 h-5" />
                 WhatsApp Us
@@ -209,26 +209,26 @@ export default function DubaiMarinaPage() {
 
       <FAQ faqs={marinaFaqs} title="Dubai Marina Digital Marketing - FAQ" />
 
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Dominate Dubai Marina?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Free marketing audit - capture Marina's affluent market
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center justify-center"
+              className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center justify-center"
             >
               Get Free Audit 🎯
               <FiArrowRight className="ml-2" />
             </Link>
             <a
               href={`tel:${siteConfig.contact.phone}`}
-              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all inline-flex items-center justify-center"
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm transition-all inline-flex items-center justify-center"
             >
               <FiPhone className="mr-2" />
               {siteConfig.contact.phone}

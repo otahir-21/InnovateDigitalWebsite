@@ -188,7 +188,7 @@ export default function EcommercePage() {
       </div>
       
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-teal-50 to-cyan-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -211,35 +211,35 @@ export default function EcommercePage() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">E-commerce Development Quick Facts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-teal-50 p-6 rounded-lg border-l-4 border-teal-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-teal-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">E-commerce Platform Development</div>
               </div>
-              <div className="bg-cyan-50 p-6 rounded-lg border-l-4 border-cyan-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-cyan-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Businesses selling products online</div>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">6-12 weeks for full store launch</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 25,000</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-teal-600 mb-1">99.9%</div>
+                  <div className="text-3xl font-bold text-black mb-1">99.9%</div>
                   <div className="text-sm text-gray-600">Uptime guarantee</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-teal-600 mb-1">Secure</div>
+                  <div className="text-3xl font-bold text-black mb-1">Secure</div>
                   <div className="text-sm text-gray-600">Payment integration</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-teal-600 mb-1">Mobile</div>
+                  <div className="text-3xl font-bold text-black mb-1">Mobile</div>
                   <div className="text-sm text-gray-600">First design</div>
                 </div>
               </div>
@@ -262,7 +262,7 @@ export default function EcommercePage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-teal-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -337,7 +337,7 @@ export default function EcommercePage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-teal-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -347,24 +347,24 @@ export default function EcommercePage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-teal-600 to-cyan-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">200+</div>
-              <p className="text-teal-100">E-commerce stores launched</p>
+              <p className="text-white/50">E-commerce stores launched</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">$15M+</div>
-              <p className="text-teal-100">Revenue generated for clients</p>
+              <p className="text-white/50">Revenue generated for clients</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">3.2%</div>
-              <p className="text-teal-100">Average conversion rate</p>
+              <p className="text-white/50">Average conversion rate</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">99.9%</div>
-              <p className="text-teal-100">Uptime guarantee</p>
+              <p className="text-white/50">Uptime guarantee</p>
             </div>
           </div>
         </div>
@@ -374,17 +374,17 @@ export default function EcommercePage() {
       <FAQ faqs={faqs} title="E-commerce FAQ" />
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Start Your Online Store?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Get a free consultation and discover how we can build a profitable e-commerce business for you
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center"
+            className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center"
           >
             Get Free Consultation
             <FiArrowRight className="ml-2" />

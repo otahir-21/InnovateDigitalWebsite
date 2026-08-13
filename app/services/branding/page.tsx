@@ -112,7 +112,7 @@ export default function BrandingPage() {
       <div className="container mx-auto px-4"><Breadcrumbs /></div>
 
       {/* Hero */}
-      <section className="section-padding bg-gradient-to-br from-indigo-50 to-purple-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -136,35 +136,35 @@ export default function BrandingPage() {
         <div className="container-custom">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-pink-50 p-6 rounded-lg border-l-4 border-pink-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-pink-900 mb-2">Service</div>
                 <div className="text-lg font-bold text-gray-900">Brand Identity & Visual Design</div>
               </div>
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Startups & rebranding businesses in UAE</div>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">3–5 weeks for complete brand identity</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Starting Price</div>
                 <div className="text-lg font-bold text-gray-900">From AED 5,000</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-pink-600 mb-1">100+</div>
+                  <div className="text-3xl font-bold text-black mb-1">100+</div>
                   <div className="text-sm text-gray-600">Brands created in UAE</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-pink-600 mb-1">48hrs</div>
+                  <div className="text-3xl font-bold text-black mb-1">48hrs</div>
                   <div className="text-sm text-gray-600">Initial concepts delivered</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-pink-600 mb-1">∞</div>
+                  <div className="text-3xl font-bold text-black mb-1">∞</div>
                   <div className="text-sm text-gray-600">Revisions included</div>
                 </div>
               </div>
@@ -236,7 +236,7 @@ export default function BrandingPage() {
                   Start Your Brand <FiArrowRight className="ml-2" />
                 </Link>
               </div>
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
+              <div className="bg-secondary-50 rounded-2xl p-8">
                 <h3 className="text-xl font-bold mb-6 text-center">Startup Brand Package Includes</h3>
                 {[
                   'Primary logo + 3 alternate versions',
@@ -249,7 +249,7 @@ export default function BrandingPage() {
                   'All source files (AI, EPS, SVG, PNG)',
                 ].map((item) => (
                   <div key={item} className="flex items-center py-3 border-b border-indigo-100 last:border-0">
-                    <FiCheck className="w-5 h-5 text-indigo-600 mr-3 flex-shrink-0" />
+                    <FiCheck className="w-5 h-5 text-black mr-3 flex-shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </div>
                 ))}
@@ -270,7 +270,7 @@ export default function BrandingPage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-indigo-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -290,7 +290,7 @@ export default function BrandingPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-indigo-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -300,20 +300,20 @@ export default function BrandingPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-indigo-600 to-purple-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">100+</div>
-              <p className="text-indigo-100">Brand identities created in UAE</p>
+              <p className="text-white/50">Brand identities created in UAE</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">48hrs</div>
-              <p className="text-indigo-100">Initial concepts delivered</p>
+              <p className="text-white/50">Initial concepts delivered</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">AED 5K</div>
-              <p className="text-indigo-100">Starting price for full brand identity</p>
+              <p className="text-white/50">Starting price for full brand identity</p>
             </div>
           </div>
         </div>
@@ -321,11 +321,11 @@ export default function BrandingPage() {
 
       <FAQ faqs={faqs} title="Brand Identity FAQ" />
 
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Build Your Brand Identity?</h2>
-          <p className="text-xl mb-8 text-blue-100">Free 30-minute consultation. We'll tell you exactly what your brand needs before you spend a dirham.</p>
-          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center">
+          <p className="text-xl mb-8 text-white/70">Free 30-minute consultation. We'll tell you exactly what your brand needs before you spend a dirham.</p>
+          <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center">
             Get Free Consultation <FiArrowRight className="ml-2" />
           </Link>
         </div>

@@ -170,7 +170,7 @@ export default function DubaiPage() {
       <Breadcrumbs />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-secondary-50 via-white to-secondary-100">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -203,7 +203,7 @@ export default function DubaiPage() {
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi, I need digital marketing help in Dubai`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold transition-all inline-flex items-center justify-center"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm transition-all inline-flex items-center justify-center"
               >
                 <FaWhatsapp className="mr-2 w-5 h-5" />
                 WhatsApp Us
@@ -386,33 +386,33 @@ export default function DubaiPage() {
       <FAQ faqs={dubaiFaqs} title="Digital Marketing in Dubai - FAQ" />
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Dominate Dubai's Digital Market?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Get a free marketing audit worth AED 2,000 - discover your growth opportunities
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="/contact"
-              className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center justify-center"
+              className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center justify-center"
             >
               Get Free Audit 🎯
               <FiArrowRight className="ml-2" />
             </Link>
             <a
               href={`tel:${siteConfig.contact.phone}`}
-              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all inline-flex items-center justify-center"
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm transition-all inline-flex items-center justify-center"
             >
               <FiPhone className="mr-2" />
               Call Now
             </a>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center text-blue-100">
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center text-white/70">
             <a href={`tel:${siteConfig.contact.phone}`} className="flex items-center space-x-2 hover:text-white transition-colors">
               <FiPhone className="w-5 h-5" />
               <span>{siteConfig.contact.phone}</span>

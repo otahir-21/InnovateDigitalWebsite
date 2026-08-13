@@ -14,6 +14,26 @@ export interface BlogPost {
   featured: boolean
   metaDescription: string
   keywords: string[]
+  /** Set on new posts. Older agent posts are inferred from the slug/image path. */
+  creationMethod?: 'human' | 'ai-assisted'
+  imageSource?: 'photo' | 'ai-generated' | 'illustration'
+}
+
+/** Agent slugs end with YYYY-MM-DD. Explicit creationMethod wins when present. */
+export function isAiAssistedPost(post: BlogPost): boolean {
+  if (post.creationMethod === 'human') return false
+  if (post.creationMethod === 'ai-assisted') return true
+  return /-\d{4}-\d{2}-\d{2}$/.test(post.slug)
+}
+
+export function isAiGeneratedImage(post: BlogPost): boolean {
+  if (post.imageSource === 'photo') return false
+  if (post.imageSource === 'ai-generated') return true
+  if (post.imageSource === 'illustration') return false
+  return (
+    isAiAssistedPost(post) &&
+    Boolean(post.image?.startsWith('/blog/') && !post.image.includes('placeholder'))
+  )
 }
 
 export const blogPosts: BlogPost[] = [

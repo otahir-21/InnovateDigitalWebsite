@@ -1,21 +1,25 @@
 /**
  * Innovate Digital — On-Page SEO Agent
- * Runs daily to audit and fix 100% on-page SEO for innovatedigital.ae
+ *
+ * Audits and fixes foundational SEO for innovatedigital.ae.
+ * Aligned with Google Search Central: "Optimizing your website for generative
+ * AI features on Google Search" (July 2026).
+ * https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+ *
+ * For Google Search (including AI Overviews and AI Mode), GEO/AEO is still SEO.
+ * Unique, people-first content + crawlable technical structure matter.
+ * llms.txt, content chunking, AI-only rewrites, and FAQPage-as-AI-hack do not.
  *
  * Coverage:
- *  1. Metadata — title, description, keywords, OG, Twitter on every page
- *  2. Schema — Organization, LocalBusiness, Service, FAQ, BreadcrumbList,
- *              AggregateRating, ContactPoint on correct pages
+ *  1. Metadata — title, description, OG, Twitter, canonical on every indexable page
+ *  2. Schema for rich results — Organization, LocalBusiness, Service, BreadcrumbList
  *  3. Headings — one H1 per page, logical H2/H3 hierarchy
- *  4. Alt text — every <img> has a descriptive alt attribute
- *  5. Internal linking — service pages link to related services & location pages
- *  6. Blog listing page — convert to layout+page pattern for server metadata
- *  7. Location pages — add AggregateRating schema
- *  8. Contact page — add ContactPoint schema
- *  9. Portfolio pages — add metadata & CaseStudy schema
- * 10. FAQ schema — add to every service page
- * 11. Sitemap & robots — verify completeness
- * 12. llms.txt — create/update for AI search visibility
+ *  4. Alt text — every meaningful <img>/<Image> has a descriptive alt
+ *  5. Internal linking — service pages link to related services
+ *  6. Important copy in HTML — no answers or proof omitted until click/JS
+ *  7. Duplicate / thin / scaled location content — flag, do not multiply
+ *  8. Sitemap & robots — verify completeness and crawlability
+ *  9. Page experience — do not add weight that hurts LCP/INP
  */
 
 import { query } from "@anthropic-ai/claude-agent-sdk";
@@ -26,16 +30,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 
 const PROMPT = `
-You are an expert on-page SEO engineer working on the Next.js 14 website for
+You are an on-page SEO engineer for the Next.js 14 site of
 "Innovate Digital" — a digital marketing agency in Dubai, UAE (innovatedigital.ae).
 
-Your job is to audit every page and fix all on-page SEO issues so the site
-scores 100% on any SEO audit tool. Work systematically through each category below.
+Follow official Google Search guidance, not third-party "AEO/GEO" hacks.
+Primary source:
+https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+
+Your job is to fix foundational SEO so pages are crawlable, indexable, and
+useful to people. Do not optimize copy "for AI". Do not manufacture pages for
+query fan-out.
 
 SITE ROOT: ${ROOT}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-BUSINESS DETAILS (use consistently across all files)
+BUSINESS DETAILS (use consistently)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Name: Innovate Digital
 Domain: https://www.innovatedigital.ae
@@ -43,226 +52,124 @@ Phone: +971 52 394 9010
 WhatsApp: +971523949010
 Email: info@innovatedigital.ae
 Address: Meydan Free Zone, Dubai, UAE
-Rating: 5.0 / 5  (based on 47 reviews)
+Rating: 5.0 / 5 (47 reviews)
 Founded: 2020
+Founder: Osama Tahir (LinkedIn: https://www.linkedin.com/in/otahir21)
 Clients served: 200+
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 1 — BLOG LISTING PAGE METADATA
+DO NOT (Google Search ignores these or treats them as spam)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-The file app/blog/page.tsx is a 'use client' component — it CANNOT export metadata.
-Fix: create app/blog/layout.tsx with proper metadata export.
-
-app/blog/layout.tsx should export:
-  title: "Digital Marketing Blog Dubai | Expert Insights | Innovate Digital"
-  description: "Expert digital marketing insights for UAE businesses. SEO tips,
-    Google Ads strategies, social media guides, and web development tutorials
-    from Dubai's leading digital marketing agency."
-  keywords: ["digital marketing blog Dubai", "SEO tips UAE", "Google Ads Dubai",
-    "social media marketing blog", "web development tips UAE", "marketing insights UAE"]
-  openGraph: { type: "website", url: "https://www.innovatedigital.ae/blog",
-    title, description }
-  alternates: { canonical: "https://www.innovatedigital.ae/blog" }
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 2 — PORTFOLIO PAGE METADATA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-app/portfolio/page.tsx is also 'use client'. Create app/portfolio/layout.tsx:
-  title: "Our Portfolio | Digital Marketing Case Studies UAE | Innovate Digital"
-  description: "See how Innovate Digital helped 200+ UAE businesses grow online.
-    Real results: SEO rankings, Google Ads ROI, social media growth, and custom
-    web development projects in Dubai, Abu Dhabi & Sharjah."
-  keywords: ["digital marketing portfolio UAE", "SEO case studies Dubai",
-    "web development portfolio UAE", "digital agency work Dubai"]
-  alternates: { canonical: "https://www.innovatedigital.ae/portfolio" }
+- Do NOT create, expand, or "optimize" public/llms.txt for Google visibility.
+  Google Search ignores llms.txt. Leave the file alone unless it is broken HTML
+  on the site (it is not HTML). Other tools may read it; that is not a Google task.
+- Do NOT add FAQPage schema as an AI Overview / rich-result tactic.
+  Visible FAQ copy in HTML is fine. FAQPage rich results are not for this
+  commercial site. Do not add new FAQ JSON-LD.
+- Do NOT chunk content into AI-sized passages or rewrite pages "for generative AI".
+- Do NOT create new location, neighbourhood, or keyword-variation pages
+  (no DIFC, JVC, Deira, "SEO in Business Bay" clones, etc.).
+  Existing location pages: /dubai /abu-dhabi /sharjah /business-bay
+  /downtown-dubai /dubai-marina /jlt — do not add more.
+- Do NOT pursue inauthentic mentions, guest-post farms, or citation schemes.
+- Do NOT add special AI schema, Markdown-for-Google, or machine-only files.
+- Do NOT use HowTo schema.
+- Do NOT sacrifice site speed (heavy client JS, extra fonts, unoptimized images).
+- Do NOT generate many AI pages, commodity "tips" posts, or query-variation articles.
+  That is scaled content abuse. Google: https://developers.google.com/search/docs/fundamentals/using-gen-ai-content
+  Metadata (title, description, schema, alt) must be accurate — never invent stats.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 3 — LOCATION PAGES: ADD AGGREGATERATING SCHEMA
+TASK 1 — METADATA & CANONICALS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Read lib/schema.ts to understand generateAggregateRatingSchema().
-Then read each location page and add the AggregateRating schema as a JSON-LD
-script block if it's missing. Location pages:
-  app/dubai/page.tsx
-  app/abu-dhabi/page.tsx
-  app/sharjah/page.tsx
-  app/business-bay/page.tsx
-  app/downtown-dubai/page.tsx
-  app/dubai-marina/page.tsx
-  app/jlt/page.tsx
+Every indexable page.tsx (or its layout.tsx if the page is a client component)
+must export:
+  title, description, openGraph, twitter, alternates.canonical
 
-Use: ratingValue: 5.0, reviewCount: 47, bestRating: 5, worstRating: 1.
-Add as: <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateAggregateRatingSchema(5.0, 47)) }} />
+Canonical form: relative path is fine (metadataBase is set), e.g. canonical: "/services/seo"
+Skip /login, /client-portal, /admin, /api.
+
+Fix missing or duplicate titles. Do not keyword-stuff titles with "#1" unless
+that claim is already proven on the page.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 4 — SERVICE PAGES: ADD FAQ SCHEMA
+TASK 2 — RICH-RESULT SCHEMA (not AI markup)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Read lib/faqData.ts to see what FAQ data exists.
-For each service page that is missing a FAQ section + schema, add:
-  - Import generateFAQSchema from lib/schema
-  - Import relevant FAQs from lib/faqData (or create 4 relevant Q&A pairs)
-  - Add <FAQ> component at bottom of page (before last CTA)
-  - Add <script type="application/ld+json"> with FAQ schema
+Keep and repair, if missing or invalid:
+  Organization, LocalBusiness, WebSite (root layout / homepage)
+  Service schema on service pages (lib/schema.ts generateServiceSchema)
+  BreadcrumbList on inner pages
+  BlogPosting on blog posts
+  Person for the founder on /about (founderPersonSchema)
 
-Service pages to check:
-  app/services/seo/page.tsx
-  app/services/ppc/page.tsx
-  app/services/social-media/page.tsx
-  app/services/web-development/page.tsx
-  app/services/ecommerce/page.tsx
-  app/services/content-marketing/page.tsx
-  app/services/mobile-app/page.tsx
-  app/services/branding/page.tsx
-  app/services/email-marketing/page.tsx
-  app/services/video-production/page.tsx
-  app/services/analytics/page.tsx
-  app/services/marketing-automation/page.tsx
+Do not add FAQPage, HowTo, or speculative schema.org types "for AI".
+Structured data must match visible text.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 5 — CONTACT PAGE: ADD CONTACTPOINT SCHEMA
+TASK 3 — HTML VISIBILITY OF IMPORTANT CONTENT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Read app/contact/page.tsx.
-Add a ContactPoint JSON-LD schema:
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Innovate Digital",
-  "url": "https://www.innovatedigital.ae",
-  "telephone": "+971523949010",
-  "email": "info@innovatedigital.ae",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Meydan Free Zone",
-    "addressLocality": "Dubai",
-    "addressCountry": "AE"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+971523949010",
-    "contactType": "customer service",
-    "availableLanguage": ["English", "Arabic"],
-    "areaServed": "AE",
-    "contactOption": "TollFree"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  }
-}
+Important copy (FAQ answers, pricing ranges, proof, founder bio) must be in
+the server-rendered HTML. Do not omit it behind click-only React state.
+
+The FAQ component in components/ui/FAQ.tsx must use native <details>/<summary>
+so answers are in the document without JavaScript. If someone reverts it to
+conditional render ({openIndex === i && ...}), restore the details pattern.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 6 — ALT TEXT AUDIT
+TASK 4 — ALT TEXT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Search all .tsx files for:
-  - <img> tags missing alt attribute
-  - <img alt=""> (empty alt)
-  - Next.js <Image> missing alt
-
-Fix every instance. Alt text should be descriptive and include relevant keywords.
-Examples:
-  logo: alt="Innovate Digital - Digital Marketing Agency Dubai Logo"
-  founder: alt="Osama Tahir - Founder of Innovate Digital Dubai"
-  service icons: alt="[Service Name] services Dubai - Innovate Digital"
+Search .tsx files for <img> / next/image <Image> missing alt or alt="".
+Write descriptive alt. Decorative images may use alt="".
+Founder photo: alt="Osama Tahir - Founder and CEO of Innovate Digital, Dubai"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 7 — HEADING STRUCTURE AUDIT
+TASK 5 — HEADING STRUCTURE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Check every page file for:
-  - Multiple <h1> tags on same page (fix: keep only one)
-  - Missing <h1> (fix: add one with primary keyword)
-  - H3 appearing before H2 (fix: reorder)
-  - Generic H1 text like "Welcome" (fix: use keyword-rich text)
+One H1 per page. No H3 before H2. H1 should describe the page for a person,
+not a list of synonyms.
 
-Pages to check: app/page.tsx, app/about/page.tsx, app/contact/page.tsx,
-and all service/location page files.
+Pages: app/page.tsx, app/about/page.tsx, app/contact/page.tsx,
+service pages, location pages, blog, portfolio.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 8 — VERIFY & FIX CANONICAL URLS
+TASK 6 — SITEMAP & ROBOTS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Every page should have:
-  alternates: { canonical: "https://www.innovatedigital.ae/[path]" }
-
-Check all service pages and location pages. Add where missing.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 9 — SITEMAP COMPLETENESS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Read app/sitemap.ts. Verify it includes:
-  - All 12 service pages
-  - All 7 location pages
-  - /portfolio, /blog, /about, /contact
-  - Dynamic blog posts
-  - Priority values: homepage=1.0, services=0.9, locations=0.8, blog=0.7
-
-Add any missing URLs.
+Read app/sitemap.ts and app/robots.ts.
+Sitemap should include homepage, 12 services, 7 existing locations,
+/portfolio, /blog, /about, /contact, and blog posts.
+Do not add new URLs for pages that do not exist.
+robots.txt must allow Googlebot on public content; keep /api/ and /admin/ disallowed.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 10 — CREATE llms.txt FOR AI SEARCH VISIBILITY
+TASK 7 — THIN / DUPLICATE / SCALED CONTENT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Create public/llms.txt with the following structure:
+Flag (do not auto-generate replacements for) location pages that only swap
+the city name. Do not create more of them.
+Prefer strengthening unique pages: /about, /portfolio/[slug], service pages
+with first-hand proof, process, and results already in the codebase.
 
-# Innovate Digital
-> Leading digital marketing agency in Dubai & UAE. Expert SEO, Google Ads,
-> social media, web development, and mobile app services since 2020.
-> 200+ clients served across Dubai, Abu Dhabi, Sharjah, and UAE.
-
-## Services
-- [SEO Services Dubai](https://www.innovatedigital.ae/services/seo)
-- [Google Ads / PPC Management](https://www.innovatedigital.ae/services/ppc)
-- [Social Media Marketing UAE](https://www.innovatedigital.ae/services/social-media)
-- [Web Development Dubai](https://www.innovatedigital.ae/services/web-development)
-- [E-commerce Solutions UAE](https://www.innovatedigital.ae/services/ecommerce)
-- [Mobile App Development Dubai](https://www.innovatedigital.ae/services/mobile-app)
-- [Content Marketing UAE](https://www.innovatedigital.ae/services/content-marketing)
-- [Branding & Design Dubai](https://www.innovatedigital.ae/services/branding)
-- [Email Marketing UAE](https://www.innovatedigital.ae/services/email-marketing)
-- [Video Production Dubai](https://www.innovatedigital.ae/services/video-production)
-- [Analytics & Reporting](https://www.innovatedigital.ae/services/analytics)
-- [Marketing Automation UAE](https://www.innovatedigital.ae/services/marketing-automation)
-
-## Locations Served
-- [Dubai](https://www.innovatedigital.ae/dubai)
-- [Abu Dhabi](https://www.innovatedigital.ae/abu-dhabi)
-- [Sharjah](https://www.innovatedigital.ae/sharjah)
-- [Business Bay](https://www.innovatedigital.ae/business-bay)
-- [Downtown Dubai](https://www.innovatedigital.ae/downtown-dubai)
-- [Dubai Marina](https://www.innovatedigital.ae/dubai-marina)
-- [JLT](https://www.innovatedigital.ae/jlt)
-
-## Blog
-- [Digital Marketing Blog](https://www.innovatedigital.ae/blog)
-
-## Contact
-- Email: info@innovatedigital.ae
-- Phone: +971 52 394 9010
-- Address: Meydan Free Zone, Dubai, UAE
+If a service page is generic commodity copy, add proof that already exists
+in lib/caseStudiesData.ts or lib/faqData.ts — do not invent clients, metrics,
+or reviews.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 11 — META DESCRIPTION LENGTH CHECK
+TASK 8 — INTERNAL LINKS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Every page meta description must be 140-160 characters.
-Search all page.tsx files for description strings shorter than 120 chars
-or longer than 165 chars and rewrite them to the correct length.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TASK 12 — OG IMAGE REFERENCE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-The current ogImage in lib/config.ts points to the logo SVG.
-Update it to: 'https://www.innovatedigital.ae/og-image.png'
-(We will create the actual image separately — just update the reference now.)
+Service pages should link to 2–4 related services with natural anchors.
+About and homepage should link to /portfolio and /contact.
+Do not add sitewide keyword-rich footer spam.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EXECUTION ORDER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. Start by reading lib/schema.ts and lib/faqData.ts to understand existing helpers.
-2. Work through Tasks 1-12 in order.
-3. After each task, verify the file compiles by running: cd ${ROOT} && npx tsc --noEmit 2>&1 | tail -5
-4. If TypeScript errors appear, fix them before moving to next task.
-5. At the end, run a final TypeScript check and report what was fixed.
+1. Read lib/schema.ts, lib/config.ts, components/ui/FAQ.tsx, app/robots.ts, app/sitemap.ts.
+2. Work through Tasks 1–8. Skip a task if already correct.
+3. After edits: cd ${ROOT} && npx tsc --noEmit
+4. Fix TypeScript errors before finishing.
+5. Report what you fixed. If nothing needed fixing, say so.
 
-Do NOT skip any task. Do NOT stop early.
-Report each completed task with a checkmark.
+Do not treat "100% on SEO audit tools" as the goal.
+Do not spend the run on llms.txt or FAQ JSON-LD.
 `;
 
 async function runSeoAgent() {

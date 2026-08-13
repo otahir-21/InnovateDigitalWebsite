@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 }
 
 const platforms = [
-  { name: 'Instagram', icon: FiInstagram, color: 'text-pink-600' },
-  { name: 'Facebook', icon: FaFacebook, color: 'text-blue-600' },
+  { name: 'Instagram', icon: FiInstagram, color: 'text-black' },
+  { name: 'Facebook', icon: FaFacebook, color: 'text-black' },
   { name: 'LinkedIn', icon: FaLinkedin, color: 'text-blue-700' },
   { name: 'TikTok', icon: FaTiktok, color: 'text-gray-900' },
   { name: 'Twitter/X', icon: FiTwitter, color: 'text-blue-400' },
@@ -125,7 +125,7 @@ export default function SocialMediaPage() {
         <Breadcrumbs />
       </div>
       
-      <section className="section-padding bg-gradient-to-br from-purple-50 to-pink-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -148,35 +148,35 @@ export default function SocialMediaPage() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">Social Media Marketing Quick Facts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-purple-900 mb-2">Service Type</div>
                 <div className="text-lg font-bold text-gray-900">Social Media Management & Advertising</div>
               </div>
-              <div className="bg-pink-50 p-6 rounded-lg border-l-4 border-pink-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-pink-900 mb-2">Best For</div>
                 <div className="text-lg font-bold text-gray-900">Brand awareness & customer engagement</div>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-blue-900 mb-2">Timeline</div>
                 <div className="text-lg font-bold text-gray-900">2-3 months for significant growth</div>
               </div>
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
+              <div className="bg-secondary-50 p-6 rounded-lg border-l-4 border-black">
                 <div className="text-sm font-semibold text-orange-900 mb-2">Investment</div>
                 <div className="text-lg font-bold text-gray-900">From AED 2,000/month</div>
               </div>
             </div>
-            <div className="mt-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+            <div className="mt-6 p-6 bg-secondary-50 rounded-lg">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-1">300%</div>
+                  <div className="text-3xl font-bold text-black mb-1">300%</div>
                   <div className="text-sm text-gray-600">Average engagement increase</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-1">50K+</div>
+                  <div className="text-3xl font-bold text-black mb-1">50K+</div>
                   <div className="text-sm text-gray-600">Combined reach achieved</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-1">4.5%</div>
+                  <div className="text-3xl font-bold text-black mb-1">4.5%</div>
                   <div className="text-sm text-gray-600">Average conversion rate</div>
                 </div>
               </div>
@@ -240,7 +240,7 @@ export default function SocialMediaPage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="card text-center">
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-purple-600" />
+                  <benefit.icon className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -260,7 +260,7 @@ export default function SocialMediaPage() {
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-6xl font-bold text-purple-100 mb-4">{item.step}</div>
+                <div className="text-6xl font-bold text-black/10 mb-4">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
@@ -270,24 +270,24 @@ export default function SocialMediaPage() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-gradient-to-br from-purple-600 to-pink-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-5xl font-bold mb-2">5M+</div>
-              <p className="text-purple-100">Impressions generated</p>
+              <p className="text-white/50">Impressions generated</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">150%</div>
-              <p className="text-purple-100">Avg follower growth</p>
+              <p className="text-white/50">Avg follower growth</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">4.5%</div>
-              <p className="text-purple-100">Engagement rate</p>
+              <p className="text-white/50">Engagement rate</p>
             </div>
             <div>
               <div className="text-5xl font-bold mb-2">98%</div>
-              <p className="text-purple-100">Client satisfaction</p>
+              <p className="text-white/50">Client satisfaction</p>
             </div>
           </div>
         </div>
@@ -328,17 +328,17 @@ export default function SocialMediaPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Grow Your Social Media Presence?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Get a free social media audit and discover opportunities to engage your audience
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-all inline-flex items-center"
+            className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold uppercase tracking-[0.08em] text-sm hover:bg-gray-100 transition-all inline-flex items-center"
           >
             Get Free Social Media Audit
             <FiArrowRight className="ml-2" />

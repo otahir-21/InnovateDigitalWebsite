@@ -39,7 +39,7 @@ export default function Testimonials() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            What Our <span className="gradient-text">Clients Say</span>
+            What Our <span className="font-light italic">Clients Say</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Don&apos;t just take our word for it - hear from businesses we&apos;ve helped grow
@@ -59,7 +59,7 @@ export default function Testimonials() {
               {/* Rating Stars */}
               <div className="flex mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <FiStar key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  <FiStar key={i} className="w-5 h-5 text-secondary-500 fill-current" />
                 ))}
               </div>
 
@@ -90,15 +90,15 @@ export default function Testimonials() {
         >
           <div className="flex flex-wrap justify-center items-center gap-12">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600 mb-1">4.9/5</div>
+              <div className="text-3xl font-bold text-black mb-1">4.9/5</div>
               <div className="text-sm text-gray-600">Client Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600 mb-1">98%</div>
+              <div className="text-3xl font-bold text-black mb-1">98%</div>
               <div className="text-sm text-gray-600">Client Retention</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600 mb-1">200+</div>
+              <div className="text-3xl font-bold text-black mb-1">200+</div>
               <div className="text-sm text-gray-600">5-Star Reviews</div>
             </div>
           </div>

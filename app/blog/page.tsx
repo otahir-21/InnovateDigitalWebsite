@@ -25,14 +25,14 @@ export default function BlogPage() {
       </div>
       
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Our <span className="gradient-text">Blog</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Latest insights, tips, and strategies from digital marketing experts in UAE
+              Practical notes from running SEO, ads, and websites for UAE businesses — not a feed of generated roundups.
             </p>
           </div>
         </div>
@@ -135,12 +135,12 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="container-custom text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Stay Updated with Latest Marketing Insights
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-white/70">
             Subscribe to our newsletter and get expert tips delivered to your inbox
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">

@@ -5,62 +5,13 @@ import Link from 'next/link'
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
 import { fadeUp, staggerContainer, staggerItem } from '@/lib/animations'
 import ScrollRevealText from '@/components/ui/ScrollRevealText'
+import { caseStudies as allCaseStudies } from '@/lib/caseStudiesData'
 
-// Sample case studies displayed on homepage - full data is in caseStudiesData.ts
-const caseStudies = [
-  {
-    slug: 'ecommerce-fashion-brand',
-    title: 'E-commerce SEO Success',
-    client: 'Dubai Fashion Retailer',
-    industry: 'Retail',
-    challenge: 'Low organic traffic and poor search rankings',
-    solution: 'Comprehensive SEO strategy with technical optimization, content marketing, and link building',
-    results: [
-      '250% increase in organic traffic',
-      '180% boost in online sales',
-      'Ranked #1 for 15+ target keywords',
-      '40% reduction in bounce rate',
-    ],
-    image: '📈',
-    color: 'from-blue-500 to-cyan-500',
-  },
-  {
-    slug: 'fitness-studio-transformation',
-    title: 'Social Media Transformation',
-    client: 'UAE Hospitality Brand',
-    industry: 'Hospitality',
-    challenge: 'Limited social media presence and engagement',
-    solution: 'Strategic social media management across Instagram, Facebook, and TikTok with influencer partnerships',
-    results: [
-      '500% increase in followers',
-      '300% boost in engagement',
-      '150% increase in bookings',
-      'Generated 2M+ impressions monthly',
-    ],
-    image: '🚀',
-    color: 'from-purple-500 to-pink-500',
-  },
-  {
-    slug: 'real-estate-portal',
-    title: 'Website Redesign & Optimization',
-    client: 'Tech Startup UAE',
-    industry: 'Technology',
-    challenge: 'Outdated website with poor performance',
-    solution: 'Modern, responsive web development with Next.js, optimized UX/UI',
-    results: [
-      '70% faster page load times',
-      '45% reduction in bounce rate',
-      '200% increase in conversions',
-      '85+ Google PageSpeed score',
-    ],
-    image: '💻',
-    color: 'from-green-500 to-emerald-500',
-  },
-]
+const featuredStudies = allCaseStudies.slice(0, 3)
 
 export default function CaseStudies() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-20 bg-secondary-50">
       <div className="container mx-auto px-4">
         <motion.div
           variants={fadeUp}
@@ -69,7 +20,7 @@ export default function CaseStudies() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
             <ScrollRevealText text="Success Stories" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -84,63 +35,49 @@ export default function CaseStudies() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          {caseStudies.map((study) => (
+          {featuredStudies.map((study) => (
             <motion.div
               key={study.slug}
               variants={staggerItem}
-              className={`relative rounded-2xl p-8 text-white overflow-hidden group hover:scale-105 transition-transform duration-300 cursor-pointer bg-gradient-to-br ${study.color}`}
+              className="relative rounded-4xl p-8 bg-white text-black overflow-hidden group border border-black/10 cursor-pointer"
             >
-              {/* Background decoration */}
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors"></div>
-              
               <div className="relative z-10">
-                {/* Icon */}
-                <div className="text-6xl mb-6">{study.image}</div>
+                <div className="text-sm uppercase tracking-[0.2em] text-black/35 mb-6">{study.location}</div>
 
-                {/* Industry badge */}
-                <div className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
+                <div className="inline-block px-3 py-1 border border-black/10 rounded-full text-xs uppercase tracking-wider font-medium mb-4">
                   {study.industry}
                 </div>
 
-                {/* Title */}
                 <h3 className="text-2xl font-bold mb-2">
                   {study.title}
                 </h3>
 
-                {/* Client */}
-                <p className="text-white/90 mb-4 font-medium">
+                <p className="text-black/60 mb-4 font-medium">
                   {study.client}
                 </p>
 
-                {/* Challenge */}
-                <div className="mb-4 pb-4 border-b border-white/20">
-                  <p className="text-sm text-white/80 mb-2 font-semibold">Challenge:</p>
-                  <p className="text-white/90 text-sm">{study.challenge}</p>
+                <div className="mb-4 pb-4 border-b border-black/10">
+                  <p className="text-sm text-black/45 mb-2 uppercase tracking-wider">Challenge</p>
+                  <p className="text-black/80 text-sm">{study.challenge}</p>
                 </div>
 
-                {/* Results */}
                 <div className="space-y-2 mb-6">
-                  {study.results.map((result, idx) => (
+                  {study.results.slice(0, 3).map((result, idx) => (
                     <div key={idx} className="flex items-start gap-2">
                       <FiCheckCircle className="flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-white/90">{result}</span>
+                      <span className="text-sm text-black/80">{result}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* CTA */}
                 <Link
                   href={`/portfolio/${study.slug}`}
-                  className="inline-flex items-center gap-2 font-semibold hover:gap-4 transition-all"
+                  className="inline-flex items-center gap-2 font-semibold uppercase tracking-wider text-sm hover:gap-3 transition-all"
                 >
                   View Full Case Study
                   <FiArrowRight />
                 </Link>
               </div>
-
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
             </motion.div>
           ))}
         </motion.div>
@@ -154,7 +91,7 @@ export default function CaseStudies() {
         >
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-shadow"
+            className="btn-primary inline-flex items-center gap-2"
           >
             View All Case Studies
             <FiArrowRight />
